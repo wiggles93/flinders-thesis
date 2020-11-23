@@ -58,6 +58,10 @@ Items that I want to cover in the Lit review
     \item Using SDR to transmit GPS signal
     \item Algorithms for generating spoofed signal
     \item GPS Antispoofing techniques
+    \item GPS spoof detection techniques
+    \begin{itemize}
+        \item This will be what will need to be overcome in the implmentation of the spoofing transmitter.
+    \end{itemize}
     \item OPTIONAL: Difference between Block II and block III satellites
 \end{itemize}
 \medskip
@@ -65,6 +69,16 @@ Previous research into the use of SDR (software defined radio) for GPS spoofing 
 That is, that the use of open source software to ease the development. Namely multiple previous attempts at GPS spoofing
 used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Both of these are available from GitHub as free
 and open source programs.
+
+\bigskip
+
+As discussed in \cite{RN7} GPS (Global Positioning System) has become the defacto positioning infrastructure
+and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, Beidou) GPS is 
+still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
+security concerns have become apparent. The authors \todo{remove reference to "authors"} belived that strengthening of the GPS framework against manipulation and exploitation.
+Modifications to GPS have been previously propsed, however these were typically abandoned due to expense, complexity, cost or robustness. 
+A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of writing. 
+
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
