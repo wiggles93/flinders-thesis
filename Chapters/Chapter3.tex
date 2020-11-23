@@ -3,7 +3,29 @@
 \chapter{Methodology} % Main chapter title
 
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-
+%\medskip
+Summary of testing:
+\begin{itemize}
+    \item Used commercial GPS receiver to check received SNR values \\ Antennae used:
+    \begin{itemize}
+        \item passive patch antenna
+        \item active antenna
+        \item Log-periodic antenna
+    \end{itemize}
+    This resulted in a preliminary finding that the active antenna improved signal to noise ratio by 8dB. \todo{Update with more formal findings}
+    \item Use SDR + GNSS-SDR to receive similar signals and compare SNR values
+    \item Use stored text file of gps data and connect Tx to Rx antenna port (via attenuator) to check if programs are manipulating the data as they should be.
+    \item Use stored txt file of gps data (received from commercial receiver) and transmit gps signal using log periodic antenna to see if phone GPS can be spoofed into thinking it is in another geographical location.
+\end{itemize}
+\medskip
+All of the software packages used are free and opensource.
+List of Software packages used:
+\begin{itemize}
+    \item GNURadio
+    \item GNSS-SDR
+    \item GNSS-SDR-monitor
+    \item gps-sdr-sim
+\end{itemize}
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
