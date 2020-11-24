@@ -71,13 +71,42 @@ used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Bo
 and open source programs.
 
 \bigskip
+From literature the concensus is that the same thing that has made GPS ubiquitous with navigation and 
+positioning has also made it a simple target for exploitation and manipulation, that is the workings
+of the inftrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
+is seen as a critical service by many industries including utility management, healthcare/ emergency services and security.
+Having such a system so prone to threats is not ideal. The further developmentof SDR platforms has driven down the cost of launching
+such exploits. Devices such as the HackRF, USRP and others have been documented for this use \cite{RN4} \cite{RN9}
+\bigskip
 
-As discussed in \cite{RN7} GPS (Global Positioning System) has become the defacto positioning infrastructure
-and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, Beidou) GPS is 
+\textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
+As discussed in \cite{RN7} GPS (Global Positioning System) has become the defacto positioning infrastructure for civilian and 
+military useage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
 still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
-security concerns have become apparent. The authors \todo{remove reference to "authors"} belived that strengthening of the GPS framework against manipulation and exploitation.
-Modifications to GPS have been previously propsed, however these were typically abandoned due to expense, complexity, cost or robustness. 
-A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of writing. 
+security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
+The authors \todo{remove reference to "authors"} believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
+Proposed methods of hardening GPS have been previously propsed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
+A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
+This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
+This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
+
+\medskip
+
+\textbf{\emph{Hijacking Unmanned Aerial Vehicle by Exploiting civil GPS vulnerabilities Using SDR} by X. Zheng et al.}\\
+As written by X. Zheng et al. \cite{RN4} there has been an exponential increase in the number of UAV vehicles being used in recent times.
+This increase has been driven by the advent of aerial photography of both professionals and amatures since the cost of entry is so low. Ther are
+also companies looking to implement delivery services using UAV, or drone, technology.
+This poses security and safety concerns with such vehicles having such a reliance on GPS for accurate positioning. Having such an open and transparent
+infrastructure such as that of GPS makes the signals easy to reproduce for nefarious purposes. Adding to the concern is the increase in 
+affordable and performant SDR platforms as well as open source software packages designed to minimise complexity of performing such tasks. X.Zheng et al.
+showed that performing spoofing attacks on UAV vehicles is cheap and simple to control. Zheng performed 3 different hijacking attacks on the target
+UAV, namely forcing the drone to land, guiding the drone to an attacker dictated area and forcing the drone to land in an attacker dictated area.
+Two of the attack methods were successful. Zheng also provided some recommendations for improving the security of the GPS system of, in particular
+DJI Phantom 3 drones.
+
+\medskip
+
+
 
 %-----------------------------------
 %	SUBSECTION 1
