@@ -10,7 +10,7 @@
 
 \section{Introduction}
 
-In this section the previous work in the field will be explored. This will give the reader adequte understanding of where 
+In this section the previous work in the field will be explored. This will give the reader adequate understanding of where 
 advances in the research area can be made.\todo{Write intro to the lit review}
 
 \medskip
@@ -21,7 +21,7 @@ This is a list of things that need to be in a lit review:
         \item Why are you writing the review, and why the topic is important
         \item the scope of the review - what aspects of the topic will be discussed
         \item the criteria used for your literature selection (types of sources used and dates etc.)
-        \item the orgonisational structure of the review
+        \item the organisational structure of the review
     \end{itemize}
     \item Body Paragraphs
     \begin{itemize}
@@ -35,7 +35,7 @@ This is a list of things that need to be in a lit review:
     \item Conclusion 
     \begin{itemize}
         \item Main agreements and disagreements of the literature
-        \item any gaps or areas of futher research
+        \item any gaps or areas of further research
         \item my overall perspective on the topic
     \end{itemize}
 \end{itemize}
@@ -43,9 +43,9 @@ This is a list of things that need to be in a lit review:
 Checklist for a literature review. Have I:
 \begin{itemize}
     \item Outlined the purpose and scope
-    \item Identified appropriate and credible (academic/scholary) literature
+    \item Identified appropriate and credible (academic/scholarly) literature
     \item Recorded the bibliographical details of the sources
-    \item Analysed and critqued your readings
+    \item Analysed and critiqued your readings
     \item Identified gaps in the readings
     \item explored methodologies / theories / hypotheses / models?
     \item discussed varying viewpoints
@@ -57,35 +57,46 @@ Items that I want to cover in the Lit review
     \item Using SDR (USRP) to receive GPS signal
     \item Using SDR to transmit GPS signal
     \item Algorithms for generating spoofed signal
-    \item GPS Antispoofing techniques
+    \item GPS Anti-spoofing techniques
     \item GPS spoof detection techniques
     \begin{itemize}
-        \item This will be what will need to be overcome in the implmentation of the spoofing transmitter.
+        \item This will be what will need to be overcome in the implementation of the spoofing transmitter.
     \end{itemize}
     \item OPTIONAL: Difference between Block II and block III satellites
 \end{itemize}
 \medskip
 Previous research into the use of SDR (software defined radio) for GPS spoofing uses has lead to common conclusions.
-That is, that the use of open source software to ease the development. Namely multiple previous attempts at GPS spoofing
+That is, that the use of open sourcecannot  software to ease the development. Namely multiple previous attempts at GPS spoofing
 used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Both of these are available from GitHub as free
 and open source programs.
 
 \bigskip
-From literature the concensus is that the same thing that has made GPS ubiquitous with navigation and 
+From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
 positioning has also made it a simple target for exploitation and manipulation, that is the workings
-of the inftrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
+of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
 is seen as a critical service by many industries including utility management, healthcare/ emergency services and security.
-Having such a system so prone to threats is not ideal. The further developmentof SDR platforms has driven down the cost of launching
-such exploits. Devices such as the HackRF, USRP and others have been documented for this use \cite{RN4} \cite{RN9}
+Having such a system so prone to threats is not ideal. The further development of SDR platforms has driven down the cost of launching
+such exploits. Devices such as the HackRF, USRP, BladeRF and others have been documented for this use \cite{RN4} \cite{RN9}.
+
+\medskip
+
+An issue that arises when attempting to spoof a mobile device is that these devices are also able to determine locaiton based off of
+network connection. \todo{insert citation for finding location from cellular/wifi connection}
+K. Zeng et al. \cite{RN9} found that when these kinds of devices registered a difference in location between network based and GPS based
+that they would prioritise the GPS based location. \todo{I think this is wrong}\emph{This is less of an issue than at first glance since the prevalence of VPN (virtual private networks)
+are increasing for surcumventing geolocking features. Therefore to ensure that GPS locaiton services still function when a VPN is active
+the GPS position should be prioritised.} There are other methods of detecting a faulty GPS signal in software and hardware that are
+more accurate and allow for more flexibility of the device usage. 
+
 \bigskip
 
 \textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
-As discussed in \cite{RN7} GPS (Global Positioning System) has become the defacto positioning infrastructure for civilian and 
-military useage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
+As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and 
+military usage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
 still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
 security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
 The authors \todo{remove reference to "authors"} believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
-Proposed methods of hardening GPS have been previously propsed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
+Proposed methods of hardening GPS have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
 A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
 This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
 This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
@@ -94,11 +105,11 @@ This fingerprinting algorithm implementation was found to be fast, simple, cost 
 
 \textbf{\emph{Hijacking Unmanned Aerial Vehicle by Exploiting civil GPS vulnerabilities Using SDR} by X. Zheng et al.}\\
 As written by X. Zheng et al. \cite{RN4} there has been an exponential increase in the number of UAV vehicles being used in recent times.
-This increase has been driven by the advent of aerial photography of both professionals and amatures since the cost of entry is so low. Ther are
+This increase has been driven by the advent of aerial photography of both professionals and amateurs since the cost of entry is so low. There are
 also companies looking to implement delivery services using UAV, or drone, technology.
 This poses security and safety concerns with such vehicles having such a reliance on GPS for accurate positioning. Having such an open and transparent
 infrastructure such as that of GPS makes the signals easy to reproduce for nefarious purposes. Adding to the concern is the increase in 
-affordable and performant SDR platforms as well as open source software packages designed to minimise complexity of performing such tasks. X.Zheng et al.
+affordable and high performance SDR platforms as well as open source software packages designed to minimise complexity of performing such tasks. X.Zheng et al.
 showed that performing spoofing attacks on UAV vehicles is cheap and simple to control. Zheng performed 3 different hijacking attacks on the target
 UAV, namely forcing the drone to land, guiding the drone to an attacker dictated area and forcing the drone to land in an attacker dictated area.
 Two of the attack methods were successful. Zheng also provided some recommendations for improving the security of the GPS system of, in particular
@@ -106,7 +117,27 @@ DJI Phantom 3 drones.
 
 \medskip
 
+\textbf{\emph{Practical GPS location spoofing attack in Road Navigation} by K. Zeng et al.} \\
+K. Zeng et al. provide insight into the security concerns of leaning so heavily on the GPS system in general, and more important to this
+paper is the reliance on GPS for navigation. In their paper \cite{RN9} K. Zeng et al. were able to develop a practical algorithm
+implementation for road network modelling and navigation spoofing using GPS. The attack model used was a hardware based approach. 
+The proposed attack strategy leveraged a lunch box sized portable spoofer with the HackRF at the heart of the device. Alot of the effort
+of this paper went into the production of the dynamic modelling of road network algorithm. This was done using an XML (extensible markup language)
+version of an area of streets as provided by OpenStreetMap. The documentation of this algorithm will become 
+useful when moving from a static based spoof attack to a dynamic one.
 
+\medskip
+
+\textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
+
+\medskip
+
+\textbf{\emph{Practical Cryptographic Civil GPS signal authentication} by K. Wesson et al.} \\
+K. Wesson et al. \cite{RN13} propose a method for counteracting GPS spoofing on the popular GPS civil band. The proposed method would use cryptographic
+authentication based techniques to ensure that signals were not fake.
+The implementation of such a system would require modifications to the GPS satellite system themselves. These modifications are documentated by
+K. Wesson.
+The use of cryptographic techniques were evaluated to determine which was the most effective.
 
 %-----------------------------------
 %	SUBSECTION 1
