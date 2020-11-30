@@ -68,7 +68,10 @@ Items that I want to cover in the Lit review
 Previous research into the use of SDR (software defined radio) for GPS spoofing uses has lead to common conclusions.
 That is, that the use of open sourcecannot  software to ease the development. Namely multiple previous attempts at GPS spoofing
 used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Both of these are available from GitHub as free
-and open source programs.
+and open source programs.\\
+
+Spoofing can be defined as an intentional interfering signal that aims to make GNSS receivers produce incorrect positoning data\cite{RN8}.
+\emph{GPS Spoofing has been researched actively for over 12 years and yet there doesn't seem to be any wide spread anti-spoofing technique adoption.}\todo{remove}
 
 \bigskip
 From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
@@ -89,6 +92,11 @@ the GPS position should be prioritised.} There are other methods of detecting a 
 more accurate and allow for more flexibility of the device usage. 
 
 \bigskip
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{Annotated Bibliography}
 
 \textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
 As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and 
@@ -129,6 +137,16 @@ useful when moving from a static based spoof attack to a dynamic one.
 \medskip
 
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
+In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
+It was mentioned that previous anti-spoofing reasearch was done in two categories, spoofing detection and spoofing mitigation.
+Most of the effort has been put into spoofing detection algorthims and less on mitigation techniques. 
+Previous proposed spoofing mitigation devices used the fact that GPS spoofing devices typically transmit multiple PRN's. 
+Therefore comparisons can be made between the spoofed and authentic signals. Although this is computationally complex. This proposed
+device uses a multi antenna array to find the signal with most power and beam form in such a way that the antenna null is pointing in
+that direction. This relies on the assumption that spoofed signals will have a measurably higher spatial energy than that of the authentic signal
+as well as the authentic signal propogating from an area that is not also covered by an antenna null. Although this cannot be guarenteed.
+To maximise the perfomance of the module, the authors also propose a technique to amplify the authentic signals as well as reduce the noise floor level.
+S. Daneshmand mentioned that with some minor modifications the proposed module would be able to opearate with GLONASS and Galileo systems aswell. 
 
 \medskip
 
@@ -139,10 +157,39 @@ The implementation of such a system would require modifications to the GPS satel
 K. Wesson.
 The use of cryptographic techniques were evaluated to determine which was the most effective.
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
+\medskip
+
+\textbf{\emph{Design of complete Software GPS Simulator with low complexity and precise Multipath Channel model} by A. Elango et al.} \\ 
+In 2016 A. Elango proposed a completly software based approch to simulating GPS singals \cite{RN15}. A summary of the difference between analog
+and digital based simulation systems is provided, with justification for producing a softawre based solution. In this proposal the GPS signals are created
+using a custom piece of software. The output of this software is a message that has already been moudlated, which is saved into a file on the local
+storage device. This was then fed into a MATLAB simulation environment for testing. The psudo code for the development of the program is include in
+the publication, and provides a good resource for breaking down the message structure for GPS.
+
+\medskip
+
+\textbf{\emph{GNSS Spoofing and Detection} by M. Psiaki et al.} \\
+\textbf{This is a really good reference for the state of play in the spoof attack and defence landscape. Spend time reading about the techniques and 
+gain an understanding}.\\
+In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spoofing defences. Since 2008 there has been an ever increasing 
+interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including Aircraft or marine vessels which
+rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power gtrid monitoring and stock markets
+use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
+of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meacoming and estimate and replay attacks, other advanced techniques.
+\todo{expand on these techniques}Defence techniques were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
+A table was generated to visualise which defence stratagies were effective against which attack strategies. 
+It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
+recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
+
+\medskip
+
+\textbf{\emph{GNSS-SDR: An Open Source tool for Researchers and Developers} by C. Fern\'andes-Prades} \\
+The software has undergone continual development since this paper was written. Therefore more recent version of article should be found.
+Although information may still be relevant\cite{RN16}.
+In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software for the development and implementation of software defined radio based
+GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
+The author mentions existing commercial products, as they allow for the useage of the data that GNSS systems provide.
+The paper walks through the architecture of the GNSS-SDR program.
 
 %-----------------------------------
 %	SUBSECTION 2
