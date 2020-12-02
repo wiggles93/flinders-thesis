@@ -177,7 +177,7 @@ rely on GNSS signals especially in low visibility conditions. Civilian infrastru
 use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
 of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meacoming and estimate and replay attacks, other advanced techniques.
 \todo{expand on these techniques}Defence techniques were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
-A table was generated to visualise which defence stratagies were effective against which attack strategies. 
+A \todo{include table in lit review}table was generated to visualise which defence stratagies were effective against which attack strategies. 
 It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
 recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
 
@@ -185,21 +185,72 @@ recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary de
 
 \textbf{\emph{GNSS-SDR: An Open Source tool for Researchers and Developers} by C. Fern\'andes-Prades} \\
 The software has undergone continual development since this paper was written. Therefore more recent version of article should be found.
-Although information may still be relevant\cite{RN16}.
+Although information may still be relevant \cite{RN16}.
 In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software for the development and implementation of software defined radio based
 GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
 The author mentions existing commercial products, as they allow for the useage of the data that GNSS systems provide.
 The paper walks through the architecture of the GNSS-SDR program.
 
+\medskip
+
+\textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
+In 2012 \textcite{RN6} notes that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
+so called spoofing. Spoofing and anti spoofing algorthims and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
+investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
+GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
+These vulnerabilities can be described in teh three opoerational layers of GPS, signal processing, data bit, and position/navigation solutions.
+Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
+The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
+method was given a complexity, effectiveness and spoofing sceario generality rating with notes made about the recived capability requirements.
+Testing spoofing techniques is difficult to achieve since there are regulations around the emmision of EM radioation at certain frequencies and power levels.
+There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recoreded data (No RF transmission), and
+using RF combiners to combine authentication and spoofed signals.
+The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
+shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
+
 %-----------------------------------
 %	SUBSECTION 2
 %-----------------------------------
 
-\subsection{Subsection 2}
+\subsection{Literature Review methodology}
+\begin{itemize}
+    \item Exclusion criteria \\ To help narrow the scope of the literature review certain criteria was selected to be ommited
+    \begin{itemize}
+        \item Age of source: > 2010 for SDR specific | > 2008 for all others \\ When it comes to the implementation of spoofers using SDR platforms, the most up to date inforamtion is requried since the software typically used in these cases are open source and prone to frequent changes.\\ This is less of an issue when detailing the operationa of the GPS navigation system, or, to a lesser extent, effective spoofing attacks and defences. This is because most off the shelf receivers have not got any spoof mitigation built into their designs \cite{RN12}.
+    \end{itemize}
+    \item Inclusion criteria
+    \begin{itemize}
+        \item Application specifics \\ While not all sources will have an application, whether to attack or defend, it should be noted that there was an importance placed on getting sources that applied the theory described.
+        \item SDR implementation \\ Since this project relied on the use of an SDR platform for the application of a spoofer it was important that a large number of sources also use a similar platform. This helped in forming a strategy to compolete the project. It was also important so that time was not wasted reinventing the wheel.
+    \end{itemize}
+    \item Keywords
+    \begin{itemize}
+        \item GPS
+        \item GPS Spoofing
+        \item GNSS Spoofing defence
+        \item GPS UAV Attack
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Finding sources}
+An effective method used to find appropriate sources was to find a recent paper that may not be appropriate but still relevant and to carefully look through
+the reference list. By applying the list of exlusion and inclusions as above suitable sources could be found.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Main Section 2}
+\section{Spoof Attacks}
 
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\section{Spoof Defence}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{GPS Threat Analysis}
+\todo{This might be better suited to being the first Section after the Introduction}
