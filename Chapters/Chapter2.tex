@@ -155,7 +155,7 @@ K. Wesson et al. \cite{RN13} propose a method for counteracting GPS spoofing on 
 authentication based techniques to ensure that signals were not fake.
 The implementation of such a system would require modifications to the GPS satellite system themselves. These modifications are documentated by
 K. Wesson.
-The use of cryptographic techniques were evaluated to determine which was the most effective.
+The use of cryptographic techniques were evaluated to determine which was the most effective.\todo{write more}
 
 \medskip
 
@@ -194,7 +194,7 @@ The paper walks through the architecture of the GNSS-SDR program.
 \medskip
 
 \textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
-In 2012 \textcite{RN6} notes that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
+In 2012 \textcite{RN6} noted that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
 so called spoofing. Spoofing and anti spoofing algorthims and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
 investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
 GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
@@ -203,10 +203,23 @@ Antispoofing can be broken down into 2 groups spoof detection and spoof mitigati
 The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
 method was given a complexity, effectiveness and spoofing sceario generality rating with notes made about the recived capability requirements.
 Testing spoofing techniques is difficult to achieve since there are regulations around the emmision of EM radioation at certain frequencies and power levels.
-There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recoreded data (No RF transmission), and
+There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recorded data (No RF transmission), and
 using RF combiners to combine authentication and spoofed signals.
 The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
 shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
+
+\medskip
+
+\textbf{\emph{\citetitle{RN17}} by \citeauthor{RN17}} \\
+In \citeyear{RN17} \citeauthor{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
+can either be natural or artifical including malicious sources (spoofing). This has the potential to threaten the reliabilty of the system which has become 
+vital in accurate postiion and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. These modern
+vehicles have a number of other sensors which are able to provice situational awareness. Using the other sensors in the vehicle a method was devised
+to detect the spoofed GPS signals. This was achieved by integrating with the existing CACC (Cooperative Adaptive Cruise Control) system.\todo{write more}  
+
+\medskip
+
+\textbf{\emph{\citetitle{RN18}} by \citeauthor{RN18}} \\
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -229,6 +242,8 @@ shown that with modest, low complexity spoof detection and mitigation strategies
         \item GPS Spoofing
         \item GNSS Spoofing defence
         \item GPS UAV Attack
+        \item GPS Spoof mitigation
+        \item GPS Spoofing autonomous vehicles
     \end{itemize}
 \end{itemize}
 
@@ -254,3 +269,17 @@ the reference list. By applying the list of exlusion and inclusions as above sui
 
 \section{GPS Threat Analysis}
 \todo{This might be better suited to being the first Section after the Introduction}
+
+\medskip
+
+\begin{center}
+    \begin{tabular}{ |m{1cm}|m{3cm}|m{5cm}|m{3cm}| }
+        \hline
+        \textbf{No.} & \textbf{Author} & \textbf{Paper Title} & \textbf{Attack, Detection or Mitigation} \\
+        \hline
+        1 & \citeauthor{RN7} & \citetitle{RN7} & Mitigation \\
+        \hline
+        2 & \citeauthor{RN4} & \citetitle{RN4} & Attack \\
+        \hline
+    \end{tabular}
+\end{center}
