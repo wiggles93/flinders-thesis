@@ -103,7 +103,7 @@ As discussed in \cite{RN7} GPS (Global Positioning System) has become the de fac
 military usage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
 still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
 security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
-The authors \todo{remove reference to "authors"} believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
+The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
 Proposed methods of hardening GPS have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
 A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
 This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
@@ -120,8 +120,12 @@ infrastructure such as that of GPS makes the signals easy to reproduce for nefar
 affordable and high performance SDR platforms as well as open source software packages designed to minimise complexity of performing such tasks. X.Zheng et al.
 showed that performing spoofing attacks on UAV vehicles is cheap and simple to control. Zheng performed 3 different hijacking attacks on the target
 UAV, namely forcing the drone to land, guiding the drone to an attacker dictated area and forcing the drone to land in an attacker dictated area.
-Two of the attack methods were successful. Zheng also provided some recommendations for improving the security of the GPS system of, in particular
+Two of the attack methods were successful at a rate of approximately 80\% and 90\%. The unsuccessful test was attempting to force the drone to land in a specified location by exploiting the 
+'go home' safety feature. This requried jamming the communicaiton channel between the controller and drone. After experimentation it was shown
+that this required advanced hardware and methods to achieve. Zheng also provided some recommendations for improving the security of the GPS system of, in particular
 DJI Phantom 3 drones.
+Future works would improve the success rate of the attacks that were successful as well as decrease the time for a successful attack. Work could 
+also be put into jamming the control channel between the controller and drone.
 
 \medskip
 
@@ -151,11 +155,17 @@ S. Daneshmand mentioned that with some minor modifications the proposed module w
 \medskip
 
 \textbf{\emph{Practical Cryptographic Civil GPS signal authentication} by K. Wesson et al.} \\
-K. Wesson et al. \cite{RN13} propose a method for counteracting GPS spoofing on the popular GPS civil band. The proposed method would use cryptographic
-authentication based techniques to ensure that signals were not fake.
-The implementation of such a system would require modifications to the GPS satellite system themselves. These modifications are documentated by
-K. Wesson.
-The use of cryptographic techniques were evaluated to determine which was the most effective.\todo{write more}
+K. Wesson et al. \cite{RN13} proposed a method for counteracting GPS spoofing on the popular GPS civil band. The proposed method would use cryptographic
+authentication based techniques to ensure that signals were not fake and did orginate from an autorised source.\todo{write more}
+\citeauthor{RN13} provided a detailed overview of the entire cryptographic authentication system.
+The method employed by \citeauthor{RN13} included adding digital signatures within the GPS civil navigation message. This type of cryptographic defence
+will secure the receiver against replay spoof attacks. Authentication of each civil GPS signal is performed every 5 minutes.
+For the proposed authentication strategy a $P_D$ of >0.97 was achieved over the range of $37$-$51 dB-Hz$.
+The implementation of such a system would require modifications to the GPS satellite system themselves, as well as a redesign of GPS receivers.
+The modifications required for the GPS recievers were documented in detail in \cite{RN13}. For systems that can not easily or readily upgraded to
+take advantage of these improvements an external device called "The GPS Assimilator", as proposed in \cite{RN19}, could be used to clean the incomming
+signals.
+Although it was noted that receivers based on SDR platforms would be able to implement the authentication algorithm easily.
 
 \medskip
 
@@ -213,9 +223,14 @@ shown that with modest, low complexity spoof detection and mitigation strategies
 \textbf{\emph{\citetitle{RN17}} by \citeauthor{RN17}} \\
 In \citeyear{RN17} \citeauthor{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
 can either be natural or artifical including malicious sources (spoofing). This has the potential to threaten the reliabilty of the system which has become 
-vital in accurate postiion and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. These modern
-vehicles have a number of other sensors which are able to provice situational awareness. Using the other sensors in the vehicle a method was devised
-to detect the spoofed GPS signals. This was achieved by integrating with the existing CACC (Cooperative Adaptive Cruise Control) system.\todo{write more}  
+vital in accurate postiion and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. 
+CACC (Cooperative Adaptive Cruise Control) systems are an evolution of ACC (Active cruide control) and include a communication stack for V2V (vehicle to vehicle) communicaiton. 
+Vehicles that have a CACC system thus have a number of other sensors which are able to provice situational awareness. These include the formentioned radio
+communications equipment as well as Lidar, radar, camera  IMU's (inertial measurement unit) and access to CAN data from the vehicle systems.
+\citeauthor{RN17} devised a method of maintaining awareness of position from a combination of GPS signal as well as the other sensors as part of
+the various other systems integrated into the vehicle and from other vechiles. It was shown experimentally that the COTS receivers were susceptible to
+to spoofing attacks. It was also shown that the proposed method of spoof detection and removal was effective. Furhter work will need to be done
+to test the defence method on more spoof attack methods. To ensure that this design becomes viable for the commercial world it must also work in real time.
 
 \medskip
 
@@ -269,17 +284,22 @@ the reference list. By applying the list of exlusion and inclusions as above sui
 
 \section{GPS Threat Analysis}
 \todo{This might be better suited to being the first Section after the Introduction}
+As shown in Table \ref{tab:AttackSum}
 
 \medskip
 
-\begin{center}
-    \begin{tabular}{ |m{1cm}|m{3cm}|m{5cm}|m{3cm}| }
-        \hline
-        \textbf{No.} & \textbf{Author} & \textbf{Paper Title} & \textbf{Attack, Detection or Mitigation} \\
-        \hline
-        1 & \citeauthor{RN7} & \citetitle{RN7} & Mitigation \\
-        \hline
-        2 & \citeauthor{RN4} & \citetitle{RN4} & Attack \\
-        \hline
-    \end{tabular}
-\end{center}
+\begin{table}
+    \begin{center}
+        \caption{Summary of attack and defence strategies}
+        \label{tab:AttackSum}
+        \begin{tabular}{ |m{1cm}|m{3cm}|m{5cm}|m{3cm}| }
+            \hline
+            \textbf{No.} & \textbf{Author} & \textbf{Paper Title} & \textbf{Attack, Detection or Mitigation} \\
+            \hline
+            1 & \citeauthor{RN7} & \citetitle{RN7} & Mitigation \\
+            \hline
+            2 & \citeauthor{RN4} & \citetitle{RN4} & Attack \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
