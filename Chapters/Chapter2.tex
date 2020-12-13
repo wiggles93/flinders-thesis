@@ -94,22 +94,13 @@ more accurate and allow for more flexibility of the device usage.
 \bigskip
 
 %-----------------------------------
+%	SECTION 2
+%-----------------------------------
+\section{Annotated Bibliography}
+%-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\subsection{Annotated Bibliography}
-
-\textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
-As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and 
-military usage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
-still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
-security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
-The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
-Proposed methods of hardening GPS have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
-A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
-This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
-This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
-
-\medskip
+\subsection{Spoofing Attack References}
 
 \textbf{\emph{Hijacking Unmanned Aerial Vehicle by Exploiting civil GPS vulnerabilities Using SDR} by X. Zheng et al.}\\
 As written by X. Zheng et al. \cite{RN4} there has been an exponential increase in the number of UAV vehicles being used in recent times.
@@ -140,6 +131,74 @@ useful when moving from a static based spoof attack to a dynamic one.
 
 \medskip
 
+\textbf{\emph{GNSS-SDR: An Open Source tool for Researchers and Developers} by C. Fern\'andes-Prades} \\
+The software has undergone continual development since this paper was written. Therefore more recent version of article should be found.
+Although information may still be relevant \cite{RN16}.
+In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software for the development and implementation of software defined radio based
+GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
+The author mentions existing commercial products, as they allow for the useage of the data that GNSS systems provide.
+The paper walks through the architecture of the GNSS-SDR program.
+
+\medskip
+
+\textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
+In 2012 \textcite{RN6} noted that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
+so called spoofing. Spoofing and anti spoofing algorthims and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
+investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
+GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
+These vulnerabilities can be described in teh three opoerational layers of GPS, signal processing, data bit, and position/navigation solutions.
+Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
+The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
+method was given a complexity, effectiveness and spoofing sceario generality rating with notes made about the recived capability requirements.
+Testing spoofing techniques is difficult to achieve since there are regulations around the emmision of EM radioation at certain frequencies and power levels.
+There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recorded data (No RF transmission), and
+using RF combiners to combine authentication and spoofed signals.
+The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
+shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
+
+\medskip
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+\subsection{Anti-Spoofing References}
+%-----------------------------------
+%	SUBsubSECTION 1
+%-----------------------------------
+\subsubsection{Spoofing Detection}
+
+\textbf{\emph{GNSS Spoofing and Detection} by M. Psiaki et al.} \\
+\textbf{This is a really good reference for the state of play in the spoof attack and defence landscape. Spend time reading about the techniques and 
+gain an understanding}.\\
+In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spoofing defences. Since 2008 there has been an ever increasing 
+interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including aircraft or marine vessels which
+rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power grid monitoring and stock markets
+use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
+of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meacoming and estimate and replay attacks, other advanced techniques.
+\todo{expand on these techniques}Defence techniques were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
+A \todo{include table in lit review}table was generated to visualise which defence stratagies were effective against which attack strategies. 
+It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
+recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
+
+\medskip
+
+\textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
+As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and 
+military usage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
+still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
+security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
+The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
+Proposed methods of hardening GPS have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
+A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
+This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
+This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
+
+\medskip
+%-----------------------------------
+%	SUBsubSECTION 2
+%-----------------------------------
+\subsubsection{Spoofing Mitigation}
+
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
 In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
 It was mentioned that previous anti-spoofing reasearch was done in two categories, spoofing detection and spoofing mitigation.
@@ -169,61 +228,10 @@ Although it was noted that receivers based on SDR platforms would be able to imp
 
 \medskip
 
-\textbf{\emph{Design of complete Software GPS Simulator with low complexity and precise Multipath Channel model} by A. Elango et al.} \\ 
-In 2016 A. Elango proposed a completly software based approch to simulating GPS singals \cite{RN15}. A summary of the difference between analog
-and digital based simulation systems is provided, with justification for producing a softawre based solution. In this proposal the GPS signals are created
-using a custom piece of software. The output of this software is a message that has already been moudlated, which is saved into a file on the local
-storage device. This was then fed into a MATLAB simulation environment for testing. The psudo code for the development of the program is include in
-the publication, and provides a good resource for breaking down the message structure for GPS.
-
-\medskip
-
-\textbf{\emph{GNSS Spoofing and Detection} by M. Psiaki et al.} \\
-\textbf{This is a really good reference for the state of play in the spoof attack and defence landscape. Spend time reading about the techniques and 
-gain an understanding}.\\
-In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spoofing defences. Since 2008 there has been an ever increasing 
-interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including Aircraft or marine vessels which
-rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power gtrid monitoring and stock markets
-use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
-of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meacoming and estimate and replay attacks, other advanced techniques.
-\todo{expand on these techniques}Defence techniques were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
-A \todo{include table in lit review}table was generated to visualise which defence stratagies were effective against which attack strategies. 
-It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
-recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
-
-\medskip
-
-\textbf{\emph{GNSS-SDR: An Open Source tool for Researchers and Developers} by C. Fern\'andes-Prades} \\
-The software has undergone continual development since this paper was written. Therefore more recent version of article should be found.
-Although information may still be relevant \cite{RN16}.
-In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software for the development and implementation of software defined radio based
-GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
-The author mentions existing commercial products, as they allow for the useage of the data that GNSS systems provide.
-The paper walks through the architecture of the GNSS-SDR program.
-
-\medskip
-
-\textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
-In 2012 \textcite{RN6} noted that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
-so called spoofing. Spoofing and anti spoofing algorthims and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
-investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
-GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
-These vulnerabilities can be described in teh three opoerational layers of GPS, signal processing, data bit, and position/navigation solutions.
-Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
-The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
-method was given a complexity, effectiveness and spoofing sceario generality rating with notes made about the recived capability requirements.
-Testing spoofing techniques is difficult to achieve since there are regulations around the emmision of EM radioation at certain frequencies and power levels.
-There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recorded data (No RF transmission), and
-using RF combiners to combine authentication and spoofed signals.
-The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
-shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
-
-\medskip
-
 \textbf{\emph{\citetitle{RN17}} by \citeauthor{RN17}} \\
-In \citeyear{RN17} \citeauthor{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
+In \citeyear{RN17} \citeauthor{RN17} \cite{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
 can either be natural or artifical including malicious sources (spoofing). This has the potential to threaten the reliabilty of the system which has become 
-vital in accurate postiion and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. 
+vital in accurate position and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. 
 CACC (Cooperative Adaptive Cruise Control) systems are an evolution of ACC (Active cruide control) and include a communication stack for V2V (vehicle to vehicle) communicaiton. 
 Vehicles that have a CACC system thus have a number of other sensors which are able to provice situational awareness. These include the formentioned radio
 communications equipment as well as Lidar, radar, camera  IMU's (inertial measurement unit) and access to CAN data from the vehicle systems.
@@ -235,9 +243,31 @@ to test the defence method on more spoof attack methods. To ensure that this des
 \medskip
 
 \textbf{\emph{\citetitle{RN18}} by \citeauthor{RN18}} \\
+In \citetitle{RN18} \citeauthor{RN18} \cite{RN18} pointed out that there is a cycle of new spoofing attack strategies and then counter-measures
+against them. Typical COTS GNSS receviers do not have a way of being upgraded since their hardware is set and not able to change. Having a receiver
+with upgradable hardware, such as that found in SDR platforms, would make for an ideal GPS reciever. As such SDR's are well suited as GNSS receivers,
+however, they are challenged by processing the GNSS data and anti spoofing method. \citeauthor{RN18} performed experiments to see how effective SDR 
+platforms were at implementing a mitigation strategy in real time. It was found that most were not able to perform these duties in real time due to the 
+increase in complexity of the antispoofing algorthims. \todo{finish this. Interperate the results of the paper}
+
+\medskip
+%-----------------------------------
+%	SUBsubSECTION 3
+%-----------------------------------
+
+\subsubsection{Other References}
+
+\textbf{\emph{Design of complete Software GPS Simulator with low complexity and precise Multipath Channel model} by A. Elango et al.} \\ 
+In 2016 A. Elango proposed a completly software based approch to simulating GPS singals \cite{RN15}. A summary of the difference between analog
+and digital based simulation systems is provided, with justification for producing a softawre based solution. In this proposal the GPS signals are created
+using a custom piece of software. The output of this software is a message that has already been moudlated, which is saved into a file on the local
+storage device. This was then fed into a MATLAB simulation environment for testing. The psudo code for the development of the program is include in
+the publication, and provides a good resource for breaking down the message structure for GPS.
+
+\medskip
 
 %-----------------------------------
-%	SUBSECTION 2
+%	SUBSECTION 3
 %-----------------------------------
 
 \subsection{Literature Review methodology}
@@ -259,6 +289,7 @@ to test the defence method on more spoof attack methods. To ensure that this des
         \item GPS UAV Attack
         \item GPS Spoof mitigation
         \item GPS Spoofing autonomous vehicles
+        \item meaconing
     \end{itemize}
 \end{itemize}
 
