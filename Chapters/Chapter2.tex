@@ -68,7 +68,8 @@ Items that I want to cover in the Lit review
 Previous research into the use of SDR (software defined radio) for GPS spoofing uses has lead to common conclusions.
 That is, that the use of open sourcecannot  software to ease the development. Namely multiple previous attempts at GPS spoofing
 used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Both of these are available from GitHub as free
-and open source programs.\\
+and open source programs. The issue of GPS spoofing is not uniquly that of position. Since GNSS systems have highly accurate time keeping
+facilities, in the form of atomic clocks, they are used to maintain accurate time of critical infrastructure like \todo{list things that rely on GPS timing}\\
 
 Spoofing can be defined as an intentional interfering signal that aims to make GNSS receivers produce incorrect positoning data\cite{RN8}.
 \emph{GPS Spoofing has been researched actively for over 12 years and yet there doesn't seem to be any wide spread anti-spoofing technique adoption.}\todo{remove}
@@ -90,6 +91,12 @@ that they would prioritise the GPS based location. \todo{I think this is wrong}\
 are increasing for surcumventing geolocking features. Therefore to ensure that GPS locaiton services still function when a VPN is active
 the GPS position should be prioritised.} There are other methods of detecting a faulty GPS signal in software and hardware that are
 more accurate and allow for more flexibility of the device usage. 
+
+\bigskip
+
+\citeauthor{RN12} \cite{RN12} commented on the effect of GNSS spoofing of a cooperative victim. That is when someone is willing to aid the attacker
+in performing an attack. This may be implemented to circumvent position based restrictions or if being GPS tracked during certain activities.
+\citeauthor{RN12} used the example of a fisherman wanting their GNSS receiver to falsely report the boad had stayed out of protected areas. 
 
 \bigskip
 
@@ -174,8 +181,11 @@ In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spo
 interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including aircraft or marine vessels which
 rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power grid monitoring and stock markets
 use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
-of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meacoming and estimate and replay attacks, other advanced techniques.
-\todo{expand on these techniques}Defence techniques were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
+of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meaconing and estimate and replay attacks, other advanced techniques.
+Defence techniques can be broken down into three categories; pseudorange RAIM (receiver autonomous integrity monitoring),
+looking at the difference between a true and spoofed signal, and looking for interaction between true and spoofed signals. Pseudorange RAIM is considered
+too weak against modern spoofing attacks and was not considered in this publication. The specific methods of defence tested in this paper  
+were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
 A \todo{include table in lit review}table was generated to visualise which defence stratagies were effective against which attack strategies. 
 It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
 recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
@@ -232,7 +242,7 @@ Although it was noted that receivers based on SDR platforms would be able to imp
 In \citeyear{RN17} \citeauthor{RN17} \cite{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
 can either be natural or artifical including malicious sources (spoofing). This has the potential to threaten the reliabilty of the system which has become 
 vital in accurate position and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. 
-CACC (Cooperative Adaptive Cruise Control) systems are an evolution of ACC (Active cruide control) and include a communication stack for V2V (vehicle to vehicle) communicaiton. 
+CACC (Cooperative Adaptive Cruise Control) systems are an evolution of ACC (Active cruise control) and include a communication stack for V2V (vehicle to vehicle) communicaiton. 
 Vehicles that have a CACC system thus have a number of other sensors which are able to provice situational awareness. These include the formentioned radio
 communications equipment as well as Lidar, radar, camera  IMU's (inertial measurement unit) and access to CAN data from the vehicle systems.
 \citeauthor{RN17} devised a method of maintaining awareness of position from a combination of GPS signal as well as the other sensors as part of
@@ -244,11 +254,17 @@ to test the defence method on more spoof attack methods. To ensure that this des
 
 \textbf{\emph{\citetitle{RN18}} by \citeauthor{RN18}} \\
 In \citetitle{RN18} \citeauthor{RN18} \cite{RN18} pointed out that there is a cycle of new spoofing attack strategies and then counter-measures
-against them. Typical COTS GNSS receviers do not have a way of being upgraded since their hardware is set and not able to change. Having a receiver
+against them. A sudden outage to GNSS systems would have a large impact on society. \citeauthor{RN18} provided a list of GNSS-reliant ecosystems including
+autonomous transportation, cellular networks and power systems. Disruptions to especically the later two would have a measureble impact. Therefore, it is
+important to ensure that receviers of GNSS signals are resilient to intentional and unintentional interference.
+Typical COTS GNSS receviers do not have a way of being upgraded since their hardware is set and not able to change. Having a receiver
 with upgradable hardware, such as that found in SDR platforms, would make for an ideal GPS reciever. As such SDR's are well suited as GNSS receivers,
 however, they are challenged by processing the GNSS data and anti spoofing method. \citeauthor{RN18} performed experiments to see how effective SDR 
-platforms were at implementing a mitigation strategy in real time. It was found that most were not able to perform these duties in real time due to the 
-increase in complexity of the antispoofing algorthims. \todo{finish this. Interperate the results of the paper}
+platforms were at implementing a mitigation strategy in real time. A reduced complexity MMSE (minimum mean squared error) algorithm was developed for
+use on the in house developed SDR platform. This algorthim was compared against MF (matched filter) techniques. It was found that at an ISR (interference to signal ratio)
+of 30dB that MF correlators were unable to recive any useable signal, with BER (bit error rate) of approximatelty 50\%. Using the proposed maximise
+correlator, at a 30dB ISR, showed a BER gain of approximately $10^5$. 
+However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in complexity of the antispoofing algorthims.
 
 \medskip
 %-----------------------------------
