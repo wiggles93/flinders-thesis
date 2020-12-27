@@ -204,6 +204,24 @@ This fingerprint algorithm was able to determine if a transmission was authentic
 This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
 
 \medskip
+
+\textbf{\emph{\citetitle{RN10} by \citeauthor{RN10}}} \\
+In \citeyear{RN10} \citeauthor{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. 
+Previous literature had investigated the use of spoof detection using single receivers. These techniques were varied and ranged from simple methods like monitoring the 
+power level of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. There have also been methods proposed
+that compare signals with that of non-GPS signals for example an IMU. 
+The multi receiver design that \citeauthor{RN10} proposed works on the principal that the recived signal from a spoofing source will have identical characteristics (reletive time of arrival)
+at each of the receivers. When there is no spoofer present there will be unique signal characterstics at each of the receivers.
+The concept of detecting a spoofing event was to compare the position of each receiver against the known reletive postions. This was chosen as it will not reuqire any 
+hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to existing systems.
+Four simualtions were tested from a Neyman-Pearson perspective \todo{add in a info about neyman pearson in electrical eng} (1) two receivers with known absolute locations, (2) two recievers with known separation and orientation but unknown absolute location, 
+(3) two receivers with known separation and unknown orientation and absolute loaction and fianlly (4) three receiver example. The testing was performed under the assumption
+that the spoofing transmitter only had one antenna.
+In the first case there was approximatelty 1\% chance of a false alarm while the probability of detecction was found to be intractable.
+\todo{results}
+
+\medskip
+
 %-----------------------------------
 %	SUBsubSECTION 2
 %-----------------------------------
@@ -265,6 +283,10 @@ use on the in house developed SDR platform. This algorthim was compared against 
 of 30dB that MF correlators were unable to recive any useable signal, with BER (bit error rate) of approximatelty 50\%. Using the proposed maximise
 correlator, at a 30dB ISR, showed a BER gain of approximately $10^5$. 
 However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in complexity of the antispoofing algorthims.
+
+\medskip
+
+\textbf{\emph{\citetitle{RN11}} by \citeauthor{RN11}} \\
 
 \medskip
 %-----------------------------------
