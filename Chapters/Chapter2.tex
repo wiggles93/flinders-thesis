@@ -150,7 +150,7 @@ The paper walks through the architecture of the GNSS-SDR program.
 
 \textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
 In 2012 \textcite{RN6} noted that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
-so called spoofing. Spoofing and anti spoofing algorthims and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
+so called spoofing. Spoofing and anti spoofing algorithms and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
 investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
 GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
 These vulnerabilities can be described in teh three opoerational layers of GPS, signal processing, data bit, and position/navigation solutions.
@@ -176,7 +176,7 @@ shown that with modest, low complexity spoof detection and mitigation strategies
 
 \textbf{\emph{GNSS Spoofing and Detection} by M. Psiaki et al.} \\
 \textbf{This is a really good reference for the state of play in the spoof attack and defence landscape. Spend time reading about the techniques and 
-gain an understanding}.\\
+gain an understanding} \todo{Add comparison to \cite{RN11}}.\\
 In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spoofing defences. Since 2008 there has been an ever increasing 
 interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including aircraft or marine vessels which
 rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power grid monitoring and stock markets
@@ -206,7 +206,7 @@ This fingerprinting algorithm implementation was found to be fast, simple, cost 
 \medskip
 
 \textbf{\emph{\citetitle{RN10} by \citeauthor{RN10}}} \\
-In \citeyear{RN10} \citeauthor{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. 
+In \citeyear{RN10} \citeauthor{RN10} \cite{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. 
 Previous literature had investigated the use of spoof detection using single receivers. These techniques were varied and ranged from simple methods like monitoring the 
 power level of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. There have also been methods proposed
 that compare signals with that of non-GPS signals for example an IMU. 
@@ -230,7 +230,7 @@ In the first case there was approximatelty 1\% chance of a false alarm while the
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
 In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
 It was mentioned that previous anti-spoofing reasearch was done in two categories, spoofing detection and spoofing mitigation.
-Most of the effort has been put into spoofing detection algorthims and less on mitigation techniques. 
+Most of the effort has been put into spoofing detection algorithms and less on mitigation techniques. 
 Previous proposed spoofing mitigation devices used the fact that GPS spoofing devices typically transmit multiple PRN's. 
 Therefore comparisons can be made between the spoofed and authentic signals. Although this is computationally complex. This proposed
 device uses a multi antenna array to find the signal with most power and beam form in such a way that the antenna null is pointing in
@@ -282,11 +282,60 @@ platforms were at implementing a mitigation strategy in real time. A reduced com
 use on the in house developed SDR platform. This algorthim was compared against MF (matched filter) techniques. It was found that at an ISR (interference to signal ratio)
 of 30dB that MF correlators were unable to recive any useable signal, with BER (bit error rate) of approximatelty 50\%. Using the proposed maximise
 correlator, at a 30dB ISR, showed a BER gain of approximately $10^5$. 
-However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in complexity of the antispoofing algorthims.
+However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in complexity of the antispoofing algorithms.
 
 \medskip
 
 \textbf{\emph{\citetitle{RN11}} by \citeauthor{RN11}} \\
+In \citeyear{RN11} \citeauthor{RN11} \cite{RN11} provided an analyses of the vulnerabilities of the GPS signal to spoofing attacks including the
+satellite signal itself. \citeauthor{RN11} also proposed anti-spoofing algorithms and provided simulations to showcase the efffectiness of these
+algorithms. In general only anti-spoofing methods that could be processed in software without modification to the receiver itself were considered.
+In summary there were 10 anti-spoofing methods discussed in the paper; \todo{include summary table} 
+\begin{enumerate}
+    \item Monitor absolute power of each carrier: \\
+    Since the expected reception power of a carrier is approximately $-155 dBm$. Using this a reasonable maximum power
+    can be set.
+    \item Monitor signal change in power: \\
+    Since transmitted power satisfies equation \ref{eq:Power_tx} it can be seen that the received power will be altered significantly by a change in
+    distance to the source. Therefore, a sudden change in recieved power could be an indication of attemtped spoofing. However since the received power
+    is dependant on other variables like the environment and path that the signal takes, this method is ideally used for static obervations.
+    \begin{equation} \label{eq:Power_tx}
+        P_{tx}=P_{rx}r^2
+    \end{equation}
+    \item Monitor the reletive power: \\
+    This method uses the power ratios of different frequency bands to determine spoof activity. As an example there is a $~3dB$ difference between
+    the L1 and L2 band signals typically. If the observed power ratio is too far outside of this range then it can be assumed that there is a spoofing
+    attack underway. It should be mentioned that ionosphere refraction may also affect the power ratio and should be taken into account.
+    \item Bound and compare range rates: \\ 
+    Since a moving receiver's phase movement is out of the spoofers control the code and phase range rates can be compared to detect spoofing. 
+    Bounding these rates can add to the ability to detect spoofing activity.
+    \item Doppler shift check: \\
+    It is impossible for the spoofing attack to ccmpletly replicate all of the Doppler shifts for all satellites using a single transmitting antenna.
+    Therefore, it would be necessary to have as many antenna as there are satellites which make it prohibitive from a spoofing standpoint. This can be
+    used to test for spoofing activity.
+    \item Cross correlation of L1 and L2: \\
+    Based on the way that the GPS frequency bands operate, a cross correlation of L1 and L2 bands should result in a single peak, and due to the 
+    difference in signal speed the sign of the cross correlation is known. This method will be unsuccessful if the spoofed is spoofing both carriers.
+    \item Residual Analysis: \\
+    Under spoofing conditions the recieved signal will be a combination of the authentic signal, the spoofed signal and random noise. The spoofed signal
+    can be removed and if the ratio between the spoofed signal and authentic signal is low enough then the authentic signal can be recovered, otherwise
+    the authentic signal is lost. 
+    \item L1-L2 range differences
+    \item Verify received ephemeris data: \\
+    By compaing the recieved ephemeris data to known ephemeris and almanac data the spoofer will be unable to use its own position as stand in. 
+    \item Jump detection : \\
+    This method is based around tracking all observables and if there is a "Jump" in a specific observable this could indicate a spoofing attack.
+\end{enumerate} 
+Many of these methods must co-exist and can be used together to create a more robust anti-spoofing solution. For example if the absolute power is 
+not limited, then the residual test will not be of use. It should be noted that while the presence of a spoofer can be determined, and hence 
+throw away the related positional data, there has not been any method provided to re-determine the correct position. Therefore, in the case that
+spoofing is detected, the attack will become a jamming attack.
+
+Given that this paper was released in \citeyear{RN11} some of this infomation is outdated. For example it was concluded that GPS spoofing was not formidable
+since it could be easily detected. With the advent and advnacement of SDR platforms
+GPS spoofing hardware has become highly performant and affordable as well, with practical examples of spoofing attacks being \todo{insert reference} documented. 
+However this paper provides a very good basis for building more complicated spoofing and anti-spoofing techniques since the underlying GPS system is
+reletively unchanged. 
 
 \medskip
 %-----------------------------------
