@@ -167,7 +167,7 @@ shown that with modest, low complexity spoof detection and mitigation strategies
 
 \textbf{\emph{\citetitle{RN23}} by \citeauthor{RN23}} \\
 In \citeyear{RN23} \citeauthor{RN23} \cite{RN23} showcased the development of a civilian GPS spoofing device as a means of assessing the potential spoofing 
-threat at the time.
+threat at the time. The main outcome of this experiment was to see the effects and help to develop future defences against spoofing attacks. 
 
 \medskip
 %-----------------------------------
@@ -353,6 +353,25 @@ However this paper provides a very good basis for building more complicated spoo
 reletively unchanged. 
 
 \medskip
+
+\textbf{\emph{\citetitle{RN19}} by \citeauthor{RN19}} \\
+In \citeyear{RN19} \citeauthor{RN19} \cite{RN19} devised a conceptual method for retrofitting anti-spoofing techniques to GPS devices without the need
+to alter the software or hardware of those devices. This device is called a GPS assimilator and can also be used for increasing the accuracy and robustness
+of the PVT in weak-signal environments. From a high level the assimilator will contain an RF front end with multi system receiver and navigation and timeing fusion module,  
+anti-spoofing modules and an embedded GPS signal simulator. Conceptually this device will be placed between the RF antenna and the GPS receiver. The assimilator thus performs
+all necessary signal processing to output an L1 C/A signal that the target GPS receiver will be able to interperet with accurate PVT data. The assimilator
+can be used with many location systems including multiple GNSS constellations and cellular connections. Three use cases were included in the paper.
+These are to protect the time reference receiver from an unsophisticated spoofing attack, reducing the ionospheric error in single frequency target
+receivers and weak-signal tracking via CDMA cellular signal aiding. It was found that in each of these use cases the assimilator was able to improve
+the ability of the target reciver to provide accurate PVT data.
+
+By having a seperate inline component, especially one based off of SDR technologies, upgrades can be applied to any GPS receiver without needing to
+make modifications to the existing system. This reduces cost and complexity of upgrading now and in the future as GPS anti-spoofing technology changes.
+By using an assimilator a simple single frequency single constellation reciver can be upgraded to be a multi-frequency, multi-constellation receiver.
+
+Future work on the assimilator include miniturising the design in order to fit inside of an antenna such that a user would be able to include all of the 
+benefits of using the assimilator by only needing to chnage the antenna used. 
+
 %-----------------------------------
 %	SUBsubSECTION 3
 %-----------------------------------
