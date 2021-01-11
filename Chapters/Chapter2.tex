@@ -167,10 +167,33 @@ shown that with modest, low complexity spoof detection and mitigation strategies
 
 \textbf{\emph{\citetitle{RN23}} by \citeauthor{RN23}} \\
 In \citeyear{RN23} \citeauthor{RN23} \cite{RN23} showcased the development of a civilian GPS spoofing device as a means of assessing the potential spoofing 
-threat at the time. The main outcome of this experiment was to see the effects and help to develop future defences against spoofing attacks.
+threat at the time. The main outcome of this experiment was to see the effects and help to develop future defences against spoofing attacks. In addition to 
+presenting a spoofing device analyses of the GPS spoofing threat assesment and spoofing defence technqiues was also provided. 
+The design of the spoofer module, which was a software component of the receiver, was described in detail. This infomation will be of great use for understanding 
+DSP and GPS spoofing although it out of the scope of this section. 
+The threat assesment of GPS signal spoofing was summarised into three categories, simple, intermediate and sophisticated attacks. A simple attack is that from a
+GNSS signal generator, intermediate from a softare radio and complex was in the form of coordinated attack by multiple phase locked radios. 
+Spoofing defences suggested at the time of publish were as follows; Data bit latency defence and vestigial signal defence.
+
+Sophisticated attacks were found to be effective against commerical GPS units and many anti-spoofing techniques with cryptographic methods being the most 
+effective way of circumventing the attacks.
 
 This spoofing device was developed on a DSP platform, which at the time was an appropriate choice. Given the leap forward in power and flexibility
-of SDR platforms since this paper was published it should be noted that the use of an SDR for this purpose would be recommneded.
+of SDR platforms since this paper was published it should be noted that the use of an SDR for this purpose would be recommneded. At the time of publish
+it was noted that the cost of including multi band spoofing capabilities to a spoofing device would be prohibitvely expensive. This again has been made accessible
+by SDR platforms. 
+
+\medskip
+
+\textbf{\emph{\citetitle{RN21}} by \citeauthor{RN21}} \\
+In \citeyear{RN21} \citeauthor{RN21} \cite{RN21} developed a system to perform a series of spoof attacks on UAV's based on an SDR \cite{RN23}. The goal of this was to be able to 
+control the flight path of the UAV without raising any alarm's from the victim. This paper establishes the required conditions in which a UAV will
+be succeptible to being captured from a spoofing attack, as well as the range of post capture control that the spoofer will have over the victim.
+From testing it was found that spoof attacks were successful from up to 50m and upto a velocity of 10m/s.
+Simulations were produced for analysis of post capture control of the UAV. 
+When testing, both covert and overt spoofing methods were used, distuinguished by whether or not the spoofer made an attempt to avoid detection. 
+For the most part there was no practical difference between covert and overt methods since the commercial GPS units did not trigger any anti spoof mechanism when being subjected to an overt attack.
+Field testing showed that the spoof attempt caused unrecoverable navigation errors which resulted in the UAV crashing. 
 
 \medskip
 %-----------------------------------
