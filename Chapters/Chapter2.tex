@@ -92,11 +92,21 @@ are increasing for surcumventing geolocking features. Therefore to ensure that G
 the GPS position should be prioritised.} There are other methods of detecting a faulty GPS signal in software and hardware that are
 more accurate and allow for more flexibility of the device usage. 
 
+\medskip
+
+There have been documented cases of GPS spoofing attacks in the field \todo{add in reference to russian gps spoofing attacks}. So while this paper 
+will be focussing on the methodology of performing a spoofing attack it will be in the context of futhering understanding to be able to develop 
+more robust anti-spoofing or spoofer locating algorithms.
+
 \bigskip
 
 \citeauthor{RN12} \cite{RN12} commented on the effect of GNSS spoofing of a cooperative victim. That is when someone is willing to aid the attacker
 in performing an attack. This may be implemented to circumvent position based restrictions or if being GPS tracked during certain activities.
-\citeauthor{RN12} used the example of a fisherman wanting their GNSS receiver to falsely report the boad had stayed out of protected areas. 
+\citeauthor{RN12} used the example of a fisherman wanting their GNSS receiver to falsely report the boad had stayed out of protected areas.
+In the paper written by \citeauthor{RN25} \cite{RN25} regarding driverless vehicle safety, it was noted that there is a significant threat to these types
+of systems that rely heavily on reliable GPS signals. Although there have been proposed solutions to this problem through the use of 
+other sensor infomation available locally to each vehicle and in the form of an ad-hoc network known as V2V (vehicle to vehicle) and more broadly
+V2X (vehicle to everything) \cite{RN17}, this is still in its infancy and will require joint work from all vehicle manufacturers.   
 
 \bigskip
 
@@ -263,6 +273,10 @@ to be created and experiments run. It would be expeccted that the real world res
 assumptions were made that simplified the simulations. For example the spoofer was moving with a constant velocity in a perfectly straight line.
 
 \medskip
+
+\textbf{\emph{\citetitle{RN24}} by \citeauthor{RN24}} \\
+In \citeyear{RN24} \citeauthor{RN24} \cite{RN24} \footnote{https://www.youtube.com/watch?v=tsrOKeIelLc} proposed a method for detecting and localising
+a GPS spoofing atack.
 %-----------------------------------
 %	SUBsubSECTION 2
 %-----------------------------------
