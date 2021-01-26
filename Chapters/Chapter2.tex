@@ -94,7 +94,7 @@ more accurate and allow for more flexibility of the device usage.
 
 \medskip
 
-There have been documented cases of GPS spoofing attacks in the field\footnote{https://www.csoonline.com/article/3393462/what-is-gps-spoofing-and-how-you-can-defend-against-it.html#:~:text=\%22Hijackers\%20are\%20using\%20GPS\%20spoofing,hijacks\%20are\%20using\%20GPS\%20spoofers.\%22} \todo{add in reference to russian gps spoofing attacks}. So while this paper 
+There have been documented cases of GPS spoofing attacks in the field \todo{add in reference to russian gps spoofing attacks}. So while this paper 
 will be focussing on the methodology of performing a spoofing attack it will be in the context of futhering understanding to be able to develop 
 more robust anti-spoofing or spoofer locating algorithms.
 
@@ -208,12 +208,31 @@ Field testing showed that the spoof attempt caused unrecoverable navigation erro
 \medskip
 
 \textbf{\emph{\citetitle{RN28}} by \citeauthor{RN28}} \\
-In \citeyear{RN28} \citeauthor{RN28} \cite{RN28}
+In \citeyear{RN28} \citeauthor{RN28} \cite{RN28} used a low cost SDR device to perform a GPS spoofing attack. This method can be used to alter the location or time
+of the victims. Other positoning methods and techniques to spoof them were also examined. This was performed such that advice on how to prevent such attacks could be 
+presented. As mentioned in other sources, GNSS systems are tightly intwined with the day to day operations of people, commercial business and government entities alike.
+It was noted that the signals presented to the receivers are usually trusted without any authentication or other checking. The authors show that this trust can be exploited
+without physical access to or altering the software of the target device. One of the signal properties that makes spoofing simple is the received signal power from space
+which is less than -130dBm making overpower the legitimate signal a simple task. 
+To create a spoofing device an SDR platform was used (HackRF) in conjuction with the opensource program GPS-SIM-SDR. This program is able to generate a GPS signal
+at a chosen coordinate when given the correct BRDC (broadcast ephemeris data) in the form of RINEX files. A simple use of this software is to generate a static location
+but it is achaiveable to create a dynamic signal. HAckRF was chosen as the SDR platform because of its opensource nature, it also had the required spceifications to
+perform the spoof attack. The spoofing of WiFi signals was deemed to be out of the scope of this thesis and not considered.
+It was shown in this paper that the use of an SDR and opensource software was able to fool client devices such as apple smartphones into thinking they were else where.
+This included specific apps that require location data such as Uber and DiDi. The authors provided a list of recommendations to minimise the risk of being spoofed. 
+These recommendations are non trivial and some required alterations to how the receiver processes the signal data. These methods have been considered in greater
+detail in other references.
 
 \medskip
 
 \textbf{\emph{\citetitle{RN30}} by \citeauthor{RN30}} \\
-In \citeyear{RN30} \citeauthor{RN30} \cite{RN30}
+In \citeyear{RN30} \citeauthor{RN30} \cite{RN30} investigated the reqeuirements to performing a successful GPS spoofing attack on individuals and groups of recievers
+using civilian or military signals. A civilian GPS signal generator was used to create the spoofed signal for testing purposes.
+The authors showed through testing that any number of receivers can be easily spoofed to a single arbitrary static location, whereas
+when preserving the their constellation there are only a few transmission locations that were able to be used \todo{Reword this, read the paper to understand}.
+From the experiments it was found that there are 4 parameters that have required values in order to successfully spoof a GPS signal. That is the reletive signal 
+power must be $\geq+2dB$, the constant time offset must be $\leq 75ns$, location offset must be $\leq 500m$ and the reletive time offset must be $\leq 80ns$.
+
 
 \medskip
 
