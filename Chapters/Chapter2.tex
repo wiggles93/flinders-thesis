@@ -94,7 +94,7 @@ more accurate and allow for more flexibility of the device usage.
 
 \medskip
 
-There have been documented cases of GPS spoofing attacks in the field \todo{add in reference to russian gps spoofing attacks}. So while this paper 
+There have been documented cases of GPS spoofing attacks in the field\footnote{https://www.csoonline.com/article/3393462/what-is-gps-spoofing-and-how-you-can-defend-against-it.html#:~:text=\%22Hijackers\%20are\%20using\%20GPS\%20spoofing,hijacks\%20are\%20using\%20GPS\%20spoofers.\%22} \todo{add in reference to russian gps spoofing attacks}. So while this paper 
 will be focussing on the methodology of performing a spoofing attack it will be in the context of futhering understanding to be able to develop 
 more robust anti-spoofing or spoofer locating algorithms.
 
@@ -287,7 +287,12 @@ assumptions were made that simplified the simulations. For example the spoofer w
 
 \textbf{\emph{\citetitle{RN24}} by \citeauthor{RN24}} \\
 In \citeyear{RN24} \citeauthor{RN24} \cite{RN24} \footnote{https://www.youtube.com/watch?v=tsrOKeIelLc} proposed a method for detecting and localising
-a GPS spoofing atack. 
+a GPS spoofing attack called Crowd-GPS-sec. This system was developed to specifically detect and localise GPS attacks directed at UAV (drones) and commercial
+airliners. The authors make note that unlike other attempts to increase the security of GPS receivers, and GPS systems in general, no modifications are required
+for the recievers or GPS satellites. Alternatively Crowd-GPS-sec utelises crowdsourcing to monitor the air traffic. The aircraft broadcast their GPS derived postion
+periodically for air traffic control purposes. By leveraging crowdsourcing via the use of ADS-B broadcasts these aircraft are constantly tracked. 
+By analysing the difference in position for each aircraft spoofing presence can be detected. Simulations from the opensky network indicate that spoof detection can be 
+completed within 2 seconds. Spoofer localisation can also be acheived with reletively high accuracy of 150m from 15 minutes of moitoring.
 
 \medskip
 
