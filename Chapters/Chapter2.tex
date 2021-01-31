@@ -216,7 +216,7 @@ without physical access to or altering the software of the target device. One of
 which is less than -130dBm making overpower the legitimate signal a simple task. 
 To create a spoofing device an SDR platform was used (HackRF) in conjuction with the opensource program GPS-SIM-SDR. This program is able to generate a GPS signal
 at a chosen coordinate when given the correct BRDC (broadcast ephemeris data) in the form of RINEX files. A simple use of this software is to generate a static location
-but it is achaiveable to create a dynamic signal. HAckRF was chosen as the SDR platform because of its opensource nature, it also had the required spceifications to
+but it is achaiveable to create a dynamic signal. HackRF was chosen as the SDR platform because of its opensource nature, it also had the required spceifications to
 perform the spoof attack. The spoofing of WiFi signals was deemed to be out of the scope of this thesis and not considered.
 It was shown in this paper that the use of an SDR and opensource software was able to fool client devices such as apple smartphones into thinking they were else where.
 This included specific apps that require location data such as Uber and DiDi. The authors provided a list of recommendations to minimise the risk of being spoofed. 
@@ -316,7 +316,19 @@ completed within 2 seconds. Spoofer localisation can also be acheived with relet
 \medskip
 
 \textbf{\emph{\citetitle{RN31}} by \citeauthor{RN31}} \\
-In \citeyear{RN31} \citeauthor{RN31} \cite{RN31} 
+In \citeyear{RN31} \citeauthor{RN31} \cite{RN31} investigated the use of smartphones as a means of GPS spoof and jamming detection, by evaluating built in
+sensors for their suitibility. As mentioned in other sources GPS security is an important area of research since there are so many areas of everyday life that depend on reliable GNSS signals.
+The author noted that in 2016 the Android API included access to the Raw GNSS properties including navigation messages, pseudoranges,
+Doppler frequencies, constellation status and others. It's this reason that Android was chosen for this experimentation. From these properties a GPS spoof detection program
+can be developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. 
+From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
+3) inertial senesor data and 4) pseudorange residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
+used for testing. From testing it was found that phones tend to give a higher priority to GPS based location than that of other mehtods (network based). 
+From testing it can be seen that each of the metrics available can be used to combat certain types of spoofing attacks, and when used together as in GNSSAlarm, 
+a robust solution is available.
+
+\medskip
+
 %-----------------------------------
 %	SUBsubSECTION 2
 %-----------------------------------
@@ -451,6 +463,11 @@ By using an assimilator a simple single frequency single constellation reciver c
 
 Future work on the assimilator include miniturising the design in order to fit inside of an antenna such that a user would be able to include all of the 
 benefits of using the assimilator by only needing to chnage the antenna used. 
+
+\medskip
+
+\textbf{\emph{\citetitle{RN20}} by \citeauthor{RN20}} \\
+In \citedate{RN20} \citeauthor{RN20} \cite{RN20}
 
 %-----------------------------------
 %	SUBsubSECTION 3
