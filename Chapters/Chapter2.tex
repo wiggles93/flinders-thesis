@@ -226,7 +226,7 @@ detail in other references.
 \medskip
 
 \textbf{\emph{\citetitle{RN30}} by \citeauthor{RN30}} \\
-In \citeyear{RN30} \citeauthor{RN30} \cite{RN30} investigated the reqeuirements to performing a successful GPS spoofing attack on individuals and groups of recievers
+In \citeyear{RN30} \citeauthor{RN30} \cite{RN30} investigated the requirements to performing a successful GPS spoofing attack on individuals and groups of recievers
 using civilian or military signals. A civilian GPS signal generator was used to create the spoofed signal for testing purposes.
 The authors showed through testing that any number of receivers can be easily spoofed to a single arbitrary static location, whereas
 when preserving the their constellation there are only a few transmission locations that were able to be used \todo{Reword this, read the paper to understand}.
@@ -263,32 +263,38 @@ recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary de
 
 \medskip
 
+\textbf{\emph{\citetitle{RN32} by \citeauthor{RN32}}} \\
+\todo{This is a really good resource for how GNSS systems work. Use this extensively in the introduction}
+In \citeyear{RN32} \citeauthor{RN32} \cite{RN32} provided a review and analysis of the GNSS spoofing threat as well as the countermeasures of the time. This report aimed
+to fill the gap in 3 main areas of GNSS spoofing research, namely assessing the exact threat scenarios for commonly cited targets, investigate the practical imprediments
+of performing a spoofing attack in the field and lastly to survey and asses the performance of proposed GNSS spoofing defences. When defining spoofing, \citeauthor{RN32}
+determined that a power ratio (spoofed vs authentic) of just 1.1 was sufficient to force the receiver to move onto the spoofed signal. And with authentic GNSS signal
+strengths of approximatelty $-153dBW$ to $-160dbW$, this ratio is easy to achieve. \todo{how many watts would be required to get the ratio 1.1?}
+
 \textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
-As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and 
-military usage and while there are other satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is 
-still the one that most people think of when thinking about GNSS. GPS provides this service globally and efficiently although through its ubiquity
-security concerns have become apparent. Attacks have been carried out in both an academic and industry setting.
-The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority.
-Proposed methods of hardening GPS have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. 
-A method of creating unique satellite "fingerprints" was developed and tested against all known spoofing attacks at time of publish.
-This fingerprint algorithm was able to determine if a transmission was authentic or spoofed.
-This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts. \todo{Fact check the claims of the paper} 
+As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and military usage and while there are other
+satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is still the one that most people think of when thinking about GNSS. GPS
+provides this service globally and efficiently although through its ubiquity security concerns have become apparent. Attacks have been carried out in both an academic and
+industry setting. The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority. Proposed methods of hardening GPS
+have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. A method of creating unique satellite
+"fingerprints" was developed and tested against all known spoofing attacks at time of publish. This fingerprint algorithm was able to determine if a transmission was
+authentic or spoofed. This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts.
+\todo{Fact check the claims of the paper} 
 
 \medskip
 
 \textbf{\emph{\citetitle{RN10} by \citeauthor{RN10}}} \\
-In \citeyear{RN10} \citeauthor{RN10} \cite{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. 
-Previous literature had investigated the use of spoof detection using single receivers. These techniques were varied and ranged from simple methods like monitoring the 
-power level of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. There have also been methods proposed
-that compare signals with that of non-GPS signals for example an IMU. 
-The multi receiver design that \citeauthor{RN10} proposed works on the principal that the recived signal from a spoofing source will have identical characteristics (reletive time of arrival)
-at each of the receivers. When there is no spoofer present there will be unique signal characterstics at each of the receivers.
-The concept of detecting a spoofing event was to compare the position of each receiver against the known reletive postions. This was chosen as it will not reuqire any 
-hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to existing systems.
-Four simualtions were tested from a Neyman-Pearson perspective \todo{add in a info about neyman pearson in electrical eng} (1) two receivers with known absolute locations, (2) two recievers with known separation and orientation but unknown absolute location, 
-(3) two receivers with known separation and unknown orientation and absolute loaction and fianlly (4) three receiver example. The testing was performed under the assumption
-that the spoofing transmitter only had one antenna.
-In the first case there was approximatelty 1\% chance of a false alarm while the probability of detecction was found to be intractable.
+In \citeyear{RN10} \citeauthor{RN10} \cite{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. Previous
+literature had investigated the use of spoof detection using single receivers. These techniques were varied and ranged from simple methods like monitoring the power level
+of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. There have also been methods proposed that compare
+signals with that of non-GPS signals for example an IMU. The multi receiver design that \citeauthor{RN10} proposed works on the principal that the recived signal from a
+spoofing source will have identical characteristics (reletive time of arrival) at each of the receivers. When there is no spoofer present there will be unique signal
+characterstics at each of the receivers. The concept of detecting a spoofing event was to compare the position of each receiver against the known reletive postions. This
+was chosen as it will not reuqire any hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to
+existing systems. Four simualtions were tested from a Neyman-Pearson perspective \todo{add in a info about neyman pearson in electrical eng} (1) two receivers with known
+absolute locations, (2) two recievers with known separation and orientation but unknown absolute location, (3) two receivers with known separation and unknown orientation
+and absolute loaction and fianlly (4) three receiver example. The testing was performed under the assumption that the spoofing transmitter only had one antenna. In the
+first case there was approximatelty 1\% chance of a false alarm while the probability of detecction was found to be intractable.
 \todo{results}
 
 \medskip
