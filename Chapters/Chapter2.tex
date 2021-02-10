@@ -364,6 +364,20 @@ a robust solution is available.
 %-----------------------------------
 \subsubsection{Spoofing Mitigation}
 
+\textbf{\emph{\citetitle{RN34}} by \citeauthor{RN34}} \\
+In \citeyear{RN34} \citeauthor{RN34} \cite{RN34} provided a survey of the current GNSS spoofing and jamming mitigation methods current to that point. More emphasis was
+put into the detection and mitigation of intentional interference such as spoofing and jamming of GNSS signals in aviation. This meant there were extra constraints when
+considering appropriate countermeasures. Keeping antenna numbers and placements were of chief concern. The paper summarised the history of navigation solutions used in
+the aviation industry dating back to 1947. From 1973 onwards GPS has been in use, and only expanded to include other GNSS consterllations. Other types of navigation
+solutions are out of the scope of this document.
+\citeauthor{RN34} seeperated the interferences into man-made and channel-based, with the man-made being further seperated into intentional and unintentional. Examples of
+intentional interference were jamming, spoofing and meconing, with unintentional interference coming from adjacent channels and co-channels. Factors like atmosphereic
+conditions or space weather, multipath communicaitons, doppler effects and scattering all form unintentional interference. A detailed summary of mitigation strategies
+based on the attack/interference type was provided. By gropuing all of the resources together this paper was able to produce a single repository where defennces against
+all attack categories mentioned above. Modelling of different attack types was carried out. Jamming included AM/FM and chirping techniques. There were four spoofing
+classes defined each with their own mathematical model. Simplistic, intermediate, sophisticated and meaconer spoofers. An overview of the current interference detection
+mechanisms was provided. \todo{re write section}
+
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
 In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
 It was mentioned that previous anti-spoofing reasearch was done in two categories, spoofing detection and spoofing mitigation.
@@ -477,22 +491,22 @@ reletively unchanged.
 \medskip
 
 \textbf{\emph{\citetitle{RN19}} by \citeauthor{RN19}} \\
-In \citeyear{RN19} \citeauthor{RN19} \cite{RN19} devised a conceptual method for retrofitting anti-spoofing techniques to GPS devices without the need
-to alter the software or hardware of those devices. This device is called a GPS assimilator and can also be used for increasing the accuracy and robustness
-of the PVT in weak-signal environments. From a high level the assimilator will contain an RF front end with multi system receiver and navigation and timeing fusion module,  
-anti-spoofing modules and an embedded GPS signal simulator. Conceptually this device will be placed between the RF antenna and the GPS receiver. The assimilator thus performs
-all necessary signal processing to output an L1 C/A signal that the target GPS receiver will be able to interperet with accurate PVT data. The assimilator
-can be used with many location systems including multiple GNSS constellations and cellular connections. Three use cases were included in the paper.
-These are to protect the time reference receiver from an unsophisticated spoofing attack, reducing the ionospheric error in single frequency target
-receivers and weak-signal tracking via CDMA cellular signal aiding. It was found that in each of these use cases the assimilator was able to improve
+In \citeyear{RN19} \citeauthor{RN19} \cite{RN19} devised a conceptual method for retrofitting anti-spoofing techniques to GPS devices without the need to alter the
+software or hardware of those devices. This device is called a GPS assimilator and can also be used for increasing the accuracy and robustness of the PVT in weak-signal
+environments. From a high level the assimilator will contain an RF front end with multi system receiver and navigation and timeing fusion module,  
+anti-spoofing modules and an embedded GPS signal simulator. Conceptually this device will be placed between the RF antenna and the GPS receiver. The assimilator thus
+performs all necessary signal processing to output an L1 C/A signal that the target GPS receiver will be able to interperet with accurate PVT data. The assimilator can be
+used with many location systems including multiple GNSS constellations and cellular connections. Three use cases were included in the paper. These are to protect the time
+reference receiver from an unsophisticated spoofing attack, reducing the ionospheric error in single frequency target receivers and weak-signal tracking via CDMA cellular
+signal aiding. It was found that in each of these use cases the assimilator was able to improve
 the ability of the target reciver to provide accurate PVT data.
 
-By having a seperate inline component, especially one based off of SDR technologies, upgrades can be applied to any GPS receiver without needing to
-make modifications to the existing system. This reduces cost and complexity of upgrading now and in the future as GPS anti-spoofing technology changes.
-By using an assimilator a simple single frequency single constellation reciver can be upgraded to be a multi-frequency, multi-constellation receiver.
+By having a seperate inline component, especially one based off of SDR technologies, upgrades can be applied to any GPS receiver without needing to make modifications to
+the existing system. This reduces cost and complexity of upgrading now and in the future as GPS anti-spoofing technology changes. By using an assimilator a simple single
+frequency single constellation reciver can be upgraded to be a multi-frequency, multi-constellation receiver.
 
-Future work on the assimilator include miniturising the design in order to fit inside of an antenna such that a user would be able to include all of the 
-benefits of using the assimilator by only needing to chnage the antenna used. 
+Future work on the assimilator include miniturising the design in order to fit inside of an antenna such that a user would be able to include all of the benefits of using
+the assimilator by only needing to chnage the antenna used. 
 
 \medskip
 
@@ -516,10 +530,10 @@ the publication, and provides a good resource for breaking down the message stru
 
 \medskip
 
-textbf{\emph{\citetitle{RN25}} by \citeauthor{RN25}} \\
+\textbf{\emph{\citetitle{RN25}} by \citeauthor{RN25}} \\
 In \citeyear{RN25} \citeauthor{RN25} \cite{RN25} produced an overview of current and anticipated future challenges to be faced by the automotive industry in regards to
 driverless vehicle security. Driverless vehicles have a large number of sensors and communication infrastructures to facilitate the ability to autonomously drive around
-the streets. This increases the attack surface since there are many different ways to hack or spoof the data to or from the vehicle. Examples of attacks are taking
+the streets. This increases the attack surface since there are a plethora of different ways to hack or spoof the data to or from the vehicle. Examples of attacks are taking
 contorl of the vehicles and forcing it to stop, or contorlling the vehilce to perform an attack by driving into buildings or groups of people. The bulk of this paper
 focuses on the many parts that make up the vision and communicaiton system of an autonomous vehicle, however most of this is out of the scope of this thesis. GPS spoofing
 techniques were investigated as well as potential countermeasures. Aside from the usual techniques for mitigation and detection, the use of other onboard sensors, namely
