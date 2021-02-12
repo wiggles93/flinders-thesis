@@ -209,9 +209,9 @@ control the flight path of the UAV without raising any alarm's from the victim. 
 be succeptible to being captured from a spoofing attack, as well as the range of post capture control that the spoofer will have over the victim.
 From testing it was found that spoof attacks were successful from up to 50m and upto a velocity of 10m/s.
 Simulations were produced for analysis of post capture control of the UAV. 
-When testing, both covert and overt spoofing methods were used, distuinguished by whether or not the spoofer made an attempt to avoid detection. 
-For the most part there was no practical difference between covert and overt methods since the commercial GPS units did not trigger any anti spoof mechanism when being subjected to an overt attack.
-Field testing showed that the spoof attempt caused unrecoverable navigation errors which resulted in the UAV crashing. 
+When testing, both covert and overt spoofing methods were used, distuinguished by whether or not the spoofer made an attempt to avoid detection. For the most part there
+was no practical difference between covert and overt methods since the commercial GPS units did not trigger any anti spoof mechanism when being subjected to an overt
+attack. Field testing showed that the spoof attempt caused unrecoverable navigation errors which resulted in the UAV crashing. 
 
 \medskip
 
@@ -386,7 +386,13 @@ all attack categories mentioned above. Jamming and spoofing signal models were p
 were classified into five different classes based on the complexity of the attack. Single/multi tone AM/FM type attacks made up class 1 jammers, single and multi chirp
 attacks made up class 2 and 3. Chirp signals with frequency bursts were class 4 jammers and class 5 were DME-like/pulse jammer. Spoofers were divided into simplistic
 spoofer, intermediate spoofer, sophisticated spoofer and meaconer. The unintentional interference models were also discussed and it was noted that adjacent channel
-interference is typically harmonics leaking over from other frequency bands. This may be from DVB or LTE sources.
+interference is typically harmonics leaking over from other frequency bands. This may be from DVB or LTE sources and is modelled as AM or FM tones. Co-channel
+interference is most often caused by other GNSS services transmitting at the same frequency. This is modelled as increased AWGN (Additive White Gaussian Noise). A summary
+of the different detection methods was produced. Detection of a single interference type is simple and can be determined using PDFs (probability density functions). The
+scenario in which there is no interference will be Gaussian, whereas in the presence of interference the received signal may not be depending on the interference type.
+Front end detection uses the raw signal before going though the ADC, commonly AGC detectors are used. Since the AGC will attempt to maintain a steady input power it can
+be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method is the
+pre-correlator type
 
 \medskip
 

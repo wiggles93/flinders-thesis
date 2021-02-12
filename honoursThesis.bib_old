@@ -1,4 +1,4 @@
-﻿@article{RN20,
+@article{RN20,
    author = {Arribas, J. and Fernandez-Prades, C. and Closas, P.},
    title = {Antenna Array Based GNSS Signal Acquisition for Interference Mitigation},
    journal = {IEEE Transactions on Aerospace and Electronic Systems},
@@ -55,16 +55,6 @@
    type = {Journal Article}
 }
 
-@inproceedings{RN37,
-   author = {Fernández-Hernández, I. and Seco-Granados, G.},
-   title = {Galileo NMA signal unpredictability and anti-replay protection},
-   booktitle = {2016 International Conference on Localization and GNSS (ICL-GNSS)},
-   pages = {1-5},
-   ISBN = {2325-0771},
-   DOI = {10.1109/ICL-GNSS.2016.7533686},
-   type = {Conference Proceedings}
-}
-
 @inproceedings{RN16,
    author = {Fernandez-Prades, Carles and Arribas, Javier and Closas, Pau and Aviles, Carlos and Esteve, Luis},
    title = {GNSS-SDR: An open source tool for researchers and developers},
@@ -79,16 +69,6 @@
    journal = {arXiv preprint arXiv:2005.08787},
    year = {2020},
    type = {Journal Article}
-}
-
-@inproceedings{RN36,
-   author = {Gamba, M. T. and Nicola, M. and Motella, B.},
-   title = {Galileo OSNMA: an implementation for ARM-based embedded platforms},
-   booktitle = {2020 International Conference on Localization and GNSS (ICL-GNSS)},
-   pages = {1-6},
-   ISBN = {2325-0771},
-   DOI = {10.1109/ICL-GNSS49876.2020.9115539},
-   type = {Conference Proceedings}
 }
 
 @article{RN19,
@@ -160,19 +140,6 @@
    type = {Journal Article}
 }
 
-@article{RN34,
-   author = {Morales-Ferre, R. and Richter, P. and Falletti, E. and Fuente, A. de la and Lohan, E. S.},
-   title = {A Survey on Coping With Intentional Interference in Satellite Navigation for Manned and Unmanned Aircraft},
-   journal = {IEEE Communications Surveys \& Tutorials},
-   volume = {22},
-   number = {1},
-   pages = {249-291},
-   ISSN = {1553-877X},
-   DOI = {10.1109/COMST.2019.2949178},
-   year = {2020},
-   type = {Journal Article}
-}
-
 @misc{RN26,
    pages = {12–22},
    DOI= {10.1145/3317549.3319719},
@@ -206,20 +173,6 @@
    title = {Localizing Spoofing Attacks on Vehicular GPS Using Vehicle-to-Vehicle Communications},
    year = {2020},
    type = {Thesis}
-}
-
-@article{RN32,
-   author = {Schmidt, Desmond and Radke, Kenneth and Camtepe, Seyit and Foo, Ernest and Ren, Michał},
-   title = {A Survey and Analysis of the GNSS Spoofing Threat and Countermeasures},
-   journal = {ACM Comput. Surv.},
-   volume = {48},
-   number = {4},
-   pages = {Article 64},
-   ISSN = {0360-0300},
-   DOI = {10.1145/2897166},
-   url = {https://doi.org/10.1145/2897166},
-   year = {2016},
-   type = {Journal Article}
 }
 
 @article{RN18,
@@ -287,18 +240,6 @@
    type = {Journal Article}
 }
 
-@article{RN33,
-   author = {Wu, Z. and Zhang, Y. and Yang, Y. and Liang, C. and Liu, R.},
-   title = {Spoofing and Anti-Spoofing Technologies of Global Navigation Satellite System: A Survey},
-   journal = {IEEE Access},
-   volume = {8},
-   pages = {165444-165496},
-   ISSN = {2169-3536},
-   DOI = {10.1109/ACCESS.2020.3022294},
-   year = {2020},
-   type = {Journal Article}
-}
-
 @inproceedings{RN9,
    author = {Zeng, Kexiong Curtis and Shu, Yuanchao and Liu, Shinan and Dou, Yanzhi and Yang, Yaling},
    title = {A practical GPS location spoofing attack in road navigation scenario},
@@ -318,4 +259,3 @@
    year = {2020},
    type = {Journal Article}
 }
-
