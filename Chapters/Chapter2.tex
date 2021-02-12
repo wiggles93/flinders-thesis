@@ -110,6 +110,14 @@ V2X (vehicle to everything) \cite{RN17}, this is still in its infancy and will r
 
 \bigskip
 
+Cryptography has been investgated by multiple sources as a solution to many aspects of the GNSS spoofing problem. For constellations that have been operational for many
+years like GLONASS and GPS, this requires alterations to the space segment. Since 2013 Galileo developers have been working on a one to many cryptographic solution
+similar to that used to secure internet communicatrions. This has manifested in the OS-NMA (Open Service Navigation Message Authentication). This allows modern high
+performance receviers to be able to enable the cryptographic solution, while still maintaining backwards compatability for less capable receivers or for those that do
+not require the extra security. \todo{add references} \\ 
+While this thesis will be concetrating on spoofing and countermeasures of the GPS satellite constellation, it is worth noting that this kind of implementation will be
+considered as the existing constellations are updated at end of life.
+
 %-----------------------------------
 %	SECTION 2
 %-----------------------------------
@@ -365,18 +373,33 @@ a robust solution is available.
 \subsubsection{Spoofing Mitigation}
 
 \textbf{\emph{\citetitle{RN34}} by \citeauthor{RN34}} \\
-In \citeyear{RN34} \citeauthor{RN34} \cite{RN34} provided a survey of the current GNSS spoofing and jamming mitigation methods current to that point. More emphasis was
-put into the detection and mitigation of intentional interference such as spoofing and jamming of GNSS signals in aviation. This meant there were extra constraints when
-considering appropriate countermeasures. Keeping antenna numbers and placements were of chief concern. The paper summarised the history of navigation solutions used in
-the aviation industry dating back to 1947. From 1973 onwards GPS has been in use, and only expanded to include other GNSS consterllations. Other types of navigation
-solutions are out of the scope of this document.
-\citeauthor{RN34} seeperated the interferences into man-made and channel-based, with the man-made being further seperated into intentional and unintentional. Examples of
+In \citeyear{RN34} \citeauthor{RN34} \cite{RN34} provided a survey of the current GNSS spoofing and jamming mitigation methods current to that point inn time. More
+emphasis was put into the detection and mitigation of intentional interference such as spoofing and jamming of GNSS signals in aviation. This meant there were extra
+constraints when considering appropriate countermeasures. Keeping antenna numbers and placements were of chief concern. The paper summarised the history of navigation
+solutions used in the aviation industry dating back to 1947. From 1973 onwards GPS has been in use, and only expanded to include other GNSS consterllations. Other types
+of navigation solutions are out of the scope of this document.
+\citeauthor{RN34} seperated the interferences into man-made and channel-based, with the man-made being further seperated into intentional and unintentional. Examples of
 intentional interference were jamming, spoofing and meconing, with unintentional interference coming from adjacent channels and co-channels. Factors like atmosphereic
 conditions or space weather, multipath communicaitons, doppler effects and scattering all form unintentional interference. A detailed summary of mitigation strategies
-based on the attack/interference type was provided. By gropuing all of the resources together this paper was able to produce a single repository where defennces against
-all attack categories mentioned above. Modelling of different attack types was carried out. Jamming included AM/FM and chirping techniques. There were four spoofing
-classes defined each with their own mathematical model. Simplistic, intermediate, sophisticated and meaconer spoofers. An overview of the current interference detection
-mechanisms was provided. \todo{re write section}
+based on the attack/interference type was provided. By grouping all of the resources together this paper was able to produce a single repository where defennces against
+all attack categories mentioned above. Jamming and spoofing signal models were presented, with a class baseband signal model and a list of unknown parameters. Jammers
+were classified into five different classes based on the complexity of the attack. Single/multi tone AM/FM type attacks made up class 1 jammers, single and multi chirp
+attacks made up class 2 and 3. Chirp signals with frequency bursts were class 4 jammers and class 5 were DME-like/pulse jammer. Spoofers were divided into simplistic
+spoofer, intermediate spoofer, sophisticated spoofer and meaconer. The unintentional interference models were also discussed and it was noted that adjacent channel
+interference is typically harmonics leaking over from other frequency bands. This may be from DVB or LTE sources.
+
+\medskip
+
+\textbf{\emph{\citetitle{RN36}} by \citeauthor{RN36}} \\
+In \citeyear{RN36} \citeauthor{RN36} \cite{RN36} proposed an implementation of the Galileo OS-NMA for embedded devices running ARM based processors. The OS-NMA is an
+attempt to include spoofing countermeasures within the message structure from the satellite. Software prfiling was performed with performance comparisons undertaken
+between different platforms. There are OSNMA ready commercial hardware receivers, however the authors decided that a software implementation would be best suited as new
+features are easily added and the algorithm can be easily accessed and modified as needed. An overview of the OS-NMA was provided with parameters, values and
+descriptions. Testing was performed on a Dell PC with Xeon processor and an ODroid running ARM based exynos processor. It was shown that the ARM based device suffered
+with execution times ballooning. However the receiver was able to decode the OS-NMA code susseffully. Future work will go into optimising the software for different
+platforms and utelising more powerful hardware to close to gap with more powerful PC machines.
+
+\medskip
 
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
 In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
