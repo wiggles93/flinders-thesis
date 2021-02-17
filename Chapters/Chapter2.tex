@@ -69,10 +69,9 @@ Previous research into the use of SDR (software defined radio) for GPS spoofing 
 That is, that the use of open source cannot  software to ease the development. Namely multiple previous attempts at GPS spoofing
 used the GNSS-SDR program for reception and the gps-SDR-sim for transmission. Both of these are available from GitHub as free
 and open source programs. The issue of GPS spoofing is not uniquely that of position. Since GNSS systems have highly accurate time keeping
-facilities, in the form of atomic clocks, they are used to maintain accurate time of critical infrastructure like \todo{list things that rely on GPS timing}\\
+facilities, in the form of atomic clocks, they are used to maintain accurate time of critical infrastructure like power networks, telecommunications \todo{list things that rely on GPS timing}\\
 
 Spoofing can be defined as an intentional interfering signal that aims to make GNSS receivers produce incorrect positioning data\cite{RN8}.
-\emph{GPS Spoofing has been researched actively for over 12 years and yet there doesn't seem to be any wide spread anti-spoofing technique adoption.}\todo{remove}
 
 \bigskip
 From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
@@ -163,7 +162,6 @@ In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software 
 GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
 The author mentions existing commercial products, as they allow for the usage of the data that GNSS systems provide.
 The paper walks through the architecture of the GNSS-SDR program.
-
 \medskip
 
 \textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
@@ -178,7 +176,7 @@ method was given a complexity, effectiveness and spoofing scenario generality ra
 Testing spoofing techniques is difficult to achieve since there are regulations around the emission of EM radiation at certain frequencies and power levels.
 There were three methods used to test the spoofing/antispoofing techniques. These were Indoor re-transmissions, spoofing using recorded data (No RF transmission), and
 using RF combiners to combine authentication and spoofed signals.
-The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
+The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was alsox
 shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
 
 \medskip
@@ -274,7 +272,7 @@ recommend COTS GNSS receiver producers implement, at a minimum, a rudimentary de
 
 \textbf{\emph{\citetitle{RN32} by \citeauthor{RN32}}} \\
 \textbf{Use this as basis for lit review and sprinkle other sources in when they are able to add to what the authors are saying here} \\
-\todo{This is a really good resource for how GNSS systems work. Use this extensively in the introduction}
+\textbf{This is a really good resource for how GNSS systems work. Use this extensively in the introduction}
 In \citeyear{RN32} \citeauthor{RN32} \cite{RN32} provided a review and analysis of the GNSS spoofing threat as well as the countermeasures of the time. This report aimed
 to fill the gap in 3 main areas of GNSS spoofing research, namely assessing the exact threat scenarios for commonly cited targets, investigate the practical impediments
 of performing a spoofing attack in the field and lastly to survey and asses the performance of proposed GNSS spoofing defences. When defining spoofing, \citeauthor{RN32}
@@ -312,7 +310,6 @@ industry setting. The authors believed that strengthening of the GPS framework a
 have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. A method of creating unique satellite
 "fingerprints" was developed and tested against all known spoofing attacks at time of publish. This fingerprint algorithm was able to determine if a transmission was
 authentic or spoofed. This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts.
-\todo{Fact check the claims of the paper} 
 
 \medskip
 
@@ -324,11 +321,12 @@ signals with that of non-GPS signals for example an IMU. The multi receiver desi
 spoofing source will have identical characteristics (relative time of arrival) at each of the receivers. When there is no spoofer present there will be unique signal
 characteristics at each of the receivers. The concept of detecting a spoofing event was to compare the position of each receiver against the known relative positions. This
 was chosen as it will not require any hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to
-existing systems. Four simulations were tested from a Neyman-Pearson perspective \todo{add in a info about Neyman Pearson in electrical eng} (1) two receivers with known
+existing systems. Four simulations were tested from a Neyman-Pearson perspective (1) two receivers with known
 absolute locations, (2) two receivers with known separation and orientation but unknown absolute location, (3) two receivers with known separation and unknown orientation
 and absolute location and finally (4) three receiver example. The testing was performed under the assumption that the spoofing transmitter only had one antenna. In the
 first case there was approximately 1\% chance of a false alarm while the probability of detection was found to be intractable.
-\todo{results}
+It was noted that to enable an inital statistical analysis of the solution, some simplifying assumptions were chosen. As such, future works should attempt to reduce the
+simplifications where possible to create results that are applicable to real world scenarios.
 
 \medskip
 
@@ -368,6 +366,9 @@ a robust solution is available.
 
 \medskip
 
+\textbf{\emph{\citetitle{RN26}} by \citeauthor{RN26}} \\
+In \citeyear{RN26} \citeauthor{RN26} \cite{RN26} proposes a method of GPS signal spoofing detection using pre-existing cellular network infrastructure.
+
 %-----------------------------------
 %	SUBsubSECTION 2
 %-----------------------------------
@@ -393,7 +394,7 @@ of the different detection methods was produced. Detection of a single interfere
 scenario in which there is no interference will be Gaussian, whereas in the presence of interference the received signal may not be depending on the interference type.
 Front end detection uses the raw signal before going though the ADC, commonly AGC detectors are used. Since the AGC will attempt to maintain a steady input power it can
 be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method is the
-pre-correlator type
+pre-correlator type \todo{Finish}
 
 \medskip
 
@@ -412,11 +413,16 @@ platforms and utilising more powerful hardware to close to gap with more powerfu
 In \citeyear{RN37} \citeauthor{RN37} \cite{RN37} produced a report on the addition of an authentication system within the Galileo GNSS constellation as means of
 circumventing interference of the navigation signal. This interference may be intentional in the case of a jamming or spoofing attack of unintentional in the case of
 irregular or intense atmospheric weather conditions. This architecture would be added to it's open service and be named the NMA (Navigation Message Authentication). The
-NMA cryptographic data is mostly unpredictable, which can be used to protect against replay attacks like meaconing attacks. The unpredictability is determined by how the
-data is packaged with the I/NAV message.
+NMA cryptographic data is mostly unpredictable, which can be used to protect against replay attacks like meaconing attacks. The unpredictability code was chosen to be
+stored in the "Reserved 1" slot of the I/NAV page. This section is 40bits wide. The unpredictability is determined by how the data is packaged with the I/NAV message and
+how the bits are coded into symbols and interleaved. By storing the first chip of this symbol a reciver can  create a synthtic sequence whose correlation will be low if
+the signal has been subject to interference. The authors determined that the inclusion of the NMA code reduced the effectiveness of replay based spoofing attacks.
+Care must be taken if trying to spoof a victim that has access to either Galileo GNSS or multi-constellation GNSS since this functionality may be preasent and active. 
+
+\medskip
 
 \textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
-In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
+In 2012 S. Daneshmand et al.\cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
 It was mentioned that previous anti-spoofing research was done in two categories, spoofing detection and spoofing mitigation.
 Most of the effort has been put into spoofing detection algorithms and less on mitigation techniques. 
 Previous proposed spoofing mitigation devices used the fact that GPS spoofing devices typically transmit multiple PRN's. 
@@ -431,7 +437,7 @@ S. Daneshmand mentioned that with some minor modifications the proposed module w
 
 \textbf{\emph{Practical Cryptographic Civil GPS signal authentication} by K. Wesson et al.} \\
 K. Wesson et al. \cite{RN13} proposed a method for counteracting GPS spoofing on the popular GPS civil band. The proposed method would use cryptographic
-authentication based techniques to ensure that signals were not fake and did originate from an authorised source.\todo{write more}
+authentication based techniques to ensure that signals were not fake and did originate from an authorised source.
 \citeauthor{RN13} provided a detailed overview of the entire cryptographic authentication system.
 The method employed by \citeauthor{RN13} included adding digital signatures within the GPS civil navigation message. This type of cryptographic defence
 will secure the receiver against replay spoof attacks. Authentication of each civil GPS signal is performed every 5 minutes.
