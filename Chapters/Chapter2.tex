@@ -303,9 +303,25 @@ Recommended future work was based around real time detection and location of spo
 \medskip
 
 \textbf{\emph{\citetitle{RN33} by \citeauthor{RN33}}} \\
-In \citeyear{RN33} \citeauthor{RN33} provided a survey of the spoofing and anti-spoofing measures that have been researched recently. Current spoofing attacks were covered in detail, as
-well as anti-spoofing measureas and their effectiveness against each of the spoofing attacks. This analysis was performed from a signal-level perspective and from a data-level
-perspective. A detailed review of critical infrastructure and systems that utelise GNSS was also performed.
+In \citeyear{RN33} \citeauthor{RN33} provided a survey \cite{RN33} of the spoofing and anti-spoofing measures that have been researched recently. Current spoofing attacks were
+covered in detail, as well as anti-spoofing measureas and their effectiveness against each of the spoofing attacks. This analysis was performed from a signal-level
+perspective and from a data-level perspective. A detailed review of critical infrastructure and systems that utelise GNSS was also performed. There are four gropus that
+can be seen from this analysis, satellite navigation that supports electrical systems, satellite navigation that supports banking systems, satellite navigation supporting
+transportation systems and satellite navigation supporting communication systems. The former two are examples of utelising GNSS for its accurate time keeping and not the
+positioning with the later being examples of utelising the timing and positional systems of GNSS constellations. The threats to civil GNSS can be summarised as either
+spoofing or jamming attacks. Spoofing attacks can be further diveded into either forwarding or generating spoofing attacks dependant on the method of generating the
+fraudulent signal. 
+A detailed list of spoofing and anti-spoofing techniques were covered within the literature, but as mentioned above all can fit within the 2 categories of forwarding or
+generating based techniques.
+From the research it was found that most of the anti-spoofing techniques require some form of hardware alteration. There were some methods that did not require such
+modifications, namely those that relied upon antrenna array detection and angle of arrival detection methods. It was found that there is no spoofing mehthod that is
+immune to all anti-spoofing techniques, and equally there is not single anti-spoofing method that is able to detect and mitigate all spoofing methods. It was advised to
+continue researching and developing advanced anti-deception systems since the deception models will continue to advance. 
+
+The authors outlined challenges faced by GNSS systems which include: PVT accuracy, availibilty of GNSS systems, integrity of the system, and the ease in which
+interference can occur. Areas of future research were also outlined and include but are not limited to interconnecting the satellites together, incrasing accurace of
+atomic time keeping as well as introducing advanced anti-spoofing techniques, more wide spread support of multi constellation receivers, and increasing anti interference
+capabilities of receivers through either hardware, software or both.
 
 \medskip
 
@@ -405,8 +421,12 @@ interference is most often caused by other GNSS services transmitting at the sam
 of the different detection methods was produced. Detection of a single interference type is simple and can be determined using PDFs (probability density functions). The
 scenario in which there is no interference will be Gaussian, whereas in the presence of interference the received signal may not be depending on the interference type.
 Front end detection uses the raw signal before going though the ADC, commonly AGC detectors are used. Since the AGC will attempt to maintain a steady input power it can
-be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method is the
-pre-correlator type \todo{Finish}
+be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method was the
+pre-correlator type, in which the signal is converted to a different domain to estimate characteristics of the signal or seperate the GNSS and interference signals. The
+next type of mitigation strategies were post-correltor types. These are typically reserved for spoofing mitigation as oppsed to jamming mitiagaiton. This anti-spoofing
+method is only effective if the authentic signal can be recognised and seperated from the fraudulent one. If not then mitigation is not achievable. The final technique is
+performing mitigation at a navigation level. This removes the requirement for adding special correlator hardware and uses the typical output from normal recievers. This
+method works by discarding signals that are deemed to be counterfeit.
 
 \medskip
 
