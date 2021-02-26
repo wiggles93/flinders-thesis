@@ -25,6 +25,7 @@ List of Software packages used:
     \item GNSS-SDR
     \item GNSS-SDR-monitor
     \item gps-sdr-sim
+    \item SatGen 3
 \end{itemize}
 
 From the desktop version of Google Earth Pro navigation paths can be created. These paths can then be use to generate a GPS signal to replicate that path using the
@@ -49,3 +50,15 @@ To see the effectiveness of the GPS spoofing methods experiments were carried ou
 not the receiver was reporting false location or timing information. Using an adroid phone there is access to thge raw GPS information which can be used to determine if
 the spoofing signal is being accepted. However, the use of a "maps" program was also used as a way to determine if there was any form of software/hardware anti-spoofing
 technique being used post gps receiver. A simple COTS 
+
+\section{Testing Workflow}
+
+Some preliminary testing was done with different software setups to see which would be the best for reproducing spoofing results. A combination of meaconing and signal
+generating techniques were investigated. Initially meaconing was chosen as the best way to perfom an attack, therefore an attempt was made to record real time GPS signals
+and store them for later transmission. Initial testing using a passive log period antenna resulted in no data being properly captured. Since a log-periodic antenna was
+used there was a mismatch in the polarisation of the wave. The transmitted GPS signal is polarised as RHCP, whereas by its nature log-periodic antennas are linearly
+polarised. This equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna meant that the data within the signal was
+unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active antenna. A bias-tee was used in order to
+feed the antenna with the $5V$ requried for its operation while filtering out the DC to feed into the SDR. To interface with the bias-tee a USB cable was cut and used to
+connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to find or lock onto any of the GPS satellites
+at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary 
