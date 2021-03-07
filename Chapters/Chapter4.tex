@@ -1,9 +1,64 @@
 % Chapter Template
 
-\chapter{Chapter Title Here} % Main chapter title
+\chapter{Methodology} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+%\medskip
+Summary of testing:
+\begin{itemize}
+    \item Used commercial GPS receiver to check received SNR values \\ Antennae used:
+    \begin{itemize}
+        \item passive patch antenna
+        \item active antenna
+        \item Log-periodic antenna
+    \end{itemize}
+    This resulted in a preliminary finding that the active antenna improved signal to noise ratio by 8dB. \todo{Update with more formal findings}
+    \item Use SDR + GNSS-SDR to receive similar signals and compare SNR values
+    \item Use stored text file of gps data and connect Tx to Rx antenna port (via attenuator) to check if programs are manipulating the data as they should be.
+    \item Use stored txt file of gps data (received from commercial receiver) and transmit gps signal using log periodic antenna to see if phone GPS can be spoofed into thinking it is in another geographical location.
+\end{itemize}
+\medskip
+All of the software packages used are free and opensource.
+List of Software packages used:
+\begin{itemize}
+    \item GNURadio
+    \item GNSS-SDR
+    \item GNSS-SDR-monitor
+    \item gps-sdr-sim
+    \item SatGen 3
+\end{itemize}
+
+From the desktop version of Google Earth Pro navigation paths can be created. These paths can then be use to generate a GPS signal to replicate that path using the
+GPS-SDR-SIM program \cite{RN42}. It should be noted that the KML file format is not suitable for use with this program and must be converted into NMEA GGA stream format.
+
+\textbf{It would be great to be able to perform a meaconing attack. This requries real time reception and rebroadcast with a higher power. The extra time delay
+makes the spoofing victim believe they are elsewhere. This should be a search term.}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
+
+\section{Testing Methodology}
+
+In this section the method of creating a GPS signal spoofing device is detailed. The main part of this project is the upgradability of the SDR platform
+and in particular the USRP N210 SDR. As previously mentioned the benefit of using an SDR over using an ASIC is that with a new version of software 
+new capacilities are availeble to the device. This could be benefitial to either the spoofer or spoof defense. 
+
+\section{Data Collection}
+
+To see the effectiveness of the GPS spoofing methods experiments were carried out and results were recoreded. The success of the experiments were dictated by whether or
+not the receiver was reporting false location or timing information. Using an adroid phone there is access to thge raw GPS information which can be used to determine if
+the spoofing signal is being accepted. However, the use of a "maps" program was also used as a way to determine if there was any form of software/hardware anti-spoofing
+technique being used post gps receiver. A simple COTS 
+
+\section{Testing Workflow}
+
+Some preliminary testing was done with different software setups to see which would be the best for reproducing spoofing results. A combination of meaconing and signal
+generating techniques were investigated. Initially meaconing was chosen as the best way to perfom an attack, therefore an attempt was made to record real time GPS signals
+and store them for later transmission. Initial testing using a passive log period antenna resulted in no data being properly captured. Since a log-periodic antenna was
+used there was a mismatch in the polarisation of the wave. The transmitted GPS signal is polarised as RHCP, whereas by its nature log-periodic antennas are linearly
+polarised. This equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna meant that the data within the signal was
+unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active antenna. A bias-tee was used in order to
+feed the antenna with the $5V$ requried for its operation while filtering out the DC to feed into the SDR. To interface with the bias-tee a USB cable was cut and used to
+connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to find or lock onto any of the GPS satellites
+at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary 
