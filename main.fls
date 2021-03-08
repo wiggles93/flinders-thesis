@@ -289,6 +289,8 @@ INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter2.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter2.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.aux
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.aux
 OUTPUT /home/alastair/thesis/flinders-thesis/main.aux
@@ -394,9 +396,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplri8r.tfm
 INPUT /home/alastair/thesis/flinders-thesis/main.toc
 INPUT /home/alastair/thesis/flinders-thesis/main.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
-OUTPUT /home/alastair/thesis/flinders-thesis/main.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
+OUTPUT /home/alastair/thesis/flinders-thesis/main.toc
 INPUT /home/alastair/thesis/flinders-thesis/main.lof
 INPUT /home/alastair/thesis/flinders-thesis/main.lof
 OUTPUT /home/alastair/thesis/flinders-thesis/main.lof
@@ -438,6 +440,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplro8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplro8r.tfm
+OUTPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.tex
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplbi8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplb8t.vf
@@ -482,9 +487,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplrc8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/palatino/pplr8t.vf
-OUTPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
-INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.tex
-INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.tex
+OUTPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.tex
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.tex
 OUTPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.tex
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.tex
@@ -496,6 +501,8 @@ INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter2.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter2.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter3.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.aux
+INPUT /home/alastair/thesis/flinders-thesis/Chapters/Chapter4.aux
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/thesis/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/thesis/flinders-thesis/main.out
