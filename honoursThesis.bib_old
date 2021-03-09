@@ -11,6 +11,19 @@
    type = {Journal Article}
 }
 
+@article{RN43,
+   author = {Bonnor, Norman},
+   title = {A Brief History of Global Navigation Satellite Systems},
+   journal = {Journal of navigation},
+   volume = {65},
+   number = {1},
+   pages = {1-14},
+   ISSN = {0373-4633},
+   DOI = {10.1017/S0373463311000506},
+   year = {2012},
+   type = {Journal Article}
+}
+
 @inproceedings{RN17,
    author = {Carson, N. and Martin, S. M. and Starling, J. and Bevly, D. M.},
    title = {GPS spoofing detection and mitigation using Cooperative Adaptive Cruise Control system},
@@ -70,6 +83,7 @@
    pages = {1-5},
    ISBN = {2325-0771},
    DOI = {10.1109/ICL-GNSS.2016.7533686},
+   year = {2016},
    type = {Conference Proceedings}
 }
 
@@ -96,6 +110,7 @@
    pages = {1-6},
    ISBN = {2325-0771},
    DOI = {10.1109/ICL-GNSS49876.2020.9115539},
+   year = {2020},
    type = {Conference Proceedings}
 }
 
@@ -199,12 +214,21 @@
    type = {Journal Article}
 }
 
-@misc{RN26,
-   pages = {12–22},
-   DOI= {10.1145/3317549.3319719},
-   url = {https://doi.org/10.1145/3317549.3319719},
+@misc{RN44,
+   volume = {2021},
+   number = {8th March},
+   url = {https://www.gps.gov/systems/gnss/},
+   year = {2020},
+   type = {Web Page}
+}
+
+@inproceedings{RN42,
+   author = {Oligeri, Gabriele and Sciancalepore, Savio and Ibrahim, Omar Adel and Di Pietro, Roberto},
+   title = {Drive me not: GPS spoofing detection via cellular network: (architectures, models, and experiments)},
+   booktitle = {Proceedings of the 12th Conference on Security and Privacy in Wireless and Mobile Networks},
+   pages = {12-22},
    year = {2019},
-   type = {Conference Paper}
+   type = {Conference Proceedings}
 }
 
 @article{RN12,
