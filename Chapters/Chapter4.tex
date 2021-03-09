@@ -62,3 +62,8 @@ unrecoverable and an active antenna should be used. Unfortunately, none of the d
 feed the antenna with the $5V$ requried for its operation while filtering out the DC to feed into the SDR. To interface with the bias-tee a USB cable was cut and used to
 connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to find or lock onto any of the GPS satellites
 at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary 
+
+\section{Using SatGen3}
+
+To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
+the binary file using the gps-sdr-sim command line interface program.

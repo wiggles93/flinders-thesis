@@ -1,0 +1,15 @@
+Year , Events
+1921 , First radio beacon installed
+1942 , LORAN operational
+1957 , Sputnik I launched
+1958 , Idea to use satellite to find location on Earth\
+1960 , First TRANSIT satellite launched
+1962 , TRANSIT constellation operational (7 satellites)
+1967 , TRANSIT open for civilian use
+1974 , Failed NAVSTAR prototype launched (clock failed)
+1977 , Re-designed NAVSTAR satellites launched
+1982 , GLONASS satellites launch
+1983 , Korean Airlines flight shot dowbn by Soviets
+1983 , President Reagan announces GPS will be free for civilians
+1985 , First 11 block I GPS satellites launched
+1989 , First block II satellite launched
