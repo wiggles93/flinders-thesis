@@ -1,6 +1,6 @@
 % Chapter Template
 
-\chapter{Introduction to GNSS Systems} % Main chapter title
+\chapter{GNSS Systems Overview} % Main chapter title
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -17,22 +17,22 @@ systems although the accuracy was far lower than is acceptable today. The USA de
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS (India) and QZSS (Japan). The QZSS
 system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number of
 satellites to allow for stand alone use as a GNSS provider. 
-GNSS, more specifically GPS, dates back to 1957 during the space race with then USSR \cite{RN43}. 
+GNSS, more specifically GPS and GLONASS, date back to 1957 during the space race with then USSR \cite{RN43}. 
 
-When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to
-track its position and velocity by measuring the doppler shift of the craft. This tracking from Doppler shift measurements contniued with the launch of the subsequent
-satellites Sputnik 2 and Explorer 1. After this it was thought that the process could be reversed such that a satellite with a known position could be used to resolve an
-unknown position on earth. In the 1960's the TRANSIT satellite navigation system was made operational for US Navy use, mainly for postion and navigation of nuclear
-ballistic missile submarines. TRANSIT received strong support due to the accuracy of up to 80ft (24m) which was a significant improvement over existing VLF (Very Low
-Frequency) hyperbolic navigation systems. After 32 years of operation the system was retired in 1996 after proving that space crafts could be reliable \cite{RN45}. 
+When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
+craft. This tracking from Doppler shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the
+process could be reversed such that a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite
+navigation system was made operational for US Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to
+the accuracy of up to 80ft (24m) which was a significant improvement over existing VLF (Very Low Frequency) hyperbolic navigation systems. After 32 years of operation the
+system was retired in 1996 after proving that space crafts could be reliable \cite{RN45}. 
 
 In 1973 the US combined two existing programmes in TIMATION and 'Project 621B' to form the 'NAVSTAR Global Positioning System' which would later become known more
 commonly as GPS. The initial intention for the use of GPS was for military only. However, in 1983 there was an incident that saw a Korean Airlines flight shot down by a
 Soviet fighter mistaking it for a US aircraft when it wandered off course. After this incident President Reagen announced that GPS would be made available for civilian
 use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
 adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS system augmentation systems started to appear. Soon
-after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. The significantly increases the accuracy by using a receiver with a knwon location and
-having that reciever calculate its position from the satellite signals and compare with the known position. The corrections are then broadcast. 
+after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. The significantly increases the accuracy by using a receiver with a knwon
+location and having that reciever calculate its position from the satellite signals and compare with the known position. The corrections are then broadcast. 
 
 The soviet union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There were some technical differences between the
 GLONASS and GPS constellations. The orbital planes were different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS CDMA (Code
@@ -40,3 +40,37 @@ Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS c
 
 
 \todo{add graph: x axis year y axis accuracy} 
+
+\section{GNSS Systems}
+\subsection{Introduction to GNSS Constellations}
+GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
+encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
+10cm$. In order to calculate an unknown poistion on earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
+as it's current time down to the earths surface. Receviers (the user segment) will pick up this signal. Due to the reletive motion of the satllite and the reciever the
+transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler shift, time taken to arrive and the satellite
+current location can be used to solve the postiion in three dimensional space. In order to solve for all dimensions (including time) four satellites are reqruied as shown
+in \ref{eq:gnssPosition}.
+\todo{replace with actual equation}
+
+\begin{equation} \label{eq:gnssPosition} 
+    p_0 = \sqrt{x^2 + y^2}
+\end{equation}
+
+
+
+The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to
+ensure that there is coverage globally at all times. The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. Galileo has 30
+satlellites also with 3 orbital planes. 
+
+\subsection{GPS}
+
+
+\subsection{Galileo}
+
+\subsection{GLONASS}
+
+\subsection{BeiDou}
+
+\subsection{Other Constellations}
+
+\section{Applications of GNSS}
