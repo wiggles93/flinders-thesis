@@ -46,7 +46,10 @@ Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS c
 GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown poistion on earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
-as it's current time down to the earths surface. Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
+as it's current time down to the earths surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
+kept via the use of caesium based atomic clocks. These clocks will de-synch by approximately 4 nanoseconds per day. \todo{reference} The value of the clocks are
+constantly monitoed by the ground segment and updated when required.
+Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
 mostly of the current time (of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of
 the earth with the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive
 motion of the satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler
@@ -65,7 +68,13 @@ calcaulte an accurate position. Due to the mathmatical requirements, a minimum o
 Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
 
 \subsection{GPS}
-The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times.  
+The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times. Initially the C/A code was
+purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case. \todo{expand, reference}
+
+Signals sent from GPS satellites
+are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) or \todo{insert L5 frequency, what modulation scheme?} 
+The L1 GPS band is the most commonly used and has a C/A (course acquire) code as well as a P code. The P code is much more accurate but is also typically encrypted for
+military use.
 
 \subsection{Galileo}
 
