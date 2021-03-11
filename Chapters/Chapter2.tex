@@ -46,31 +46,36 @@ Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS c
 GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown poistion on earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
-as it's current time down to the earths surface. Receviers (the user segment) will pick up this signal. Due to the reletive motion of the satllite and the reciever the
-transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler shift, time taken to arrive and the satellite
-current location can be used to solve the postiion in three dimensional space. In order to solve for all dimensions (including time) four satellites are reqruied as shown
-in \ref{eq:gnssPosition}.
-\todo{replace with actual equation}
+as it's current time down to the earths surface. Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
+mostly of the current time (of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of
+the earth with the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive
+motion of the satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler
+shift, time taken to arrive and the satellite current location can be used to solve the postiion in three dimensional space. In order to solve for all dimensions
+(including time) four satellites are reqruied since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The
+$\rho_i$ term indicates the distance from the recviever to that particular satellite. This method of position calculation is known as trilateration. The model shown below
+is a simplified model that ignores the effects of relativity. 
 
 \begin{equation} \label{eq:gnssPosition} 
-    p_0 = \sqrt{x^2 + y^2}
+    \rho_i = \sqrt{(x_i - x_u)^2 + (y_i - y_u)^2 + (z_i - z_u)^2} + c \Delta t
 \end{equation}
+\todo{look at RN32 for position and time calculations}
+As can be seen from the above equation \ref{eq:gnssPosition} the accurate synchronisation of time betweeen the receiver and the satellites is required in order to
+calcaulte an accurate position. Due to the mathmatical requirements, a minimum of 4 satellites need to be in 'sight' of the receiver at all times.
 
-
-
-The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to
-ensure that there is coverage globally at all times. The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. Galileo has 30
-satlellites also with 3 orbital planes. 
+Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
 
 \subsection{GPS}
-
+The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times.  
 
 \subsection{Galileo}
 
 \subsection{GLONASS}
+The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. Galileo has 30 satlellites also with 3 orbital planes.
 
 \subsection{BeiDou}
 
 \subsection{Other Constellations}
 
 \section{Applications of GNSS}
+GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
+maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33}. 

@@ -34,6 +34,17 @@
    type = {Conference Proceedings}
 }
 
+@article{RN45,
+   author = {Danchik, Robert J},
+   title = {An overview of transit development},
+   journal = {Johns Hopkins APL technical digest},
+   volume = {19},
+   number = {1},
+   pages = {19},
+   year = {1998},
+   type = {Journal Article}
+}
+
 @article{RN8,
    author = {Daneshmand, Saeed and Jafarnia-Jahromi, A. and Broumandan, Ali and Lachapelle, Gérard},
    title = {A low-complexity GPS anti-spoofing method using a multi-antenna array},
