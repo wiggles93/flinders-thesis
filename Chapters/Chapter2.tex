@@ -16,10 +16,9 @@ systems although the accuracy was far lower than is acceptable today. The USA de
 
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS (India) and QZSS (Japan). The QZSS
 system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number of
-satellites to allow for stand alone use as a GNSS provider. 
-GNSS, more specifically GPS and GLONASS, date back to 1957 during the space race with then USSR \cite{RN43}. 
+satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around Indina with 8 satellites in geostationary orbit. 
 
-When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
+GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race with then USSR \cite{RN43}. When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
 craft. This tracking from Doppler shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the
 process could be reversed such that a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite
 navigation system was made operational for US Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to
@@ -34,12 +33,18 @@ adversaries. In 1993 the system was declared operational. To combat the intentio
 after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. The significantly increases the accuracy by using a receiver with a knwon
 location and having that reciever calculate its position from the satellite signals and compare with the known position. The corrections are then broadcast. 
 
-The soviet union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There were some technical differences between the
+The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There were some technical differences between the
 GLONASS and GPS constellations. The orbital planes were different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS CDMA (Code
 Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS constllation was fully operational, however this was not the case. 
 
+The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) over the poles, whereas modern GNSS systems utelise an MEO (medium earth orbit) ranging from 20,000km to
+23,000km above the earths surface with multiple orbital planes.
+The lower the orbit, the higher the velocity requried to maintain the orbit as shown by equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower velocity which
+has impact on the doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the atmosphere.
 
-\todo{add graph: x axis year y axis accuracy} 
+\begin{equation} \label{eq:orbitalVelocity}
+    v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
+\end{equation} 
 
 \section{GNSS Systems}
 \subsection{Introduction to GNSS Constellations}
@@ -47,9 +52,9 @@ GNSS is a term used to describe any satllelite system that provides positon and 
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown poistion on earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
 as it's current time down to the earths surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
-kept via the use of caesium based atomic clocks. These clocks will de-synch by approximately 4 nanoseconds per day. \todo{reference} The value of the clocks are
-constantly monitoed by the ground segment and updated when required.
-Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
+kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximatly 10 nanoseconds \todo{reference}, however, receviers will lose timing due to
+the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitoed by the ground segment and updated when
+required. Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
 mostly of the current time (of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of
 the earth with the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive
 motion of the satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler
@@ -84,6 +89,12 @@ The GLONASS constelaltion also consits of a nominal 24 satellites, although only
 \subsection{BeiDou}
 
 \subsection{Other Constellations}
+As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
+IRNSS. Both of these extend the abilities of the USA GPS system. The 4 satellites that are operational for the QZSS constellation are able to transmit on the L1 and L5
+band  simultaneously. Doing so helps to resolve ionospheric errors by facilitating resolution of position from multiple frequencies \cite{RN48}.
+
+The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostation. All of the satellites are postiioned at
+this orbit. This allows for a very narrow and defined region of useability, which is over India. 
 
 \section{Applications of GNSS}
 GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for

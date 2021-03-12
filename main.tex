@@ -222,6 +222,8 @@ I wish to thank all those that have supported me through not only my thesis, but
 \textbf{GNSS} & \textbf{G}lobal \textbf{N}avigation \textbf{S}atellite \textbf{S}ystem\\
 \textbf{GPS} & \textbf{G}lobal \textbf{P}ositioning \textbf{S}ystem\\
 \textbf{IRNSS} & \textbf{I}ndian \textbf{R}eginal \textbf{N}avigation \textbf{S}atellite \textbf{S}ystem\\
+\textbf{LEO} & \textbf{L}ow \textbf{E}arth \textbf{O}rbit\\
+\textbf{MEO} & \textbf{M}edium \textbf{E}arth \textbf{O}rbit\\
 \textbf{OSNMA} & \textbf{O}pen \textbf{S}ervice \textbf{N}avigation \textbf{M}essage \textbf{A}uthentication\\
 \textbf{PVT} & \textbf{P}osition, \textbf{V}elocity and \textbf{T}iming\\
 \textbf{QFSS} & \textbf{Q}uasi-\textbf{Z}enith \textbf{S}atellite \textbf{S}ystem\\
@@ -245,6 +247,7 @@ I wish to thank all those that have supported me through not only my thesis, but
 % The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
 
 Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
+Standard Gravitational Parameter of Earth & $\mu_{earth}$ & \SI{3.986004418e14}{\meter\cubed\per\second\squared} \\
 Constant Name & $Symbol$ & $Constant Value$ with units\\
 
 \end{constants}
@@ -262,6 +265,7 @@ Symbol & Name & Unit \\
 \addlinespace % Gap to separate the Roman symbols from the Greek
 
 $\omega$ & angular frequency & \si{\radian} \\
+$\mu$ & standard gravitational parameter & \si{m^3s^{-2}}
 
 \end{symbols}
 
@@ -282,7 +286,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 
-% \include{Chapters/Chapter1}
+\include{Chapters/Chapter1}
 \include{Chapters/Chapter2} 
 \include{Chapters/Chapter3}
 \include{Chapters/Chapter4} 

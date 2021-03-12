@@ -1,0 +1,32 @@
+% Chapter Template
+
+\chapter{Introduction}\label{chapter:firstchapter} % Main chapter title
+
+\label{Chapter1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+Using as placeholder to know how to perform references wihtin \LaTeX
+\section{Main Section 1}\label{sec:firstsection}
+
+% It is a good idea to have each sentence on a separate line, so that if you get feedback or changes from someone else
+% the diffs will be much easier to manage
+Lorem ipsum dolor (Figure \ref{fig:ThisFig}) sit amet, consectetur adipiscing elit\cite{fleischman1994pragmatics}.
+Aliquam ultricies lacinia euismod.
+Nam tempus risus in dolor rhoncus in interdum enim tincidunt.
+Donec vel nunc neque.
+In condimentum ullamcorper quam non consequat.
+Fusce sagittis tempor feugiat.
+Fusce magna erat, molestie eu convallis ut, tempus sed arcu.
+Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus.
+Integer dapibus ligula ac risus convallis pellentesque.
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=10cm,height=10cm,keepaspectratio]{Figures/dont-panic-e1534046233310.jpg}
+\caption{The Hitch Hiker's Guide To The Galaxy (not to be confused with \cite{Reference1}. Image Credit David Strine (License: CC0)}
+\label{fig:ThisFig}
+\end{centering}
+\end{figure}
+
