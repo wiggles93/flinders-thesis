@@ -67,3 +67,19 @@ at any time. It was found that another opensource program, gps-sdr-sim, could be
 
 To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
 the binary file using the gps-sdr-sim command line interface program.
+
+\section{Faraday Cage}
+A faraday cage was used for testing purposes for two main reasons. It will isolate the target device from existing legitimate GNSS signals and stop any transmitted
+radiation from propagating into the local environment. Isolation from receiving legitimate signals is important since a reciver that is tracking a satellite already is
+harder to jam or spoof than one that is not. More important is ensuring that the radiation does not enter the environment since transmitting any signals on the frequency
+band for GNSS systems is illegal in Australia. 
+
+Since the received signal strength from a GNSS satellite is so low ($\approx -150dBm$) any signal that is tranmsitted from Earth's surface will be able overpower these
+signals for up to 85km, assuming an omnidirectional antenna, as shown in equation \ref{eq:propogationCalc}. This calucation was performed with the assumed maximum
+transmission power of the SDR of $15 dBm$ coupled with a $30dB$ attenuator and transmitting on the L1 GPS band. In practise the effective range will be much less due to
+attenuation due to objects between transmitter and receiver, but this calculation shows that performing the experiments within a controlled environment was requried.
+
+\begin{equation} \label{eq:propogationCalc}
+    Att_{dB} = 10 \log_{10}\left[\left(\frac{c}{4\pi df}\right)^2\right]
+    d = \frac{c}{4\pi 10^{\left(\frac{Att_{dB}}{20}\right)}f} = \frac{3\times10^8}{4\pi 10^{-6.75}1.57542\times 10^9} \approx 85km
+\end{equation}

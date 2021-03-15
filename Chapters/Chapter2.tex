@@ -8,7 +8,7 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{History of GNSS Systems}
+\section{History of GNSS Systems} \label{sec:GNSSHistory}
 \emph{In 2021 there are many different GNSS systems that are in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of
 most people around the world. The first form of navigation system that was used by populatinons around the world was using the stats as a type of map. The first digital
 based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was similar to that of the current satellite based
@@ -46,8 +46,8 @@ has impact on the doppler shift at the receivers. Another factor is aerodynamic 
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
 \end{equation} 
 
-\section{GNSS Systems}
-\subsection{Introduction to GNSS Constellations}
+\section{GNSS Systems} \label{sec:GNSS}
+\subsection{Introduction to GNSS Constellations}\label{subsec:GNSS_Intro}
 GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown poistion on earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
@@ -72,7 +72,7 @@ calcaulte an accurate position. Due to the mathmatical requirements, a minimum o
 
 Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
 
-\subsection{GPS}
+\subsection{GPS} \label{subsec:GNSS_GPSIntro}
 The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times. Initially the C/A code was
 purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case. \todo{expand, reference}
 
@@ -81,14 +81,14 @@ are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) or \todo{insert L5 frequenc
 The L1 GPS band is the most commonly used and has a C/A (course acquire) code as well as a P code. The P code is much more accurate but is also typically encrypted for
 military use.
 
-\subsection{Galileo}
+\subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
 
-\subsection{GLONASS}
+\subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
 The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. Galileo has 30 satlellites also with 3 orbital planes.
 
-\subsection{BeiDou}
+\subsection{BeiDou} \label{subsec:GNSS_BeiDouIntro}
 
-\subsection{Other Constellations}
+\subsection{Other Constellations} \label{subsec:GNSS_OtherIntro}
 As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
 IRNSS. Both of these extend the abilities of the USA GPS system. The 4 satellites that are operational for the QZSS constellation are able to transmit on the L1 and L5
 band  simultaneously. Doing so helps to resolve ionospheric errors by facilitating resolution of position from multiple frequencies \cite{RN48}.
@@ -96,6 +96,30 @@ band  simultaneously. Doing so helps to resolve ionospheric errors by facilitati
 The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostation. All of the satellites are postiioned at
 this orbit. This allows for a very narrow and defined region of useability, which is over India. 
 
-\section{Applications of GNSS}
+\section{Applications of GNSS} \label{sec:ApplicationsGNSS}
 GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
-maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33}. 
+maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33}.
+
+\section{Spoofing Overview}
+Attacks on the GNSS archtiecture can broadly be divided into two categories jamming and spoofing \cite{RN33} \cite{RN32}. Jamming can be described as causing intentional
+interference in the communicationn channel as to make the recovery of signal informaiton impossible. A successful jamming attack will make it impossibe to begin tracking
+satellites and thus be unable to calculate any of the PVT data. This differs from spoofing attacks where the main interest is to deceive any reciever that picks ups the
+signal into thinking it is elsewhere or else-when. This is done by different methods and stems from which property of the signal is being modified for the attack. A
+successful spoofing attack will have the receiver 'tracking' the signal produced by the spoofer and the receiver will not be aware that an attack is taking place. Common
+spoofing attacks are explained below.
+
+\subsection{Meaconing}
+Meaconing is a type of GNSS spoofing attack that involves recording a legitimate GNSS signal and re-broadcasting. This could be either instantly or at a different time or
+place. This requries little prior knowledge of the GNSS system that the attacker wishes to record other when used with existing open source software packages. Although
+there is a requirenment of having the right equipment to be able to capture the raw analog signal.
+
+\subsection{Signal Generation}
+There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
+played in such a manner as to perform a spoofing attack. This differes from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
+a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is requied as to
+produce the same results as recording the gps signal from the desired location.
+
+\section{SDR Basics}
+Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals. SDR's move the signal processing from
+rigid and expensive hardware into flexible and in-expensive software. This allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no
+hardware changes. 
