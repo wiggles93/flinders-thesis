@@ -249,6 +249,12 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty

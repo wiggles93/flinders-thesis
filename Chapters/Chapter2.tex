@@ -46,6 +46,10 @@ has impact on the doppler shift at the receivers. Another factor is aerodynamic 
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
 \end{equation} 
 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
 \section{GNSS Systems} \label{sec:GNSS}
 \subsection{Introduction to GNSS Constellations}\label{subsec:GNSS_Intro}
 GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
@@ -77,16 +81,22 @@ The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes t
 purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case. \todo{expand, reference}
 
 Signals sent from GPS satellites
-are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) or \todo{insert L5 frequency, what modulation scheme?} 
+are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) and 1.17645 GHz (L5) \todo{insert L5 modulation scheme}.
 The L1 GPS band is the most commonly used and has a C/A (course acquire) code as well as a P code. The P code is much more accurate but is also typically encrypted for
 military use.
 
+Within the L1 frequency band there are co-oexisting signals. 
+
 \subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
+The Galileo constellation is a GNSS created by the ESA (European Space Agency) and opeated by the EGA (European GNSS Agency) as a way of providing a modern navigation
+system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
-The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. Galileo has 30 satlellites also with 3 orbital planes.
+The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. 
 
 \subsection{BeiDou} \label{subsec:GNSS_BeiDouIntro}
+From the BeiDou official website it states that "BeiDou has been constructed and operated by China with an eye on the needs of the country's national sceurity, economic
+and social development".
 
 \subsection{Other Constellations} \label{subsec:GNSS_OtherIntro}
 As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
@@ -96,9 +106,22 @@ band  simultaneously. Doing so helps to resolve ionospheric errors by facilitati
 The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostation. All of the satellites are postiioned at
 this orbit. This allows for a very narrow and defined region of useability, which is over India. 
 
+\subsection{GNSS Receivers}
+Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
+calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA sentences. There are many sentence types
+and not all receivers will output all sentence types. 
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
 \section{Applications of GNSS} \label{sec:ApplicationsGNSS}
 GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
 maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33}.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
 
 \section{Spoofing Overview}
 Attacks on the GNSS archtiecture can broadly be divided into two categories jamming and spoofing \cite{RN33} \cite{RN32}. Jamming can be described as causing intentional
@@ -118,6 +141,10 @@ There are software packages and off the shelf hardware that are designed for tes
 played in such a manner as to perform a spoofing attack. This differes from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
 a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is requied as to
 produce the same results as recording the gps signal from the desired location.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
 
 \section{SDR Basics}
 Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals. SDR's move the signal processing from
