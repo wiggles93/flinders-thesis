@@ -66,7 +66,9 @@ at any time. It was found that another opensource program, gps-sdr-sim, could be
 \section{Using SatGen3}
 
 To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
-the binary file using the gps-sdr-sim command line interface program.
+the binary file using the gps-sdr-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
+the flexilbilty of scenarios that can be tested. Although there is no guarentee that the simulated stream of information is going to be correct. Thus a capture replay
+attack should still be considered as more reliable.
 
 \section{Faraday Cage}
 A faraday cage was used for testing purposes for two main reasons. It will isolate the target device from existing legitimate GNSS signals and stop any transmitted
@@ -80,7 +82,18 @@ transmission power of the SDR of $15 dBm$ coupled with a $30dB$ attenuator and t
 attenuation due to objects between transmitter and receiver, but this calculation shows that performing the experiments within a controlled environment was requried.
 \begin{equation}    
     \begin{split} \label{eq:propogationCalc}
-        Att_{dB} &= 10 \log_{10}\left[\left(\frac{c}{4\pi df}\right)^2\right] \\
+        Att_{dB} &= 10 \log_{10}\left(\left(\frac{c}{4\pi df}\right)^2\right) \\
         d = \frac{c}{4\pi 10^{\left(\frac{Att_{dB}}{20}\right)}f} &= \frac{3\times10^8}{4\pi 10^{-6.75}1.57542\times 10^9} \approx 85km
     \end{split}
 \end{equation}
+
+\section{Experimental Issues}
+While performing experiments there were issues thaat were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
+frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
+was able to produce signals that were picked up by the GNSSLogger application. Observing the graphs of the carrier to noise figure showed that when there was an underrun
+issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
+
+\section{Experiments}
+Experimentation was performed at the Tonsley campus of Flinders University, which has GPS coordinates of $-35.007650, 138.572030$. At first it was decided to use the
+centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
+that the current locaiton was in the CBD.

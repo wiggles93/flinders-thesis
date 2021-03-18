@@ -150,3 +150,6 @@ produce the same results as recording the gps signal from the desired location.
 Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals. SDR's move the signal processing from
 rigid and expensive hardware into flexible and in-expensive software. This allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no
 hardware changes. 
+SDR's are very sensitive to the processing power of the copmuter that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
+output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
+enough.
