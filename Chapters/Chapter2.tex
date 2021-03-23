@@ -9,16 +9,18 @@
 %----------------------------------------------------------------------------------------
 
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
-\emph{In 2021 there are many different GNSS systems that are in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of
-most people around the world. The first form of navigation system that was used by populatinons around the world was using the stats as a type of map. The first digital
-based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was similar to that of the current satellite based
-systems although the accuracy was far lower than is acceptable today. The USA developed and commissioned the first satellite based nanvigation system}
+In 2021 there are many different GNSS systems that are in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
+people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was
+similar to that of the current satellite based systems, namely the use of psuedoranges, although the accuracy was far lower than is acceptable today. The USA developed and commissioned the first
+satellite based nanvigation system.
 
-As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS (India) and QZSS (Japan). The QZSS
+As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The QZSS
 system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number of
-satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around Indina with 8 satellites in geostationary orbit. 
+satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
+geostationary orbit \cite{RN50} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits. Current GNSS
+systems utelise MEO orbits.
 
-GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race with then USSR \cite{RN43}. When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
+GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
 craft. This tracking from Doppler shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the
 process could be reversed such that a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite
 navigation system was made operational for US Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to
@@ -30,16 +32,16 @@ commonly as GPS. The initial intention for the use of GPS was for military only.
 Soviet fighter mistaking it for a US aircraft when it wandered off course. After this incident President Reagen announced that GPS would be made available for civilian
 use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
 adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS system augmentation systems started to appear. Soon
-after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. The significantly increases the accuracy by using a receiver with a knwon
+after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver with a known
 location and having that reciever calculate its position from the satellite signals and compare with the known position. The corrections are then broadcast. 
 
-The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There were some technical differences between the
-GLONASS and GPS constellations. The orbital planes were different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS CDMA (Code
+The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There are some technical differences between the
+GLONASS and GPS constellations. The orbital planes are different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS's CDMA (Code
 Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS constllation was fully operational, however this was not the case. 
 
-The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) over the poles, whereas modern GNSS systems utelise an MEO (medium earth orbit) ranging from 20,000km to
-23,000km above the earths surface with multiple orbital planes.
-The lower the orbit, the higher the velocity requried to maintain the orbit as shown by equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower velocity which
+The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) polar orbit, whereas all modern GNSS systems utelise a MEO (medium earth orbit) ranging from 20,000km to
+23,000km above the earths surface with multiple orbital planes. The number of planes differs between the different constellations as discussed below.
+The lower the orbit, the higher the velocity requried to maintain the orbit as shown by the orbital mechanics equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower velocity which
 has impact on the doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the atmosphere.
 
 \begin{equation} \label{eq:orbitalVelocity}
@@ -76,6 +78,14 @@ calcaulte an accurate position. Due to the mathmatical requirements, a minimum o
 
 Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
 
+\subsection{Kepler's Laws of Planetary Motion} \label{subsec: OrbitalMechanics}
+In the 1600's German astronomer Johannes Kepler described the orbits of the solar systems planets around the sun using three laws. 
+These laws famously moved our understanding of orbits away from circles and described them as ellipses. The position of modern day satellites need to be accurtatly
+predicated and as such these laws have become important to the way we live our lives. Kepler's laws are as follows; First law states that the orbit of every planet is an
+elllipse with the sun at the one of the two foci. Second law states that a line joining the planet to the sun will sweep out equal area during equal intervals of time.
+The third law states that the ratio of the orbital period with the cube of the semi-major axis is the same for all objects orbiting the same primary. These laws can be
+adapted to objects that orbit other objects other than the sun. Examples are moons orbiting plantes and artifical satellites orbiting the earth.
+
 \subsection{GPS} \label{subsec:GNSS_GPSIntro}
 The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times. Initially the C/A code was
 purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case. \todo{expand, reference}
@@ -98,13 +108,17 @@ The GLONASS constelaltion also consits of a nominal 24 satellites, although only
 From the BeiDou official website it states that "BeiDou has been constructed and operated by China with an eye on the needs of the country's national sceurity, economic
 and social development".
 
-\subsection{Other Constellations} \label{subsec:GNSS_OtherIntro}
+\subsection{Augmentation Systems} \label{subsec:GNSS_OtherIntro}
 As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
 IRNSS. Both of these extend the abilities of the USA GPS system. The 4 satellites that are operational for the QZSS constellation are able to transmit on the L1 and L5
 band  simultaneously. Doing so helps to resolve ionospheric errors by facilitating resolution of position from multiple frequencies \cite{RN48}.
 
 The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostation. All of the satellites are postiioned at
 this orbit. This allows for a very narrow and defined region of useability, which is over India. 
+
+Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
+values in order to make the solution to the positon cacluation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
+geographically locally and run by those loval Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
