@@ -82,7 +82,7 @@ transmission power of the SDR of $15 dBm$ coupled with a $30dB$ attenuator and t
 attenuation due to objects between transmitter and receiver, but this calculation shows that performing the experiments within a controlled environment was requried.
 \begin{equation}    
     \begin{split} \label{eq:propogationCalc}
-        Att_{dB} &= 10 \log_{10}\left(\left(\frac{c}{4\pi df}\right)^2\right) \\
+        Att_{dB} &= 10 \log_{10}\left(\frac{c}{4\pi df}\right)^2 \\
         d = \frac{c}{4\pi 10^{\left(\frac{Att_{dB}}{20}\right)}f} &= \frac{3\times10^8}{4\pi 10^{-6.75}1.57542\times 10^9} \approx 85km
     \end{split}
 \end{equation}
@@ -94,9 +94,32 @@ was able to produce signals that were picked up by the GNSSLogger application. O
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
 
 In an attempt to overcome the underrun issue that was plagueing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
- in the radio working straight away.
+in the radio working straight away. The underrun issues resurfaced when trying to read the serial data from a COTS gps receiver. This was less than ideal and required a
+second computer to act as a datalogger.
 
 \section{Experiments}
 Experimentation was performed at the Tonsley campus of Flinders University, which has GPS coordinates of $-35.007650, 138.572030$. At first it was decided to use the
 centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
 that the current locaiton was in the CBD.
+
+\subsection{Static Spoofing}
+Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
+minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
+Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created. THis 
+
+\subsection{Dynamic Spoofing}
+Dynamic spoofing refers to the production of a siognal that when used to calcluate position, will be shown to change over time. The path traced by the receiver will be
+set at the time of production of the binary file, but there will be perceived motion.
+
+\subsection{Real-Time Spoofing}
+Due to time constraints a real-time algorithm was not produced as part of this project. However, utelising the open source projects that have been used to complete this
+thesis it would be probable to be able to create a real time spoofing device that would be able to react to the positional changes of the receiver instead of following a
+pre-determined path when generating the binary file. The signals generation algorithm could be ported to a GNURadio block in C++ to allow for easy access to real-time GPS
+signal spoofing. If an SDR is a full duplex radio, such is the case for the USRP N210, then one port can be receiveing the real GNSS signal and the other can be
+transmitting the spoofed signal. Care would need to be taken in the set up of this arrangement since any transmitted signal would also be picked up by the reciving
+antenna. Therefore a directional transmitting antenna and physical disctance should be employed to allow for legitimate GNSS signals to reach the reciever port. 
+
+\section{Parameters required for successful spoofing}
+\todo{add screen shots of steps required to generate binary file}
+Due to the internal workings of the USRP, there needs to be an integer value betwen the clock rate and sample rate. Therefore is was required that the sample frequency
+was set to 2.5Msps instead of the default 2.6Msps that the software would normally use.

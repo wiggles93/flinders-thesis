@@ -33,7 +33,7 @@ Soviet fighter mistaking it for a US aircraft when it wandered off course. After
 use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
 adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS system augmentation systems started to appear. Soon
 after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver with a known
-location and having that reciever calculate its position from the satellite signals and compare with the known position. The corrections are then broadcast. 
+location and having that reciever calculate its position from the satellite signals and compare with the known position. These corrections are then broadcast. 
 
 The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There are some technical differences between the
 GLONASS and GPS constellations. The orbital planes are different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS's CDMA (Code
@@ -47,6 +47,11 @@ has impact on the doppler shift at the receivers. Another factor is aerodynamic 
 \begin{equation} \label{eq:orbitalVelocity}
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
 \end{equation} 
+
+The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the European Union. The fist sattelite
+was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmnetation sites that provide improved accuracy for those in the EU.
+THis system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
+geostationary satellite broadcasting the timing corrections. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -87,15 +92,20 @@ The third law states that the ratio of the orbital period with the cube of the s
 adapted to objects that orbit other objects other than the sun. Examples are moons orbiting plantes and artifical satellites orbiting the earth.
 
 \subsection{GPS} \label{subsec:GNSS_GPSIntro}
-The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes to ensure that there is coverage globally at all times. Initially the C/A code was
-purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case. \todo{expand, reference}
+The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes (nominally 4 satellites per plane) to ensure that there is coverage globally at all times.
+The constellation orbits at an altitude of 20,200km which equates to an orbital period of 12hours.
+There are multiple frequencies of differeing propoerties that each satellite will transmit at. For GPS these are named the L1, L2 and L5 bands and have centre frequencies
+of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. The L1 band is the most commonly used and was the first one to be made operational. In the past the L1
+band was used for civilian purposes and the L2 band was a military band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective
+frequncy bands. GPS predominately uses BPSK but also utelises BOC for signal modulation accross all of the bands.  
+
+Initially the C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case.
+\todo{expand, reference}
 
 Signals sent from GPS satellites
 are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) and 1.17645 GHz (L5) \todo{insert L5 modulation scheme}.
 The L1 GPS band is the most commonly used and has a C/A (course acquire) code as well as a P code. The P code is much more accurate but is also typically encrypted for
 military use.
-
-Within the L1 frequency band there are co-oexisting signals. 
 
 \subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
 The Galileo constellation is a GNSS created by the ESA (European Space Agency) and opeated by the EGA (European GNSS Agency) as a way of providing a modern navigation
