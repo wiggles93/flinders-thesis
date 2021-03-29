@@ -17,7 +17,7 @@ satellite based nanvigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The QZSS
 system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number of
 satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
-geostationary orbit \cite{RN50} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits. Current GNSS
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits. Current GNSS
 systems utelise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
@@ -171,9 +171,9 @@ produce the same results as recording the gps signal from the desired location.
 %----------------------------------------------------------------------------------------
 
 \section{SDR Basics}
-Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals. SDR's move the signal processing from
-rigid and expensive hardware into flexible and in-expensive software. This allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no
-hardware changes. 
+Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals by moving processing typically reserved
+for the analog domain into the digital domain. Thus SDR's move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
+allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
 SDR's are very sensitive to the processing power of the copmuter that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
 output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
 enough.

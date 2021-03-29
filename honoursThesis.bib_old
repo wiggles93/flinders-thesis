@@ -1,4 +1,24 @@
-﻿@article{RN20,
+﻿@online{RN50,
+   author = {Agency, European Space},
+   title = {An intuitive approach to the GNSS positioning},
+   url = {https://gssc.esa.int/navipedia/index.php/An\_intuitiv\e_approa\ch\_to\_the\_GNSS_positioning},
+   year = {2011},
+   publisher = {European Space Agency},
+   accessYear = {2021},
+   accessDate = {16 March}
+}
+
+@online{RN54,
+   author = {Agency, European Space},
+   title = {An intuitive approach to the GNSS positioning},
+   url = {https://gssc.esa.int/navipedia/index.\php/An_in\tuitive_\ap\pro\ach_\to_the_GNSS_positioning},
+   year = {2011},
+   publisher = {European Space Agency},
+   accessYear = {2021},
+   accessDate = {16 March}
+}
+
+@article{RN20,
    author = {Arribas, J. and Fernandez-Prades, C. and Closas, P.},
    title = {Antenna Array Based GNSS Signal Acquisition for Interference Mitigation},
    journal = {IEEE Transactions on Aerospace and Electronic Systems},
@@ -8,6 +28,16 @@
    ISSN = {1557-9603},
    DOI = {10.1109/TAES.2013.6404100},
    year = {2013},
+   type = {Journal Article}
+}
+
+@article{RN46,
+   author = {Blewitt, Geoffrey},
+   title = {Basics of the GPS technique: observation equations},
+   journal = {Geodetic applications of GPS},
+   pages = {10-54},
+   ISSN = {0280-5731},
+   year = {1997},
    type = {Journal Article}
 }
 
@@ -22,6 +52,46 @@
    DOI = {10.1017/S0373463311000506},
    year = {2012},
    type = {Journal Article}
+}
+
+@online{RN47,
+   author = {Cabinet Office, Government Of Japan},
+   title = {Overview of the Quasi-Zenith Satellite System (QZSS)},
+   url = {https://qzss.go.jp/en/overview/s\ervices/sv01_what.html},
+   year = {2021},
+   publisher = {Government Of Japan},
+   accessYear = {2021},
+   accessDate = {12 March}
+}
+
+@online{RN51,
+   author = {Cabinet Office, Government Of Japan},
+   title = {Overview of the Quasi-Zenith Satellite System (QZSS)},
+   url = {https://qzss.go.jp/en/overview/\services/sv01_what.html},
+   year = {2021},
+   publisher = {Government Of Japan},
+   accessYear = {2021},
+   accessDate = {12 March}
+}
+
+@online{RN48,
+   author = {Cabinet Office, Government Of Japan},
+   title = {What is the Quasi-Zenith Satellite System (QZSS)?},
+   url = {https://qzss.go.jp/en/overview\/services/sv02_why.html},
+   year = {2021},
+   publisher = {Government Of Japan},
+   accessYear = {2021},
+   accessDate = {12 March}
+}
+
+@online{RN52,
+   author = {Cabinet Office, Government Of Japan},
+   title = {What is the Quasi-Zenith Satellite System (QZSS)?},
+   url = {https://qzss.go.jp/en/overvie\w/services/sv02_why.html},
+   year = {2021},
+   publisher = {Government Of Japan},
+   accessYear = {2021},
+   accessDate = {12 March}
 }
 
 @inproceedings{RN17,
@@ -140,6 +210,16 @@
    type = {Conference Proceedings}
 }
 
+@online{RN56,
+   author = {IAC},
+   title = {Glonass History},
+   url = {https://www.glonass-iac.ru/en/guide/index.php},
+   year = {2021},
+   publisher = {Information and Analysis Centre for Positioning, Navigation and Timing},
+   accessYear = {2021},
+   accessDate = {24 March}
+}
+
 @article{RN40,
    author = {International Conference on, Localization and Gnss Nuremberg, Germany},
    title = {Use and Validation of Supervised Machine Learning Approach for Detection of GNSS Signal Spoofing},
@@ -225,12 +305,13 @@
    type = {Journal Article}
 }
 
-@misc{RN44,
-   volume = {2021},
-   number = {8th March},
+@online{RN44,
+   author = {National Coordination Office for Space-Based Positioning, Navigation, and Timing},
+   title = {Other Global Navigation Satellite Systems (GNSS)},
    url = {https://www.gps.gov/systems/gnss/},
    year = {2020},
-   type = {Web Page}
+   accessYear = {2021},
+   accessDate = {8th March}
 }
 
 @inproceedings{RN42,
@@ -260,6 +341,26 @@
    title = {GNSS spoofing detection using two-antenna differential carrier phase},
    booktitle = {Radionavigation Laboratory Conference Proceedings},
    type = {Conference Proceedings}
+}
+
+@online{RN49,
+   author = {Rodríguez, J.A Ávila},
+   title = {GPS Signal Plan},
+   url = {https://gssc.esa.int/naviped\ia/ind\ex.php/GPS_Signal_Plan},
+   year = {2011},
+   publisher = {European Space Agency},
+   accessYear = {2021},
+   accessDate = {16 March}
+}
+
+@online{RN53,
+   author = {Rodríguez, J.A Ávila},
+   title = {GPS Signal Plan},
+   url = {https://gssc.esa.int/navip\edia/i\ndex.php/GPS_Signal_Plan},
+   year = {2011},
+   publisher = {European Space Agency},
+   accessYear = {2021},
+   accessDate = {16 March}
 }
 
 @phdthesis{RN1,
@@ -357,6 +458,19 @@
    ISSN = {2169-3536},
    DOI = {10.1109/ACCESS.2020.3022294},
    year = {2020},
+   type = {Journal Article}
+}
+
+@article{RN55,
+   author = {Zaminpardaz, Safoora and Teunissen, P. J. G. and Nadarajah, Nandakumaran},
+   title = {IRNSS/NavIC l5 attitude determination},
+   journal = {Sensors (Basel)},
+   volume = {17},
+   number = {2},
+   pages = {274},
+   ISSN = {1424-8220},
+   DOI = {10.3390/s17020274},
+   year = {2017},
    type = {Journal Article}
 }
 

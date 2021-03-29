@@ -44,6 +44,13 @@ In this section the method of creating a GPS signal spoofing device is detailed.
 and in particular the USRP N210 SDR. As previously mentioned the benefit of using an SDR over using an ASIC is that with a new version of software 
 new capacilities are availeble to the device. This could be benefitial to either the spoofer or spoof defense. 
 
+The success of the spoofing was dictated by whether the receiver was able to lock onto the signal and calculate the same location as expected or travel the same path
+depending on whether the test is a satic or dynamic spoofing test. 
+
+Testing was also performed on the reception of GPS signals. Such that they could be used in Meaconing attacks. Initally there was an attempt to receive a GPS signal using
+the GPS-SDR software as proof that the antennae were operational. This was then changed such that the reception was handled directly through GNURadio and the raw
+digitised version of the signal was saved to a file such that it could be replayed elsewhere.
+
 \section{Data Collection}
 
 To see the effectiveness of the GPS spoofing methods experiments were carried out and results were recoreded. The success of the experiments were dictated by whether or
@@ -102,14 +109,49 @@ Experimentation was performed at the Tonsley campus of Flinders University, whic
 centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
 that the current locaiton was in the CBD.
 
+\subsection{Hardware Setup}
+For all experiments the same hardware was used. This included the USRP SDR, laptop and GPS receiver. The laptop was an important piece of eqiupment since it needed to be
+powerful enough to be able to feed the data to the SDR quick enough to avoid the aformentioned underrun issues.
+
+\begin{itemize}
+    \item Laptop
+    \begin{itemize}
+        \item Dell Inspiron 15
+        \item CPU: Core i7 Quad Core/ 8 thread
+        \item RAM: 32GB
+        \item Ethernet Connection: gigabit
+    \end{itemize}
+    \item Software defined radio
+    \begin{itemize}
+        \item USRP N210
+        \item SBX-40 daughtercard
+        \item 30dB attenuator
+        \item Full duplex
+        \item Gigbit Ethernet connection
+        \item high performace FPGA
+        \item omnidirection antenna
+    \end{itemize}
+    \item GPS Receiver (Phone)
+    \begin{itemize}
+        \item Google Pixel XL
+        \item Android 10
+        \item Multi constellation GNSS support (GPS+QZSS, GLONASS, Beidou)
+    \end{itemize}
+    \item GPS Receiver (COTS)
+    \begin{itemize}
+        \item GPS L1 support only
+        \item NMEA output
+    \end{itemize}
+\end{itemize}
+
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
 minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
 Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created. THis 
 
 \subsection{Dynamic Spoofing}
-Dynamic spoofing refers to the production of a siognal that when used to calcluate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, but there will be perceived motion.
+Dynamic spoofing refers to the production of a signal that when used to calcluate position, will be shown to change over time. The path traced by the receiver will be
+set at the time of production of the binary file, see figure \ref{fig:21MarCBDDynamic}, but there will be perceived motion.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utelising the open source projects that have been used to complete this
@@ -123,3 +165,11 @@ antenna. Therefore a directional transmitting antenna and physical disctance sho
 \todo{add screen shots of steps required to generate binary file}
 Due to the internal workings of the USRP, there needs to be an integer value betwen the clock rate and sample rate. Therefore is was required that the sample frequency
 was set to 2.5Msps instead of the default 2.6Msps that the software would normally use.
+
+\begin{figure}
+    \begin{centering}
+        \includegraphics[width=10cm,height=10cm,keepaspectratio]{Figures/21-3-25_cbd_dynamic_setup.png}
+        \caption{Settings of SatGen3 used to generate the dynamic path loop around Adelaide CBD. There is a graph that shows the offset from the origin and speed aver the journey}
+    \label{fig:21MarCBDDynamic}
+    \end{centering}
+\end{figure}
