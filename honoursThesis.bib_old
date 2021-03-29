@@ -8,16 +8,6 @@
    accessDate = {16 March}
 }
 
-@online{RN54,
-   author = {Agency, European Space},
-   title = {An intuitive approach to the GNSS positioning},
-   url = {https://gssc.esa.int/navipedia/index.\php/An_in\tuitive_\ap\pro\ach_\to_the_GNSS_positioning},
-   year = {2011},
-   publisher = {European Space Agency},
-   accessYear = {2021},
-   accessDate = {16 March}
-}
-
 @article{RN20,
    author = {Arribas, J. and Fernandez-Prades, C. and Closas, P.},
    title = {Antenna Array Based GNSS Signal Acquisition for Interference Mitigation},
@@ -57,17 +47,7 @@
 @online{RN47,
    author = {Cabinet Office, Government Of Japan},
    title = {Overview of the Quasi-Zenith Satellite System (QZSS)},
-   url = {https://qzss.go.jp/en/overview/s\ervices/sv01_what.html},
-   year = {2021},
-   publisher = {Government Of Japan},
-   accessYear = {2021},
-   accessDate = {12 March}
-}
-
-@online{RN51,
-   author = {Cabinet Office, Government Of Japan},
-   title = {Overview of the Quasi-Zenith Satellite System (QZSS)},
-   url = {https://qzss.go.jp/en/overview/\services/sv01_what.html},
+   url = {https://qzss.go.jp/en/overview/service\s/sv01_what.html},
    year = {2021},
    publisher = {Government Of Japan},
    accessYear = {2021},
@@ -77,17 +57,7 @@
 @online{RN48,
    author = {Cabinet Office, Government Of Japan},
    title = {What is the Quasi-Zenith Satellite System (QZSS)?},
-   url = {https://qzss.go.jp/en/overview\/services/sv02_why.html},
-   year = {2021},
-   publisher = {Government Of Japan},
-   accessYear = {2021},
-   accessDate = {12 March}
-}
-
-@online{RN52,
-   author = {Cabinet Office, Government Of Japan},
-   title = {What is the Quasi-Zenith Satellite System (QZSS)?},
-   url = {https://qzss.go.jp/en/overvie\w/services/sv02_why.html},
+   url = {https://qzss.go.jp/en/overview/servic\es/sv02_why.html},
    year = {2021},
    publisher = {Government Of Japan},
    accessYear = {2021},
@@ -346,17 +316,7 @@
 @online{RN49,
    author = {Rodríguez, J.A Ávila},
    title = {GPS Signal Plan},
-   url = {https://gssc.esa.int/naviped\ia/ind\ex.php/GPS_Signal_Plan},
-   year = {2011},
-   publisher = {European Space Agency},
-   accessYear = {2021},
-   accessDate = {16 March}
-}
-
-@online{RN53,
-   author = {Rodríguez, J.A Ávila},
-   title = {GPS Signal Plan},
-   url = {https://gssc.esa.int/navip\edia/i\ndex.php/GPS_Signal_Plan},
+   url = {https://gssc.esa.int/navipedia/index\.php/G\PS_Signal_Plan},
    year = {2011},
    publisher = {European Space Agency},
    accessYear = {2021},
@@ -494,3 +454,25 @@
    type = {Journal Article}
 }
 
+@article{RN57,
+   author = {Hu, Yaqi},
+   title = {GNSS SDR Signal Generator Implementation Based on USRP N210},
+   journal = {Journal of Physics: Conference Series},
+   volume = {1314},
+   pages = {012016},
+   ISSN = {1742-6588
+1742-6596},
+   DOI = {10.1088/1742-6596/1314/1/012016},
+   url = {http://dx.doi.org/10.1088/1742-6596/1314/1/012016},
+   year = {2019},
+   type = {Journal Article}
+}
+
+@inproceedings{RN58,
+   author = {Zeng, Kexiong Curtis and Liu, Shinan and Shu, Yuanchao and Wang, Dong and Li, Haoyu and Dou, Yanzhi and Wang, Gang and Yang, Yaling},
+   title = {All your {GPS} are belong to us: Towards stealthy manipulation of road navigation systems},
+   booktitle = {27th {USENIX} Security Symposium ({USENIX} Security 18)},
+   pages = {1527-1544},
+   ISBN = {1939133041},
+   type = {Conference Proceedings}
+}
