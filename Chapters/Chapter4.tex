@@ -28,6 +28,32 @@ List of Software packages used:
     \item SatGen 3
 \end{itemize}
 
+\textbf{Tests to Perform}
+\begin{itemize}
+    \item SDR reception: Don't use log-periodic since the directional nature of the radiation pattern makes any signal from a satllite thats not inline with the antenna
+    suffer from attenuation. Using the same omni that has been proved to work with transmission should hopefully net useable results. 
+    \begin{itemize}
+        \item passive omni: Use GNSS-SDR to capture location through SDR
+        \item active patch: Use GNSS-SDR to capture location through SDR
+        \item passive omni: Use GNURadio to capture raw ADC values.
+        \item active patch: Use GNURadio to capture raw ADC values.
+    \end{itemize}
+    \item SDR transmission
+    \begin{itemize}
+        \item Static coordinates at set locations that can be easily compared to real reception. Receive with both phone and COTS receiver. Compare using GPXSee aswell as
+        GNSS Raw
+        \begin{itemize}
+            \item Tonsley MAB
+            \item Goolwa
+            \item Antarctica for shits and giggles
+        \end{itemize}
+        \item dynamic that can be easily compared to real reception
+        \begin{itemize}
+            \item Tonsley MAB CCt path
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
 From the desktop version of Google Earth Pro navigation paths can be created. These paths can then be use to generate a GPS signal to replicate that path using the
 GPS-SDR-SIM program \cite{RN42}. It should be noted that the KML file format is not suitable for use with this program and must be converted into NMEA GGA stream format.
 
@@ -62,13 +88,14 @@ technique being used post gps receiver. A simple COTS will also be used to log t
 
 Some preliminary testing was done with different software setups to see which would be the best for reproducing spoofing results. A combination of meaconing and signal
 generating techniques were investigated. Initially meaconing was chosen as the best way to perfom an attack, therefore an attempt was made to record real time GPS signals
-and store them for later transmission. Initial testing using a passive log period antenna resulted in no data being properly captured. Since a log-periodic antenna was
+and store them for later transmission. Initial testing using a passive log periodic antenna resulted in no data being properly captured. Since a log-periodic antenna was
 used there was a mismatch in the polarisation of the wave. The transmitted GPS signal is polarised as RHCP, whereas by its nature log-periodic antennas are linearly
-polarised. This equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna meant that the data within the signal was
-unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active antenna. A bias-tee was used in order to
-feed the antenna with the $5V$ requried for its operation while filtering out the DC to feed into the SDR. To interface with the bias-tee a USB cable was cut and used to
-connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to find or lock onto any of the GPS satellites
-at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary 
+polarised. This equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna and the directional nature of the antenna
+meant that the data within the signal was unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active
+antenna. A bias-tee was used in order to feed the antenna with the $5V$ requried for its operation while filtering out the DC to feed into the SDR. To interface with the
+bias-tee a USB cable was cut and used to connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to
+find or lock onto any of the GPS satellites at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary files that replicate
+the received signals from the satellites. 
 
 \section{Using SatGen3}
 
