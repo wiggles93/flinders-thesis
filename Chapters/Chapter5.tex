@@ -1,9 +1,31 @@
 % Chapter Template
 
-\chapter{Chapter Title Here} % Main chapter title
+\chapter{Results} % Main chapter title
 
 \label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
+
+\section{GNSS Reception}
+Before testing the GPS transmission performance of the SDR, reception was tested, with less success. Three antenna setups were chosen each failing to lock and track the
+satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it includes amplifiers and
+filters within the antenna module iteself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
+that there was 5V on the RF+DC port of the Tee.
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{GPS Transmission}
+
+\subsection{Meaconing Attack}
+Since the GPS reception failed with the SDR, there was no way of performing a meaconing attack directly. 
+
+\subsection{Spoofing Attack}
+Once the workflow and hardware setup for the SDR was properly configured it was found that a smartphone was able to be spoofed.
+When attempting to spoof devices in the wild, the Pixel XL smartphone was succeptable to attack while more modern smartphones that were tested were not succeptable. These
+incuded the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
+anti-spoofing algorithms that have been implemented including the useage of multiple constellations for position resolution.

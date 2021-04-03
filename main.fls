@@ -307,6 +307,8 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.aux
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/main.aux
@@ -449,6 +451,9 @@ OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21-3-25_cbd_dynamic_setup.png
+OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.tex
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.tex
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.tex
@@ -464,6 +469,8 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter4.aux
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/main.out

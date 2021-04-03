@@ -44,6 +44,7 @@ List of Software packages used:
         GNSS Raw
         \begin{itemize}
             \item Tonsley MAB
+            \item Netley
             \item Goolwa
             \item Antarctica for shits and giggles
         \end{itemize}
@@ -200,3 +201,11 @@ was set to 2.5Msps instead of the default 2.6Msps that the software would normal
     \label{fig:21MarCBDDynamic}
     \end{centering}
 \end{figure}
+
+\section{SDR Setup for GNSS Reception}
+Reception of GNSS signals is a compliated process which involves sychronising time values and solving simultaneous equtations for position, therefore it was decided that
+the opensource program GNSS-SDR would be used to perform all of these functions. This sofware has been built over a number of years and is able to receive different GNSS
+signals and translate them into position.
+
+The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
+antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into consideration.
