@@ -93,23 +93,78 @@ adapted to objects that orbit other objects other than the sun. Examples are moo
 
 \subsection{GPS} \label{subsec:GNSS_GPSIntro}
 The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes (nominally 4 satellites per plane) to ensure that there is coverage globally at all times.
+There are also some spare satellites that are in orbit in the event that a operational satellite malfunctions.
 The constellation orbits at an altitude of 20,200km which equates to an orbital period of 12hours.
 There are multiple frequencies of differeing propoerties that each satellite will transmit at. For GPS these are named the L1, L2 and L5 bands and have centre frequencies
-of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. The L1 band is the most commonly used and was the first one to be made operational. In the past the L1
+of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The L1 band is the most commonly used and was the first one to be made operational. In the past the L1
 band was used for civilian purposes and the L2 band was a military band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective
 frequncy bands. GPS predominately uses BPSK but also utelises BOC for signal modulation accross all of the bands.  
 
-Initially the C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. This is no longer the case.
+Initially the civilian C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. In May 2000 President Bill
+Clinton directed the removal of selective availabililty from the GPS service, and in 2007 it was announced that the newest version of GPS satellites would be manufactured
+without the selective availabililty capapbility.
 \todo{expand, reference}
 
-Signals sent from GPS satellites
-are transmitted at 1.57542 GHz (L1), 1.2276 GHz (L2) and 1.17645 GHz (L5) \todo{insert L5 modulation scheme}.
-The L1 GPS band is the most commonly used and has a C/A (course acquire) code as well as a P code. The P code is much more accurate but is also typically encrypted for
-military use.
+GPS hardware has had a number of revisions over the life of the system in the form of Blocks. Each block is a major revision, current generation satellites are Block III
+satellites. There are currenntly 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
+2010 to 2016. Block IIR has 8 currently operational from 13 launches, block IIR-M has 7 operational from 8 launches and there are no operational satellites from Block I,
+II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in \ref{tab:GPSSatSum}
+
+Each iteration of block has added functionality and each major block revision has increased the life expectancy of the hardware.
+
+\todo{insert table of block type and number of satellites inn service}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h]
+    \begin{center}
+        \caption{Summary of current and former GPS satellites}
+        \label{tab:GPSSatSum}
+        \begin{tabular}{ |l|c|c| }
+            \hline
+            \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
+            \hline
+            Block I & 11 & 0\\
+            \hline
+            Block II & 9 & 0\\
+            \hline
+            Block IIA & 19 & 0\\
+            \hline
+            Block IIR & 13 & 8\\
+            \hline
+            Block IIR-M & 8 & 7\\
+            \hline
+            Block IIF & 12 & 12\\
+            \hline
+            Block III & 4 & 4\\
+            \hline
+            \hline
+            \textbf{Total} & \textbf{76} & \textbf{31}\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+
 
 \subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
 The Galileo constellation is a GNSS created by the ESA (European Space Agency) and opeated by the EGA (European GNSS Agency) as a way of providing a modern navigation
 system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 
+
+Galileo operates on 3 different frequency bands, E1, E5 and E6. E1 shares the same centre frequency as the GPS L1 band, 1575.42 MHz. The E6 band does not share a frequncy
+with the GPS ssytem and operates at 1278.75 MHz. The E5 band is split into E5a and E5b sub-bands with E5a sharing the same freqeuency as L5, 1176.45 MHz, and E5b at
+1207.14 MHz. The arrangmeent of the frequency bands can be seen in Figure \ref{fig:SignalPlan}.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,height=10cm,keepaspectratio]{Figures/Galileo_Frequency_Plan.png}
+        \caption{Galileo and GPS signal frequency arrangement}
+        \label{fig:SignalPlan}
+    \end{centering}
+\end{figure}
+
+To maintain interoperability between receivers on the L1 and E1 bands the modulation scemes differ.
+The E1 band utileses Composite BOC modulation, E6 uetelises BPSK, and the E5 bands utelise Alternative BOC modulation.
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
 The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. 
@@ -177,3 +232,6 @@ allows for a wide ranges of frequncies from Hz up to GHz from the same device wi
 SDR's are very sensitive to the processing power of the copmuter that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
 output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
 enough.
+
+This was solved by increasing the UDP buffer size manually to at least the sample rate. From limited experimentation this completely resolved the issue, and opened up
+oppertunities to perform spoofing with low powered embedded devices like the Rasperry Pi single board computer. \todo{move this sentence to results}

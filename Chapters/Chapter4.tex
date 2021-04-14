@@ -1,5 +1,4 @@
 % Chapter Template
-
 \chapter{Methodology} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
@@ -194,7 +193,7 @@ antenna. Therefore a directional transmitting antenna and physical disctance sho
 Due to the internal workings of the USRP, there needs to be an integer ratio between the clock rate and sample rate. Therefore is was required that the sample frequency
 was set to 2.5Msps instead of the default 2.6Msps that the software would normally use.
 
-\begin{figure}
+\begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm,height=10cm,keepaspectratio]{Figures/21-3-25_cbd_dynamic_setup.png}
         \caption{Settings of SatGen3 used to generate the dynamic path loop around Adelaide CBD. There is a graph that shows the offset from the origin and speed aver the journey}
@@ -208,4 +207,21 @@ the opensource program GNSS-SDR would be used to perform all of these functions.
 signals and translate them into position.
 
 The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
-antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into consideration.
+antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
+consideration.
+
+\begin{figure}[h]
+    \begin{centering}
+        \begin{tikzpicture}
+                \node[draw, text width=3cm,minimum height=1.5cm](block1){Choose \\ Coordinates};
+                \node[draw, below=of block1, text width=3cm,minimum height=1.5cm](block2){Generate \\NMEA file};
+                \node[draw, below=of block2, text width=3cm,minimum height=1.5cm](block3){Download ephemeris};
+                \node[draw, below=of block3, text width=3cm,minimum height=1.5cm](block4){Compile \\Signal Binary File};
+                \node[draw, below=of block4, text width=3cm,minimum height=1.5cm](block5){Transmit Signal};
+                \node[draw, below=of block5, text width=3cm,minimum height=1.5cm](block6){Log GPS Data};
+
+                \draw[-latex] (block1) edge (block2) (block2) edge (block3) (block3) edge (block4) (block4) edge (block5) (block5) edge (block6);
+        \end{tikzpicture}
+    \end{centering}
+    \caption{Flowchart of perfoming experimentation} \label{fig:Flowchart}
+\end{figure}
