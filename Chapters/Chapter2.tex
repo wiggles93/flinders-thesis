@@ -50,7 +50,7 @@ has impact on the doppler shift at the receivers. Another factor is aerodynamic 
 
 The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the European Union. The fist sattelite
 was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmnetation sites that provide improved accuracy for those in the EU.
-THis system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
+This system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
 geostationary satellite broadcasting the timing corrections. 
 
 %----------------------------------------------------------------------------------------
@@ -108,18 +108,16 @@ without the selective availabililty capapbility.
 GPS hardware has had a number of revisions over the life of the system in the form of Blocks. Each block is a major revision, current generation satellites are Block III
 satellites. There are currenntly 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
 2010 to 2016. Block IIR has 8 currently operational from 13 launches, block IIR-M has 7 operational from 8 launches and there are no operational satellites from Block I,
-II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in \ref{tab:GPSSatSum}
+II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in Table \ref{tab:GPSSatSum}
 
-Each iteration of block has added functionality and each major block revision has increased the life expectancy of the hardware.
-
-\todo{insert table of block type and number of satellites inn service}
+Accuracy of the GPS system has increased over the years, and since selective availabililty was legislated against, to approximatly 3m for public access and 3-4cm for encrypoted.
 
 \renewcommand{\arraystretch}{1.5}
-\begin{table}[h]
+\begin{table}
     \begin{center}
         \caption{Summary of current and former GPS satellites}
         \label{tab:GPSSatSum}
-        \begin{tabular}{ |l|c|c| }
+        \begin{tabular}{ |r|c|c| }
             \hline
             \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
             \hline
@@ -145,11 +143,10 @@ Each iteration of block has added functionality and each major block revision ha
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-
-
 \subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
 The Galileo constellation is a GNSS created by the ESA (European Space Agency) and opeated by the EGA (European GNSS Agency) as a way of providing a modern navigation
-system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 
+system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 2011.
+The orbit height of the Galileo constellation is higher than the GPS orbit at 23,222 km. 
 
 Galileo operates on 3 different frequency bands, E1, E5 and E6. E1 shares the same centre frequency as the GPS L1 band, 1575.42 MHz. The E6 band does not share a frequncy
 with the GPS ssytem and operates at 1278.75 MHz. The E5 band is split into E5a and E5b sub-bands with E5a sharing the same freqeuency as L5, 1176.45 MHz, and E5b at
@@ -165,13 +162,33 @@ with the GPS ssytem and operates at 1278.75 MHz. The E5 band is split into E5a a
 
 To maintain interoperability between receivers on the L1 and E1 bands the modulation scemes differ.
 The E1 band utileses Composite BOC modulation, E6 uetelises BPSK, and the E5 bands utelise Alternative BOC modulation.
+Galileo offers superior accuracy than the other constellations with 1m for the public access and 1cm for encrypted service. 
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
-The GLONASS constelaltion also consits of a nominal 24 satellites, although only in 3 orbital planes. 
+The Russian GLONASS constellation has it's hsitory tightly intertwined with that of GPS and the space race, as mentioned above in \ref{sec:GNSSHistory}.
+GLONASS consits of a nominal 24 satellites in 3 orbital planes. Since GLONASS uses FDMA, each satellite needs to transmit on a unique frequency. This is in contrast to
+all other GNSS systems that use CDMA. There are three freqeuency bands that GLONASS operates in, L1, L2 and L3. These are seperate to the L1, L2 of GPS. 
+
+GLONASS L1 band is from 1598.0625 MHz to 1605.375 MHz split into 14 channels. Each carrier is 562.5 kHz apart and is characterised by equation \ref{eq:GLONASS Channel
+calc}. $k$ represents the channel number of the band and ranges from -7 to +6. 
+
+The L2 band ranges from 1242.9375 MHz to 1248.625 MHz with each carrier separated by 437.5 kHz.
+
+The L3 band ranges from 1197.9375 MHz to 1203.625 MHz with the same carrier sepeartion as L2.
+
+\begin{equation} 
+    \begin{split} \label{eq:GLONASS Channel calc}
+        f_{k_{L1}} = f_{0_{L1}} + k \Delta f_{L1} \\ 
+        f_{k_{L2}} = f_{0_{L2}} + k \Delta f_{L2} \\ 
+        f_{k_{L3}} = f_{0_{L3}} + k \Delta f_{L3}
+    \end{split}
+\end{equation}
 
 \subsection{BeiDou} \label{subsec:GNSS_BeiDouIntro}
 From the BeiDou official website it states that "BeiDou has been constructed and operated by China with an eye on the needs of the country's national sceurity, economic
 and social development".
+
+This is China's attempt at creating a sovreign navigation constellation.
 
 \subsection{Augmentation Systems} \label{subsec:GNSS_OtherIntro}
 As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
@@ -183,7 +200,7 @@ this orbit. This allows for a very narrow and defined region of useability, whic
 
 Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
 values in order to make the solution to the positon cacluation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
-geographically locally and run by those loval Governments.
+geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
