@@ -451,6 +451,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplb8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplrc8t.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/Galileo_Frequency_Plan.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/GNSS applications.png
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter3.tex

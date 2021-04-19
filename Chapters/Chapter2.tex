@@ -162,7 +162,9 @@ with the GPS ssytem and operates at 1278.75 MHz. The E5 band is split into E5a a
 
 To maintain interoperability between receivers on the L1 and E1 bands the modulation scemes differ.
 The E1 band utileses Composite BOC modulation, E6 uetelises BPSK, and the E5 bands utelise Alternative BOC modulation.
-Galileo offers superior accuracy than the other constellations with 1m for the public access and 1cm for encrypted service. 
+Galileo offers superior accuracy than the other constellations with 1m for the public access and 1cm for encrypted service.
+
+There are special satellites that are part of the Galileo constallation whose job it is to ensure validity. These are known as GIOVE. \todo{write more}
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
 The Russian GLONASS constellation has it's hsitory tightly intertwined with that of GPS and the space race, as mentioned above in \ref{sec:GNSSHistory}.
@@ -186,9 +188,52 @@ The L3 band ranges from 1197.9375 MHz to 1203.625 MHz with the same carrier sepe
 
 \subsection{BeiDou} \label{subsec:GNSS_BeiDouIntro}
 From the BeiDou official website it states that "BeiDou has been constructed and operated by China with an eye on the needs of the country's national sceurity, economic
-and social development".
+and social development", and was previously known as COMPASS. This is China's attempt at creating a sovreign navigation constellation.
 
-This is China's attempt at creating a sovreign navigation constellation.
+The BeiDou constellation is made up of 35 satellites in total. This includes 5 geostationary satellites, 27 MEO satllites and 3 inclined geosynchronous sateliitels to
+give total earth coverage. The MEO satellites orbit at a height of 21,500km, and are distributed accross 3 orbital planes. Through the use of the geostationary and geosynchronous satellites there is a region around Asia that has higher accuracy than what is present
+at other areas of the globe. This accuracy for open service is approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere. 
+The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table \ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Sunmmary of BeiDou Signal Properties}
+        \label{tab:Beidou Signal}
+        \begin{tabular}{ |r|c|c| }
+            \hline
+            \textbf{Signal} & \textbf{Carrier Frequency (MHz)} & \textbf{Modulation Type} \\
+            \hline
+            B1-I & 1561.098 & BPSK\\
+            \hline
+            B1-Q & 1561.098 & BPSK\\
+            \hline
+            B1-C & 1575.420 & MBOC(6,1,1/11)\\
+            \hline
+            B1 & 1575.420 & BOC(14,2)\\
+            \hline 
+            \hline
+            B2-I & 1207.140 & BPSK\\
+            \hline
+            B2-Q & 1207.140 & BPSK\\
+            \hline
+            B2a & 1176.460 & AltBOC(15,10)\\
+            \hline
+            B2b & 1207.140 & AltBOC(15,10)\\
+            \hline 
+            \hline
+            B3-I & 1268.520 & BPSK\\
+            \hline
+            B3-Q & 1268.520 & BPSK\\
+            \hline
+            B3-A & 1268.520 & BOC(15,2.5)\\
+            \hline
+            B3 & 1268.520 & BPSK\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
 
 \subsection{Augmentation Systems} \label{subsec:GNSS_OtherIntro}
 As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
@@ -213,7 +258,15 @@ and not all receivers will output all sentence types.
 
 \section{Applications of GNSS} \label{sec:ApplicationsGNSS}
 GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
-maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33}.
+maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33} as shown in Figure \ref{fig:GNSS Applications}.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/GNSS applications.png}
+        \caption{Applications of GNSS position and timing \cite{RN33}}
+        \label{fig:GNSS Applications}
+    \end{centering}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
