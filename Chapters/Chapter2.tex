@@ -69,10 +69,10 @@ required. Part of the Receviers (the user segment) will pick up this signal. The
 mostly of the current time (of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of
 the earth with the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive
 motion of the satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler
-shift, time taken to arrive and the satellite current location can be used to solve the postiion in three dimensional space. In order to solve for all dimensions
+shift, time taken to arrive and the satellite current location can be used to solve the position in three dimensional space. In order to solve for all dimensions
 (including time) four satellites are reqruied since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The
-$\rho_i$ term indicates the distance from the recviever to that particular satellite. This method of position calculation is known as trilateration. The model shown below
-is a simplified model that ignores the effects of relativity. 
+$\rho_i$ term indicates the distance from the recviever to that particular satellite and is known as a psudeorange. 
+This method of position calculation is known as trilateration. The model shown below is a simplified model that ignores the effects of relativity. 
 
 \begin{equation} \label{eq:gnssPosition} 
     \rho_i = \sqrt{(x_i - x_u)^2 + (y_i - y_u)^2 + (z_i - z_u)^2} + c \Delta t
@@ -82,6 +82,31 @@ As can be seen from the above equation \ref{eq:gnssPosition} the accurate synchr
 calcaulte an accurate position. Due to the mathmatical requirements, a minimum of 4 satellites need to be in 'sight' of the receiver at all times.
 
 Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
+
+\subsection{Trilateration} \label{subsec:Trilateration}
+The process of trilateration uses objects of known locations to calculate the unknown location of other objects. This is done through the use of overlapping circles based
+on how far the objects are apart. This is known as a psudeorange. To use satellites to determine the location of a reciever the exact location of the satellites must be
+known, as well as relitive distance. Each satellite sends its precise orbital location (ephemeris), as well as the coarse orbital location (almanac) of the rest of the
+constellation as part of the navigational data. This coupled with the psudeorange of the satellite allows for calculating the position of the reciever. Psuedoranges rely
+on the knowledge that electromagnetic radiation propagates at the speed of light, as shown in equation \ref{eq:EMdistance}. By measuring the time taken for the signal to
+transition from the each of the satellites to the receiver, a sphere of radius $d$ centred on the radius indicates all possible locations that the reciever could be. By
+adding a second satellite, and second sphere based on the psuedorange, the posible locations of the reciever are reduced based on where the spheres intersect. For 2D
+position only 3 satellites are needed to have only a single possilbe solution, whereas 3 dimensional position requires 4 satellites as shown in Figure
+\ref{fig:trilateration}.
+
+\todo{insert picture of gps message structure}
+
+\begin{equation} \label{eq:EMdistance}
+    d = c \times t
+\end{equation}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/trilateration.png}
+        \caption{Illustration of trilateration used in GNSS positioning}
+        \label{fig:trilateration}
+    \end{centering}
+\end{figure}
 
 \subsection{Kepler's Laws of Planetary Motion} \label{subsec: OrbitalMechanics}
 In the 1600's German astronomer Johannes Kepler described the orbits of the solar systems planets around the sun using three laws. 
@@ -272,6 +297,47 @@ maps on a smartphone or sat-nav devce to providing accurtate timing infomation f
 %	SECTION 4
 %----------------------------------------------------------------------------------------
 
+\section{Errors within GNSS}
+The main fight against GNSS positional accuracy is the introduction of different types of errors. These can be narrowed into three main groups; Satellite errors,
+Propogation erros and Receiver errors. Propagation errors are most common. When the signals pass through the ionosphere and the troposphere the signals refract, extending
+the time taken to get to the receiver, thus making the psudeorange not accurate. Other propagation errors include multipath and obstructions errors. Both of which are
+most notable in built up urban environments of in valleys where direct view of the sky can be difficult.
+
+Satellite errors occur when the predicated orbit differes to the actual orbit. Other causes of errors from the satellites are due to drift of the onboard atomic clocks as
+well as low elevations where there are propotionally high dilution of precision.
+
+What all of these errors have in common is that create an incorrect value of the psudeorange which in turn incorrectly calculates the reciever position.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Summary of GPS Errors}
+        \label{tab:GPS Errors}
+        \begin{tabular}{ |c|c| }
+            \hline
+            \textbf{Source of Error} & \textbf{Error Range} \\
+            \hline
+            Satellite Clocks & $\pm 2m$\\
+            \hline
+            Orbital Errors & $\pm 2.5m$\\
+            \hline
+            Ionospheric Delays & $\pm 5m$\\
+            \hline
+            Tropospheric Delays & $\pm 0.5m$\\
+            \hline
+            Receiver Noise & $\pm 0.3m$\\
+            \hline
+            Multipath Errors & $\pm 1m$\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
+
 \section{Spoofing Overview}
 Attacks on the GNSS archtiecture can broadly be divided into two categories jamming and spoofing \cite{RN33} \cite{RN32}. Jamming can be described as causing intentional
 interference in the communicationn channel as to make the recovery of signal informaiton impossible. A successful jamming attack will make it impossibe to begin tracking
@@ -292,7 +358,7 @@ a record of the rough location of all satellites in a constellation and the ephe
 produce the same results as recording the gps signal from the desired location.
 
 %----------------------------------------------------------------------------------------
-%	SECTION 5
+%	SECTION 6
 %----------------------------------------------------------------------------------------
 
 \section{SDR Basics}
