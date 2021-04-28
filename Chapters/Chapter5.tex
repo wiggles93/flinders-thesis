@@ -30,3 +30,13 @@ Once the workflow and hardware setup for the SDR was properly configured it was 
 When attempting to spoof devices in the wild, the Pixel XL smartphone was succeptable to attack while more modern smartphones that were tested were not succeptable. These
 incuded the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
 anti-spoofing algorithms that have been implemented including the useage of multiple constellations for position resolution.
+
+\subsection{Issues Encountered}
+The underrun issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
+There was an issue towards the end of the project where there was considerable leakage of EM radiation into the faraday cage that was causing the GPS receiver to produce
+wildly inaccuarate position (up to and over 500m error). This was much different to what had previously been recorded within the faraday cage. This amount of error does
+not consitute a successful spoof since the time to first lock was much greater than a real signal, or even spoofing attempts previously. 
+
+Just after the testing phase of the project the smartphone that was being used for some of the logging and graphing was rendered unusable. While there was no data lost,
+it was replaced with a newer model that experimentally was much harder to spoof than the previous model. This could be due to many factors including anti-spoofing
+algorithms. It would be a fair assessment that the newer device is able to receive more GNSS signals including augmented systems.
