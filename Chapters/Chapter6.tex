@@ -15,3 +15,9 @@ All of the tests that have been conducted for use in this thesis have either bee
 path, or attempted meaconing attack. None of these options have a mechanism for position feedback. For example you cannot create a signal that has a linear offset from
 the actual position using these methods. This is something that could be achieved through combination and modification of the exitisting open source projects used in this
 thesis. This would allow for properly real-time gps spoofing, and could be extended further to have intelligent algorithms.
+
+Current methods, as detailed in \ref{Chapter4}, requires downloading the Ephemeris for the date and time of the proposed spoofing attack. This makes real-time spoofing
+attacks not possible since there is a delay between the current time and the associated ephemeris. A potential fix for this could be to perform some analysis on the
+orbits of each satellite within the constellation over an arbitrary period of time to create a machine learning algorithm. This algorithm would be able to predict the
+location of the satellites ahead of time, thus binaries could be compiled for future attacks, or could be used for real-time attacks without the need for downloading/
+retrieving the ephemeris from legitamate sources.

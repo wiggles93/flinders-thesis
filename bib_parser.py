@@ -2,7 +2,8 @@
 
 import sys
 
-replace_chars = ["&", "%", "_", "$"]
+# replace_chars = ["&", "%", "_", "$"]
+replace_chars = ["&", "%", "$"]
 
 def find_all(source, search):
     occurances = [] # list of indexes where character has occured in the string provided

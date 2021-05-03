@@ -11,38 +11,41 @@
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
 In 2021 there are many different GNSS systems that are in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
 people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was
-similar to that of the current satellite based systems, namely the use of psuedoranges, although the accuracy was far lower than is acceptable today. The USA developed and commissioned the first
-satellite based nanvigation system.
+similar to that of the current satellite based systems, namely the use of psuedoranges, although the accuracy was far lower than is acceptable today. The USA developed
+and commissioned the first satellite based nanvigation system.
 
-As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The QZSS
-system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number of
-satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits. Current GNSS
-systems utelise MEO orbits.
+As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
+QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
+of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
+geostationary orbit \cite{RN55} . There are three categories of orbit, L EO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits.
+Current GNSS systems utelise MEO orbits.
 
-GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the
-craft. This tracking from Doppler shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the
-process could be reversed such that a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite
-navigation system was made operational for US Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to
-the accuracy of up to 80ft (24m) which was a significant improvement over existing VLF (Very Low Frequency) hyperbolic navigation systems. After 32 years of operation the
-system was retired in 1996 after proving that space crafts could be reliable \cite{RN45}. 
+GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
+launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the craft. This tracking from Doppler
+shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the process could be reversed such that
+a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite navigation system was made operational for US
+Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to the accuracy of up to 80ft (24m) which was a
+significant improvement over existing VLF (Very Low Frequency) hyperbolic navigation systems. After 32 years of operation the system was retired in 1996 after proving
+that space crafts could be reliable \cite{RN45}. 
 
 In 1973 the US combined two existing programmes in TIMATION and 'Project 621B' to form the 'NAVSTAR Global Positioning System' which would later become known more
 commonly as GPS. The initial intention for the use of GPS was for military only. However, in 1983 there was an incident that saw a Korean Airlines flight shot down by a
 Soviet fighter mistaking it for a US aircraft when it wandered off course. After this incident President Reagen announced that GPS would be made available for civilian
 use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
 adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS system augmentation systems started to appear. Soon
-after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver with a known
-location and having that reciever calculate its position from the satellite signals and compare with the known position. These corrections are then broadcast. 
+after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver
+with a known location and having that reciever calculate its position from the satellite signals and compare with the known position. These corrections are then
+broadcast. 
 
 The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There are some technical differences between the
 GLONASS and GPS constellations. The orbital planes are different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS's CDMA (Code
 Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS constllation was fully operational, however this was not the case. 
 
 The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) polar orbit, whereas all modern GNSS systems utelise a MEO (medium earth orbit) ranging from 20,000km to
-23,000km above the earths surface with multiple orbital planes. The number of planes differs between the different constellations as discussed below.
-The lower the orbit, the higher the velocity requried to maintain the orbit as shown by the orbital mechanics equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower velocity which
-has impact on the doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the atmosphere.
+23,000km above the earths surface with multiple orbital planes. The number of planes differs between the different constellations as discussed below. The lower the orbit,
+the higher the velocity requried to maintain the orbit as shown by the orbital mechanics equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower
+velocity which has impact on the doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the
+atmosphere.
 
 \begin{equation} \label{eq:orbitalVelocity}
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
@@ -94,8 +97,6 @@ adding a second satellite, and second sphere based on the psuedorange, the posib
 position only 3 satellites are needed to have only a single possilbe solution, whereas 3 dimensional position requires 4 satellites as shown in Figure
 \ref{fig:trilateration}.
 
-\todo{insert picture of gps message structure}
-
 \begin{equation} \label{eq:EMdistance}
     d = c \times t
 \end{equation}
@@ -118,24 +119,24 @@ adapted to objects that orbit other objects other than the sun. Examples are moo
 
 \subsection{GPS} \label{subsec:GNSS_GPSIntro}
 The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes (nominally 4 satellites per plane) to ensure that there is coverage globally at all times.
-There are also some spare satellites that are in orbit in the event that a operational satellite malfunctions.
-The constellation orbits at an altitude of 20,200km which equates to an orbital period of 12hours.
-There are multiple frequencies of differeing propoerties that each satellite will transmit at. For GPS these are named the L1, L2 and L5 bands and have centre frequencies
-of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The L1 band is the most commonly used and was the first one to be made operational. In the past the L1
-band was used for civilian purposes and the L2 band was a military band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective
-frequncy bands. GPS predominately uses BPSK but also utelises BOC for signal modulation accross all of the bands.  
+There are also some spare satellites that are in orbit in the event that a operational satellite malfunctions. The constellation orbits at an altitude of 20,200km which
+equates to an orbital period of 12hours. There are multiple frequencies of differeing propoerties that each satellite will transmit at. For GPS these are named the L1, L2
+and L5 bands and have centre frequencies of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The
+L1 band is the most commonly used and was the first one to be made operational. In the past the L1 band was used for civilian purposes and the L2 band was a military
+band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective frequncy bands. GPS predominately uses BPSK but also utelises BOC for
+signal modulation accross all of the bands.  
 
 Initially the civilian C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. In May 2000 President Bill
 Clinton directed the removal of selective availabililty from the GPS service, and in 2007 it was announced that the newest version of GPS satellites would be manufactured
-without the selective availabililty capapbility.
-\todo{expand, reference}
+without the selective availabililty capapbility \cite{RN62} \cite{RN64}.
 
 GPS hardware has had a number of revisions over the life of the system in the form of Blocks. Each block is a major revision, current generation satellites are Block III
 satellites. There are currenntly 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
 2010 to 2016. Block IIR has 8 currently operational from 13 launches, block IIR-M has 7 operational from 8 launches and there are no operational satellites from Block I,
 II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in Table \ref{tab:GPSSatSum}
 
-Accuracy of the GPS system has increased over the years, and since selective availabililty was legislated against, to approximatly 3m for public access and 3-4cm for encrypoted.
+Accuracy of the GPS system has increased over the years, and since selective availabililty was legislated against, to approximatly 3m for public access and 3-4cm for
+encrypted.
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
@@ -169,7 +170,7 @@ Accuracy of the GPS system has increased over the years, and since selective ava
 \renewcommand{\arraystretch}{1}
 
 \subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
-The Galileo constellation is a GNSS created by the ESA (European Space Agency) and opeated by the EGA (European GNSS Agency) as a way of providing a modern navigation
+The Galileo constellation is a GNSS created by the ESA (European Space Agency) and operated by the EGA (European GNSS Agency) as a way of providing a modern navigation
 system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 2011.
 The orbit height of the Galileo constellation is higher than the GPS orbit at 23,222 km. 
 
@@ -189,12 +190,22 @@ To maintain interoperability between receivers on the L1 and E1 bands the modula
 The E1 band utileses Composite BOC modulation, E6 uetelises BPSK, and the E5 bands utelise Alternative BOC modulation.
 Galileo offers superior accuracy than the other constellations with 1m for the public access and 1cm for encrypted service.
 
-There are special satellites that are part of the Galileo constallation whose job it is to ensure validity. These are known as GIOVE. \todo{write more}
+There are special satellites that are part of the Galileo constallation whose job it is to ensure validity. These are known as GIOVE (Galileo In Orbit Validation Element)
+satellites. There is GIOVE-A and GIOVE-B launched in 2005 and 2008 respectively. Initially these satellites transmitted GNSS test signals on the E1 and E6 frequyency
+bands to allow for monitoring and testing while the rest of the Galileo constellation was being commissioned \cite{RN65}. Over this time they have provided great infomation on the
+short and long term reliabilty and accuracy of the on board atmoic clocks \cite{RN66}.
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
 The Russian GLONASS constellation has it's hsitory tightly intertwined with that of GPS and the space race, as mentioned above in \ref{sec:GNSSHistory}.
 GLONASS consits of a nominal 24 satellites in 3 orbital planes. Since GLONASS uses FDMA, each satellite needs to transmit on a unique frequency. This is in contrast to
-all other GNSS systems that use CDMA. There are three freqeuency bands that GLONASS operates in, L1, L2 and L3. These are seperate to the L1, L2 of GPS. 
+all other GNSS systems that use CDMA. Extra effort must therefore be applied to the reception of the signals since Doppler effects must be carefully considered. 
+The use of FDMA does make GLOANSS more resilient against jamming and spoofing attacks. In a CDMA system, like GPS, all satellites share the same carrier freqeuency
+(ignoring the Doppler Effect), thus if an attack is performed all satellites are suceptible. Where as the GLONASS satellites all occupy seperate freqyency bands making a
+system wide attack much harder and more expensive to perform. This was the motivation of using FDMA over CDMA initially. The use of FDMA over CDMA also causes and
+interoperability issue when considering multi constellation support. The recever must become much more complex in order to support not only multiple carrier frequencies
+of different constellations but also due to the different access schemes. This increases cost and complexity where Galileo is much more compaitble for this use case.
+There are
+three freqeuency bands that GLONASS operates in, L1, L2 and L3. These are seperate to the L1, L2 of GPS. 
 
 GLONASS L1 band is from 1598.0625 MHz to 1605.375 MHz split into 14 channels. Each carrier is 562.5 kHz apart and is characterised by equation \ref{eq:GLONASS Channel
 calc}. $k$ represents the channel number of the band and ranges from -7 to +6. 
@@ -216,9 +227,10 @@ From the BeiDou official website it states that "BeiDou has been constructed and
 and social development", and was previously known as COMPASS. This is China's attempt at creating a sovreign navigation constellation.
 
 The BeiDou constellation is made up of 35 satellites in total. This includes 5 geostationary satellites, 27 MEO satllites and 3 inclined geosynchronous sateliitels to
-give total earth coverage. The MEO satellites orbit at a height of 21,500km, and are distributed accross 3 orbital planes. Through the use of the geostationary and geosynchronous satellites there is a region around Asia that has higher accuracy than what is present
-at other areas of the globe. This accuracy for open service is approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere. 
-The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table \ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
+give total earth coverage. The MEO satellites orbit at a height of 21,500km, and are distributed accross 3 orbital planes. Through the use of the geostationary and
+geosynchronous satellites there is a region around Asia that has higher accuracy than what is present at other areas of the globe. This accuracy for open service is
+approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere. The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table
+\ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
@@ -283,7 +295,8 @@ and not all receivers will output all sentence types.
 
 \section{Applications of GNSS} \label{sec:ApplicationsGNSS}
 GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
-maps on a smartphone or sat-nav devce to providing accurtate timing infomation for financial institutions \cite{RN33} as shown in Figure \ref{fig:GNSS Applications}.
+maps on a smartphone or sat-nav devices to providing accurtate timing infomation for financial institutions or energy infrastructure \cite{RN33} as shown in Figure
+\ref{fig:GNSS Applications}. This 
 
 \begin{figure}[h]
     \begin{centering}
@@ -305,6 +318,9 @@ most notable in built up urban environments of in valleys where direct view of t
 
 Satellite errors occur when the predicated orbit differes to the actual orbit. Other causes of errors from the satellites are due to drift of the onboard atomic clocks as
 well as low elevations where there are propotionally high dilution of precision.
+
+Receiver errors occur due to the introduction of noise therough the reception process. GNSS jamming and spoofing also constitute receiver error although these are
+intentional and malicious.
 
 What all of these errors have in common is that create an incorrect value of the psudeorange which in turn incorrectly calculates the reciever position.
 
@@ -365,9 +381,9 @@ produce the same results as recording the gps signal from the desired location.
 Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals by moving processing typically reserved
 for the analog domain into the digital domain. Thus SDR's move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
 allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
-SDR's are very sensitive to the processing power of the copmuter that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
+SDR's are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
 output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
 enough.
 
-This was solved by increasing the UDP buffer size manually to at least the sample rate. From limited experimentation this completely resolved the issue, and opened up
+This was solved by increasing the UDP buffer size manually to at least the sample rate, and over for better results. From limited experimentation this completely resolved the issue, and opened up
 oppertunities to perform spoofing with low powered embedded devices like the Rasperry Pi single board computer. \todo{move this sentence to results}
