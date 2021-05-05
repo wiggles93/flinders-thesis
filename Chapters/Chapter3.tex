@@ -16,15 +16,16 @@ anti-spoofing algorithms is not an aim of this thesis, knowledge of such methods
 
 \section{Literature Review}
 How GPS works has been covered in depth over the past few decades. The operating pricinpals for GPS and other GNSS systems is well known and was covered in the previous
-chapter \ref{Chapter2}. 
+chapter \ref{Chapter2}.
 
+\subsection{Spoofing Attack Literature}
 From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
 positioning has also made it a simple target for exploitation and manipulation, that is the workings
 of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
 is seen as a critical service by many industries including utility management, healthcare/ emergency services and security.
 Having such a system so prone to threats is not ideal. The further development of SDR platforms has driven down the cost of launching
 such exploits. Devices such as the Hack-RF, USRP, Blade-RF and others have been documented for this use \cite{RN4} \cite{RN9}. These devices are all examples of Software
-defined radios that are capable of duplex operation. This combined with open source software, as described in \cite{RN16} and \cite{RN57}. The former is a software
+defined radios that are capable of duplex operation. This combined with open source software, as described in \cite{RN16} \cite{RN57} \cite{RN4}. The former is a software
 package, GPS-SDR, that converts a compatible SDR into a GPS receiver wihtout any knowledge of GPS or signal procssing required. With some understanding this could be
 modified to capture the raw signal for use in a Meaconing spoofing attack. The later refers to the setup and use of the GPS-SDR-SIM program. This program provides a
 method for producing a modulated GPS signal for transmission. It requires the RINEX file for the date and time of the spoof attack as well as a set of coordinates to
@@ -56,14 +57,69 @@ V2X (vehicle to everything) \cite{RN17}, this is still in its infancy and will r
 in performing an attack. This may be implemented to circumvent position based restrictions or if being GPS tracked during certain activities.
 \citeauthor{RN12} used the example of a fisherman wanting their GNSS receiver to falsely report the boat had stayed out of protected areas \cite{RN12}.
 
-In 2012 \textcite{RN6} investigated the different spoofing and antispoofing techniques available. The author noted that spoofing attacks can be divided into 3 main categories:
+In \citeyear{RN6} \textcite{RN6} investigated the different spoofing and antispoofing techniques available. \citeauthor{RN6} noted that spoofing attacks can be divided into 3 main categories:
 GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
 These vulnerabilities can be described in the three operational layers of GPS, signal processing, data bit, and position/navigation solutions.
-Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
-The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
-method was given a complexity, effectiveness and spoofing scenario generality rating with notes made about the received capability requirements.
 Testing spoofing techniques is difficult to achieve since there are regulations around the emission of EM radiation at certain frequencies and power levels.
 There were three methods used to test the spoofing/antispoofing techniques. These were Indoor re-transmissions, spoofing using recorded data (No RF transmission), and
 using RF combiners to combine authentication and spoofed signals.
-The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
+The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques.
+
+\subsection{Anti-Spoofing Literature}
+\textcite{RN6} investigated antispoofing techniques available. Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
+The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
+method was given a complexity, effectiveness and spoofing scenario generality rating with notes made about the received capability requirements. It was 
 shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+    \begin{center}
+        \caption{Summary of Spoofing Detection Methods from \cite{RN6}}
+        \label{tab:SpoofDetectSum}
+        \begin{adjustbox}{width=1\textwidth}
+            \begin{tabular}{ m{40mm}|m{35mm}|c|c|m{30mm}|m{20mm} }
+                \hline
+                \textbf{Anti-Spoofing method} & \textbf{Spoofing Feature} & \textbf{Complexity} & \textbf{Effectiveness} &
+                \textbf{Receiver required capability} & \textbf{Spoofing scenario generality} \\
+                \hline
+                $C/N_0$ monitoring & Higher $C/N_0$ & Low & Medium & $C/N_0$ monitoring & Medium \\
+                Absolute power monitoring & Higher amplitude & Low & Medium & Absolute power monitoring & High \\
+                Power variation versus receiver movement & Higher power variations due to proximity & Low & Low & Antenna movement/ $C/N_0$ monitoring & Low \\
+                L1/L2 power comparison & No L2 signal for spoofer & Medium & Low & L2 reception capability & Low \\
+                Direction of arrival comparison & Spoofing signals coming from the same direction & High & High & Multiple receiver antennas & High \\              
+                Pairwise correlation in synthetic array & Spoofing signals coming from the same direction & Low & High & Measuring correlation coefficient & High \\
+                TOA discrimination & Inevitable delay of spoofing signal & Medium & Medium & TOA analysis & Low \\
+                Signal quality monitoring & Deviated shape of authentic correlation peak & Medium & Medium & Multiple correlators & Low \\
+                Distribution analysis of the correlator output & Perturbed amplitude distribution due to spoofing-authenntic interaction & Low & Medium & Distribution
+                analysis of correlator outputs & Medium \\
+                Consistency check with other solutions & Inconsistency of spoofing solution & High & High & Different navigation sensors & High \\
+                Cryptographic authentication & Not authenticated & High & High & Authentication & High \\
+                Code and phase rate consistency check & Mismatch between artifical code and phase rate & Low & Low & - & Low \\
+                GPS clock consistency check & Spoofing/authentic clock inconsistency & Low & Medium & - & Medium \\ 
+                \hline
+            \end{tabular}
+        \end{adjustbox}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[ht]
+    \begin{center}
+        \caption{Summary of Spoofing Mitigation Methods from \cite{RN6}}
+        \label{tab:SpoofDetectSum}
+        \begin{adjustbox}{width=1\textwidth}
+            \begin{tabular}{ m{40mm}|m{35mm}|c|c|m{30mm}|m{20mm} }
+                \hline
+                \textbf{Anti-Spoofing method} & \textbf{Spoofing Feature} & \textbf{Complexity} & \textbf{Effectiveness} &
+                \textbf{Receiver required capability} & \textbf{Spoofing scenario generality} \\
+                \hline
+                Vestigial signal detection & The authentic signal is still present and can be detected & High & Medium & Multiple receive channels & Medium \\ 
+                Multi-antenna null steering & Spoofing signals coming from same direction & Medium & High & Multiple receive antennas & High \\
+                RAIM & Higher residuals for spoofed measurements & Medium & Medium & - & Medium \\
+                \hline
+            \end{tabular}
+        \end{adjustbox}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
