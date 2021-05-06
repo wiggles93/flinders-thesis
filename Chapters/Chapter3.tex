@@ -18,7 +18,11 @@ anti-spoofing algorithms is not an aim of this thesis, knowledge of such methods
 How GPS works has been covered in depth over the past few decades. The operating pricinpals for GPS and other GNSS systems is well known and was covered in the previous
 chapter \ref{Chapter2}.
 
-\subsection{Spoofing Attack Literature}
+%
+% Subsection - spoofing
+%
+
+\subsection{Spoofing Attack Literature} \label{Subsec:SpoofLit}
 From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
 positioning has also made it a simple target for exploitation and manipulation, that is the workings
 of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
@@ -41,6 +45,15 @@ distances. All commercially available drones have some form of GNSS/GPS location
 manufactueres have built in auto landing features in the event that the drone flys into restricted airspaces. This was to combat civilians who were flying within
 airports, causing safety and security issues. This is one such way that spoofing attacks could be utelised now and in the future, by transmitting a signal that would make
 the drone perceive itself to be in a restricted airspace and land. This kind of attack has been successfully conducted as shown in \cite{RN4}. 
+\textcite{RN21} developed a system to perform a series of spoof attacks on UAV's based on an SDR \cite{RN23}. The goal of this was to be able to 
+control the flight path of the UAV without raising any alarm's from the victim. This paper establishes the required conditions in which a UAV will
+be susceptible to being captured from a spoofing attack, as well as the range of post capture control that the spoofer will have over the victim.
+From testing it was found that spoof attacks were successful from up to 50m and up to a velocity of 10m/s.
+Simulations were produced for analysis of post capture control of the UAV. 
+When testing, both covert and overt spoofing methods were used, distinguished by whether or not the spoofer made an attempt to avoid detection. For the most part there
+was no practical difference between covert and overt methods since the commercial GPS units did not trigger any anti spoof mechanism when being subjected to an overt
+attack. Field testing showed that the spoof attempt caused unrecoverable navigation errors which resulted in the UAV crashing. Future work should increase the
+sophistication of the attacks. This may decrease chances of the drone crashing due to unsuccessful attacks.
 
 There has been research into ways that GPS spoofing attacks could be used in road navigation scenarios. \citeauthor{RN9} were able to implement an algorithm for road
 network modelling and navigation spoofing using GPS. This algorithm coupled with a HackRF SDR meant that the authors were able to create a lunchbox sized spoofing device.
@@ -64,19 +77,33 @@ Testing spoofing techniques is difficult to achieve since there are regulations 
 There were three methods used to test the spoofing/antispoofing techniques. These were Indoor re-transmissions, spoofing using recorded data (No RF transmission), and
 using RF combiners to combine authentication and spoofed signals.
 The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques.
+Previous research into the effects of spoofing can be found in \cite{RN23}. This predates more modern methods for launching a successful spoofing attack and uses a
+specialised DSP chip within a specilised hardware configuration. The findings of this paper was used to recommend anti-spoofing methods for unsophisticated spoofing
+attacks. \citeauthor{RN23} was able to implement complex spoofing setups with multiple phase locked radios that were able to overcome some anti-spoofing techniques. 
+
+
+
+%
+% Subsection - Anti-spoofing
+%
 
 \subsection{Anti-Spoofing Literature}
+It is common within research to investigate methods of spoofing attack and to combine this with recommendations for anti-spoofing. This was the case with \textcite{RN6}
+and \textcite{RN23}. The later, as mentioned above in Section \ref{Subsec:SpoofLit} a spoofing device was developed and tested against some anti-spoofing methods. From
+this anti-spoofing recommendations were developed. The recommedations are as per \citeauthor{RN6}.
 \textcite{RN6} investigated antispoofing techniques available. Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
 The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
-method was given a complexity, effectiveness and spoofing scenario generality rating with notes made about the received capability requirements. It was 
+method was given a complexity, effectiveness and spoofing scenario generality rating with notes made about the received capability requirements and are summarised in
+Table \ref{tab:SpoofDetectSum} and Table \ref{tab:SpoofMitigateSum}. It was 
 shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{table}[ht]
     \begin{center}
         \caption{Summary of Spoofing Detection Methods from \cite{RN6}}
         \label{tab:SpoofDetectSum}
-        \begin{adjustbox}{width=1\textwidth}
+        \makebox[1 \textwidth][c]{
+        \resizebox{1.1 \textwidth}{!} {
             \begin{tabular}{ m{40mm}|m{35mm}|c|c|m{30mm}|m{20mm} }
                 \hline
                 \textbf{Anti-Spoofing method} & \textbf{Spoofing Feature} & \textbf{Complexity} & \textbf{Effectiveness} &
@@ -98,17 +125,19 @@ shown that with modest, low complexity spoof detection and mitigation strategies
                 GPS clock consistency check & Spoofing/authentic clock inconsistency & Low & Medium & - & Medium \\ 
                 \hline
             \end{tabular}
-        \end{adjustbox}
+        }
+        }
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{table}[ht]
     \begin{center}
         \caption{Summary of Spoofing Mitigation Methods from \cite{RN6}}
-        \label{tab:SpoofDetectSum}
-        \begin{adjustbox}{width=1\textwidth}
+        \label{tab:SpoofMitigateSum}
+        \makebox[1 \textwidth][c]{
+        \resizebox{1.1 \textwidth}{!} {
             \begin{tabular}{ m{40mm}|m{35mm}|c|c|m{30mm}|m{20mm} }
                 \hline
                 \textbf{Anti-Spoofing method} & \textbf{Spoofing Feature} & \textbf{Complexity} & \textbf{Effectiveness} &
@@ -119,7 +148,12 @@ shown that with modest, low complexity spoof detection and mitigation strategies
                 RAIM & Higher residuals for spoofed measurements & Medium & Medium & - & Medium \\
                 \hline
             \end{tabular}
-        \end{adjustbox}
+            }
+            }
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
+
+\section{Literature Review Conclusion}
+Some of the early assessments of the spoofing threat included methods for performing said attacks using specialised hardware \cite{RN23}. This increased the technical
+knowledge required to be able to perform an attack.
