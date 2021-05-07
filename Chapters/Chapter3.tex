@@ -18,22 +18,37 @@ anti-spoofing algorithms is not an aim of this thesis, knowledge of such methods
 How GPS works has been covered in depth over the past few decades. The operating pricinpals for GPS and other GNSS systems is well known and was covered in the previous
 chapter \ref{Chapter2}.
 
+From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
+positioning has also made it a target for exploitation and manipulation. That is the workings
+of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
+is seen as a critical service by many industries including utility management, healthcare/ emergency services and security. \textcite{RN28} noted that the signals
+presented to the receivers are usually trusted without any authentication or other checking. The authors show that this trust can be exploited without physical access to
+or altering the software of the target device. One of the signal properties that makes spoofing simple is the received signal power from space which is less than -130dBm
+making overpower the legitimate signal a simple task. Having such a system so prone to threats is not ideal. 
+
 %
 % Subsection - spoofing
 %
 
 \subsection{Spoofing Attack Literature} \label{Subsec:SpoofLit}
-From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
-positioning has also made it a simple target for exploitation and manipulation, that is the workings
-of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
-is seen as a critical service by many industries including utility management, healthcare/ emergency services and security.
-Having such a system so prone to threats is not ideal. The further development of SDR platforms has driven down the cost of launching
-such exploits. Devices such as the Hack-RF, USRP, Blade-RF and others have been documented for this use \cite{RN4} \cite{RN9}. These devices are all examples of Software
-defined radios that are capable of duplex operation. This combined with open source software, as described in \cite{RN16} \cite{RN57} \cite{RN4}. The former is a software
-package, GPS-SDR, that converts a compatible SDR into a GPS receiver wihtout any knowledge of GPS or signal procssing required. With some understanding this could be
-modified to capture the raw signal for use in a Meaconing spoofing attack. The later refers to the setup and use of the GPS-SDR-SIM program. This program provides a
-method for producing a modulated GPS signal for transmission. It requires the RINEX file for the date and time of the spoof attack as well as a set of coordinates to
-reproduce. Since it is open source it can be easily modified for any use case. 
+The further development of SDR platforms has driven down the cost of launching GNSS based spoofing attacks. Devices such as the Hack-RF, USRP, Blade-RF and others have
+been documented for this use \cite{RN4} \cite{RN9}. These devices are all examples of Software defined radios that are capable of duplex operation. This combined with
+open source software, as described in \cite{RN16} \cite{RN57} \cite{RN4}. The former is a software package, GPS-SDR, that converts a compatible SDR into a GPS receiver
+wihtout any knowledge of GPS or signal procssing required. With some understanding this could be modified to capture the raw signal for use in a Meaconing spoofing
+attack. The later refers to the setup and use of the GPS-SDR-SIM program. This program provides a method for producing a modulated GPS signal for transmission. It
+requires the RINEX file for the date and time of the spoof attack as well as a set of coordinates to reproduce. Since it is open source it can be easily modified for any
+use case. 
+
+\textcite{RN28} created a spoofing device based on the HackRF SDR platform in conjunction with the open source program GPS-SIM-SDR. Hack-RF was chosen as the SDR platform
+because of its open source nature, it also had the required specifications to perform the spoof attack. It was shown in this paper that the use of an SDR and open source
+software was able to fool client devices such as apple smartphones into thinking they were else where. This included specific apps that require location data such as Uber
+and DiDi. The authors provided a list of recommendations to minimise the risk of being spoofed. These recommendations are non trivial and some required alterations to how
+the receiver processes the signal data.
+
+\textcite{RN30} investigated the exact requirements for successfully spoofing a receiver. From the experiments it was found that there are 4 parameters that have required values in order to successfully spoof a GPS signal. That is the relative signal 
+power must be $\geq+2dB$, the constant time offset must be $\leq 75ns$, location offset must be $\leq 500m$ and the relative time offset must be $\leq 80ns$. These values
+correspond to situations where the reciver already has a lock on satellites. It was found that when values outside of those mentioned above, the lock would be lost and
+the spoofing would be unsuccessful. The more victims that are trying to be spoofed the more restrictive the locaiton for performing the spoof becomes.
 
 Software based GPS simulation tools similar to that of GPS-SDR-SIM have also been created using a combination of C and MATLAB \cite{RN15}. In this example the author used
 C to ensure processing efficiency of the modulated signal, and used MATLAB to simulate multipath errors and uncertainty. The resultant file was then saved to the hard
@@ -81,7 +96,13 @@ Previous research into the effects of spoofing can be found in \cite{RN23}. This
 specialised DSP chip within a specilised hardware configuration. The findings of this paper was used to recommend anti-spoofing methods for unsophisticated spoofing
 attacks. \citeauthor{RN23} was able to implement complex spoofing setups with multiple phase locked radios that were able to overcome some anti-spoofing techniques. 
 
-
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm, keepaspectratio]{Figures/Attack and defence summary.png}
+        \caption{Summary of spoofing attack and defence methods and their effectiveness against each other as found in \cite{RN12}}
+    \label{fig:SpoofDefenceSumm}
+    \end{centering}
+\end{figure}
 
 %
 % Subsection - Anti-spoofing
