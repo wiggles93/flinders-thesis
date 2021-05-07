@@ -2,6 +2,63 @@
 \chapter{Methodology} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+%\medskip
+Summary of testing:
+\begin{itemize}
+    \item Used commercial GPS receiver to check received SNR values \\ Antennae used:
+    \begin{itemize}
+        \item passive patch antenna
+        \item active antenna
+        \item Log-periodic antenna
+    \end{itemize}
+    This resulted in a preliminary finding that the active antenna improved signal to noise ratio by 8dB. \todo{Update with more formal findings}
+    \item Use SDR + GNSS-SDR to receive similar signals and compare SNR values
+    \item Use stored text file of gps data and connect Tx to Rx antenna port (via attenuator) to check if programs are manipulating the data as they should be.
+    \item Use stored txt file of gps data (received from commercial receiver) and transmit gps signal using log periodic antenna to see if phone GPS can be spoofed into thinking it is in another geographical location.
+\end{itemize}
+\medskip
+All of the software packages used are free and opensource.
+List of Software packages used:
+\begin{itemize}
+    \item GNURadio
+    \item GNSS-SDR
+    \item GNSS-SDR-monitor
+    \item gps-sdr-sim
+    \item SatGen 3
+\end{itemize}
+
+\textbf{Tests to Perform}
+\begin{itemize}
+    \item SDR reception: Don't use log-periodic since the directional nature of the radiation pattern makes any signal from a satllite thats not inline with the antenna
+    suffer from attenuation. Using the same omni that has been proved to work with transmission should hopefully net useable results. 
+    \begin{itemize}
+        \item passive omni: Use GNSS-SDR to capture location through SDR
+        \item active patch: Use GNSS-SDR to capture location through SDR
+        \item passive omni: Use GNURadio to capture raw ADC values.
+        \item active patch: Use GNURadio to capture raw ADC values.
+    \end{itemize}
+    \item SDR transmission
+    \begin{itemize}
+        \item Static coordinates at set locations that can be easily compared to real reception. Receive with both phone and COTS receiver. Compare using GPXSee aswell as
+        GNSS Raw
+        \begin{itemize}
+            \item Tonsley MAB
+            \item Netley
+            \item Goolwa
+            \item Antarctica for shits and giggles
+        \end{itemize}
+        \item dynamic that can be easily compared to real reception
+        \begin{itemize}
+            \item Tonsley MAB CCt path
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+From the desktop version of Google Earth Pro navigation paths can be created. These paths can then be use to generate a GPS signal to replicate that path using the
+GPS-SDR-SIM program \cite{RN42}. It should be noted that the KML file format is not suitable for use with this program and must be converted into NMEA GGA stream format.
+
+\textbf{It would be great to be able to perform a meaconing attack. This requries real time reception and rebroadcast with a higher power. The extra time delay
+makes the spoofing victim believe they are elsewhere. This should be a search term.}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1

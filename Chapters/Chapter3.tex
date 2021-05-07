@@ -45,10 +45,11 @@ software was able to fool client devices such as apple smartphones into thinking
 and DiDi. The authors provided a list of recommendations to minimise the risk of being spoofed. These recommendations are non trivial and some required alterations to how
 the receiver processes the signal data.
 
-\textcite{RN30} investigated the exact requirements for successfully spoofing a receiver. From the experiments it was found that there are 4 parameters that have required values in order to successfully spoof a GPS signal. That is the relative signal 
-power must be $\geq+2dB$, the constant time offset must be $\leq 75ns$, location offset must be $\leq 500m$ and the relative time offset must be $\leq 80ns$. These values
-correspond to situations where the reciver already has a lock on satellites. It was found that when values outside of those mentioned above, the lock would be lost and
-the spoofing would be unsuccessful. The more victims that are trying to be spoofed the more restrictive the locaiton for performing the spoof becomes.
+\textcite{RN30} investigated the exact requirements for successfully spoofing a receiver. From the experiments it was found that there are 4 parameters that have required
+values in order to successfully spoof a GPS signal. That is the relative signal power must be $\geq+2dB$, the constant time offset must be $\leq 75ns$, location offset
+must be $\leq 500m$ and the relative time offset must be $\leq 80ns$. These values correspond to situations where the reciver already has a lock on satellites. It was
+found that when values outside of those mentioned above, the lock would be lost and the spoofing would be unsuccessful. The more victims that are trying to be spoofed the
+more restrictive the locaiton for performing the spoof becomes.
 
 Software based GPS simulation tools similar to that of GPS-SDR-SIM have also been created using a combination of C and MATLAB \cite{RN15}. In this example the author used
 C to ensure processing efficiency of the modulated signal, and used MATLAB to simulate multipath errors and uncertainty. The resultant file was then saved to the hard
