@@ -21,7 +21,7 @@ chapter \ref{Chapter2}.
 From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
 positioning has also made it a target for exploitation and manipulation. That is the workings
 of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
-is seen as a critical service by many industries including utility management, healthcare/ emergency services and security. \textcite{RN28} noted that the signals
+is seen as a critical service by many industries including utility management, healthcare/ emergency services and security \cite{RN12} \cite{RN32}. \textcite{RN28} noted that the signals
 presented to the receivers are usually trusted without any authentication or other checking. The authors show that this trust can be exploited without physical access to
 or altering the software of the target device. One of the signal properties that makes spoofing simple is the received signal power from space which is less than -130dBm
 making overpower the legitimate signal a simple task. Having such a system so prone to threats is not ideal. 
@@ -110,16 +110,79 @@ attacks. \citeauthor{RN23} was able to implement complex spoofing setups with mu
 %
 
 \subsection{Anti-Spoofing Literature}
-Wihtin the litereate there has been a categorisation of anti-spoofing techniques into detection and mitigation. Detection techniques have been more reasearched since they
-are much easier to implement. Mitigation requires overcoming the spoofing attack and maintaining lock with the legitimate GPS signals.
-It is common within research to investigate methods of spoofing attack and to combine this with recommendations for anti-spoofing. This was the case with \textcite{RN6}
-and \textcite{RN23}. The later, as mentioned above in Section \ref{Subsec:SpoofLit} a spoofing device was developed and tested against some anti-spoofing methods. From
-this anti-spoofing recommendations were developed. The recommedations are as per \citeauthor{RN6}. \textcite{RN6} investigated antispoofing techniques available.
-Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories. The
-effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation method was given a
+Within the litereate there has been a categorisation of anti-spoofing techniques into detection and mitigation. Detection techniques have been more reasearched since they
+are much easier to implement. Mitigation requires overcoming the spoofing attack and maintaining lock with the legitimate GPS signals. It is common within research to
+investigate methods of spoofing attack and to combine this with recommendations for anti-spoofing. This was the case with \textcite{RN6} \textcite{RN32},
+\textcite{RN33},\textcite{RN23}. The later, as mentioned above in Section \ref{Subsec:SpoofLit} a spoofing device was developed and tested against some anti-spoofing
+methods. From this anti-spoofing recommendations were developed. The recommedations are as per \citeauthor{RN6}. \textcite{RN6} investigated antispoofing techniques
+available. Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories. 
+
+In \textcite{RN32} a review and analysis of the GNSS spoofing threat as well as the countermeasures of the time was provided.This report aimed
+to fill the gap in 3 main areas of GNSS spoofing research, namely assessing the exact threat scenarios for commonly cited targets, investigate the practical impediments
+of performing a spoofing attack in the field and lastly to survey and asses the performance of proposed GNSS spoofing defences. When defining spoofing, \citeauthor{RN32}
+determined that a power ratio (spoofed vs authentic) of just 1.1 was sufficient to force the receiver to move onto the spoofed signal. And with authentic GNSS signal
+strengths of approximately $-153dBW$ to $-160dbW$, this ratio is easy to achieve. It was noted that the
+only detectable differences between a legitimate and spoofed one is the timing difference, signal angle of arrival, signal strength, Doppler shift and SNR. Most receivers
+as of \citeyear{RN32} were not capable of registering these differences. The AGC (Automatic Gain Control) functionality common on GNSS receivers adjusts the signal gain
+to compensate for any changes in the received signal strength, and in doing so makes the receiver more susceptible to a spoofing attack. The two main spoofing attack
+types analysed were \emph{Meaconing} and \emph{SCER}. SCER is an evolution of the Meaconing attack where a single satellite signal is rebroadcast after a set delay.
+Meaconing is the simplest spoofing attack and is a capture and re-transmission attack. This attack is difficult to perform on the military P(Y) code, but simple to perform
+for the civilian C/A code. The most commonly referred to GNSS spoof attack targets came in the form of Power Disruption networks, shipping, aircraft, trains, criminal
+security tags and mobile phones. Each of these examples were analysed in detail for potential attack vectors.
+It was also noted that there are significant practical difficulties to performing a spoofing attack outside of an academic setting where variables can be tightly
+controlled. First and foremost the cost of the hardware, while declining quickly, is still out of reach of many of the general public costing upwards of \$2300 at the
+time. Current pricing for the USRPN210 in Australia is approximately \$4000. 
+Those without the technical know how could purchase an off the shelf GNSS simulator unit, however these start at \$20,000 for a multi constellation generator. Practical
+difficulties continue with distance from the target, which, due to the inverse square law of radio propagation means to ensure a sufficiently high SNR that distance from
+attacker to target should be minimised. This is made difficult if the target is moving. Other difficulties were raised including need for direct line of sight and the need for
+multiple simulators for multi GNSS receivers. 
+While it was found that current generation GNSS receivers were susceptible to spoof attacks, there were countermeasures that could be employed to either detect or
+mitigate the spoofing threat. Of the proposed GNSS spoofing countermeasures all can be summarised with four categories, Signal processing defences, Cryptographic
+defences, Correlation with other timing sources, Radio spectrum and antenna defences. It was found that at least 1 method from each of the categories was highly effective
+at defending against an attack. Given the practical difficulties in performing a spoofing attack and the effective defences that have been developed (although not used in
+the wider community as yet) it was concluded that the threat posed by GNSS spoofing was low but with the potential to increase as the practical implementation became
+easier and cheaper and if companies did not implement countermeasures.
+Recommended future work was based around real time detection and location of spoofing attacks.
+
+The review provided in \cite{RN32} was expanded by a review in \citeyear{RN33} by \textcite{RN33}. \citeauthor{RN33} provided a survey of the spoofing and anti-spoofing
+measures that have been researched recently. A detailed list of spoofing and anti-spoofing techniques were covered within the
+literature, but as mentioned above all can fit within the 2 categories of forwarding or generating based techniques. From the research it was found that most of the
+anti-spoofing techniques require some form of hardware alteration. There were some methods that did not require such modifications, namely those that relied upon antrenna
+array detection and angle of arrival detection methods. It was found that there is no spoofing mehthod that is immune to all anti-spoofing techniques, and equally there
+is not single anti-spoofing method that is able to detect and mitigate all spoofing methods. It was advised to continue researching and developing advanced anti-deception
+systems since the deception models will continue to advance. 
+
+The authors outlined challenges faced by GNSS systems which include: PVT accuracy, availibilty of GNSS systems, integrity of the system, and the ease in which
+interference can occur. 
+
+From \cite{RN12} the defence techniques could be broken down into three categories; pseudo-range RAIM (receiver autonomous integrity monitoring),
+looking at the difference between a true and spoofed signal, and looking for interaction between true and spoofed signals. Pseudo-range RAIM is considered
+too weak against modern spoofing attacks and was not considered in this publication. The specific methods of defence tested in this paper  
+were advanced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
+
+The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation method was given a
 complexity, effectiveness and spoofing scenario generality rating with notes made about the received capability requirements and are summarised in Table
 \ref{tab:SpoofDetectSum} and Table \ref{tab:SpoofMitigateSum}. It was shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof
 attacks were able to be overcome.
+
+\textcite{RN7} discussed a method of spoof detection by creating unique a fingerprint from each of the transmitting satellites. This fingerprint algorithm was able to determine if a transmission was
+authentic or spoofed. This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts.
+
+Another form of spoof detection was discussed in \cite{RN10}. \textcite{RN10} used multiple receivers in order to process the signals and determine if the signals were
+authentic or spoofed. These techniques were varied and ranged from simple methods like monitoring the power level
+of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. When there is no spoofer present there will be unique signal
+characteristics at each of the receivers. The concept of detecting a spoofing event was to compare the position of each receiver against the known relative positions. This
+was chosen as it will not require any hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to
+existing systems. The testing was performed under the assumption that the spoofing transmitter only had one antenna. In the
+first case there was approximately 1\% chance of a false alarm while the probability of detection was found to be intractable.
+It was noted that to enable an inital statistical analysis of the solution, some simplifying assumptions were chosen. As such, future works should attempt to reduce the
+simplifications where possible to create results that are applicable to real world scenarios.
+
+Other means of spoofing detection aim to use existing infrastructure or existing sensors built into products. An example being the use of 
+
+
+As mentioned above, there has also been research perfomed in the context of spoof mitigation. There is a cross over between detection and mitigation since the presence of
+a spoofer or spoofed signal must first be detected before it is acted upon.
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht]
@@ -181,3 +244,12 @@ attacks were able to be overcome.
 \section{Literature Review Conclusion}
 Some of the early assessments of the spoofing threat included methods for performing said attacks using specialised hardware \cite{RN23}. This increased the technical
 knowledge required to be able to perform an attack.
+
+Common recommendations from the literature was the implementation of, at a minimum, basic anti-spoofing infrastructure. This is more commen place in applications that
+have suitable software processinng capabilities. But dedicated COTS receivers do not typically have any defence strategies in place.  
+
+Areas of future research were also outlined and include but are not limited to interconnecting the satellites together, incrasing accurace of
+atomic time keeping as well as introducing advanced anti-spoofing techniques, more wide spread support of multi constellation receivers, and increasing anti interference
+capabilities of receivers through either hardware, software or both \cite{RN33}.
+
+Anti-spoofing methods have previously been abandoned because of cost and complexity issues \cite{RN7}.
