@@ -14,6 +14,10 @@ content as well as age. There have been some significant performance increases i
 This literature review will focus mainly on GNSS spoofing methods, with emphasis on the GPS constellation, and on potential anti-spoofing methods. While development of
 anti-spoofing algorithms is not an aim of this thesis, knowledge of such methods allow for understanding potential attack vectors.
 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
 \section{Literature Review}
 How GPS works has been covered in depth over the past few decades. The operating pricinpals for GPS and other GNSS systems is well known and was covered in the previous
 chapter \ref{Chapter2}.
@@ -178,7 +182,20 @@ first case there was approximately 1\% chance of a false alarm while the probabi
 It was noted that to enable an inital statistical analysis of the solution, some simplifying assumptions were chosen. As such, future works should attempt to reduce the
 simplifications where possible to create results that are applicable to real world scenarios.
 
-Other means of spoofing detection aim to use existing infrastructure or existing sensors built into products. An example being the use of 
+Other means of spoofing detection aim to use existing infrastructure or existing sensors built into products. In \cite{RN1} \citeauthor{RN1} propsed a method of spoofing
+detection and localisation using V2V (Vehicle to Vehicle) communications. Using a network of cooperative vehicles the spoofer could be localised by analysing the respective
+Doppler shifts. After laboratory testing on stationary spoofers, it was found to be effective at providing an approximate location at up to 200m away.
+When the spoofer was moving, this was decreased to 50m and was movement direction agnostic. In another paper, \citeauthor{RN24} proposed a method for detecting spoofing
+attack on commercial airplanes by monitoring the broadcast infromation for irractic or unexplanable changes in position or velocity \cite{RN24}. This was named
+Crowd-GPS-sec.
+
+The Android operating system released an update in 2016 the Android API which included access to the Raw GNSS properties including navigation messages, pseudo-ranges,
+Doppler frequencies, constellation status and others. From these properties a GPS spoof detection program
+was developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
+3) inertial sensor data and 4) pseudo-range residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
+used for testing. From testing it was found that phones tend to give a higher priority to GPS based location than that of other methods (network based). 
+From testing it can be seen that each of the metrics available can be used to combat certain types of spoofing attacks, and when used together as in GNSSAlarm, 
+a robust solution is available.
 
 
 As mentioned above, there has also been research perfomed in the context of spoof mitigation. There is a cross over between detection and mitigation since the presence of
@@ -240,6 +257,10 @@ a spoofer or spoofed signal must first be detected before it is acted upon.
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
 
 \section{Literature Review Conclusion}
 Some of the early assessments of the spoofing threat included methods for performing said attacks using specialised hardware \cite{RN23}. This increased the technical

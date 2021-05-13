@@ -4,11 +4,13 @@
 
 \label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+This section coveres the results of the GNSS reception and GPS tramission experiments. Section \ref{sec:Res_GNSSReception} coveres the attempts at reciving authentic GNSS
+signals and accurately calcaulating a location. Section \ref{sec:Res_GPSTransmission} will cover the attempts and results of performing spoofing attacks on GPS receivers.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{GNSS Reception}
+\section{GNSS Reception} \label{sec:Res_GNSSReception}
 Before testing the GPS transmission performance of the SDR, reception was tested, with less success. Three antenna setups were chosen each failing to lock and track the
 satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it includes amplifiers and
 filters within the antenna module iteself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
@@ -19,7 +21,7 @@ that there was 5V on the RF+DC port of the Tee.
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{GPS Transmission}
+\section{GPS Transmission} \label{sec:Res_GPSTransmission}
 
 \subsection{Meaconing Attack}
 Since the GPS reception failed with the SDR, there was no way of performing a meaconing attack. Therefore, the only viable attack strategy was to generate a binary file

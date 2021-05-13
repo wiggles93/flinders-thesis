@@ -4,6 +4,10 @@
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+The format of this chapter is as follows, there is a section on the details behind GNSS systems and the history behind GNSS and how it came to be in its current state. After that
+an overview of the current and future GNSS constellations including operating prinipals was covered. Then real world uses of GNSS are listed. Following that the errors
+that account for the innacuracies of calcualted GNSS position are covered, including the definition of spoofing types.
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -362,16 +366,40 @@ signal into thinking it is elsewhere or else-when. This is done by different met
 successful spoofing attack will have the receiver 'tracking' the signal produced by the spoofer and the receiver will not be aware that an attack is taking place. Common
 spoofing attacks are explained below.
 
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=10cm, keepaspectratio]{Figures/Jamming.png}
+        \caption{Representation of how a jammer is able to interfere with a GNSS signal}
+    \label{fig:jamming cartoon}
+    \end{centering}
+\end{figure}
+
 \subsection{Meaconing}
 Meaconing is a type of GNSS spoofing attack that involves recording a legitimate GNSS signal and re-broadcasting. This could be either instantly or at a different time or
 place. This requries little prior knowledge of the GNSS system that the attacker wishes to record other when used with existing open source software packages. Although
 there is a requirenment of having the right equipment to be able to capture the raw analog signal.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
+        \caption{Representation of how a GNSS spoofer can perform a meaconing attack}
+    \label{fig:meaconing cartoon}
+    \end{centering}
+\end{figure}
 
 \subsection{Signal Generation}
 There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
 played in such a manner as to perform a spoofing attack. This differes from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
 a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is requied as to
 produce the same results as recording the gps signal from the desired location.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=10cm, keepaspectratio]{Figures/Spoofing.png}
+        \caption{Representation of how a GNSS spoofing device uses a generated signal to force a receiver to incorrectly calculate its position}
+    \label{fig:spoofing cartoon}
+    \end{centering}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 6

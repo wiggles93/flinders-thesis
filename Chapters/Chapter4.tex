@@ -3,6 +3,8 @@
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+This chapter coveres the hardware and software setup used for the experimentation
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -39,6 +41,25 @@ antenna. A bias-tee was used in order to feed the antenna with the $5V$ requried
 bias-tee a USB cable was cut and used to connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to
 find or lock onto any of the GPS satellites at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary files that replicate
 the received signals from the satellites. 
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{centering}
+                \node[stepNode][draw, text width=3cm,minimum height=1.5cm](block1){Choose \\ Coordinates};
+                \node[stepNode][draw, below=of block1, text width=3cm,minimum height=1.5cm](block2){Generate \\NMEA file};
+                \node[stepNode][draw, below=of block2, text width=3cm,minimum height=1.5cm](block3){Download ephemeris};
+                \node[stepNode][draw, below=of block3, text width=3cm,minimum height=1.5cm](block4){Compile \\Signal Binary File};
+                \node[stepNode][draw, below=of block4, text width=3cm,minimum height=1.5cm](block5){Transmit Signal};
+                \node[stepNode][draw, below=of block5, text width=3cm,minimum height=1.5cm](block6){Log GPS Data};
+                \node[stepNode][draw, below=of block6, text width=3cm,minimum height=1.5cm](block7){Generate Graphs};
+            \end{centering}
+
+                \draw[-latex] (block1) edge (block2) (block2) edge (block3) (block3) edge (block4) (block4) edge (block5) (block5) edge (block6) (block6) edge (block7);
+        \end{tikzpicture}
+    \end{center}
+    \caption{Flowchart of perfoming experimentation} \label{fig:Flowchart}
+\end{figure}
 
 \section{Using SatGen3}
 
@@ -121,6 +142,15 @@ with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
     \end{itemize}
 \end{itemize}
 
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=13cm,keepaspectratio]{Figures/Setup/overview_labelled.png}
+        \caption{Hardware setup for testing spoofing transmission within Faraday cage}
+    \label{fig:HardwareSetup}
+    \end{centering}
+\end{figure}
+
+
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
 minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
@@ -159,19 +189,3 @@ signals and translate them into position.
 The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
 antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
 consideration.
-
-\begin{figure}[h]
-    \begin{centering}
-        \begin{tikzpicture}
-                \node[draw, text width=3cm,minimum height=1.5cm](block1){Choose \\ Coordinates};
-                \node[draw, below=of block1, text width=3cm,minimum height=1.5cm](block2){Generate \\NMEA file};
-                \node[draw, below=of block2, text width=3cm,minimum height=1.5cm](block3){Download ephemeris};
-                \node[draw, below=of block3, text width=3cm,minimum height=1.5cm](block4){Compile \\Signal Binary File};
-                \node[draw, below=of block4, text width=3cm,minimum height=1.5cm](block5){Transmit Signal};
-                \node[draw, below=of block5, text width=3cm,minimum height=1.5cm](block6){Log GPS Data};
-
-                \draw[-latex] (block1) edge (block2) (block2) edge (block3) (block3) edge (block4) (block4) edge (block5) (block5) edge (block6);
-        \end{tikzpicture}
-    \end{centering}
-    \caption{Flowchart of perfoming experimentation} \label{fig:Flowchart}
-\end{figure}
