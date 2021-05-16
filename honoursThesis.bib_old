@@ -437,6 +437,19 @@
    type = {Journal Article}
 }
 
+@article{RN66,
+   author = {Waller, P. and Gonzalez, F. and Binda, S. and Sesia, I. and Hidalgo, I. and Tobias, G. and Tavella, P.},
+   title = {The In-Orbit performances of GIOVE clocks},
+   journal = {IEEE Trans Ultrason Ferroelectr Freq Control},
+   volume = {57},
+   number = {3},
+   pages = {738-745},
+   ISSN = {0885-3010},
+   DOI = {10.1109/TUFFC.2010.1472},
+   year = {2010},
+   type = {Journal Article}
+}
+
 @article{RN28,
    author = {Wang, Kang and Chen, Shuhua and Pan, Aimin},
    title = {Time and position spoofing with open source projects},
