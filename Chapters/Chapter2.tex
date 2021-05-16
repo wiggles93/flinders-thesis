@@ -21,7 +21,7 @@ and commissioned the first satellite based nanvigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
 QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, L EO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits.
 Current GNSS systems utelise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -128,7 +128,11 @@ equates to an orbital period of 12hours. There are multiple frequencies of diffe
 and L5 bands and have centre frequencies of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The
 L1 band is the most commonly used and was the first one to be made operational. In the past the L1 band was used for civilian purposes and the L2 band was a military
 band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective frequncy bands. GPS predominately uses BPSK but also utelises BOC for
-signal modulation accross all of the bands.  
+signal modulation accross all of the bands. 
+
+All satellites within the constellation will broadcast using the same freuqency band (L1, L2 or L5). They are able to do this without interfering through the use of CDMA
+(Code Division Multiple Access) scheme. Each satellite has a unique chipping code that is used to spread the signal in the frequency domain. This code is a PRN (Psuedo
+Random Number). This same access scheme is used for GPS, Galileo and BeiDou.
 
 Initially the civilian C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. In May 2000 President Bill
 Clinton directed the removal of selective availabililty from the GPS service, and in 2007 it was announced that the newest version of GPS satellites would be manufactured
@@ -233,13 +237,13 @@ and social development", and was previously known as COMPASS. This is China's at
 The BeiDou constellation is made up of 35 satellites in total. This includes 5 geostationary satellites, 27 MEO satllites and 3 inclined geosynchronous sateliitels to
 give total earth coverage. The MEO satellites orbit at a height of 21,500km, and are distributed accross 3 orbital planes. Through the use of the geostationary and
 geosynchronous satellites there is a region around Asia that has higher accuracy than what is present at other areas of the globe. This accuracy for open service is
-approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere. The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table
+approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere \cite{RN59}. The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table
 \ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
-        \caption{Sunmmary of BeiDou Signal Properties}
+        \caption{Summary of BeiDou Signal Properties \cite{RN59}}
         \label{tab:Beidou Signal}
         \begin{tabular}{ |r|c|c| }
             \hline
@@ -291,16 +295,57 @@ geographically locally and run by those local Governments.
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
 calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA sentences. There are many sentence types
-and not all receivers will output all sentence types. 
+and not all receivers will output all sentence types.
+
+\subsubsection{NMEA Sentences}
+The NMEA (National Maritime Electronics Association) has a number of standards one of which is NMEA-0183. This standard outlines the combined electrical and data
+specifications for communication between marine electronic equipment. The data specification was adopted by GPS receiver manufactuers to ensure software could operate
+with any GPS hardware. The standard outlines the typical message structure. This structure lays the foundation for many different message types called sentences. These
+sentences carry different information depending on the sentence type, and it is often the case that multiple sentences will be requiered in order for the software to
+understand the full picture. One of the key inclusions within the data specificatoin is the checksum. Each sentence has a checksum based on the contents of the message
+that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
+characters are XOR'd together and their integer value is used as the checksum.
+
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \todo{inser citation}, which is summarised
+below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources wihtout needing to know anything about the hardware itself.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{GNSS Identifier Mnemonics as per NMEA-0183}
+        \label{tab:NMEA Mnemonics}
+        \begin{tabular}{ |l|c| }
+            \hline
+            \textbf{Talker Device} & \textbf{Identifier} \\
+            \hline
+            Galileo Positioning System & GA \\
+            \hline
+            BDS (BeiDou System) & GB \\
+            \hline
+            NavIC (IRNSS) & GI \\
+            \hline
+            Glonass Receiver & GL \\
+            \hline
+            Global Navigation Satellite System & GN \\
+            \hline
+            Global Positioning System (GPS) & GP \\
+            \hline
+            QZSS & GQ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
 
 \section{Applications of GNSS} \label{sec:ApplicationsGNSS}
-GNSS applications are broad and deeply ingradined in the almost everyones everyday lives. These applications vary from providing postion and navigation information for
-maps on a smartphone or sat-nav devices to providing accurtate timing infomation for financial institutions or energy infrastructure \cite{RN33} \cite{RN12} as shown in Figure
-\ref{fig:GNSS Applications}. This 
+GNSS applications are broad and deeply ingradined in almost everyones everyday lives. These applications vary from providing postion and navigation information for public
+transport or maps on a smartphone or sat-nav devices to providing accurtate timing infomation for financial institutions or energy infrastructure \cite{RN33} \cite{RN12}
+as shown in Figure \ref{fig:GNSS Applications}. This societal ubiquity has made GNSS as much a critical infrastructure as internet or energy provision, since these
+services rely on the services provided by GNSS.
 
 \begin{figure}[h]
     \begin{centering}

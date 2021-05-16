@@ -28,11 +28,7 @@ digitised version of the signal was saved to a file such that it could be replay
 To see the effectiveness of the GPS spoofing methods experiments were carried out and results were recoreded. The success of the experiments were dictated by whether or
 not the receiver was reporting false location or timing information. Using an adroid phone there is access to the raw GPS information which can be used to determine if
 the spoofing signal is being accepted. However, the use of a "maps" program was also used as a way to determine if there was any form of software/hardware anti-spoofing
-technique being used post gps receiver. A simple COTS was also used to log the NMEA sentences from its serial interface. A custom program was generated in order to graph
-various outputs from these sentences. 
-
-The use of "GPGSV" sentences allowed for tracking which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
-noise graphs.
+technique being used post gps receiver. A simple COTS will also be used to log the NMEA sentences 
 
 \section{Testing Workflow}
 
@@ -65,20 +61,6 @@ the received signals from the satellites.
     \end{center}
     \caption{Flowchart of perfoming experimentation} \label{fig:Flowchart}
 \end{figure}
-
-\subsection{Choose Coordinates}
-
-\subsection{Generate NMEA File}
-
-\subsection{Download Ephemeris}
-
-\subsection{Comppile Signal Binary File}
-
-\subsection{Transmit Signal}
-
-\subsection{Log GPS Data}
-
-\subsection{Generate Graphs}
 
 \section{Using SatGen3}
 
@@ -169,11 +151,6 @@ with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
     \end{centering}
 \end{figure}
 
-\subsection{Software Setup}
-The laptop was the interface between softrware and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the
-PC attached to the ethernet port.
-
-The software used for this project was a combination of open source and custom software. 
 
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
