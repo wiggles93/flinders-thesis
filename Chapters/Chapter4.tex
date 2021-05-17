@@ -66,15 +66,71 @@ the received signals from the satellites.
     \caption{Flowchart of perfoming experimentation} \label{fig:Flowchart}
 \end{figure}
 
+Each of the nodes of Figure \ref{fig:Flowchart} will be expanded upon below. 
+
 \subsection{Choose Coordinates}
+Regardless of whether a static or dynamic spoofing attack is desired, the best way to choose the coordinates was through the use of SatGen3. There was an alternative for
+static scenarios which did remove the need for installing SatGen3. This alternative was through the use of gps-sdr-sim itself. It has an attribute that allows for
+inputting either latitude longitude or ECEF coordiantes. So while this does save one step, it still requires usinng a map software to find the desired coordinates, which
+is considerably simplified using SatGen3. To compile dynamic situations a GGA NMEA stream is always required. Considering for this project there was a desire to have both static and dynmaic spoofing it made sense
+to maintain a more consistent workflow.
+
+Figure \ref{fig:StaticCoordinate} shows how the searching and selecting of a coordinate for use in a static spoof acttack was done within the SatGen3 application. The
+SatGen3 program has access to the google maps API and allows for searching. This makes finding the desired location for spoofing attack easy. 
+Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed within SatGen3 in order to generate a dynamic spoof attack.
+
+\begin{figure}
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/static coordinates setup.png}
+        \caption{Using google maps within SatGen3 to choose a static coordinate to be used as desired spoof location}
+    \label{fig:StaticCoordinate}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[ht]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/dynamic coordinates setup.png}
+        \caption{Using google maps within SatGen3 to choose a set of coordiantes to be used as desired spoof path for a dynamic spoof attack}
+    \label{fig:DynamicCoordinate}
+    \end{centering}
+\end{figure}
 
 \subsection{Generate NMEA File}
+The coordinate and NMEA file creation step is essentially the same step within the SatGen3 software package. Once the coordinate or path was chosen, it was a matter of
+choosing to save the output as a txt file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}.
+
+\begin{figure}[ht]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_03_30_static_MAB_setup.png}
+        \caption{Using static coordinate to generate NMEA file}
+    \label{fig:StaticCoordinateNMEA}
+    \end{centering}
+\end{figure}
 
 \subsection{Download Ephemeris}
+From the NASA website, hourly versions of the GPS constellation ephemeris, in the form of a RINEX file, are available. These are compiled into a daily file. These daily
+files are available all the way from \todo{insert oldest ephemeris}. An account is required to access these files, but there are sample programs provided for retrieving
+the files programically using different methods. A script was generated that was able to get the latest version from the website using Python. There were initially some
+issues with getting the script to connect to the remote server to gain access to the files. It was found that there was a bug on linux with a certain version of openssl.
+A newer version was manually installed and this solved the issue.
+
+The downlaoded file was a compressed version of the text file, and thus it was required to be uncompressed using the tar program.
 
 \subsection{Compile Signal Binary File}
+The minimum requirements to compile a binary file using GPS-SDR-SIM was a source coordinate of some sort and the ephemeris for the desired date and time that the spoofer
+will transmit. This did not need to match the date and time that the signal was being transmitted on.
+
+Using this information, the place, time and ephemeris the program is able to calcaulate which of the satellites will be in view and what their expected psudo-ranges would
+be. The signal modulation is applied wihtin the compilation of the file, simplifying the process of transmitting the file. 
 
 \subsection{Transmit Signal}
+One the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
+capable of connecting to USRP devices automatically throught he UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
+process. 
+
+This was a simple program that connected the source file to the SDR via some simple blocks.
+
+\todo{isnert equivelant gnuradio block diagram for program}
 
 \subsection{Log GPS Data}
 
@@ -124,6 +180,16 @@ that the current locaiton was in the CBD.
 For all experiments the same hardware was used. This included the USRP SDR, laptop and GPS receiver. The laptop was an important piece of eqiupment since it needed to be
 powerful enough to be able to feed the data to the SDR quick enough to avoid the aformentioned underrun issues. Towards the end of the project there was a hardware fault
 with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
+
+There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possesion of the
+supurvisor. Having said that some research went into the suitabilty of the equipment, mainly the SDR. It was found that this was one of the most powerful and most
+importantly had one of the most stable clock osiclators availble in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
+RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
+on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included desoldering the included oscillator and
+soldering a more stable part. In future, if access to USRP based SDR's is not availble then this would be a very good second option. However, there was access to a better
+tool, being the N210, therfore it was chosen. From Ettus, there were two daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and
+WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
+freqeuency was not at the extreme of either cards bands.
 
 \begin{itemize}
     \item Laptop
@@ -175,6 +241,15 @@ The laptop was the interface between softrware and hardware. It was used to gene
 PC attached to the ethernet port.
 
 The software used for this project was a combination of open source and custom software. 
+The software was chosen while performing the literature review. There were examples \emph{\textbf{Insert citations that used gps-sdr-sim}} of using open source programs
+for the purpose of GPS spoofing. This was the best step forward since there were credible results with that software.
+
+Custom software was created for the reporting and results of the experiments. 
+
+\begin{itemize}
+    \item GPS-SDR-sim
+    \item GNURadio
+\end{itemize}
 
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
