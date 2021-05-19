@@ -109,7 +109,7 @@ choosing to save the output as a txt file. An example of this is shown in Figure
 
 \subsection{Download Ephemeris}
 From the NASA website, hourly versions of the GPS constellation ephemeris, in the form of a RINEX file, are available. These are compiled into a daily file. These daily
-files are available all the way from \todo{insert oldest ephemeris}. An account is required to access these files, but there are sample programs provided for retrieving
+files are available all the way from 1992. An account is required to access these files, but there are sample programs provided for retrieving
 the files programically using different methods. A script was generated that was able to get the latest version from the website using Python. There were initially some
 issues with getting the script to connect to the remote server to gain access to the files. It was found that there was a bug on linux with a certain version of openssl.
 A newer version was manually installed and this solved the issue.
@@ -124,18 +124,33 @@ Using this information, the place, time and ephemeris the program is able to cal
 be. The signal modulation is applied wihtin the compilation of the file, simplifying the process of transmitting the file. 
 
 \subsection{Transmit Signal}
-One the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
+Once the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
 capable of connecting to USRP devices automatically throught he UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
 process. 
 
 This was a simple program that connected the source file to the SDR via some simple blocks.
 
-\todo{isnert equivelant gnuradio block diagram for program}
+\todo{insert equivelant gnuradio block diagram for program}
+
+An important part of the transmission was that it needed to be performed within a faraday cage for legal purposes. This is discussed in section \ref{sec:FaraCage}.
 
 \subsection{Log GPS Data}
+To log the transmitted GPS signals from the SDR a COTS receiver and a smartphone were set up. The COTS receiver has a USB interface that outputs a stream of NMEA
+senetences at a 1Hz frequency. This can be modified to 5Hz, but this was not required for these experiments. Using a script the USB port was opened and logged to a text
+file. 
+
+When using a smartphone Android was required for logging since the OS allows access to the raw properties of the recveived signal. There is also an intuituve applicaiton
+"GNSS Logger" that allows for comprehensive visualistion of current GNSS tracking as well as the ability to log data. This data was logged to a text file using a non
+standard layout, but there was an option to log the NMEA sentences as well.  
 
 \subsection{Generate Graphs}
-The generation of the graphs that make up the results section was done in python and was based upon the NMEA senetences logged from the receivers. 
+Once there was a log file, graphs were generated to visualise the various parameters of the location resolution as interpretated by the receiver. 
+The generation of the graphs that make up the results section was done in python and was based upon the NMEA senetences logged from the receivers. GPS receivers have the
+ability to check the validity of signals they recieve. When they are able to resolve a location the value of one of the sentences is changed to reflect this. This was
+used to determine the time to first fix of each test. This should not be considered accurate and viewed as an estiamte only.
+
+There is a PC companion application for the GNSS Logger app that allows for comprehensive
+graphing and reports to be generated for a particulatr log file.
 
 \section{Using SatGen3}
 
@@ -144,7 +159,7 @@ the binary file using the gps-sdr-sim command line interface program. SatGen3 re
 the flexilbilty of scenarios that can be tested. Although there is no guarentee that the simulated stream of information is going to be correct. Thus a capture replay
 attack should still be considered as more reliable.
 
-\section{Faraday Cage}
+\section{Faraday Cage} \label{sec:FaraCage}
 A faraday cage was used for testing purposes for two main reasons. It will isolate the target device from existing legitimate GNSS signals and stop any transmitted
 radiation from propagating into the local environment. Isolation from receiving legitimate signals is important since a reciver that is tracking a satellite already is
 harder to jam or spoof than one that is not. More important is ensuring that the radiation does not enter the environment since transmitting any signals on the frequency

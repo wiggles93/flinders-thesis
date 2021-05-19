@@ -33,6 +33,38 @@ When attempting to spoof devices in the wild, the Pixel XL smartphone was succep
 incuded the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
 anti-spoofing algorithms that have been implemented including the useage of multiple constellations for position resolution.
 
+\subsection{Static Spoofing}
+\subsubsection{Tonsley MAB}
+The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. The desired coordinates that the reciever were
+\emph{\textbf{add coordinates}}. 
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
+        \caption{Carrier to noise ratio from satllites that GPS reciever thought were in the sky}
+        \label{fig:MABStaticCNo}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
+        \label{fig:MABPosition}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
+        \label{fig:MABSatelliteImage}
+    \end{centering}
+\end{figure}
+
+\subsection{Dynamic Spoofing}
+
+
 \subsection{Issues Encountered}
 The underrun issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
 There was an issue towards the end of the project where there was considerable leakage of EM radiation into the faraday cage that was causing the GPS receiver to produce

@@ -454,6 +454,12 @@ produce the same results as recording the gps signal from the desired location.
 Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals by moving processing typically reserved
 for the analog domain into the digital domain. Thus SDR's move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
 allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
+Typical tasks like modulation and demodulation are performed directly in analog hardware for normal radios. This makesthem incredibly rigid and only suitable for 1 taks.
+An SDR can implement multiple different moudlation/demodulation techniques and switch between them based on slection criteria set by the user. This same is true for
+centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
+SDR's need a device connected to them in order to off load processing of data and controlling radio parameters. This has typically been in the form of a PC or similar
+device, but with recent technological advances SBC's (single board computer) and smartphones are powerful enough to handle this task. There are examples in literature of
+using smartphones coupled with SDRs to perform many different radio based tasks.
 SDR's are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
 output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
 enough.
