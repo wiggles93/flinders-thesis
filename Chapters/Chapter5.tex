@@ -36,13 +36,26 @@ anti-spoofing algorithms that have been implemented including the useage of mult
 \subsection{Static Spoofing}
 \subsubsection{Tonsley MAB}
 The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. The desired coordinates that the reciever were
-\emph{\textbf{add coordinates}}. 
+\emph{\textbf{add coordinates}}.
+
+From Figure \ref{fig:MABStaticPosition} it can be seeen that thre are negative numbers, this is arbitrary and was included in order to give perspective as to which direction
+the received position was wrong.
+
+In this example the time to first fix was calculated as being 37 seconds. This is quite good for a cold start situation.
 
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
-        \caption{Carrier to noise ratio from satllites that GPS reciever thought were in the sky}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:MABStaticCNo}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Lat long position.png}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
+        \label{fig:MABStaticCoord}
     \end{centering}
 \end{figure}
 
@@ -50,7 +63,15 @@ The grassed area outside of the Flinders University Tonsley campus was chosen as
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
         \caption{Graph of recoreded position with respect to the intended spoofed location}
-        \label{fig:MABPosition}
+        \label{fig:MABStaticPosition}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB error over time.png}
+        \caption{Error between calcluated location and expected location over time}
+        \label{fig:MABStaticError}
     \end{centering}
 \end{figure}
 
@@ -62,8 +83,88 @@ The grassed area outside of the Flinders University Tonsley campus was chosen as
     \end{centering}
 \end{figure}
 
+\subsubsection{Antarctica}
+Davis station in Antarctica was chosen as a location for spoofing. 
+
+Time to first fix was shown to be approximatly 60 seconds.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Carrier noise ratio.png}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
+        \label{fig:antarcticaStaticCNo}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Lat long position.png}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
+        \label{fig:antarcticaStaticCoord}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Position from origin.png}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
+        \label{fig:antarcticaStaticPosition}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica error over time.png}
+        \caption{Error between calcluated location and expected location over time}
+        \label{fig:antarcticaStaticError}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica_Satellite.PNG}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
+        \label{fig:antarcticaSatelliteImage}
+    \end{centering}
+\end{figure}
+
 \subsection{Dynamic Spoofing}
 
+\subsubsection{Tonsley MAB}
+The time to first fix was shown to be approximatly 49 seconds.
+
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Carrier noise ratio.png}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
+        \label{fig:MABdynamicCNo}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Lat long position.png}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
+        \label{fig:MABdynamicCoord}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Position from origin.png}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
+        \label{fig:MABdynamicPosition}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_Satellite.PNG}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
+        \label{fig:MABdynamicSatelliteImage}
+    \end{centering}
+\end{figure}
 
 \subsection{Issues Encountered}
 The underrun issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
@@ -84,3 +185,13 @@ From sources \todo{insert source} it was found that the SVID and PRN are the sam
 A common result from spoofed attempts was to have GPS satellites with an SVID of over 100. GPS satellites have PRN codes from 1-63 and augmentation systems have PRNs from
 64 to 158 \cite{RN67}. From the list of PRN codes \cite{RN67} it can be seen that the services that are being received are some kind of augmented system. \emph{This makes
 me think that there might be a GBAS system or SBAS system nearby that is being received within the cage by stray wires etc.}
+
+\section{Experimental Issues}
+While performing experiments there were issues thaat were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
+frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
+was able to produce signals that were picked up by the GNSSLogger application. Observing the graphs of the carrier to noise figure showed that when there was an underrun
+issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
+
+In an attempt to overcome the underrun issue that was plagueing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
+in the radio working straight away. The underrun issues resurfaced when trying to read the serial data from a COTS gps receiver. This was less than ideal and required a
+second computer to act as a datalogger.

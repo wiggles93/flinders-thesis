@@ -12,7 +12,7 @@ limitations of these selections.
 
 \section{Testing Methodology}
 
-In this section the method of creating a GPS signal spoofing device is detailed. The main part of this project is the upgradability of the SDR platform
+In this section the method of creating a GPS signal spoofing device is detailed. The main part of this device is the upgradability of the SDR platform
 and in particular the USRP N210 SDR. As previously mentioned the benefit of using an SDR over using an ASIC is that with a new version of software 
 new capacilities are availeble to the device. This could be benefitial to either the spoofer or spoof defense. 
 
@@ -23,16 +23,124 @@ Testing was also performed on the reception of GPS signals. Such that they could
 the GPS-SDR software as proof that the antennae were operational. This was then changed such that the reception was handled directly through GNURadio and the raw
 digitised version of the signal was saved to a file such that it could be replayed elsewhere.
 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
 \section{Data Collection}
 
 To see the effectiveness of the GPS spoofing methods experiments were carried out and results were recoreded. The success of the experiments were dictated by whether or
 not the receiver was reporting false location or timing information. Using an adroid phone there is access to the raw GPS information which can be used to determine if
 the spoofing signal is being accepted. However, the use of a "maps" program was also used as a way to determine if there was any form of software/hardware anti-spoofing
 technique being used post gps receiver. A simple COTS was also used to log the NMEA sentences from its serial interface. A custom program was generated in order to graph
-various outputs from these sentences. 
+various outputs from these sentences.
 
-The use of "GPGSV" sentences allowed for tracking which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
+For the purpose of this project just three sentences were used when parsing the log files, "GPGGA", "GPGSV" and "GPRMC". The GP mnemonic is a designation that the
+received signal was from GPS. The other constellations have their own designations when using NMEA sentences Table \ref{tab:NMEA Mnemonics}. 
+GGA (Global Positioning System Fix Data) \footnote{https://www.nmea.org/Assets/20130801 0183 identifier list.pdf}
+
+The use of GSV (GNSS Satellites in View) sentences allowed for tracking which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
 noise graphs.
+
+RMC (Recommended Minimum Specific GNSS Data)
+
+\section{Hardware Setup}
+For all experiments the same hardware was used. This included the USRP SDR, laptop and GPS receiver. The laptop was an important piece of eqiupment since it needed to be
+powerful enough to be able to feed the data to the SDR quick enough to avoid the aformentioned underrun issues. Towards the end of the project there was a hardware fault
+with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
+
+There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possesion of the
+supurvisor. Having said that some research went into the suitabilty of the equipment, mainly the SDR. It was found that this was one of the most powerful and most
+importantly had one of the most stable clock osiclators availble in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
+RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
+on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included desoldering the included oscillator and
+soldering a more stable part. In future, if access to USRP based SDR's is not availble then this would be a very good second option. However, there was access to a better
+tool, being the N210, therfore it was chosen. From Ettus, there were two daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and
+WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
+freqeuency was not at the extreme of either cards bands. Either card would also be capable of transmitting or receiving on the other bands of GNSS constellations.
+
+\begin{itemize}
+    \item Laptop
+    \begin{itemize}
+        \item Dell Inspiron 15
+        \item CPU: Core i7 Quad Core/ 8 thread
+        \item RAM: 32GB
+        \item Ethernet Connection: gigabit
+    \end{itemize}
+    \item Software defined radio
+    \begin{itemize}
+        \item USRP N210
+        \item SBX-40 daughtercard
+        \item 30dB attenuator
+        \item Full duplex
+        \item Gigbit Ethernet connection
+        \item high performace FPGA
+        \item omnidirection antenna
+    \end{itemize}
+    \item GPS Receiver (Phone 1)
+    \begin{itemize}
+        \item Google Pixel XL
+        \item Android 10
+        \item Multi constellation GNSS support (GPS+QZSS, GLONASS, Beidou)
+    \end{itemize}
+    \item GPS Receiver (Phone 2)
+    \begin{itemize}
+        \item Google Pixel 4a 5G
+        \item Android 11
+        \item Multi constellation GNSS support (GPS+QZSS, GLONASS, Beidou)
+    \end{itemize}
+    \item GPS Receiver (COTS)
+    \begin{itemize}
+        \item GPS L1 support only
+        \item NMEA output
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=13cm,keepaspectratio]{Figures/Setup/overview_labelled.png}
+        \caption{Hardware setup for testing spoofing transmission within Faraday cage}
+    \label{fig:HardwareSetup}
+    \end{centering}
+\end{figure}
+
+\section{Software Setup}
+The laptop was the interface between softrware and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the
+PC attached to the ethernet port.
+
+The software used for this project was a combination of open source and custom software. 
+The software was chosen while performing the literature review. There were examples \emph{\textbf{Insert citations that used gps-sdr-sim}} of using open source programs
+for the purpose of GPS spoofing. This was the best step forward since there were credible results with that software.
+
+Custom software was created for the reporting and results of the experiments. 
+
+\begin{itemize}
+    \item GPS-SDR-sim
+    \item GNURadio
+    \item GNSS-SDR
+    \item Python3
+\end{itemize}
+
+\section{Faraday Cage} \label{sec:FaraCage}
+A faraday cage was used for testing purposes for two main reasons. It will isolate the target device from existing legitimate GNSS signals and stop any transmitted
+radiation from propagating into the local environment. Isolation from receiving legitimate signals is important since a reciver that is tracking a satellite already is
+harder to jam or spoof than one that is not. More important is ensuring that the radiation does not enter the environment since transmitting any signals on the frequency
+band for GNSS systems is illegal in Australia. 
+
+Since the received signal strength from a GNSS satellite is so low ($\approx -150dBm$) any signal that is tranmsitted from Earth's surface will be able overpower these
+signals for up to 85km, assuming an omnidirectional antenna, as shown in equation \ref{eq:propogationCalc}. This calucation was performed with the assumed maximum
+transmission power of the SDR of $15 dBm$ coupled with a $30dB$ attenuator and transmitting on the L1 GPS band. In practise the effective range will be much less due to
+attenuation due to objects between transmitter and receiver, but this calculation shows that performing the experiments within a controlled environment was requried.
+\begin{equation}    
+    \begin{split} \label{eq:propogationCalc}
+        Att_{dB} &= 10 \log_{10}\left(\frac{c}{4\pi df}\right)^2 \\
+        d = \frac{c}{4\pi 10^{\left(\frac{Att_{dB}}{20}\right)}f} &= \frac{3\times10^8}{4\pi 10^{-6.75}1.57542\times 10^9} \approx 85km
+    \end{split}
+\end{equation}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
 
 \section{Testing Workflow}
 
@@ -47,7 +155,7 @@ bias-tee a USB cable was cut and used to connect to a perf board with a soldered
 find or lock onto any of the GPS satellites at any time. It was found that another opensource program, gps-sdr-sim, could be used to create binary files that replicate
 the received signals from the satellites. 
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}
             \begin{centering}
@@ -99,7 +207,12 @@ Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed 
 The coordinate and NMEA file creation step is essentially the same step within the SatGen3 software package. Once the coordinate or path was chosen, it was a matter of
 choosing to save the output as a txt file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}.
 
-\begin{figure}[ht]
+To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
+the binary file using the gps-sdr-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
+the flexilbilty of scenarios that can be tested. Although there is no guarentee that the simulated stream of information is going to be correct. Thus a capture replay
+attack should still be considered as more reliable.
+
+\begin{figure}[!ht]
     \begin{centering}
         \includegraphics[width=12cm,keepaspectratio]{Figures/2021_03_30_static_MAB_setup.png}
         \caption{Using static coordinate to generate NMEA file}
@@ -152,119 +265,29 @@ used to determine the time to first fix of each test. This should not be conside
 There is a PC companion application for the GNSS Logger app that allows for comprehensive
 graphing and reports to be generated for a particulatr log file.
 
-\section{Using SatGen3}
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
 
-To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
-the binary file using the gps-sdr-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
-the flexilbilty of scenarios that can be tested. Although there is no guarentee that the simulated stream of information is going to be correct. Thus a capture replay
-attack should still be considered as more reliable.
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
 
-\section{Faraday Cage} \label{sec:FaraCage}
-A faraday cage was used for testing purposes for two main reasons. It will isolate the target device from existing legitimate GNSS signals and stop any transmitted
-radiation from propagating into the local environment. Isolation from receiving legitimate signals is important since a reciver that is tracking a satellite already is
-harder to jam or spoof than one that is not. More important is ensuring that the radiation does not enter the environment since transmitting any signals on the frequency
-band for GNSS systems is illegal in Australia. 
 
-Since the received signal strength from a GNSS satellite is so low ($\approx -150dBm$) any signal that is tranmsitted from Earth's surface will be able overpower these
-signals for up to 85km, assuming an omnidirectional antenna, as shown in equation \ref{eq:propogationCalc}. This calucation was performed with the assumed maximum
-transmission power of the SDR of $15 dBm$ coupled with a $30dB$ attenuator and transmitting on the L1 GPS band. In practise the effective range will be much less due to
-attenuation due to objects between transmitter and receiver, but this calculation shows that performing the experiments within a controlled environment was requried.
-\begin{equation}    
-    \begin{split} \label{eq:propogationCalc}
-        Att_{dB} &= 10 \log_{10}\left(\frac{c}{4\pi df}\right)^2 \\
-        d = \frac{c}{4\pi 10^{\left(\frac{Att_{dB}}{20}\right)}f} &= \frac{3\times10^8}{4\pi 10^{-6.75}1.57542\times 10^9} \approx 85km
-    \end{split}
-\end{equation}
 
-\section{Experimental Issues}
-While performing experiments there were issues thaat were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
-frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
-was able to produce signals that were picked up by the GNSSLogger application. Observing the graphs of the carrier to noise figure showed that when there was an underrun
-issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
 
-In an attempt to overcome the underrun issue that was plagueing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
-in the radio working straight away. The underrun issues resurfaced when trying to read the serial data from a COTS gps receiver. This was less than ideal and required a
-second computer to act as a datalogger.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 7
+%----------------------------------------------------------------------------------------
 
 \section{Experiments}
 Experimentation was performed at the Tonsley campus of Flinders University, which has GPS coordinates of $-35.007650, 138.572030$. At first it was decided to use the
 centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
 that the current locaiton was in the CBD.
-
-\subsection{Hardware Setup}
-For all experiments the same hardware was used. This included the USRP SDR, laptop and GPS receiver. The laptop was an important piece of eqiupment since it needed to be
-powerful enough to be able to feed the data to the SDR quick enough to avoid the aformentioned underrun issues. Towards the end of the project there was a hardware fault
-with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
-
-There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possesion of the
-supurvisor. Having said that some research went into the suitabilty of the equipment, mainly the SDR. It was found that this was one of the most powerful and most
-importantly had one of the most stable clock osiclators availble in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
-RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
-on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included desoldering the included oscillator and
-soldering a more stable part. In future, if access to USRP based SDR's is not availble then this would be a very good second option. However, there was access to a better
-tool, being the N210, therfore it was chosen. From Ettus, there were two daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and
-WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
-freqeuency was not at the extreme of either cards bands.
-
-\begin{itemize}
-    \item Laptop
-    \begin{itemize}
-        \item Dell Inspiron 15
-        \item CPU: Core i7 Quad Core/ 8 thread
-        \item RAM: 32GB
-        \item Ethernet Connection: gigabit
-    \end{itemize}
-    \item Software defined radio
-    \begin{itemize}
-        \item USRP N210
-        \item SBX-40 daughtercard
-        \item 30dB attenuator
-        \item Full duplex
-        \item Gigbit Ethernet connection
-        \item high performace FPGA
-        \item omnidirection antenna
-    \end{itemize}
-    \item GPS Receiver (Phone 1)
-    \begin{itemize}
-        \item Google Pixel XL
-        \item Android 10
-        \item Multi constellation GNSS support (GPS+QZSS, GLONASS, Beidou)
-    \end{itemize}
-    \item GPS Receiver (Phone 2)
-    \begin{itemize}
-        \item Google Pixel 4a 5G
-        \item Android 11
-        \item Multi constellation GNSS support (GPS+QZSS, GLONASS, Beidou)
-    \end{itemize}
-    \item GPS Receiver (COTS)
-    \begin{itemize}
-        \item GPS L1 support only
-        \item NMEA output
-    \end{itemize}
-\end{itemize}
-
-\begin{figure}[h]
-    \begin{centering}
-        \includegraphics[width=13cm,keepaspectratio]{Figures/Setup/overview_labelled.png}
-        \caption{Hardware setup for testing spoofing transmission within Faraday cage}
-    \label{fig:HardwareSetup}
-    \end{centering}
-\end{figure}
-
-\subsection{Software Setup}
-The laptop was the interface between softrware and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the
-PC attached to the ethernet port.
-
-The software used for this project was a combination of open source and custom software. 
-The software was chosen while performing the literature review. There were examples \emph{\textbf{Insert citations that used gps-sdr-sim}} of using open source programs
-for the purpose of GPS spoofing. This was the best step forward since there were credible results with that software.
-
-Custom software was created for the reporting and results of the experiments. 
-
-\begin{itemize}
-    \item GPS-SDR-sim
-    \item GNURadio
-\end{itemize}
 
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
@@ -283,6 +306,10 @@ signal spoofing. If an SDR is a full duplex radio, such is the case for the USRP
 transmitting the spoofed signal. Care would need to be taken in the set up of this arrangement since any transmitted signal would also be picked up by the reciving
 antenna. Therefore a directional transmitting antenna and physical disctance should be employed to allow for legitimate GNSS signals to reach the reciever port. 
 
+%----------------------------------------------------------------------------------------
+%	SECTION 8
+%----------------------------------------------------------------------------------------
+
 \section{Parameters required for successful spoofing}
 \todo{add screen shots of steps required to generate binary file}
 Due to the internal workings of the USRP, there needs to be an integer ratio between the clock rate and sample rate. Therefore is was required that the sample frequency
@@ -290,11 +317,15 @@ was set to 2.5Msps instead of the default 2.6Msps that the software would normal
 
 \begin{figure}[h]
     \begin{centering}
-        \includegraphics[width=10cm,height=10cm,keepaspectratio]{Figures/21-3-25_cbd_dynamic_setup.png}
-        \caption{Settings of SatGen3 used to generate the dynamic path loop around Adelaide CBD. There is a graph that shows the offset from the origin and speed aver the journey}
+        \includegraphics[width=14cm, keepaspectratio]{Figures/21-3-25_cbd_dynamic_setup.png}
+        \caption{Settings of SatGen3 used to generate the dynamic path loop around Adelaide CBD. There is a graph that shows the offset from the origin and speed over the journey}
     \label{fig:21MarCBDDynamic}
     \end{centering}
 \end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 9
+%----------------------------------------------------------------------------------------
 
 \section{SDR Setup for GNSS Reception}
 Reception of GNSS signals is a compliated process which involves sychronising time values and solving simultaneous equtations for position, therefore it was decided that
