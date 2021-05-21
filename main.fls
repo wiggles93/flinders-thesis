@@ -504,6 +504,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mathpazo/zplmr7t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mathpazo/zplmr7t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/mathpazo/zplmr7t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/Setup/overview_labelled.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplbi8t.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/static coordinates setup.png
@@ -536,9 +539,6 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter7.tex
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.tex
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixB.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixB.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixB.tex

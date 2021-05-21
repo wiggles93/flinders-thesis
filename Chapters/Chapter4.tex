@@ -36,13 +36,181 @@ technique being used post gps receiver. A simple COTS was also used to log the N
 various outputs from these sentences.
 
 For the purpose of this project just three sentences were used when parsing the log files, "GPGGA", "GPGSV" and "GPRMC". The GP mnemonic is a designation that the
-received signal was from GPS. The other constellations have their own designations when using NMEA sentences Table \ref{tab:NMEA Mnemonics}. 
-GGA (Global Positioning System Fix Data) \footnote{https://www.nmea.org/Assets/20130801 0183 identifier list.pdf}
+received signal was from GPS. The other constellations have their own designations when using NMEA sentences as dictated by Table \ref{tab:NMEA Mnemonics}. 
+GGA (Global Positioning System Fix Data) \footnote{https://www.nmea.org/Assets/20130801 0183 identifier list.pdf} sentences contain information related to the fix of the
+GPS signal. The calcaulted latitude and longitude as well as whether DGPS is being used in the fix, as well as others, as shown in Table \ref{tab:NMEA GGA Struct}.  
 
-The use of GSV (GNSS Satellites in View) sentences allowed for tracking which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
-noise graphs.
+An example of a GGA sentence is:
+\begin{verbatim}
+$GPGGA,000056.000,3500.5533,S,13834.1337,E,1,10,0.87,-14.7,M,-0.7,M,,*74
+\end{verbatim}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{NMEA GGA Sentence structure}
+        \label{tab:NMEA GGA Struct}
+        \begin{tabular}{ |m{4cm}|c|p{6cm}| }
+            \hline
+            \textbf{Field} & \textbf{Example} & \textbf{Description} \\
+            \hline
+            Message ID & \$GPGGA & GGA Protocol header \\
+            \hline
+            UTC time & 000056.000 & hhmmss.sss \\
+            \hline
+            Latitude & 3500.5533 & ddmm.mmmm \\
+            \hline
+            N/S Indicator & S & N = North, S = South\\
+            \hline
+            Longitude & 13834.1337 & dddmm.mmmm \\
+            \hline
+            E/W Indicator & E & E = East, W = West\\
+            \hline
+            Position Fix Indicator & 1 & 0: Fix not available \newline 1: GPS SPS mode, fix valid \newline 2: DGPS SPS mode, fix valid\\
+            \hline
+            Sattelites used & 10 & \\
+            \hline
+            HDOP & 0.87 & Horizontal dilution of precision\\
+            \hline
+            MLS Altitude & -14.7 & Meters \\
+            \hline
+            Units & M & Meters \\
+            \hline
+            Geoid separation & -0.7 & Meters \\
+            \hline
+            Units & M & Meters\\
+            \hline
+            Age of differential correlation & & Seconds\\
+            \hline
+            Differential reference station ID & &  \\
+            \hline
+            Checksum & *74 &  \\
+            \hline
+            <CR><LF> & & End of message termination \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+The use of GSV (GNSS Satellites in View) sentences allowed for tracking how many and which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
+noise graphs. Since the sentences can only be a set length as per the standard, multiple successive GSV sentences may need to be sent.
+
+An example of a GSV sentence that is part of a group of 4 is:
+\begin{verbatim}
+$GPGSV,4,1,13,23,70,156,52,10,69,284,52,20,50,138,,18,49,117,52*73
+$GPGSV,4,2,13,27,37,224,52,16,32,276,52,15,26,127,51,26,23,308,51*77
+$GPGSV,4,3,13,29,19,038,17,32,18,001,18,44,05,279,,13,02,148,47*75
+$GPGSV,4,4,13,193,,,*40
+\end{verbatim}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{NMEA GGA Sentence structure}
+        \label{tab:NMEA GGA Struct}
+        \begin{tabular}{ |m{4cm}|c|p{6cm}| }
+            \hline
+            \textbf{Field} & \textbf{Example} & \textbf{Description} \\
+            \hline
+            Message ID & \$GPGSV & GSV Protocol header \\
+            \hline
+            Number of messages & 4 & Number of messages in group \\
+            \hline
+            Sequence Number & 1 & Message number \\
+            \hline
+            Satellites in view & 13 & Total number of satellites in view\\
+            \hline
+            Satellite ID 1 & 23 & PRN number of satellite \\
+            \hline
+            Elevation 1 & 70 & Elevation in degrees (0-90)\\
+            \hline
+            Azimuth 1 & 156 & Azimuth in degrees (0-359)\\
+            \hline
+            SNR 1 & 52 & SNR in dBHz (0-99)\\
+            \hline
+            Satellite ID 2 & 10 & PRN number of satellite \\
+            \hline
+            Elevation 2 & 69 & Elevation in degrees (0-90)\\
+            \hline
+            Azimuth 2 & 284 & Azimuth in degrees (0-359)\\
+            \hline
+            SNR 2 & 52 & SNR in dBHz (0-99)\\
+            \hline
+            Satellite ID 3 & 20 & PRN number of satellite \\
+            \hline
+            Elevation 3 & 50 & Elevation in degrees (0-90)\\
+            \hline
+            Azimuth 3 & 138 & Azimuth in degrees (0-359)\\
+            \hline
+            SNR 3 &  & SNR in dBHz (0-99)\\
+            \hline
+            Satellite ID 4 & 18 & PRN number of satellite \\
+            \hline
+            Elevation 4 & 49 & Elevation in degrees (0-90)\\
+            \hline
+            Azimuth 4 & 117 & Azimuth in degrees (0-359)\\
+            \hline
+            SNR 4 & 52 & SNR in dBHz (0-99)\\
+            \hline
+            Checksum & *73 &  \\
+            \hline
+            <CR><LF> & & End of message termination \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
 
 RMC (Recommended Minimum Specific GNSS Data)
+
+\begin{verbatim}
+$GPRMC,000118.000,A,3500.4918,S,13834.1369,E,53.66,12.07,300321,,,A*78
+\end{verbatim}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{NMEA RMC Sentence structure}
+        \label{tab:NMEA RMC Struct}
+        \begin{tabular}{ |m{4cm}|c|p{6cm}| }
+            \hline
+            \textbf{Field} & \textbf{Example} & \textbf{Description} \\
+            \hline
+            Message ID & \$GPRMC & RMC Protocol header \\
+            \hline
+            UTC time & 000118.000 & hhmmss.sss \\
+            \hline
+            Status & A & A = Valid, V = Not Valid \\
+            \hline
+            Latitude & 3500.4918 & ddmm.mmmm\\
+            \hline
+            N/S Indicator & S & N = North, S = South\\
+            \hline
+            Longitude & 13834.1369 & dddmm.mmmm \\
+            \hline
+            E/W Indicator & E & E = East, W = West\\
+            \hline
+            Speed over ground & 53.66 & knots \\
+            \hline
+            Course over ground & 12.07 & degrees \\
+            \hline
+            HDOP & 0.87 & Horizontal dilution of precision\\
+            \hline
+            Date & 300321 & ddmmyy \\
+            \hline
+            Magnetic Variation &  & Meters \\
+            \hline
+            Mode & A & A = Autonomous, D = DGPS, E = DR \\
+            \hline
+            Checksum & *78 &  \\
+            \hline
+            <CR><LF> & & End of message termination \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
 
 \section{Hardware Setup}
 For all experiments the same hardware was used. This included the USRP SDR, laptop and GPS receiver. The laptop was an important piece of eqiupment since it needed to be
@@ -203,7 +371,7 @@ Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed 
     \end{centering}
 \end{figure}
 
-\subsection{Generate NMEA File}
+\subsection{Generate NMEA File} \label{subsec:NMEAFile}
 The coordinate and NMEA file creation step is essentially the same step within the SatGen3 software package. Once the coordinate or path was chosen, it was a matter of
 choosing to save the output as a txt file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}.
 
@@ -259,11 +427,64 @@ standard layout, but there was an option to log the NMEA sentences as well.
 \subsection{Generate Graphs}
 Once there was a log file, graphs were generated to visualise the various parameters of the location resolution as interpretated by the receiver. 
 The generation of the graphs that make up the results section was done in python and was based upon the NMEA senetences logged from the receivers. GPS receivers have the
-ability to check the validity of signals they recieve. When they are able to resolve a location the value of one of the sentences is changed to reflect this. This was
-used to determine the time to first fix of each test. This should not be considered accurate and viewed as an estiamte only.
+ability to check the validity of signals they recieve. When they are able to resolve a location the value of one of the fields within the RMC senntence is changed to
+reflect this. The number of sentences before initial lock were counted. This was
+used to determine the time to first fix of each test since it was known that the GPS receiver would output at 1Hz. Alterations would need to be made if the reciever was
+outputting at a higher frequency. As such this should not be considered accurate and viewed as an estiamte only.
+
+The carrier to noise ratio graphs were generated directly from the output of the GSV sentences. The SVID and associated $\frac{C}{N_0}$ ratios were stored as the value in
+a key value pair. The key was a timestamp used to ensure each sentence was represented.
+
+The latitude and longitude were retreiced from the GGA sentences.
+
+Using the NMEA stream created in section \ref{subsec:NMEAFile} a desired plot was put on both the static and dynamic graphs. For the static graphs this reference was also
+used as the origin when calculating the error of the calcualted location.
+
+The error was calculated by finding the difference in latitude and longitude from the desired origin point and converting the $\Delta Lat$ and $\Delta Long$ into meters.
+This assumes that the distances being dealt with are so small that they are essentially flat. Thus the equiations can be simplified to remove any angles.
+
+The earth is not perfectly spherical therefore when converting latitude and longitude into x and y coordintes in meters the average of the polar plane and equitorial
+planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
+the error of the coordinate in the $x$ and $y$ direciton respectively.
+
+When finding the total error value the law of Haversines was used. 
+
+\begin{equation} 
+    \begin{split} \label{eq:EarthCircumference}
+        C_{Polar} = 40007.863 km \\ 
+        C_{Equitorial} = 40075.017 km
+    \end{split}
+\end{equation}
+
+\begin{equation} \label{eq:deltaX}
+    \Delta x = \Delta Lat \times \frac{C_{Polar}}{\frac{2}{180}} \times 1000 m
+\end{equation}
+
+\begin{equation} \label{eq:deltaY}
+    \Delta y = \Delta Long \times \frac{C_{Equitorial}}{\frac{4}{90}} \times 1000 m
+\end{equation}
+
+\begin{equation} \label{eq:Haversine}
+    d = 2r \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos\left(\phi_1\right)\cos\left(\phi_2\right)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
+\end{equation}
+ 
+Below is the implementation of the law of haversines in python used for the calcualtion of distance between two latitude and longitude points. The output of the function was stored
+into an array and used to graph the total error over time.
+
+\begin{verbatim}
+    def latlon2m(lat1, long1, lat2, long2):
+        r = 6371000  
+        dLat = radians(lat2) - radians(lat1)
+        dLong = radians(long2) - radians(long1)
+        a = math.sin(dLat/2) * math.sin(dLat/2) + 
+            math.cos(radians(lat1)) * math.cos(radians(lat2)) *
+            math.sin(dLong/2) * math.sin(dLong/2)
+        d = 2*r*math.asin(math.sqrt(a))
+        return d
+\end{verbatim}
 
 There is a PC companion application for the GNSS Logger app that allows for comprehensive
-graphing and reports to be generated for a particulatr log file.
+graphing and reports to be generated for a particular log file.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
