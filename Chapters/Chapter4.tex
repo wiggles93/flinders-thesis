@@ -107,8 +107,8 @@ $GPGSV,4,4,13,193,,,*40
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
-        \caption{NMEA GGA Sentence structure}
-        \label{tab:NMEA GGA Struct}
+        \caption{NMEA GSV Sentence structure}
+        \label{tab:NMEA GSV Struct}
         \begin{tabular}{ |m{4cm}|c|p{6cm}| }
             \hline
             \textbf{Field} & \textbf{Example} & \textbf{Description} \\
@@ -226,6 +226,11 @@ soldering a more stable part. In future, if access to USRP based SDR's is not av
 tool, being the N210, therfore it was chosen. From Ettus, there were two daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and
 WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
 freqeuency was not at the extreme of either cards bands. Either card would also be capable of transmitting or receiving on the other bands of GNSS constellations.
+
+To ensure the SDR and PC were able to communicate, an ehternet cable was connected between each device and the IP address of the PC was set to 192.168.0.2/24 as per the
+default configuration from the setup documanetation. To check if the IP address was correctly set, a command line program was run that would pole the appropriate
+interfaces of the PC and check for USRP devices attached. \todo{insert image of UHD FIND DEVICES}. There was also a command line program that allowed for the probing of a
+radio to gatehr information on what daughtercard was installed and other propertiues. \todo{inset image}.
 
 \begin{itemize}
     \item Laptop

@@ -13,7 +13,7 @@ that account for the innacuracies of calcualted GNSS position are covered, inclu
 %----------------------------------------------------------------------------------------
 
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
-In 2021 there are many different GNSS systems that are in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
+In 2021 there are many different GNSS systems in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
 people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was
 similar to that of the current satellite based systems, namely the use of psuedoranges, although the accuracy was far lower than is acceptable today. The USA developed
 and commissioned the first satellite based nanvigation system.
@@ -21,7 +21,7 @@ and commissioned the first satellite based nanvigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
 QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are so categorised by how far from the earths surface the satellite orbits.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by how far from the earths surface the satellite orbits.
 Current GNSS systems utelise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -36,7 +36,7 @@ In 1973 the US combined two existing programmes in TIMATION and 'Project 621B' t
 commonly as GPS. The initial intention for the use of GPS was for military only. However, in 1983 there was an incident that saw a Korean Airlines flight shot down by a
 Soviet fighter mistaking it for a US aircraft when it wandered off course. After this incident President Reagen announced that GPS would be made available for civilian
 use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
-adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS system augmentation systems started to appear. Soon
+adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS augmentation systems started to appear. Soon
 after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver
 with a known location and having that reciever calculate its position from the satellite signals and compare with the known position. These corrections are then
 broadcast. 
@@ -72,13 +72,19 @@ encompass the term GNSS. That is the ground segment, space segment and user segm
 as it's current time down to the earths surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
 kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximatly 10 nanoseconds \todo{reference}, however, receviers will lose timing due to
 the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitoed by the ground segment and updated when
-required. Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist
-mostly of the current time (of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of
-the earth with the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive
-motion of the satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler
-shift, time taken to arrive and the satellite current location can be used to solve the position in three dimensional space. In order to solve for all dimensions
-(including time) four satellites are reqruied since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The
-$\rho_i$ term indicates the distance from the recviever to that particular satellite and is known as a psudeorange. 
+required. Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
+(of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
+the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive motion of the
+satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler shift, time
+taken to arrive and the satellite current location can be used to solve the position in three dimensional space. In order to solve for all dimensions (including time)
+four satellites are reqruied since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The $\rho_i$ term indicates
+the distance from the recviever at the time of reception to that particular satellite at time of transmission  and is known as a psudeorange. $x_i$, $y_i$ and $z_i$ are
+the coordinates of the $i_{th}$ satellite in three dimensional space as dictated by the ECEF (Earth Cenetered Earth Fixed) coordinate system. This coordinate system is a
+version of a cartesian coordiante systems where the origin is at the center of mass of the earth. $x_u$, $y_u$ and $z_u$ are the unknown coordinates of the receiver. The
+coordinates of all satellites are well known due to the distribuition of the ephemeris. By getting 3 satellites, the unknown values can be solved using simultaneous
+equation techniques. The $\Delta t$ is the error in the clock of the sender and reciever. Any drift in time will be multiplied by the speed of light and can cause very
+large errors with only a small drift in time. Therefore to get a proper three dimiensioanl fix with high accuracy, a minimum of 4 satellites are required.  
+
 This method of position calculation is known as trilateration. The model shown below is a simplified model that ignores the effects of relativity. 
 
 \begin{equation} \label{eq:gnssPosition} 
@@ -86,8 +92,7 @@ This method of position calculation is known as trilateration. The model shown b
 \end{equation}
 \todo{look at RN32 for position and time calculations}
 As can be seen from the above equation \ref{eq:gnssPosition} the accurate synchronisation of time betweeen the receiver and the satellites is required in order to
-calcaulte an accurate position. Due to the mathmatical requirements, a minimum of 4 satellites need to be in 'sight' of the receiver at all times.
-
+calcaulte an accurate position. 
 Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
 
 \subsection{Trilateration} \label{subsec:Trilateration}
@@ -139,7 +144,10 @@ Clinton directed the removal of selective availabililty from the GPS service, an
 without the selective availabililty capapbility \cite{RN62} \cite{RN64}.
 
 GPS hardware has had a number of revisions over the life of the system in the form of Blocks. Each block is a major revision, current generation satellites are Block III
-satellites. There are currenntly 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
+satellites. Block I satellties were only capable of tranmitting on the L1 and L2 bands and only had a 5 year design life. Block II maintained the same tranmsitting
+frequency capabilities as before but included three axis stabalisation provided by reaction wheels. The solar arrays were increased from a rated 410W to over 700W. Later
+iterations of Block II included the L2C band for more robust civil signals and improvement to the miliraty signal.
+There are currently 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
 2010 to 2016. Block IIR has 8 currently operational from 13 launches, block IIR-M has 7 operational from 8 launches and there are no operational satellites from Block I,
 II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in Table \ref{tab:GPSSatSum}
 
@@ -294,10 +302,11 @@ geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
-calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA sentences. There are many sentence types
+calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
+sentences, see \ref{subsubsec:NMEA}. There are many sentence types
 and not all receivers will output all sentence types.
 
-\subsubsection{NMEA Sentences}
+\subsubsection{NMEA Sentences} \label{subsubsec:NMEA}
 The NMEA (National Maritime Electronics Association) has a number of standards one of which is NMEA-0183. This standard outlines the combined electrical and data
 specifications for communication between marine electronic equipment. The data specification was adopted by GPS receiver manufactuers to ensure software could operate
 with any GPS hardware. The standard outlines the typical message structure. This structure lays the foundation for many different message types called sentences. These
@@ -372,7 +381,7 @@ Receiver errors occur due to the introduction of noise therough the reception pr
 intentional and malicious.
 
 What all of these errors have in common is that create an incorrect value of the psudeorange which in turn incorrectly calculates the reciever position.
-
+\todo{ref}
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
@@ -457,12 +466,29 @@ allows for a wide ranges of frequncies from Hz up to GHz from the same device wi
 Typical tasks like modulation and demodulation are performed directly in analog hardware for normal radios. This makesthem incredibly rigid and only suitable for 1 taks.
 An SDR can implement multiple different moudlation/demodulation techniques and switch between them based on slection criteria set by the user. This same is true for
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
+
+The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
+front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receieveing. Also shown in the image is the
+quadrate mixers which allow for complex sampling \ref{eq:complexSampling} as apposed to real sampling \ref{eq:realSampling}. This means that the in phase and quadrature phase are sampled seperatly, effectively
+doupling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorom is conserved even when the
+bandwidth is equal to the sampling rate.
+
 SDR's need a device connected to them in order to off load processing of data and controlling radio parameters. This has typically been in the form of a PC or similar
 device, but with recent technological advances SBC's (single board computer) and smartphones are powerful enough to handle this task. There are examples in literature of
 using smartphones coupled with SDRs to perform many different radio based tasks.
-SDR's are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
-output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
-enough.
 
-This was solved by increasing the UDP buffer size manually to at least the sample rate, and over for better results. From limited experimentation this completely resolved the issue, and opened up
-oppertunities to perform spoofing with low powered embedded devices like the Rasperry Pi single board computer. \todo{move this sentence to results}
+\begin{equation} \label{eq:complexSampling}
+    x\left(t\right) = A_{I}\left(t\right)\cos\left(2\pi f_{c}t\right) - A_{Q}\left(t\right)\sin\left(2\pi f_{c}t\right)
+\end{equation}
+
+\begin{equation} \label{eq:realSampling}
+    x\left(t\right) = A\left(t\right)\cos\left(\omega t + \Phi \left(t\right)\right)
+\end{equation}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=13cm,keepaspectratio]{Figures/2920_simplified_system_diagram.png}
+        \caption{Simplified block diagram for the RF front end of the USRP SDR's}
+    \label{fig:USRPBlock}
+    \end{centering}
+\end{figure}
