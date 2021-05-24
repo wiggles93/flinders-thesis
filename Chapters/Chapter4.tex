@@ -414,11 +414,18 @@ Once the signal has been compiled into a binary file it is sent to the USRP SDR 
 capable of connecting to USRP devices automatically throught he UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
 process. 
 
-This was a simple program that connected the source file to the SDR via some simple blocks.
+This was a simple program that connected the source file to the SDR via some simple blocks as shown in Figure \ref{fig:GNURadioSpoof}. The file is read 16bits at a time
+into the "IShort to Complex" block. This converts the interleaved I/Q data into a complex file type which is then passed to the SDR via an amplifier block.
 
-\todo{insert equivelant gnuradio block diagram for program}
+\begin{figure}[!ht]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/GNURadio_Spoofer.png}
+        \caption{GNURadio flowchart for transmitting binary files with USRP}
+    \label{fig:GNURadioSpoof}
+    \end{centering}
+\end{figure}
 
-An important part of the transmission was that it needed to be performed within a faraday cage for legal purposes. This is discussed in section \ref{sec:FaraCage}.
+An important part of the transmission was that it needed to be performed within a faraday cage for legal purposes. This was discussed in section \ref{sec:FaraCage}.
 
 \subsection{Log GPS Data}
 To log the transmitted GPS signals from the SDR a COTS receiver and a smartphone were set up. The COTS receiver has a USB interface that outputs a stream of NMEA
@@ -473,20 +480,25 @@ When finding the total error value the law of Haversines was used.
     d = 2r \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos\left(\phi_1\right)\cos\left(\phi_2\right)\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
 \end{equation}
  
-Below is the implementation of the law of haversines in python used for the calcualtion of distance between two latitude and longitude points. The output of the function was stored
+Below (Listing \ref{list:pythonHaversines}) is the implementation of the law of haversines in python used for the calcualtion of distance between two latitude and longitude points. The output of the function was stored
 into an array and used to graph the total error over time.
 
-\begin{verbatim}
-    def latlon2m(lat1, long1, lat2, long2):
-        r = 6371000  
-        dLat = radians(lat2) - radians(lat1)
-        dLong = radians(long2) - radians(long1)
-        a = math.sin(dLat/2) * math.sin(dLat/2) + 
-            math.cos(radians(lat1)) * math.cos(radians(lat2)) *
-            math.sin(dLong/2) * math.sin(dLong/2)
-        d = 2*r*math.asin(math.sqrt(a))
-        return d
-\end{verbatim}
+% \begin{verbatim}
+%     def latlon2m(lat1, long1, lat2, long2):
+%         r = 6371000  
+%         dLat = radians(lat2) - radians(lat1)
+%         dLong = radians(long2) - radians(long1)
+%         a = math.sin(dLat/2) * math.sin(dLat/2) + 
+%             math.cos(radians(lat1)) * math.cos(radians(lat2)) *
+%             math.sin(dLong/2) * math.sin(dLong/2)
+%         d = 2*r*math.asin(math.sqrt(a))
+%         return d
+% \end{verbatim}
+
+\begin{lstinputlisting}[language=Python, caption=Python implementation of the law of Haversines used to calculate the distance between two points on a sphere, firstline=23, lastline=29]{NMEAParse.py}
+\label{list:pythonHaversines}
+\end{lstinputlisting}
+
 
 There is a PC companion application for the GNSS Logger app that allows for comprehensive
 graphing and reports to be generated for a particular log file.
@@ -511,9 +523,7 @@ graphing and reports to be generated for a particular log file.
 %----------------------------------------------------------------------------------------
 
 \section{Experiments}
-Experimentation was performed at the Tonsley campus of Flinders University, which has GPS coordinates of $-35.007650, 138.572030$. At first it was decided to use the
-centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
-that the current locaiton was in the CBD.
+
 
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some

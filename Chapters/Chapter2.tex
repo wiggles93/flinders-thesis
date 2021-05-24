@@ -154,29 +154,53 @@ II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares a
 Accuracy of the GPS system has increased over the years, and since selective availabililty was legislated against, to approximatly 3m for public access and 3-4cm for
 encrypted.
 
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of current and former GPS satellites}
+%         \label{tab:GPSSatSum}
+%         \begin{tabular}{ |r|c|c| }
+%             \hline
+%             \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
+%             \hline
+%             Block I & 11 & 0\\
+%             \hline
+%             Block II & 9 & 0\\
+%             \hline
+%             Block IIA & 19 & 0\\
+%             \hline
+%             Block IIR & 13 & 8\\
+%             \hline
+%             Block IIR-M & 8 & 7\\
+%             \hline
+%             Block IIF & 12 & 12\\
+%             \hline
+%             Block III & 4 & 4\\
+%             \hline
+%             \hline
+%             \textbf{Total} & \textbf{76} & \textbf{31}\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
         \caption{Summary of current and former GPS satellites}
         \label{tab:GPSSatSum}
-        \begin{tabular}{ |r|c|c| }
+        \begin{tabular}{ r|c|c }
             \hline
             \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
             \hline
             Block I & 11 & 0\\
-            \hline
             Block II & 9 & 0\\
-            \hline
             Block IIA & 19 & 0\\
-            \hline
             Block IIR & 13 & 8\\
-            \hline
             Block IIR-M & 8 & 7\\
-            \hline
             Block IIF & 12 & 12\\
-            \hline
             Block III & 4 & 4\\
-            \hline
             \hline
             \textbf{Total} & \textbf{76} & \textbf{31}\\
             \hline
@@ -248,39 +272,68 @@ geosynchronous satellites there is a region around Asia that has higher accuracy
 approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere \cite{RN59}. The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table
 \ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
 
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of BeiDou Signal Properties \cite{RN59}}
+%         \label{tab:Beidou Signal}
+%         \begin{tabular}{ |r|c|c| }
+%             \hline
+%             \textbf{Signal} & \textbf{Carrier Frequency (MHz)} & \textbf{Modulation Type} \\
+%             \hline
+%             B1-I & 1561.098 & BPSK\\
+%             \hline
+%             B1-Q & 1561.098 & BPSK\\
+%             \hline
+%             B1-C & 1575.420 & MBOC(6,1,1/11)\\
+%             \hline
+%             B1 & 1575.420 & BOC(14,2)\\
+%             \hline 
+%             \hline
+%             B2-I & 1207.140 & BPSK\\
+%             \hline
+%             B2-Q & 1207.140 & BPSK\\
+%             \hline
+%             B2a & 1176.460 & AltBOC(15,10)\\
+%             \hline
+%             B2b & 1207.140 & AltBOC(15,10)\\
+%             \hline 
+%             \hline
+%             B3-I & 1268.520 & BPSK\\
+%             \hline
+%             B3-Q & 1268.520 & BPSK\\
+%             \hline
+%             B3-A & 1268.520 & BOC(15,2.5)\\
+%             \hline
+%             B3 & 1268.520 & BPSK\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
         \caption{Summary of BeiDou Signal Properties \cite{RN59}}
         \label{tab:Beidou Signal}
-        \begin{tabular}{ |r|c|c| }
+        \begin{tabular}{ r|c|c }
             \hline
             \textbf{Signal} & \textbf{Carrier Frequency (MHz)} & \textbf{Modulation Type} \\
             \hline
             B1-I & 1561.098 & BPSK\\
-            \hline
             B1-Q & 1561.098 & BPSK\\
-            \hline
             B1-C & 1575.420 & MBOC(6,1,1/11)\\
-            \hline
             B1 & 1575.420 & BOC(14,2)\\
-            \hline 
             \hline
             B2-I & 1207.140 & BPSK\\
-            \hline
             B2-Q & 1207.140 & BPSK\\
-            \hline
             B2a & 1176.460 & AltBOC(15,10)\\
-            \hline
             B2b & 1207.140 & AltBOC(15,10)\\
-            \hline 
             \hline
             B3-I & 1268.520 & BPSK\\
-            \hline
             B3-Q & 1268.520 & BPSK\\
-            \hline
             B3-A & 1268.520 & BOC(15,2.5)\\
-            \hline
             B3 & 1268.520 & BPSK\\
             \hline
         \end{tabular}
@@ -318,27 +371,49 @@ characters are XOR'd together and their integer value is used as the checksum.
 Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \todo{inser citation}, which is summarised
 below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources wihtout needing to know anything about the hardware itself.
 
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{GNSS Identifier Mnemonics as per NMEA-0183}
+%         \label{tab:NMEA Mnemonics}
+%         \begin{tabular}{ |l|c| }
+%             \hline
+%             \textbf{Talker Device} & \textbf{Identifier} \\
+%             \hline
+%             Galileo Positioning System & GA \\
+%             \hline
+%             BDS (BeiDou System) & GB \\
+%             \hline
+%             NavIC (IRNSS) & GI \\
+%             \hline
+%             Glonass Receiver & GL \\
+%             \hline
+%             Global Navigation Satellite System & GN \\
+%             \hline
+%             Global Positioning System (GPS) & GP \\
+%             \hline
+%             QZSS & GQ \\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
         \caption{GNSS Identifier Mnemonics as per NMEA-0183}
         \label{tab:NMEA Mnemonics}
-        \begin{tabular}{ |l|c| }
+        \begin{tabular}{ l|c }
             \hline
             \textbf{Talker Device} & \textbf{Identifier} \\
             \hline
             Galileo Positioning System & GA \\
-            \hline
             BDS (BeiDou System) & GB \\
-            \hline
             NavIC (IRNSS) & GI \\
-            \hline
             Glonass Receiver & GL \\
-            \hline
             Global Navigation Satellite System & GN \\
-            \hline
             Global Positioning System (GPS) & GP \\
-            \hline
             QZSS & GQ \\
             \hline
         \end{tabular}
@@ -382,31 +457,53 @@ intentional and malicious.
 
 What all of these errors have in common is that create an incorrect value of the psudeorange which in turn incorrectly calculates the reciever position.
 \todo{ref}
+
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
         \caption{Summary of GPS Errors}
         \label{tab:GPS Errors}
-        \begin{tabular}{ |c|c| }
+        \begin{tabular}{ c|c }
             \hline
             \textbf{Source of Error} & \textbf{Error Range} \\
             \hline
             Satellite Clocks & $\pm 2m$\\
-            \hline
             Orbital Errors & $\pm 2.5m$\\
-            \hline
             Ionospheric Delays & $\pm 5m$\\
-            \hline
             Tropospheric Delays & $\pm 0.5m$\\
-            \hline
             Receiver Noise & $\pm 0.3m$\\
-            \hline
             Multipath Errors & $\pm 1m$\\
             \hline
         \end{tabular}
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of GPS Errors}
+%         \label{tab:GPS Errors}
+%         \begin{tabular}{ |c|c| }
+%             \hline
+%             \textbf{Source of Error} & \textbf{Error Range} \\
+%             \hline
+%             Satellite Clocks & $\pm 2m$\\
+%             \hline
+%             Orbital Errors & $\pm 2.5m$\\
+%             \hline
+%             Ionospheric Delays & $\pm 5m$\\
+%             \hline
+%             Tropospheric Delays & $\pm 0.5m$\\
+%             \hline
+%             Receiver Noise & $\pm 0.3m$\\
+%             \hline
+%             Multipath Errors & $\pm 1m$\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 5

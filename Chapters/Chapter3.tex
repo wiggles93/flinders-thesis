@@ -14,6 +14,34 @@ content as well as age. There have been some significant performance increases i
 This literature review will focus mainly on GNSS spoofing methods, with emphasis on the GPS constellation, and on potential anti-spoofing methods. While development of
 anti-spoofing algorithms is not an aim of this thesis, knowledge of such methods allow for understanding potential attack vectors.
 
+To ensure that the review of current literture is accurate, some exclusion criteria was implemented.
+
+\begin{itemize}
+    \item Exclusion criteria \\ To help narrow the scope of the literature review certain criteria was selected to be omitted
+    \begin{itemize}
+        \item Age of source: > 2010 for SDR specific | > 2008 for all others \\ When it comes to the implementation of spoofers using SDR platforms, the most up to date information is required since the software typically used in these cases are open source and prone to frequent changes.\\ This is less of an issue when detailing the operation of the GPS navigation system, or, to a lesser extent, effective spoofing attacks and defences. This is because most off the shelf receivers have not got any spoof mitigation built into their designs \cite{RN12}.
+    \end{itemize}
+    \item Inclusion criteria
+    \begin{itemize}
+        \item Application specifics \\ While not all sources will have an application, whether to attack or defend, it should be noted that there was an importance placed on getting sources that applied the theory described.
+        \item SDR implementation \\ Since this project relied on the use of an SDR platform for the application of a spoofer it was important that a large number of sources also use a similar platform. This helped in forming a strategy to complete the project. It was also important so that time was not wasted reinventing the wheel.
+    \end{itemize}
+    \item Keywords
+    \begin{itemize}
+        \item GPS
+        \item GPS Spoofing
+        \item GNSS Spoofing defence
+        \item GPS UAV Attack
+        \item GPS Spoof mitigation
+        \item GPS Spoofing autonomous vehicles
+        \item meaconing
+        \item GNSS threat analysis
+        \item GNSS threat survey
+    \end{itemize}
+\end{itemize}
+
+There was an exception to the age criteria \cite{RN11}. This was commonly referenced by many other sources so warranted inclusion. 
+
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
@@ -189,17 +217,101 @@ When the spoofer was moving, this was decreased to 50m and was movement directio
 attack on commercial airplanes by monitoring the broadcast infromation for irractic or unexplanable changes in position or velocity \cite{RN24}. This was named
 Crowd-GPS-sec.
 
+\textcite{RN31} and \textcite{RN42} discuss methods of spoofing detection on mobile devices.
 The Android operating system released an update in 2016 the Android API which included access to the Raw GNSS properties including navigation messages, pseudo-ranges,
 Doppler frequencies, constellation status and others. From these properties a GPS spoof detection program
 was developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
 3) inertial sensor data and 4) pseudo-range residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
 used for testing. From testing it was found that phones tend to give a higher priority to GPS based location than that of other methods (network based). 
 From testing it can be seen that each of the metrics available can be used to combat certain types of spoofing attacks, and when used together as in GNSSAlarm, 
-a robust solution is available.
+a robust solution is available \cite{RN31}.
 
+The existing cellular network infrastructure can be used to determine if positon and time information recived from GNSS sources is accurate. Previously
+proposed methods for GPS signal detection have typically required special hardware and are difficult to deploy since they are based on the physical properties of the
+received GPS signal. This new proposal uses broadcasts from cellular towers to validate the position recevied by the GPS signal. Parameters from the cell towers used to
+determine the validity of the GPS signal include the number of in-range base stations, the distance to those stations and the received power of the signal. This method
+was tested against a real spoofing attack and it was found that the there was 0\% false positive complete detection of the spoofing signals tested with negligable delay
+\cite{RN42}.
 
 As mentioned above, there has also been research perfomed in the context of spoof mitigation. There is a cross over between detection and mitigation since the presence of
 a spoofer or spoofed signal must first be detected before it is acted upon.
+
+The most up to date sources, \cite{RN34} \cite{RN36} \cite{RN18}, propose spoofing mitigation strategies that are reflective of the advancement of technology over the
+past decade. \textcite{RN34} provided a detailed survey of the current GNSS interference landscape in relation to the aviation industry. The development of mitigation
+techniques was based around the mathematical modelling of different attack types. A detailed summary of mitigation strategies
+based on the attack/interference type was provided. By grouping all of the resources together this paper was able to produce a single repository where defences against
+all attack categories mentioned above. Jamming and spoofing signal models were presented, with a class baseband signal model and a list of unknown parameters. Jammers
+were classified into five different classes based on the complexity of the attack. Single/multi tone AM/FM type attacks made up class 1 jammers, single and multi chirp
+attacks made up class 2 and 3. Chirp signals with frequency bursts were class 4 jammers and class 5 were DME-like/pulse jammer. Spoofers were divided into simplistic
+spoofer, intermediate spoofer, sophisticated spoofer and meaconer. The unintentional interference models were also discussed and it was noted that adjacent channel
+interference is typically harmonics leaking over from other frequency bands. This may be from DVB or LTE sources and is modelled as AM or FM tones. Co-channel
+interference is most often caused by other GNSS services transmitting at the same frequency. This is modelled as increased AWGN (Additive White Gaussian Noise). A summary
+of the different detection methods was produced. Detection of a single interference type is simple and can be determined using PDFs (probability density functions). The
+scenario in which there is no interference will be Gaussian, whereas in the presence of interference the received signal may not be depending on the interference type.
+Front end detection uses the raw signal before going though the ADC, commonly AGC detectors are used. Since the AGC will attempt to maintain a steady input power it can
+be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method was the
+pre-correlator type, in which the signal is converted to a different domain to estimate characteristics of the signal or seperate the GNSS and interference signals. The
+next type of mitigation strategies were post-correltor types. These are typically reserved for spoofing mitigation as oppsed to jamming mitiagaiton. This anti-spoofing
+method is only effective if the authentic signal can be recognised and seperated from the fraudulent one. If not then mitigation is not achievable. The final technique is
+performing mitigation at a navigation level. This removes the requirement for adding special correlator hardware and uses the typical output from normal recievers. This
+method works by discarding signals that are deemed to be counterfeit.
+
+\textcite{RN36} provided an implementation of the Galileo OS-NMA for embedded devices running ARM based processors. The OS-NMA is an
+attempt to include spoofing countermeasures within the message structure from the satellite. The
+NMA cryptographic data is mostly unpredictable, which can be used to protect against replay attacks like meaconing attacks \cite{RN37}.
+Software profiling was performed with performance comparisons undertaken
+between different platforms. There are OSNMA ready commercial hardware receivers, however the authors decided that a software implementation would be best suited as new
+features are easily added and the algorithm can be easily accessed and modified as needed. An overview of the OS-NMA was provided with parameters, values and
+descriptions. Testing was performed on a Dell PC with Xeon processor and an ODroid running ARM based exynos processor. It was shown that the ARM based device suffered
+with execution times ballooning. However the receiver was able to decode the OS-NMA code susseffully. Future work will go into optimising the software for different
+platforms and utilising more powerful hardware to close to gap with more powerful PC machines.
+
+\textcite{RN18} developed an SDR for spoofing mitigation purposes since typical COTS GNSS receivers do not have a way of being upgraded since their hardware is set and
+not able to change. Having a receiver with upgradable hardware, such as that found in SDR platforms, would make for an ideal GPS receiver. As such SDR's are well suited
+as GNSS receivers, however, they are challenged by processing the GNSS data and anti spoofing method. \citeauthor{RN18} performed experiments to see how effective SDR
+platforms were at implementing a mitigation strategy in real time. A reduced complexity MMSE (minimum mean squared error) algorithm was developed for use on the in house
+developed SDR platform. This algorithm was compared against MF (matched filter) techniques. It was found that at an ISR (interference to signal ratio) of 30dB that MF
+correlators were unable to receive any usable signal, with BER (bit error rate) of approximately 50\%. Using the proposed maximise correlator, at a 30dB ISR, showed a BER
+gain of approximately $10^5$. However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in
+complexity of the antispoofing algorithms.
+
+A consistent theme in the literature is the inclusion of cryptography into GNSS constellations. The method employed by \citeauthor{RN13} included adding digital signatures within the GPS civil navigation message. This type of cryptographic defence
+will secure the receiver against replay spoof attacks. Authentication of each civil GPS signal is performed every 5 minutes.
+For the proposed authentication strategy a $P_D$ of >0.97 was achieved over the range of $37$-$51 dB-Hz$.
+The implementation of such a system would require modifications to the GPS satellite system themselves, as well as a redesign of GPS receivers.
+The modifications required for the GPS receivers were documented in detail in \cite{RN13}. For systems that can not easily or readily upgraded to
+take advantage of these improvements an external device called "The GPS Assimilator", as proposed in \cite{RN19}, could be used to clean the incoming
+signals.
+Although it was noted that receivers based on SDR platforms would be able to implement the authentication algorithm easily. 
+
+The summary of spoofing at the time of \cite{RN11} is shown in Table \ref{tab:GPSMitigationSum}. While there are more complicated strategies available now, many
+commercial receivers do not implement them, as such the basic strategies are still valid.
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[h]
+    \begin{center}
+        \caption{Summary of Spoofing Mitigation Methods from \cite{RN11}}
+        \label{tab:GPSMitigationSum}
+            \begin{tabular}{ m{3cm} | m{5cm} | m{5cm} }
+                \hline
+                \textbf{Test Statistic} & \textbf{Function} & \textbf{Limitation} \\
+                \hline
+                Absolute signal power & Limit the spoof signal power & Anntenna attitude and environment related \\
+                Signal power changing rate & Detec stationary spoof station & Anntenna attitude and environment related \\
+                Relative signal strengths on all carriers & Detect spoofing on single carrier & Affected by ionosphere refraction \\
+                Range rate & Bound the phase and code range rate & Relate to GPS receiver's moving direction \\
+                Doppler shift & Detect spoof that uses one transmitter to spoof all satellites & None \\
+                Correlation peaks & Correlate L1/L2 binary messages & Low performce on Y-code \\
+                GPS signal after remvoing all navigation data & Recover authentic data & Requires low spoof/authentic signal power ratio \\
+                Range differences: phase/code, L1/L2 & Identify signal source & Needs to be L1/L2 receiver \\
+                Ephemeris data & Verify ephemeris datra including satllite position & None \\
+                Signal power and data & Jump detection & None \\
+                \hline
+            \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[!ht]
@@ -266,8 +378,13 @@ a spoofer or spoofed signal must first be detected before it is acted upon.
 Some of the early assessments of the spoofing threat included methods for performing said attacks using specialised hardware \cite{RN23}. This increased the technical
 knowledge required to be able to perform an attack.
 
-Common recommendations from the literature was the implementation of, at a minimum, basic anti-spoofing infrastructure. This is more commen place in applications that
-have suitable software processinng capabilities. But dedicated COTS receivers do not typically have any defence strategies in place.  
+Common recommendations from the literature was the implementation of, at a minimum, basic anti-spoofing infrastructure. This is more common place in applications that
+have suitable software processinng capabalities. But dedicated COTS receivers do not typically have any defence strategies in place.
+Cryptographic solutions are frequently suggested in literature, and have been implemented with success. However such implementations requrie alterations to the space
+segment of the GNSS constellation. This may be implemented for the next generation satellites but for now this is not feasible. 
+
+Some literate have proposed workarounds should the constellations be upgraded, such as \cite{RN19} where an external device performs the cryptographic checks before
+passing the signal to the outdated reciver.
 
 Areas of future research were also outlined and include but are not limited to interconnecting the satellites together, incrasing accurace of
 atomic time keeping as well as introducing advanced anti-spoofing techniques, more wide spread support of multi constellation receivers, and increasing anti interference
