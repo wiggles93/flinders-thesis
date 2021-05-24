@@ -411,7 +411,7 @@ be. The signal modulation is applied wihtin the compilation of the file, simplif
 
 \subsection{Transmit Signal}
 Once the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
-capable of connecting to USRP devices automatically throught the UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
+capable of connecting to USRP devices automatically throught he UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
 process. 
 
 This was a simple program that connected the source file to the SDR via some simple blocks as shown in Figure \ref{fig:GNURadioSpoof}. The file is read 16bits at a time

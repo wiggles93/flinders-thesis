@@ -4,8 +4,8 @@
 
 \label{Chapter5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-This section covers the results of the GNSS reception and GPS transmission experiments. Section \ref{sec:Res_GNSSReception} covers the attempts at receiving authentic GNSS
-signals and accurately calculating a location. Section \ref{sec:Res_GPSTransmission} will cover the attempts and results of performing spoofing attacks on GPS receivers.
+This section coveres the results of the GNSS reception and GPS tramission experiments. Section \ref{sec:Res_GNSSReception} coveres the attempts at reciving authentic GNSS
+signals and accurately calcaulating a location. Section \ref{sec:Res_GPSTransmission} will cover the attempts and results of performing spoofing attacks on GPS receivers.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ signals and accurately calculating a location. Section \ref{sec:Res_GPSTransmiss
 \section{GNSS Reception} \label{sec:Res_GNSSReception}
 Before testing the GPS transmission performance of the SDR, reception was tested, with less success. Three antenna setups were chosen each failing to lock and track the
 satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it includes amplifiers and
-filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
+filters within the antenna module iteself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
 that there was 5V on the RF+DC port of the Tee.
 
 
@@ -24,7 +24,7 @@ that there was 5V on the RF+DC port of the Tee.
 \section{GPS Transmission} \label{sec:Res_GPSTransmission}
 Experimentation was performed at the Tonsley campus of Flinders University, which has GPS coordinates of $-35.007650, 138.572030$. At first it was decided to use the
 centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the gps receiver was to show
-that the current location was in the CBD. 
+that the current locaiton was in the CBD. 
 
 \subsection{Meaconing Attack}
 Since the GPS reception failed with the SDR, there was no way of performing a meaconing attack. Therefore, the only viable attack strategy was to generate a binary file
@@ -32,16 +32,16 @@ of the intended location.
 
 \subsection{Spoofing Attack}
 Once the workflow and hardware setup for the SDR was properly configured it was found that a smartphone was able to be spoofed.
-When attempting to spoof devices in the wild, the Pixel XL smartphone was susceptible to attack while more modern smartphones that were tested were not susceptible. These
-included the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
-anti-spoofing algorithms that have been implemented including the usage of multiple constellations for position resolution.
+When attempting to spoof devices in the wild, the Pixel XL smartphone was succeptable to attack while more modern smartphones that were tested were not succeptable. These
+incuded the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
+anti-spoofing algorithms that have been implemented including the useage of multiple constellations for position resolution.
 
 \subsection{Static Spoofing}
 \subsubsection{Tonsley MAB}
-The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. The desired coordinates that the receiver were
+The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. The desired coordinates that the reciever were
 \emph{\textbf{add coordinates}}.
 
-From Figure \ref{fig:MABStaticPosition} it can be seen that there are negative numbers, this is arbitrary and was included in order to give perspective as to which direction
+From Figure \ref{fig:MABStaticPosition} it can be seeen that thre are negative numbers, this is arbitrary and was included in order to give perspective as to which direction
 the received position was wrong.
 
 In this example the time to first fix was calculated as being 37 seconds. This is quite good for a cold start situation.
@@ -49,7 +49,7 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
-        \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:MABStaticCNo}
     \end{centering}
 \end{figure}
@@ -57,7 +57,7 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Lat long position.png}
-        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
         \label{fig:MABStaticCoord}
     \end{centering}
 \end{figure}
@@ -65,7 +65,7 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
-        \caption{Graph of recorded position with respect to the intended spoofed location}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
         \label{fig:MABStaticPosition}
     \end{centering}
 \end{figure}
@@ -73,7 +73,7 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB error over time.png}
-        \caption{Error between calculated location and expected location over time}
+        \caption{Error between calcluated location and expected location over time}
         \label{fig:MABStaticError}
     \end{centering}
 \end{figure}
@@ -81,7 +81,7 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
-        \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
         \label{fig:MABSatelliteImage}
     \end{centering}
 \end{figure}
@@ -89,12 +89,12 @@ In this example the time to first fix was calculated as being 37 seconds. This i
 \subsubsection{Antarctica}
 Davis station in Antarctica was chosen as a location for spoofing. 
 
-Time to first fix was shown to be approximately 60 seconds.
+Time to first fix was shown to be approximatly 60 seconds.
 
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Carrier noise ratio.png}
-        \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:antarcticaStaticCNo}
     \end{centering}
 \end{figure}
@@ -102,7 +102,7 @@ Time to first fix was shown to be approximately 60 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Lat long position.png}
-        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
         \label{fig:antarcticaStaticCoord}
     \end{centering}
 \end{figure}
@@ -110,7 +110,7 @@ Time to first fix was shown to be approximately 60 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Position from origin.png}
-        \caption{Graph of recorded position with respect to the intended spoofed location}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
         \label{fig:antarcticaStaticPosition}
     \end{centering}
 \end{figure}
@@ -118,7 +118,7 @@ Time to first fix was shown to be approximately 60 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica error over time.png}
-        \caption{Error between calculated location and expected location over time}
+        \caption{Error between calcluated location and expected location over time}
         \label{fig:antarcticaStaticError}
     \end{centering}
 \end{figure}
@@ -126,7 +126,7 @@ Time to first fix was shown to be approximately 60 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica_Satellite.PNG}
-        \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
         \label{fig:antarcticaSatelliteImage}
     \end{centering}
 \end{figure}
@@ -134,13 +134,13 @@ Time to first fix was shown to be approximately 60 seconds.
 \subsection{Dynamic Spoofing}
 
 \subsubsection{Tonsley MAB}
-The time to first fix was shown to be approximately 49 seconds.
+The time to first fix was shown to be approximatly 49 seconds.
 
 
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Carrier noise ratio.png}
-        \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
+        \caption{Carrier to noise ratio from unique SVID's as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:MABdynamicCNo}
     \end{centering}
 \end{figure}
@@ -148,7 +148,7 @@ The time to first fix was shown to be approximately 49 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Lat long position.png}
-        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
+        \caption{Trace of latitude and longitude over time as interpretated from the GPS receiver with expected location noted with red dot}
         \label{fig:MABdynamicCoord}
     \end{centering}
 \end{figure}
@@ -156,7 +156,7 @@ The time to first fix was shown to be approximately 49 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Position from origin.png}
-        \caption{Graph of recorded position with respect to the intended spoofed location}
+        \caption{Graph of recoreded position with respect to the intended spoofed location}
         \label{fig:MABdynamicPosition}
     \end{centering}
 \end{figure}
@@ -164,16 +164,16 @@ The time to first fix was shown to be approximately 49 seconds.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_Satellite.PNG}
-        \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
+        \caption{Satellite image with expected GPS position shown with red cross and recoreded position shown with blue line}
         \label{fig:MABdynamicSatelliteImage}
     \end{centering}
 \end{figure}
 
 \subsection{Issues Encountered}
-The under run issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
-There was an issue towards the end of the project where there was considerable leakage of EM radiation into the Faraday cage that was causing the GPS receiver to produce
-wildly inaccurate position (up to and over 500m error). This was much different to what had previously been recorded within the Faraday cage. This amount of error does
-not constitute a successful spoof since the time to first lock was much greater than a real signal, or even spoofing attempts previously. 
+The underrun issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
+There was an issue towards the end of the project where there was considerable leakage of EM radiation into the faraday cage that was causing the GPS receiver to produce
+wildly inaccuarate position (up to and over 500m error). This was much different to what had previously been recorded within the faraday cage. This amount of error does
+not consitute a successful spoof since the time to first lock was much greater than a real signal, or even spoofing attempts previously. 
 
 Just after the testing phase of the project the smartphone that was being used for some of the logging and graphing was rendered unusable. While there was no data lost,
 it was replaced with a newer model that experimentally was much harder to spoof than the previous model. This could be due to many factors including anti-spoofing
@@ -190,11 +190,11 @@ A common result from spoofed attempts was to have GPS satellites with an SVID of
 me think that there might be a GBAS system or SBAS system nearby that is being received within the cage by stray wires etc.}
 
 \section{Experimental Issues}
-While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
+While performing experiments there were issues thaat were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
 frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
-was able to produce signals that were picked up by the GNSS Logger application. Observing the graphs of the carrier to noise figure showed that when there was an under run
+was able to produce signals that were picked up by the GNSSLogger application. Observing the graphs of the carrier to noise figure showed that when there was an underrun
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
 
-In an attempt to overcome the under run issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
-in the radio working straight away. The under run issues resurfaced when trying to read the serial data from a COTS gps receiver. This was less than ideal and required a
+In an attempt to overcome the underrun issue that was plagueing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
+in the radio working straight away. The underrun issues resurfaced when trying to read the serial data from a COTS gps receiver. This was less than ideal and required a
 second computer to act as a datalogger.
