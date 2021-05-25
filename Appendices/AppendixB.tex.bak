@@ -8,7 +8,7 @@
 Below is the standard structure of all NMEA sentences, as well as dedicated breakdowns for the three used sentences for this project
 
 \section{Receiver Output}
-Below is a snippet of the output from the GPS recevier unit used for testing.
+Below is a snippet of the output from the GPS receiver unit used for testing.
 
 \section{File used for generating binary}
 Below is a snippet of the NMEA file that was used to generate the binary file.

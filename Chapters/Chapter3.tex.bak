@@ -169,7 +169,7 @@ difficulties continue with distance from the target, which, due to the inverse s
 attacker to target should be minimised. This is made difficult if the target is moving. Other difficulties were raised including need for direct line of sight and the need for
 multiple simulators for multi GNSS receivers. 
 While it was found that current generation GNSS receivers were susceptible to spoof attacks, there were countermeasures that could be employed to either detect or
-mitigate the spoofing threat. Of the proposed GNSS spoofing countermeasures all can be summarised with four categories, Signal processing defences, Cryptographic
+mitigate the spoofing threat. Of the proposed GNSS spoofing countermeasures all can be summarised with four categories, Signal processing defences, cryptographic
 defences, Correlation with other timing sources, Radio spectrum and antenna defences. It was found that at least 1 method from each of the categories was highly effective
 at defending against an attack. Given the practical difficulties in performing a spoofing attack and the effective defences that have been developed (although not used in
 the wider community as yet) it was concluded that the threat posed by GNSS spoofing was low but with the potential to increase as the practical implementation became
