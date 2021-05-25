@@ -46,6 +46,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 %\usepackage[style=numeric]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 \usepackage[backend=bibtex,style=numeric]{biblatex}
+% \usepackage[backend=bibtex, style=ieee]{biblatex}
 %\usepackage[backend=bibtex,style=authoryear]{biblatex} % this will use author and year for in text referencing
 \bibliography{main}
 \bibliography{honoursThesis} 
@@ -164,12 +165,12 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \vfill
 
 \large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-%%\groupname\\\deptname\\[2cm] % Research group name and department name
- 
+% \groupname\\\deptname\\[2cm] % Research group name and department name
+\deptname\\[2cm] 
 \vfill
 
 {\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
+% \includegraphics{Logo} % University/department logo - uncomment to place it
  
 \vfill
 \end{center}
@@ -262,7 +263,7 @@ Miller for her endless patience for me through the early years of my degree and 
 %----------------------------------------------------------------------------------------
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-
+\textbf{ASIC} & \textbf{A}pplication \textbf{S}pecific \textbf{I}tegrated \textbf{C}ircuit \\
 \textbf{BOC} & \textbf{B}inary \textbf{O}ffset \textbf{C}arrier\\
 \textbf{BPSK} & \textbf{B}inary \textbf{P}hase-\textbf{S}hift \textbf{K}eying\\
 \textbf{CDMA} & \textbf{C}ode \textbf{D}ivision \textbf{M}ultiple \textbf{A}ccess\\

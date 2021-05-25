@@ -113,7 +113,7 @@ def plotError(coordinates, reference):
     plt.tight_layout()
     plt.show()
 
-def plotMap(coordiantes, reference=None): # add extra code to allow for dynamic maps and scaling
+def plotMap(coordiantes, reference=None):
     lats = []
     longs = []
     apikey = 'AIzaSyDmP3BcjpPRtxNKqPjX9Q7sSyAW96afCB4'
@@ -129,7 +129,7 @@ def plotMap(coordiantes, reference=None): # add extra code to allow for dynamic 
 
     filename = title + "googleMap"
 
-    gmap = gmplot.GoogleMapPlotter(avgLats, avgLongs, 18, apikey=apikey) # this should be scaled based on the dynamic and static spoofing etc.
+    gmap = gmplot.GoogleMapPlotter(avgLats, avgLongs, 18, apikey=apikey)
     gmap.plot(lats, longs, edge_width=4, color='blue')
     if reference:
         if dynamic:
@@ -146,16 +146,12 @@ def plotMap(coordiantes, reference=None): # add extra code to allow for dynamic 
     gmap.draw('../Images/{}.html'.format(filename))
 
 
-def plotCNo(satellites): # need help to figure out best way to produce this graph
+def plotCNo(satellites):
     fig, ax = plt.subplots(figsize=(18 ,15))
     timestamps = list(satellites.keys())
     x = range(len(timestamps))
-    # x = []
-    # for time in timestamps:
-    #     x.append(time - timestamps[0])
     SatIDs = satellites.values()
     tmp = []
-    # cmap = plt.get_cmap("hsv")
 
     for sats in SatIDs:
         for sat in sats:
@@ -163,7 +159,6 @@ def plotCNo(satellites): # need help to figure out best way to produce this grap
                 tmp.append(int(sat))
     tmp.sort()
 
-    # plt.rcParams["axes.prop_cycle"] = plt.cycler("color", plt.cm.viridis(np.linspace(0,1,len(tmp))))
     ax.set_prop_cycle(plt.cycler("color", plt.cm.hsv(np.linspace(0,1,len(tmp)))))
     for count, sv in enumerate(tmp):
         y = []
@@ -184,61 +179,10 @@ def plotCNo(satellites): # need help to figure out best way to produce this grap
     ax.set(xlabel = 'Time (s)', ylabel = 'C/No (dB/Hz)', title = plot_title)
     ax.set_ylim(ymin=0)
     ax.set_xlim(xmin=0)
-    # ax.legend(tmp, title="Satellite ID", ncol=2, )
     ax.legend(title="Satellite ID", loc='lower right', shadow=True, ncol=2)
     fig.savefig(("../Images/" + datetitle + " Carrier noise ratio.png"), bbox_inches='tight')
     plt.tight_layout()
     plt.show()
-
-def plotCNoError(satellites, coordinates, reference): # plot the C/N and error on same axes as comparison
-                                                      # I dont think this has any use since Dynamic error is too difficult to produce
-    fig, ax = plt.subplots(figsize=(18 ,15))
-    timestamps = list(satellites.keys())
-    x = range(len(timestamps))
-
-    SatIDs = satellites.values()
-    tmp = []
-
-    for sats in SatIDs:
-        for sat in sats:
-            if int(sat) not in tmp:
-                tmp.append(int(sat))
-    tmp.sort()
-
-    error = []
-    origin = [reference[0][1], reference[0][2]]
-    if dynamic:
-        return
-    
-    for coord in coordinates:
-        error.append(latlon2m(origin[0], origin[1], coord[1], coord[2]))
-
-    ax.set_prop_cycle(plt.cycler("color", plt.cm.hsv(np.linspace(0,1,len(tmp)))))
-    for count, sv in enumerate(tmp):
-        y = []
-        for sats in SatIDs:
-            for sat in sats:
-                if str(sv) in sats:
-                    if sat == str(sv):
-                        try:
-                            y.append(float(sats[sat][0]))
-                        except ValueError:
-                            y.append(0)
-                        break
-                else:
-                    y.append(0)
-                    break
-        ax.plot(x, y, label=sv)
-    title = infile[:-4] + "_Compare Error"
-    ax2 = ax.twinx()
-    ax2.plot(x, error, color = 'black')
-    ax.set(xlabel = 'Time (s)', ylabel = 'C/No (dB/Hz)', title = title)
-    ax2.set(ylabel = 'Error (m)')
-    ax.legend(title="Satellite ID", loc='lower right', shadow=True, ncol=2)
-    # fig.savefig((title + ".png"))
-    plt.tight_layout()
-    plt.show()
-
 
 if len(sys.argv) > 2:
     sourceFile = sys.argv[2] # this is the file that was used to generate the binary file for the SDR
@@ -246,7 +190,7 @@ infile = sys.argv[1] # this is the file from the GPS receiver
 timetofix = 0
 dataValid = False
 firstFix = False
-svSNR = {} # Make this a dict in a dict. {Timestamp: {SVid: SNR[]}}
+svSNR = {}
 satellites = {} # Make this a dict in a dict. {Timestamp: {SVid: SNR[]}}
 currentTime = 0
 startTime = datetime.now()
@@ -297,7 +241,6 @@ try:
             # Parsing GSV sentences
             #
             elif msgType == "GSV":
-                # if dataValid:
                 NumofMessages = int(string[1])
                 sequenceNumber = int(string[2])
                 satellitesView = int(string[3])
@@ -404,14 +347,10 @@ except IOError:
     pass
     
 print("Time to first fix was {} seconds".format(timetofix))
-
 text_params = {'axes.labelsize': 18, 'axes.titlesize' : 24, 'xtick.labelsize': 16, 'ytick.labelsize': 16, 'legend.title_fontsize' : 18, 'legend.fontsize' : 16} # text parameters for plotting
 plt.rcParams.update(text_params) 
 plotCNo(satellites)
-# plotPath(coordinates)
 plotPath(coordinates, referenceCoords)
-# plotMap(coordinates)
 plotDistance(coordinates, referenceCoords)
 plotMap(coordinates, referenceCoords)
 plotError(coordinates, referenceCoords)
-# plotCNoError(satellites, coordinates, referenceCoords)

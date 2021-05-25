@@ -4,13 +4,32 @@
 
 \label{AppendixA} % Change X to a consecutive letter; for referencing this appendix elsewhere, use \ref{AppendixX}
 
-\textbf{\emph{This section will include all of the code that has been written for this project, including the code to fetch the ephemeris and the code to plot the
-position and signal quality}}
-
-\section{GPS Position and Signal Quality}
+\section{GPS Sentence Parsing and Graphing} \label{sec:NMEACode}
 \textbf{Filename:} NMEA.py\\
 \textbf{Description:} This code will take a NMEA file as input and calculate the time to first fix, then plot the carrier to noise ratio of every satellite that was
 within view of the receiver, then plot the position given the output of the GPS receiver.
 
 \begin{lstinputlisting}[language=Python, caption=Python code to parse the receiver NMEA sentence and produce graphs]{NMEAParse.py}
 \end{lstinputlisting}
+
+\section{GPS Ephemeris download script} \label{sec:EphemerisCode}
+\textbf{Filename:} remote\textunderscore ephemeris\textunderscore utc.py\\
+\textbf{Description:} This code will take the current time and and use that to request the latest ephemeris from the CDDIS portal.
+
+\begin{lstinputlisting}[language=Python, caption=Python code to retreive the latest RINEX file from the CDDIS servers]{remote_ephemeris_utc.py}
+\end{lstinputlisting}
+
+\section{Connect to GPS Receiver} \label{sec:GPSConnect}
+\textbf{Filename:} Connect\textunderscore receiver.sh\\
+\textbf{Description:} Script that was used to set the permissions on the USB GPS receiver and then connect to the serial interface using the screen program. The script
+would take 1 argument that was used to save the logfile.
+
+\begin{lstlisting}[language=bash, caption=Bash script to connect to USB GPS receiver]
+    #!/bin/bash
+
+    filename=$1
+    
+    chmod 777 /dev/ttyUSB0
+    screen -L -Logfile $filename /dev/ttyUSB0
+   
+\end{lstlisting}

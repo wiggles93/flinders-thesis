@@ -516,19 +516,20 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/Setup/overview_labelled.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplbi8t.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/static coordinates setup.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/dynamic coordinates setup.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_03_30_static_MAB_setup.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/gps-sdr-sim options.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/gps-sdr-sim running.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/GNURadio_Spoofer.png
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
-INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21-3-25_cbd_dynamic_setup.png
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter5.tex
@@ -558,6 +559,13 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Appendices/AppendixA.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
 INPUT /home/alastair/Documents/Honours/flinders-thesis/NMEAParse.py
+INPUT /home/alastair/Documents/Honours/flinders-thesis/remote_ephemeris_utc.py
+INPUT /home/alastair/Documents/Honours/flinders-thesis/remote_ephemeris_utc.py
+INPUT /home/alastair/Documents/Honours/flinders-thesis/remote_ephemeris_utc.py
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /home/alastair/Documents/Honours/flinders-thesis/main.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter1.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter1.aux

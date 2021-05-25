@@ -219,7 +219,7 @@ Crowd-GPS-sec.
 
 \textcite{RN31} and \textcite{RN42} discuss methods of spoofing detection on mobile devices.
 The Android operating system released an update in 2016 the Android API which included access to the Raw GNSS properties including navigation messages, pseudo-ranges,
-Doppler frequencies, constellation status and others. From these properties a GPS spoof detection program
+Doppler frequencies, constellation status and others. An overview of the changes made over recent versions can be found in \cite{RN39}. From these properties a GPS spoof detection program
 was developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
 3) inertial sensor data and 4) pseudo-range residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
 used for testing. From testing it was found that phones tend to give a higher priority to GPS based location than that of other methods (network based). 
@@ -288,7 +288,7 @@ The summary of spoofing at the time of \cite{RN11} is shown in Table \ref{tab:GP
 commercial receivers do not implement them, as such the basic strategies are still valid.
 
 \renewcommand{\arraystretch}{1.2}
-\begin{table}[h]
+\begin{table}[!h]
     \begin{center}
         \caption{Summary of Spoofing Mitigation Methods from \cite{RN11}}
         \label{tab:GPSMitigationSum}
@@ -348,7 +348,7 @@ commercial receivers do not implement them, as such the basic strategies are sti
 \renewcommand{\arraystretch}{1}
 
 \renewcommand{\arraystretch}{1.2}
-\begin{table}[ht]
+\begin{table}[!ht]
     \begin{center}
         \caption{Summary of Spoofing Mitigation Methods from \cite{RN6}}
         \label{tab:SpoofMitigateSum}
