@@ -46,7 +46,6 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 %\usepackage[style=numeric]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 \usepackage[backend=bibtex,style=numeric]{biblatex}
-% \usepackage[backend=bibtex, style=ieee]{biblatex}
 %\usepackage[backend=bibtex,style=authoryear]{biblatex} % this will use author and year for in text referencing
 \bibliography{main}
 \bibliography{honoursThesis} 
@@ -107,7 +106,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \thesistitle{GPS Spoofing using a Software Defined Radio} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Dr. Saeed \textsc{Rehman}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
-\degree{Bachelor of Engineering(Electrical and Electronic) (Honours)} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\degree{Bachelour of Engineering(Electrical and Electronic) (Honours)} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
 \author{Alastair \textsc{Wiegelmann}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
@@ -165,12 +164,12 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \vfill
 
 \large \textit{A thesis submitted in fulfilment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-% \groupname\\\deptname\\[2cm] % Research group name and department name
-\deptname\\[2cm] 
+%%\groupname\\\deptname\\[2cm] % Research group name and department name
+ 
 \vfill
 
 {\large \today}\\[4cm] % Date
-% \includegraphics{Logo} % University/department logo - uncomment to place it
+%\includegraphics{Logo} % University/department logo - uncomment to place it
  
 \vfill
 \end{center}
@@ -225,13 +224,13 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \begin{abstract}
   \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-	As GNSS technology becomes more and more prevalent in society more needs to be done to ensure that it remains a robust system. There is a distinct issue with
-	satellite technology. That is that the design life time leaves them open to attack as technology propels forward. Especially over the past 15 years the rate of
+	As GNSS technology becomes more and more prevelant in society more needs to be done to ensure that it remains a robust system. There is a distinct issue with
+	sattellite technology. That is that the design life time leaves them open to attack as technology propoells forward. Especially over the past 15 years the rate of
 	expansion of technology has been high. While the GNSS system as a whole may have been technologically advanced compared to civilian technology when launched, that
 	technology, and others, trickles down in to the hands of attackers. This thesis pointed out the ease in which a spoofing attack was able to be performed. The results
-	show that with relatively low amounts of money and processing power, as well as technical understanding, successful spoofing attacks were performed with ease. While
+	show that with reletively low amounts of money and processing power, as well as technnical understasnding, successful spoofing attacks were performed with ease. While
 	it is also true that with the setup used for testing that there were clear signs that the signal was spoofed, as shown by the comparison between real signals and
-	spoofed signals, there are products that do not have the processing power to perform software based anti spoofing checks. These include embedded systems, as well as
+	spoofed signals, there are products that do not have the processign power to perform softawre based anti spoofing checks. These include embedded systems, as well as
 	existing systems. 
 	Many industries are reluctant to change equipment for many years, even in important industries like energy. This leaves this infrastructure open to attacks from this
 	kind of system especially given how portable it is \cite{RN58}. 	
@@ -245,7 +244,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 I wish to thank all those that have supported me through not only my thesis, but my entire degree. In particular Saeed, who guided me through the process of performing an
 Honours project. My parents have always been supportive of my decisions and I could not have made it this far without them. Most importantly I'd like to thank Jacqueline
-Miller for her endless patience for me through the early years of my degree and her endless compliments as well as grammatical help.
+Miller for her endless patience for me through the early years of my degree and her endless compliments as well as gramatical help.
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -263,8 +262,7 @@ Miller for her endless patience for me through the early years of my degree and 
 %----------------------------------------------------------------------------------------
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-\textbf{ASIC} & \textbf{A}pplication \textbf{S}pecific \textbf{I}tegrated \textbf{C}ircuit \\
-\textbf{BER} & \textbf{B}it \textbf{E}rror \textbf{R}ate \\
+
 \textbf{BOC} & \textbf{B}inary \textbf{O}ffset \textbf{C}arrier\\
 \textbf{BPSK} & \textbf{B}inary \textbf{P}hase-\textbf{S}hift \textbf{K}eying\\
 \textbf{CDMA} & \textbf{C}ode \textbf{D}ivision \textbf{M}ultiple \textbf{A}ccess\\
@@ -273,10 +271,8 @@ Miller for her endless patience for me through the early years of my degree and 
 \textbf{DSP} & \textbf{D}igital \textbf{S}ignal \textbf{P}rocessing\\
 \textbf{ECEF} & \textbf{E}arth \textbf{C}entered \textbf{E}arth \textbf{F}ixed\\
 \textbf{EGA} & \textbf{E}uropean \textbf{G}NSS \textbf{A}gency\\
-\textbf{EGNOS} & \textbf{E}uropean \textbf{G}eostationary \textbf{N}avigation \textbf{O}verlay \textbf{S}ervice \\
 \textbf{EM} & \textbf{E}lectro\textbf{M}agnetic\\
 \textbf{ESA} & \textbf{E}uropean \textbf{S}pace \textbf{A}gency\\
-\textbf{EW} & \textbf{E}lectronic \textbf{W}arfare\\
 \textbf{FDMA} & \textbf{F}requency \textbf{D}ivision \textbf{M}ultiple \textbf{A}ccess\\
 \textbf{GBAS} & \textbf{G}round \textbf{B}ased \textbf{A}ugmentation \textbf{S}ystem\\
 \textbf{GLONASS} & \textbf{GLO}bal \textbf{NA}vigation \textbf{S}atellite \textbf{S}ystem\\
@@ -293,7 +289,7 @@ Miller for her endless patience for me through the early years of my degree and 
 \textbf{PNT} & \textbf{P}osition, \textbf{N}avigation and \textbf{T}iming\\
 \textbf{PRN} & \textbf{P}suedo \textbf{R}andom \textbf{N}umber\\
 \textbf{PVT} & \textbf{P}osition, \textbf{V}elocity and \textbf{T}iming\\
-\textbf{QZSS} & \textbf{Q}uasi-\textbf{Z}enith \textbf{S}atellite \textbf{S}ystem\\
+\textbf{QFSS} & \textbf{Q}uasi-\textbf{Z}enith \textbf{S}atellite \textbf{S}ystem\\
 \textbf{RF} & \textbf{R}adio \textbf{F}requency\\
 \textbf{RHCP} & \textbf{R}ight \textbf{H}and \textbf{C}ircular \textbf{P}olarisation\\
 \textbf{SBAS} & \textbf{S}atellite \textbf{B}ased \textbf{A}ugmentation \textbf{S}ystem\\
@@ -339,7 +335,7 @@ $t$ & time & \si{\second} \\
 
 $\omega$ & angular frequency & \si{\radian} \\
 $\mu$ & standard gravitational parameter & \si{m^3s^{-2}} \\
-$\rho$ & distance (pseudorange) & \si{\meter}
+$\rho$ & distance (psuedorange) & \si{\meter}
 
 \end{symbols}
 

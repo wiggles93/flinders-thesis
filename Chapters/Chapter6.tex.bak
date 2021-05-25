@@ -1,0 +1,41 @@
+% Chapter Template
+
+\chapter{Discussion} % Main chapter title
+
+\label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Results}
+Initially it was decided that the locations that would be spoofed would be locations that are not easily accessilble as a means of proving the validity of the results.
+This was made easier due to the ongoing pandemic. Although this idea was later changed to make it easier to compare with real signals if needed.
+
+Using the developed workflow, it was simple to create and deploy spoofing attacks for any location and at any elapsed time within minutes. This includes static or dynamic
+spoofing attacks. Not enough time was invested into the reception of GNSS signals and thus meaconing attacks were not performed. The GPS-SDR-sim program was able to
+estimate and simulate the ionic effects. While it is clear that this method resulted in successful spoofing attacks, the hypothesis is that having a recieved signal that includes ionic delays
+and other interference would make it easier to fool more complicated receivers. Further testing and investigations should be carried out to find the answer to this. 
+
+
+
+SDR's are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an underrun error (where 'U' is printed to the
+output) when transmitting a signal with high sps (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
+enough.
+
+This was solved by increasing the UDP buffer size manually to at least the sample rate, and over for better results. From limited experimentation this completely resolved the issue, and opened up
+oppertunities to perform spoofing with low powered embedded devices like the Rasperry Pi single board computer. \todo{move this sentence to results}
+
+\section{Future Work}
+All of the tests that have been conducted for use in this thesis have either been generating a signal based off a predetermined location (coordinate) or a predetermined
+path, or attempted meaconing attack. None of these options have a mechanism for position feedback. For example you cannot create a signal that has a linear offset from
+the actual position using these methods. This is something that could be achieved through combination and modification of the exitisting open source projects used in this
+thesis. This would allow for properly real-time gps spoofing, and could be extended further to have intelligent algorithms.
+
+Current methods, as detailed in \ref{Chapter4}, requires downloading the Ephemeris for the date and time of the proposed spoofing attack. This makes real-time spoofing
+attacks not possible since there is a delay between the current time and the associated ephemeris. A potential fix for this could be to perform some analysis on the
+orbits of each satellite within the constellation over an arbitrary period of time to create a machine learning algorithm. This algorithm would be able to predict the
+location of the satellites ahead of time, thus binaries could be compiled for future attacks, or could be used for real-time attacks without the need for downloading/
+retrieving the ephemeris from legitamate sources.
+
+Extended to work on anti-spoofing for PhD.
