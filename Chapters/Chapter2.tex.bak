@@ -1,651 +1,591 @@
 % Chapter Template
 
-\chapter{Literature Review} % Main chapter title
+\chapter{GNSS Systems Overview} % Main chapter title
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+The format of this chapter is as follows, there is a section on the details behind GNSS systems and the history behind GNSS and how it came to be in its current state. After that
+an overview of the current and future GNSS constellations including operating prinipals was covered. Then real world uses of GNSS are listed. Following that the errors
+that account for the innacuracies of calcualted GNSS position are covered, including the definition of spoofing types.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Introduction}
-
-In this section the previous work in the field will be explored. This will give the reader adequate understanding of where 
-advances in the research area can be made.\todo{Write intro to the lit review}
-
-\medskip
-This is a list of things that need to be in a lit review:
-\begin{itemize}
-    \item Introduction
-    \begin{itemize}
-        \item Why are you writing the review, and why the topic is important
-        \item the scope of the review - what aspects of the topic will be discussed
-        \item the criteria used for your literature selection (types of sources used and dates etc.)
-        \item the organisational structure of the review
-    \end{itemize}
-    \item Body Paragraphs
-    \begin{itemize}
-        \item historical background
-        \item methodologies
-        \item previous studies
-        \item mainstream vs. alternative viewpoints
-        \item principal questions being asked
-        \item general conclusions being drawn
-    \end{itemize}
-    \item Conclusion 
-    \begin{itemize}
-        \item Main agreements and disagreements of the literature
-        \item any gaps or areas of further research
-        \item my overall perspective on the topic
-    \end{itemize}
-\end{itemize}
-\medskip
-Checklist for a literature review. Have I:
-\begin{itemize}
-    \item Outlined the purpose and scope
-    \item Identified appropriate and credible (academic/scholarly) literature
-    \item Recorded the bibliographical details of the sources
-    \item Analysed and critiqued your readings
-    \item Identified gaps in the readings
-    \item explored methodologies / theories / hypotheses / models?
-    \item discussed varying viewpoints
-    \item written an intro, body and conclusion
-\end{itemize}
-\bigskip
-Items that I want to cover in the Lit review
-\begin{itemize}
-    \item Using SDR (USRP) to receive GPS signal
-    \item Using SDR to transmit GPS signal
-    \item Algorithms for generating spoofed signal
-    \item GPS Anti-spoofing techniques
-    \item GPS spoof detection techniques
-    \begin{itemize}
-        \item This will be what will need to be overcome in the implementation of the spoofing transmitter.
-    \end{itemize}
-    \item OPTIONAL: Difference between Block II and block III satellites
-\end{itemize}
-\medskip
-Previous research into the use of SDR (software defined radio) for GPS spoofing uses has lead to common conclusions.
-That is, that the use of open sourcecannot  software to ease the development. Namely multiple previous attempts at GPS spoofing
-used the GNSS-SDR program for reception and the gps-sdr-sim for transmission. Both of these are available from GitHub as free
-and open source programs. The issue of GPS spoofing is not uniquly that of position. Since GNSS systems have highly accurate time keeping
-facilities, in the form of atomic clocks, they are used to maintain accurate time of critical infrastructure like \todo{list things that rely on GPS timing}\\
-
-Spoofing can be defined as an intentional interfering signal that aims to make GNSS receivers produce incorrect positoning data\cite{RN8}.
-\emph{GPS Spoofing has been researched actively for over 12 years and yet there doesn't seem to be any wide spread anti-spoofing technique adoption.}\todo{remove}
-
-\bigskip
-From literature the consensus is that the same thing that has made GPS ubiquitous with navigation and 
-positioning has also made it a simple target for exploitation and manipulation, that is the workings
-of the infrastructure are well known and public and are transparent and predictable \cite{RN7} \cite{RN4}. This is problematic since this infrastructure
-is seen as a critical service by many industries including utility management, healthcare/ emergency services and security.
-Having such a system so prone to threats is not ideal. The further development of SDR platforms has driven down the cost of launching
-such exploits. Devices such as the HackRF, USRP, BladeRF and others have been documented for this use \cite{RN4} \cite{RN9}.
-
-\medskip
-
-An issue that arises when attempting to spoof a mobile device is that these devices are also able to determine locaiton based off of
-network connection. \todo{insert citation for finding location from cellular/wifi connection}
-K. Zeng et al. \cite{RN9} found that when these kinds of devices registered a difference in location between network based and GPS based
-that they would prioritise the GPS based location. \todo{I think this is wrong}\emph{This is less of an issue than at first glance since the prevalence of VPN (virtual private networks)
-are increasing for surcumventing geolocking features. Therefore to ensure that GPS locaiton services still function when a VPN is active
-the GPS position should be prioritised.} There are other methods of detecting a faulty GPS signal in software and hardware that are
-more accurate and allow for more flexibility of the device usage. 
-
-\medskip
-
-There have been documented cases of GPS spoofing attacks in the field \todo{add in reference to russian gps spoofing attacks}. So while this paper 
-will be focussing on the methodology of performing a spoofing attack it will be in the context of futhering understanding to be able to develop 
-more robust anti-spoofing or spoofer locating algorithms.
-
-\bigskip
-
-\citeauthor{RN12} \cite{RN12} commented on the effect of GNSS spoofing of a cooperative victim. That is when someone is willing to aid the attacker
-in performing an attack. This may be implemented to circumvent position based restrictions or if being GPS tracked during certain activities.
-\citeauthor{RN12} used the example of a fisherman wanting their GNSS receiver to falsely report the boad had stayed out of protected areas.
-In the paper written by \citeauthor{RN25} \cite{RN25} regarding driverless vehicle safety, it was noted that there is a significant threat to these types
-of systems that rely heavily on reliable GPS signals. Although there have been proposed solutions to this problem through the use of 
-other sensor infomation available locally to each vehicle and in the form of an ad-hoc network known as V2V (vehicle to vehicle) and more broadly
-V2X (vehicle to everything) \cite{RN17}, this is still in its infancy and will require joint work from all vehicle manufacturers.   
-
-\bigskip
-
-Cryptography has been investgated by multiple sources as a solution to many aspects of the GNSS spoofing problem. For constellations that have been operational for many
-years like GLONASS and GPS, this requires alterations to the space segment. Since 2013 Galileo developers have been working on a one to many cryptographic solution
-similar to that used to secure internet communicatrions. This has manifested in the OS-NMA (Open Service Navigation Message Authentication). This allows modern high
-performance receviers to be able to enable the cryptographic solution, while still maintaining backwards compatability for less capable receivers or for those that do
-not require the extra security. \todo{add references} \\ 
-While this thesis will be concetrating on spoofing and countermeasures of the GPS satellite constellation, it is worth noting that this kind of implementation will be
-considered as the existing constellations are updated at end of life.
-
-%-----------------------------------
-%	SECTION 2
-%-----------------------------------
-\section{Annotated Bibliography}
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Spoofing Attack References}
-
-\textbf{\emph{Hijacking Unmanned Aerial Vehicle by Exploiting civil GPS vulnerabilities Using SDR} by X. Zheng et al.}\\
-As written by X. Zheng et al. \cite{RN4} there has been an exponential increase in the number of UAV vehicles being used in recent times.
-This increase has been driven by the advent of aerial photography of both professionals and amateurs since the cost of entry is so low. There are
-also companies looking to implement delivery services using UAV, or drone, technology.
-This poses security and safety concerns with such vehicles having such a reliance on GPS for accurate positioning. Having such an open and transparent
-infrastructure such as that of GPS makes the signals easy to reproduce for nefarious purposes. Adding to the concern is the increase in 
-affordable and high performance SDR platforms as well as open source software packages designed to minimise complexity of performing such tasks. X.Zheng et al.
-showed that performing spoofing attacks on UAV vehicles is cheap and simple to control. Zheng performed 3 different hijacking attacks on the target
-UAV, namely forcing the drone to land, guiding the drone to an attacker dictated area and forcing the drone to land in an attacker dictated area.
-Two of the attack methods were successful at a rate of approximately 80\% and 90\%. The unsuccessful test was attempting to force the drone to land in a specified location by exploiting the 
-'go home' safety feature. This requried jamming the communicaiton channel between the controller and drone. After experimentation it was shown
-that this required advanced hardware and methods to achieve. Zheng also provided some recommendations for improving the security of the GPS system of, in particular
-DJI Phantom 3 drones.
-Future works would improve the success rate of the attacks that were successful as well as decrease the time for a successful attack. Work could 
-also be put into jamming the control channel between the controller and drone.
-
-\medskip
-
-\textbf{\emph{Practical GPS location spoofing attack in Road Navigation} by K. Zeng et al.} \\
-K. Zeng et al. provide insight into the security concerns of leaning so heavily on the GPS system in general, and more important to this
-paper is the reliance on GPS for navigation. In their paper \cite{RN9} K. Zeng et al. were able to develop a practical algorithm
-implementation for road network modelling and navigation spoofing using GPS. The attack model used was a hardware based approach. 
-The proposed attack strategy leveraged a lunch box sized portable spoofer with the HackRF at the heart of the device. Alot of the effort
-of this paper went into the production of the dynamic modelling of road network algorithm. This was done using an XML (extensible markup language)
-version of an area of streets as provided by OpenStreetMap. The documentation of this algorithm will become 
-useful when moving from a static based spoof attack to a dynamic one.
-
-\medskip
-
-\textbf{\emph{GNSS-SDR: An Open Source tool for Researchers and Developers} by C. Fern\'andes-Prades} \\
-The software has undergone continual development since this paper was written. Therefore more recent version of article should be found.
-Although information may still be relevant \cite{RN16}.
-In 2011 C. Fern\'andes-Prades et al. developed an open source piece of software for the development and implementation of software defined radio based
-GNSS receivers. At the time there was a void of accessible software radio solutions that allowed the used to investigate how a GNSS receiver worked.
-The author mentions existing commercial products, as they allow for the useage of the data that GNSS systems provide.
-The paper walks through the architecture of the GNSS-SDR program.
-
-\medskip
-
-\textbf{\emph{GPS Vulnerability to Spoofing Threats and a Review of Antispoofing Techniques} by A. Jafarnia-Jahromi} \\
-In 2012 \textcite{RN6} noted that with the dependancy that society has developed on GPS it has become a viable attack target. One type attack is
-so called spoofing. Spoofing and anti spoofing algorithms and techniques have become an area of interest for researchers of late. \citeauthor{RN6}
-investigated the different spoofing and antispoofing techniques avaialble. The author noted that spoofing attacks can be divided into 3 main categories:
-GPS signal simulator, Receiver-Based spoofers and Sophisticated Receiver based spoofers. These attack strategies come about because of vulnerabilities in the GPS system.
-These vulnerabilities can be described in teh three opoerational layers of GPS, signal processing, data bit, and position/navigation solutions.
-Antispoofing can be broken down into 2 groups spoof detection and spoof mitigation, with each of these being able to be further broken into subcategories.
-The effectiveness of each spoof detection technique was tabulated and compared. As was the spoof mitigation techniques. Each detection and mitigation
-method was given a complexity, effectiveness and spoofing sceario generality rating with notes made about the recived capability requirements.
-Testing spoofing techniques is difficult to achieve since there are regulations around the emmision of EM radioation at certain frequencies and power levels.
-There were three methods used to test the spoofing/antispoofing techniques. These were Indoor retransmission, spoofing using recorded data (No RF transmission), and
-using RF combiners to combine authentication and spoofed signals.
-The results that were acquired showed that the commercial GPS receivers were vulnerable to a number of spoofing techniques. It was also
-shown that with modest, low complexity spoof detection and mitigation strategies some of the spoof attacks were able to be overcome.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN23}} by \citeauthor{RN23}} \\
-In \citeyear{RN23} \citeauthor{RN23} \cite{RN23} showcased the development of a civilian GPS spoofing device as a means of assessing the potential spoofing 
-threat at the time. The main outcome of this experiment was to see the effects and help to develop future defences against spoofing attacks. In addition to 
-presenting a spoofing device analyses of the GPS spoofing threat assesment and spoofing defence technqiues was also provided. 
-The design of the spoofer module, which was a software component of the receiver, was described in detail. This infomation will be of great use for understanding 
-DSP and GPS spoofing although it out of the scope of this section. 
-The threat assesment of GPS signal spoofing was summarised into three categories, simple, intermediate and sophisticated attacks. A simple attack is that from a
-GNSS signal generator, intermediate from a softare radio and complex was in the form of coordinated attack by multiple phase locked radios. 
-Spoofing defences suggested at the time of publish were as follows; Data bit latency defence and vestigial signal defence.
-
-Sophisticated attacks were found to be effective against commerical GPS units and many anti-spoofing techniques with cryptographic methods being the most 
-effective way of circumventing the attacks.
-
-This spoofing device was developed on a DSP platform, which at the time was an appropriate choice. Given the leap forward in power and flexibility
-of SDR platforms since this paper was published it should be noted that the use of an SDR for this purpose would be recommneded. At the time of publish
-it was noted that the cost of including multi band spoofing capabilities to a spoofing device would be prohibitvely expensive. This again has been made accessible
-by SDR platforms. 
-
-\medskip
-
-\textbf{\emph{\citetitle{RN21}} by \citeauthor{RN21}} \\
-In \citeyear{RN21} \citeauthor{RN21} \cite{RN21} developed a system to perform a series of spoof attacks on UAV's based on an SDR \cite{RN23}. The goal of this was to be able to 
-control the flight path of the UAV without raising any alarm's from the victim. This paper establishes the required conditions in which a UAV will
-be succeptible to being captured from a spoofing attack, as well as the range of post capture control that the spoofer will have over the victim.
-From testing it was found that spoof attacks were successful from up to 50m and upto a velocity of 10m/s.
-Simulations were produced for analysis of post capture control of the UAV. 
-When testing, both covert and overt spoofing methods were used, distuinguished by whether or not the spoofer made an attempt to avoid detection. For the most part there
-was no practical difference between covert and overt methods since the commercial GPS units did not trigger any anti spoof mechanism when being subjected to an overt
-attack. Field testing showed that the spoof attempt caused unrecoverable navigation errors which resulted in the UAV crashing. Future work should increase the
-sophistication of the attacks. This may decrease chances of the drone crashing due to unsuccessful attacks.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN28}} by \citeauthor{RN28}} \\
-In \citeyear{RN28} \citeauthor{RN28} \cite{RN28} used a low cost SDR device to perform a GPS spoofing attack. This method can be used to alter the location or time
-of the victims. Other positoning methods and techniques to spoof them were also examined. This was performed such that advice on how to prevent such attacks could be 
-presented. As mentioned in other sources, GNSS systems are tightly intwined with the day to day operations of people, commercial business and government entities alike.
-It was noted that the signals presented to the receivers are usually trusted without any authentication or other checking. The authors show that this trust can be exploited
-without physical access to or altering the software of the target device. One of the signal properties that makes spoofing simple is the received signal power from space
-which is less than -130dBm making overpower the legitimate signal a simple task. 
-To create a spoofing device an SDR platform was used (HackRF) in conjuction with the opensource program GPS-SIM-SDR. This program is able to generate a GPS signal
-at a chosen coordinate when given the correct BRDC (broadcast ephemeris data) in the form of RINEX files. A simple use of this software is to generate a static location
-but it is achaiveable to create a dynamic signal. HackRF was chosen as the SDR platform because of its opensource nature, it also had the required spceifications to
-perform the spoof attack. The spoofing of WiFi signals was deemed to be out of the scope of this thesis and not considered.
-It was shown in this paper that the use of an SDR and opensource software was able to fool client devices such as apple smartphones into thinking they were else where.
-This included specific apps that require location data such as Uber and DiDi. The authors provided a list of recommendations to minimise the risk of being spoofed. 
-These recommendations are non trivial and some required alterations to how the receiver processes the signal data. These methods have been considered in greater
-detail in other references.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN30}} by \citeauthor{RN30}} \\
-In \citeyear{RN30} \citeauthor{RN30} \cite{RN30} investigated the requirements to performing a successful GPS spoofing attack on individuals and groups of recievers
-using civilian or military signals. A civilian GPS signal generator was used to create the spoofed signal for testing purposes.
-The authors showed through testing that any number of receivers can be easily spoofed to a single arbitrary static location, whereas
-when preserving the their constellation there are only a few transmission locations that were able to be used \todo{Reword this, read the paper to understand}.
-From the experiments it was found that there are 4 parameters that have required values in order to successfully spoof a GPS signal. That is the reletive signal 
-power must be $\geq+2dB$, the constant time offset must be $\leq 75ns$, location offset must be $\leq 500m$ and the reletive time offset must be $\leq 80ns$.
-
-
-\medskip
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-\subsection{Anti-Spoofing References}
-%-----------------------------------
-%	SUBsubSECTION 1
-%-----------------------------------
-\subsubsection{Spoofing Detection}
-
-\textbf{\emph{GNSS Spoofing and Detection} by M. Psiaki et al.} \\
-\textbf{This is a really good reference for the state of play in the spoof attack and defence landscape. Spend time reading about the techniques and 
-gain an understanding} \todo{Add comparison to \cite{RN11}}.\\
-In 2016 M. Psiaki et al. \cite{RN12} reviewed the state of GNSS spoofing and spoofing defences. Since 2008 there has been an ever increasing 
-interest in GNSS spoofing. A spoofer could potentially target both military and civilian infrastructure including aircraft or marine vessels which
-rely on GNSS signals especially in low visibility conditions. Civilian infrastructure like cell phone towers, power grid monitoring and stock markets
-use GPS signals for precise timing. This paper looks at the details of the current methods of implementing a GPS spoof attack as well as the details
-of known anti spoofing techniques. Attack methods tested were self consistent spoofer, Meaconing and estimate and replay attacks, other advanced techniques.
-Defence techniques can be broken down into three categories; pseudorange RAIM (receiver autonomous integrity monitoring),
-looking at the difference between a true and spoofed signal, and looking for interaction between true and spoofed signals. Pseudorange RAIM is considered
-too weak against modern spoofing attacks and was not considered in this publication. The specific methods of defence tested in this paper  
-were advnaced signal processing techniques, encryption based, drift monitoring, signal geometry and multi pronged spoofing defence.
-A \todo{include table in lit review}table was generated to visualise which defence stratagies were effective against which attack strategies. 
-It was found that all attack strategies that were used in the report were effective against COTS (commercial off the shelf) GNSS receivers. The authors
-recommend COTS GNSS receiver producers implement, at a minimum, a rudamentary defence strategy against spoof attacks. 
-
-\medskip
-
-\textbf{\emph{\citetitle{RN32} by \citeauthor{RN32}}} \\
-\textbf{Use this as basis for lit review and sprinkle other sources in when they are able to add to what the authors are saying here} \\
-\todo{This is a really good resource for how GNSS systems work. Use this extensively in the introduction}
-In \citeyear{RN32} \citeauthor{RN32} \cite{RN32} provided a review and analysis of the GNSS spoofing threat as well as the countermeasures of the time. This report aimed
-to fill the gap in 3 main areas of GNSS spoofing research, namely assessing the exact threat scenarios for commonly cited targets, investigate the practical imprediments
-of performing a spoofing attack in the field and lastly to survey and asses the performance of proposed GNSS spoofing defences. When defining spoofing, \citeauthor{RN32}
-determined that a power ratio (spoofed vs authentic) of just 1.1 was sufficient to force the receiver to move onto the spoofed signal. And with authentic GNSS signal
-strengths of approximatelty $-153dBW$ to $-160dbW$, this ratio is easy to achieve. \todo{how many watts would be required to get the ratio 1.1?} It was noted that the
-only detectable differences between a legitimate and spoofed one is the timing difference, signal angle of arrival, signal strength, Doppler shift and SNR. Most receivers
-as of \citeyear{RN32} were not capable of registering these differences. The AGC (Automatic Gain Control) functionality common on GNSS receivers adjusts the signal gain
-to compensate for any changes in the recieved signal strength, and in doing so makes the receiver more susceptible to a spoofing attack. The two main spoofing attack
-types analysed were \emph{Meaconing} and \emph{SCER}. SCER is an evolution of the Meaconing attack where a single satellite signal is rebroadcast after a set delay.
-Meaconing is the simplest spoofing attack and is a capture and retransmission attack. This attack is difficult to perfom on the military P(Y) code, but simple to perform
-for the civilian C/A code. The most commonly refered to GNSS spoof attack tagets came in the form of Power Disruption networks, shipping, aircraft, trains, criminal
-security tags and mobile phones. Each of these examples were analysed in detail for potential attack vectors.
-It was also noted that there are significant practical difficulties to performing a spoofing attack outside of an academic setting where variables can be tightly
-controlled. First and foremost the cost of the hardware, while declining quickly, is still out of reach of many of the general public costing upwards of \$2300 at the
-time. Current pricing for the USRPN210 in Australia is approximately \$4000. 
-Those without the technical know how could purchase an off the shelf GNSS simulator unit, however these start at \$20,000 for a multi constellation generator. Practical
-difficulties continue with distance from the target, which, due to the inverse square law of radio propgatio means to ensure a sufficiently high SNR that distance from
-attacker to taget should be minimised. This is made difficult if the target is moving. Other difficulties were raised including need for direct line of sight and the need for
-multiple simmulators for multi GNSS receivers. 
-While it was found that current generation GNSS recievers were susceptible to spoof attacks, there were countermeasures that could be employed to either detect or
-mitigatte the spoofing threat. Of the proposed GNSS spoofing countermeasures all can be summarised with four categories, Signal processing defences, Cryprographic
-defences, Corrleaiton with other timing sources, Radio spectrum and antenna defences. It was found that at least 1 method from each of the categories was highly effective
-at defending against an attack. Given the practical difficulties in performing a spoofing attack and the effective defences that have been developed (although not used in
-the wider community as yet) it was concluded that the threat posed by GNSS spoofing was low but with the potential to increase as the practical implementation became
-easier and cheaper and if companies did not implement countermeasures.
-Recommended future work was based around real time deteciton and location of spoofing attacks.
-
-\medskip
-
-\textbf{\emph{Spotr: GPS Spoofing detection via Device Fingerprinting} by M. Foruhandeh et al.}\\
-As discussed in \cite{RN7} GPS (Global Positioning System) has become the de facto positioning infrastructure for civilian and military usage and while there are other
-satellite based positioning systems that are becoming more popular (GLONASS, Galileo, BeiDou) GPS is still the one that most people think of when thinking about GNSS. GPS
-provides this service globally and efficiently although through its ubiquity security concerns have become apparent. Attacks have been carried out in both an academic and
-industry setting. The authors believed that strengthening of the GPS framework against manipulation and exploitation must be a priority. Proposed methods of hardening GPS
-have been previously proposed, however these were typically abandoned due to expense, complexity, cost or lack of robustness. A method of creating unique satellite
-"fingerprints" was developed and tested against all known spoofing attacks at time of publish. This fingerprint algorithm was able to determine if a transmission was
-authentic or spoofed. This fingerprinting algorithm implementation was found to be fast, simple, cost effective and robust when compared to previous hardening attempts.
-\todo{Fact check the claims of the paper} 
-
-\medskip
-
-\textbf{\emph{\citetitle{RN10} by \citeauthor{RN10}}} \\
-In \citeyear{RN10} \citeauthor{RN10} \cite{RN10} proposed a method for detecting the presence of GPS spoofing signals through the use of two or more recievers. Previous
-literature had investigated the use of spoof detection using single receivers. These techniques were varied and ranged from simple methods like monitoring the power level
-of the received signal, to more complex like analysing the presence of vestigial peaks in the correlator output. There have also been methods proposed that compare
-signals with that of non-GPS signals for example an IMU. The multi receiver design that \citeauthor{RN10} proposed works on the principal that the recived signal from a
-spoofing source will have identical characteristics (reletive time of arrival) at each of the receivers. When there is no spoofer present there will be unique signal
-characterstics at each of the receivers. The concept of detecting a spoofing event was to compare the position of each receiver against the known reletive postions. This
-was chosen as it will not reuqire any hardware modifications and the software processing can be done by an external processor, making it suitable for retrofitting to
-existing systems. Four simualtions were tested from a Neyman-Pearson perspective \todo{add in a info about neyman pearson in electrical eng} (1) two receivers with known
-absolute locations, (2) two recievers with known separation and orientation but unknown absolute location, (3) two receivers with known separation and unknown orientation
-and absolute loaction and fianlly (4) three receiver example. The testing was performed under the assumption that the spoofing transmitter only had one antenna. In the
-first case there was approximatelty 1\% chance of a false alarm while the probability of detecction was found to be intractable.
-\todo{results}
-
-\medskip
-
-\textbf{\emph{\citetitle{RN1}} by \citeauthor{RN1}} \\
-In \citeyear{RN1} \citeauthor{RN1} \cite{RN1} proposed a method of GPS spoof detection that would allow for the localisation
-of the source to be determined. Specifically this method is designed to work with vehicular GPS systems and uses existing 
-V2V (vehicle to vehicle) commuiniations systems. Using a network of cooperative vehicles the spoofer could be localised by analysing the respective
-Doppler shifts. After labratory testing on stationary spoofers, it was found to be effective at providing an approximate location at up to 200m away.
-When the spoofer was moving, this was decreased to 50m and was movement direction agnostic. To confirm these results an experimental setup would need
-to be created and experiments run. It would be expeccted that the real world results would not be as favouarble as the simulated ones, since a number of
-assumptions were made that simplified the simulations. For example the spoofer was moving with a constant velocity in a perfectly straight line.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN24}} by \citeauthor{RN24}} \\
-In \citeyear{RN24} \citeauthor{RN24} \cite{RN24} \footnote{https://www.youtube.com/watch?v=tsrOKeIelLc} proposed a method for detecting and localising
-a GPS spoofing attack called Crowd-GPS-sec. This system was developed to specifically detect and localise GPS attacks directed at UAV (drones) and commercial
-airliners. The authors make note that unlike other attempts to increase the security of GPS receivers, and GPS systems in general, no modifications are required
-for the recievers or GPS satellites. Alternatively Crowd-GPS-sec utelises crowdsourcing to monitor the air traffic. The aircraft broadcast their GPS derived postion
-periodically for air traffic control purposes. By leveraging crowdsourcing via the use of ADS-B broadcasts these aircraft are constantly tracked. 
-By analysing the difference in position for each aircraft spoofing presence can be detected. Simulations from the opensky network indicate that spoof detection can be 
-completed within 2 seconds. Spoofer localisation can also be acheived with reletively high accuracy of 150m from 15 minutes of moitoring.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN31}} by \citeauthor{RN31}} \\
-In \citeyear{RN31} \citeauthor{RN31} \cite{RN31} investigated the use of smartphones as a means of GPS spoof and jamming detection, by evaluating built in
-sensors for their suitibility. As mentioned in other sources GPS security is an important area of research since there are so many areas of everyday life that depend on reliable GNSS signals.
-The author noted that in 2016 the Android API included access to the Raw GNSS properties including navigation messages, pseudoranges,
-Doppler frequencies, constellation status and others. It's this reason that Android was chosen for this experimentation. From these properties a GPS spoof detection program
-can be developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. 
-From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
-3) inertial senesor data and 4) pseudorange residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
-used for testing. From testing it was found that phones tend to give a higher priority to GPS based location than that of other mehtods (network based). 
-From testing it can be seen that each of the metrics available can be used to combat certain types of spoofing attacks, and when used together as in GNSSAlarm, 
-a robust solution is available.
-
-\medskip
-
-%-----------------------------------
-%	SUBsubSECTION 2
-%-----------------------------------
-\subsubsection{Spoofing Mitigation}
-
-\textbf{\emph{\citetitle{RN34}} by \citeauthor{RN34}} \\
-In \citeyear{RN34} \citeauthor{RN34} \cite{RN34} provided a survey of the current GNSS spoofing and jamming mitigation methods current to that point inn time. More
-emphasis was put into the detection and mitigation of intentional interference such as spoofing and jamming of GNSS signals in aviation. This meant there were extra
-constraints when considering appropriate countermeasures. Keeping antenna numbers and placements were of chief concern. The paper summarised the history of navigation
-solutions used in the aviation industry dating back to 1947. From 1973 onwards GPS has been in use, and only expanded to include other GNSS consterllations. Other types
-of navigation solutions are out of the scope of this document.
-\citeauthor{RN34} seperated the interferences into man-made and channel-based, with the man-made being further seperated into intentional and unintentional. Examples of
-intentional interference were jamming, spoofing and meconing, with unintentional interference coming from adjacent channels and co-channels. Factors like atmosphereic
-conditions or space weather, multipath communicaitons, doppler effects and scattering all form unintentional interference. A detailed summary of mitigation strategies
-based on the attack/interference type was provided. By grouping all of the resources together this paper was able to produce a single repository where defennces against
-all attack categories mentioned above. Jamming and spoofing signal models were presented, with a class baseband signal model and a list of unknown parameters. Jammers
-were classified into five different classes based on the complexity of the attack. Single/multi tone AM/FM type attacks made up class 1 jammers, single and multi chirp
-attacks made up class 2 and 3. Chirp signals with frequency bursts were class 4 jammers and class 5 were DME-like/pulse jammer. Spoofers were divided into simplistic
-spoofer, intermediate spoofer, sophisticated spoofer and meaconer. The unintentional interference models were also discussed and it was noted that adjacent channel
-interference is typically harmonics leaking over from other frequency bands. This may be from DVB or LTE sources and is modelled as AM or FM tones. Co-channel
-interference is most often caused by other GNSS services transmitting at the same frequency. This is modelled as increased AWGN (Additive White Gaussian Noise). A summary
-of the different detection methods was produced. Detection of a single interference type is simple and can be determined using PDFs (probability density functions). The
-scenario in which there is no interference will be Gaussian, whereas in the presence of interference the received signal may not be depending on the interference type.
-Front end detection uses the raw signal before going though the ADC, commonly AGC detectors are used. Since the AGC will attempt to maintain a steady input power it can
-be monitored to see if the gain requirement suddenly drops, indicating a high power signal and most likely a spoofer. The next type of detection method is the
-pre-correlator type
-
-\medskip
-
-\textbf{\emph{\citetitle{RN36}} by \citeauthor{RN36}} \\
-In \citeyear{RN36} \citeauthor{RN36} \cite{RN36} proposed an implementation of the Galileo OS-NMA for embedded devices running ARM based processors. The OS-NMA is an
-attempt to include spoofing countermeasures within the message structure from the satellite. Software prfiling was performed with performance comparisons undertaken
-between different platforms. There are OSNMA ready commercial hardware receivers, however the authors decided that a software implementation would be best suited as new
-features are easily added and the algorithm can be easily accessed and modified as needed. An overview of the OS-NMA was provided with parameters, values and
-descriptions. Testing was performed on a Dell PC with Xeon processor and an ODroid running ARM based exynos processor. It was shown that the ARM based device suffered
-with execution times ballooning. However the receiver was able to decode the OS-NMA code susseffully. Future work will go into optimising the software for different
-platforms and utelising more powerful hardware to close to gap with more powerful PC machines.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN37}} by \citeauthor{RN37}} \\
-In \citeyear{RN37} \citeauthor{RN37} \cite{RN37} produced a report on the addition of an authentication system within the Galileo GNSS constellation as means of
-circumventing interference of the navigation signal. This interference may be intentional in the case of a jamming or spoofing attack of unintentional in the case of
-irregular or intense atmosphereic weather conditions. This architecture would be added to it's open service and be named the NMA (Navigation Message Authentication). The
-NMA cryptographic data is mostly unpredicatable, which can be used to protect against replay attacks like meaconing attacks. The unpredicatability is determined by how the
-data is packeged with the I/NAV message.
-
-\textbf{\emph{A Low complexity GPS anti-spoofing method using multi antenna array} by S. Daneshmand et al.} \\
-In 2012 S. Daneshmand et al. \cite{RN8} proposed a low computational complexity anti spoofing module for use with GPS receivers.
-It was mentioned that previous anti-spoofing reasearch was done in two categories, spoofing detection and spoofing mitigation.
-Most of the effort has been put into spoofing detection algorithms and less on mitigation techniques. 
-Previous proposed spoofing mitigation devices used the fact that GPS spoofing devices typically transmit multiple PRN's. 
-Therefore comparisons can be made between the spoofed and authentic signals. Although this is computationally complex. This proposed
-device uses a multi antenna array to find the signal with most power and beam form in such a way that the antenna null is pointing in
-that direction. This relies on the assumption that spoofed signals will have a measurably higher spatial energy than that of the authentic signal
-as well as the authentic signal propogating from an area that is not also covered by an antenna null. Although this cannot be guarenteed.
-To maximise the perfomance of the module, the authors also propose a technique to amplify the authentic signals as well as reduce the noise floor level.
-S. Daneshmand mentioned that with some minor modifications the proposed module would be able to opearate with GLONASS and Galileo systems aswell. 
-
-\medskip
-
-\textbf{\emph{Practical Cryptographic Civil GPS signal authentication} by K. Wesson et al.} \\
-K. Wesson et al. \cite{RN13} proposed a method for counteracting GPS spoofing on the popular GPS civil band. The proposed method would use cryptographic
-authentication based techniques to ensure that signals were not fake and did orginate from an autorised source.\todo{write more}
-\citeauthor{RN13} provided a detailed overview of the entire cryptographic authentication system.
-The method employed by \citeauthor{RN13} included adding digital signatures within the GPS civil navigation message. This type of cryptographic defence
-will secure the receiver against replay spoof attacks. Authentication of each civil GPS signal is performed every 5 minutes.
-For the proposed authentication strategy a $P_D$ of >0.97 was achieved over the range of $37$-$51 dB-Hz$.
-The implementation of such a system would require modifications to the GPS satellite system themselves, as well as a redesign of GPS receivers.
-The modifications required for the GPS recievers were documented in detail in \cite{RN13}. For systems that can not easily or readily upgraded to
-take advantage of these improvements an external device called "The GPS Assimilator", as proposed in \cite{RN19}, could be used to clean the incomming
-signals.
-Although it was noted that receivers based on SDR platforms would be able to implement the authentication algorithm easily.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN17}} by \citeauthor{RN17}} \\
-In \citeyear{RN17} \citeauthor{RN17} \cite{RN17} noted that the GPS navigation system is susceptible to electro magnetic interference. Sources of interference 
-can either be natural or artifical including malicious sources (spoofing). This has the potential to threaten the reliabilty of the system which has become 
-vital in accurate position and timekeeping purposes. One such use is within modern vehicles for positioning, navigation and automation. 
-CACC (Cooperative Adaptive Cruise Control) systems are an evolution of ACC (Active cruise control) and include a communication stack for V2V (vehicle to vehicle) communicaiton. 
-Vehicles that have a CACC system thus have a number of other sensors which are able to provice situational awareness. These include the formentioned radio
-communications equipment as well as Lidar, radar, camera  IMU's (inertial measurement unit) and access to CAN data from the vehicle systems.
-\citeauthor{RN17} devised a method of maintaining awareness of position from a combination of GPS signal as well as the other sensors as part of
-the various other systems integrated into the vehicle and from other vechiles. It was shown experimentally that the COTS receivers were susceptible to
-to spoofing attacks. It was also shown that the proposed method of spoof detection and removal was effective. Furhter work will need to be done
-to test the defence method on more spoof attack methods. To ensure that this design becomes viable for the commercial world it must also work in real time.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN18}} by \citeauthor{RN18}} \\
-In \citetitle{RN18} \citeauthor{RN18} \cite{RN18} pointed out that there is a cycle of new spoofing attack strategies and then counter-measures
-against them. A sudden outage to GNSS systems would have a large impact on society. \citeauthor{RN18} provided a list of GNSS-reliant ecosystems including
-autonomous transportation, cellular networks and power systems. Disruptions to especically the later two would have a measureble impact. Therefore, it is
-important to ensure that receviers of GNSS signals are resilient to intentional and unintentional interference.
-Typical COTS GNSS receviers do not have a way of being upgraded since their hardware is set and not able to change. Having a receiver
-with upgradable hardware, such as that found in SDR platforms, would make for an ideal GPS reciever. As such SDR's are well suited as GNSS receivers,
-however, they are challenged by processing the GNSS data and anti spoofing method. \citeauthor{RN18} performed experiments to see how effective SDR 
-platforms were at implementing a mitigation strategy in real time. A reduced complexity MMSE (minimum mean squared error) algorithm was developed for
-use on the in house developed SDR platform. This algorthim was compared against MF (matched filter) techniques. It was found that at an ISR (interference to signal ratio)
-of 30dB that MF correlators were unable to recive any useable signal, with BER (bit error rate) of approximatelty 50\%. Using the proposed maximise
-correlator, at a 30dB ISR, showed a BER gain of approximately $10^5$. 
-However, in testing it was found that most COTS receivers were not able to perform these duties in real time due to the increase in complexity of the antispoofing algorithms.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN11}} by \citeauthor{RN11}} \\
-In \citeyear{RN11} \citeauthor{RN11} \cite{RN11} provided an analyses of the vulnerabilities of the GPS signal to spoofing attacks including the
-satellite signal itself. \citeauthor{RN11} also proposed anti-spoofing algorithms and provided simulations to showcase the efffectiness of these
-algorithms. In general only anti-spoofing methods that could be processed in software without modification to the receiver itself were considered.
-In summary there were 10 anti-spoofing methods discussed in the paper; \todo{include summary table} 
-\begin{enumerate}
-    \item Monitor absolute power of each carrier: \\
-    Since the expected reception power of a carrier is approximately $-155 dBm$. Using this a reasonable maximum power
-    can be set.
-    \item Monitor signal change in power: \\
-    Since transmitted power satisfies equation \ref{eq:Power_tx} it can be seen that the received power will be altered significantly by a change in
-    distance to the source. Therefore, a sudden change in recieved power could be an indication of attemtped spoofing. However since the received power
-    is dependant on other variables like the environment and path that the signal takes, this method is ideally used for static obervations.
-    \begin{equation} \label{eq:Power_tx}
-        P_{tx}=P_{rx}r^2
-    \end{equation}
-    \item Monitor the reletive power: \\
-    This method uses the power ratios of different frequency bands to determine spoof activity. As an example there is a $~3dB$ difference between
-    the L1 and L2 band signals typically. If the observed power ratio is too far outside of this range then it can be assumed that there is a spoofing
-    attack underway. It should be mentioned that ionosphere refraction may also affect the power ratio and should be taken into account.
-    \item Bound and compare range rates: \\ 
-    Since a moving receiver's phase movement is out of the spoofers control the code and phase range rates can be compared to detect spoofing. 
-    Bounding these rates can add to the ability to detect spoofing activity.
-    \item Doppler shift check: \\
-    It is impossible for the spoofing attack to ccmpletly replicate all of the Doppler shifts for all satellites using a single transmitting antenna.
-    Therefore, it would be necessary to have as many antenna as there are satellites which make it prohibitive from a spoofing standpoint. This can be
-    used to test for spoofing activity.
-    \item Cross correlation of L1 and L2: \\
-    Based on the way that the GPS frequency bands operate, a cross correlation of L1 and L2 bands should result in a single peak, and due to the 
-    difference in signal speed the sign of the cross correlation is known. This method will be unsuccessful if the spoofed is spoofing both carriers.
-    \item Residual Analysis: \\
-    Under spoofing conditions the recieved signal will be a combination of the authentic signal, the spoofed signal and random noise. The spoofed signal
-    can be removed and if the ratio between the spoofed signal and authentic signal is low enough then the authentic signal can be recovered, otherwise
-    the authentic signal is lost. 
-    \item L1-L2 range differences
-    \item Verify received ephemeris data: \\
-    By compaing the recieved ephemeris data to known ephemeris and almanac data the spoofer will be unable to use its own position as stand in. 
-    \item Jump detection : \\
-    This method is based around tracking all observables and if there is a "Jump" in a specific observable this could indicate a spoofing attack.
-\end{enumerate} 
-Many of these methods must co-exist and can be used together to create a more robust anti-spoofing solution. For example if the absolute power is 
-not limited, then the residual test will not be of use. It should be noted that while the presence of a spoofer can be determined, and hence 
-throw away the related positional data, there has not been any method provided to re-determine the correct position. Therefore, in the case that
-spoofing is detected, the attack will become a jamming attack.
-
-Given that this paper was released in \citeyear{RN11} some of this infomation is outdated. For example it was concluded that GPS spoofing was not formidable
-since it could be easily detected. With the advent and advnacement of SDR platforms
-GPS spoofing hardware has become highly performant and affordable as well, with practical examples of spoofing attacks being \todo{insert reference} documented. 
-However this paper provides a very good basis for building more complicated spoofing and anti-spoofing techniques since the underlying GPS system is
-reletively unchanged. 
-
-\medskip
-
-\textbf{\emph{\citetitle{RN19}} by \citeauthor{RN19}} \\
-In \citeyear{RN19} \citeauthor{RN19} \cite{RN19} devised a conceptual method for retrofitting anti-spoofing techniques to GPS devices without the need to alter the
-software or hardware of those devices. This device is called a GPS assimilator and can also be used for increasing the accuracy and robustness of the PVT in weak-signal
-environments. From a high level the assimilator will contain an RF front end with multi system receiver and navigation and timeing fusion module,  
-anti-spoofing modules and an embedded GPS signal simulator. Conceptually this device will be placed between the RF antenna and the GPS receiver. The assimilator thus
-performs all necessary signal processing to output an L1 C/A signal that the target GPS receiver will be able to interperet with accurate PVT data. The assimilator can be
-used with many location systems including multiple GNSS constellations and cellular connections. Three use cases were included in the paper. These are to protect the time
-reference receiver from an unsophisticated spoofing attack, reducing the ionospheric error in single frequency target receivers and weak-signal tracking via CDMA cellular
-signal aiding. It was found that in each of these use cases the assimilator was able to improve
-the ability of the target reciver to provide accurate PVT data.
-
-By having a seperate inline component, especially one based off of SDR technologies, upgrades can be applied to any GPS receiver without needing to make modifications to
-the existing system. This reduces cost and complexity of upgrading now and in the future as GPS anti-spoofing technology changes. By using an assimilator a simple single
-frequency single constellation reciver can be upgraded to be a multi-frequency, multi-constellation receiver.
-
-Future work on the assimilator include miniturising the design in order to fit inside of an antenna such that a user would be able to include all of the benefits of using
-the assimilator by only needing to chnage the antenna used. 
-
-\medskip
-
-\textbf{\emph{\citetitle{RN20}} by \citeauthor{RN20}} \\
-In \citedate{RN20} \citeauthor{RN20} \cite{RN20} addressed the issue of GNSS signal aquisition when exposed to interference by using an array of antennae.
-The approch was a statistical one that leveraged NP (Neymann-Pearson) and GLRT(generalised likelihood ratio test) frameworks to obtain a new GNSS detector 
-which was able to mitigate temporarily uncorrellated point source interferences. \todo{get help understanding this paper}
-
-%-----------------------------------
-%	SUBsubSECTION 3
-%-----------------------------------
-
-\subsubsection{Other References}
-
-\textbf{\emph{Design of complete Software GPS Simulator with low complexity and precise Multipath Channel model} by A. Elango et al.} \\ 
-In 2016 A. Elango proposed a completly software based approch to simulating GPS singals \cite{RN15}. A summary of the difference between analog
-and digital based simulation systems is provided, with justification for producing a softawre based solution. In this proposal the GPS signals are created
-using a custom piece of software. The output of this software is a message that has already been moudlated, which is saved into a file on the local
-storage device. This was then fed into a MATLAB simulation environment for testing. The psudo code for the development of the program is include in
-the publication, and provides a good resource for breaking down the message structure for GPS.
-
-\medskip
-
-\textbf{\emph{\citetitle{RN25}} by \citeauthor{RN25}} \\
-In \citeyear{RN25} \citeauthor{RN25} \cite{RN25} produced an overview of current and anticipated future challenges to be faced by the automotive industry in regards to
-driverless vehicle security. Driverless vehicles have a large number of sensors and communication infrastructures to facilitate the ability to autonomously drive around
-the streets. This increases the attack surface since there are a plethora of different ways to hack or spoof the data to or from the vehicle. Examples of attacks are taking
-contorl of the vehicles and forcing it to stop, or contorlling the vehilce to perform an attack by driving into buildings or groups of people. The bulk of this paper
-focuses on the many parts that make up the vision and communicaiton system of an autonomous vehicle, however most of this is out of the scope of this thesis. GPS spoofing
-techniques were investigated as well as potential countermeasures. Aside from the usual techniques for mitigation and detection, the use of other onboard sensors, namely
-radar sensors, could help in the detection process. Future research will continue to focus on hardening the defences of communicaiton based protocols to ensure the data
-being shared is reliable, but also as GPS spoofing becomes more accessible from a cost and technical perspective, more effort will need to be put into detection adn
-mitigation strategies. Since autonomous vehicles must process so much data quickly and efficiently a software based solution would be acceptable since there would be
-minimal overhead added, and this means that off the shelf GPS recievers would still be useable. 
-
-%-----------------------------------
-%	SUBSECTION 3
-%-----------------------------------
-
-\subsection{Literature Review methodology}
-\begin{itemize}
-    \item Exclusion criteria \\ To help narrow the scope of the literature review certain criteria was selected to be ommited
-    \begin{itemize}
-        \item Age of source: > 2010 for SDR specific | > 2008 for all others \\ When it comes to the implementation of spoofers using SDR platforms, the most up to date inforamtion is requried since the software typically used in these cases are open source and prone to frequent changes.\\ This is less of an issue when detailing the operationa of the GPS navigation system, or, to a lesser extent, effective spoofing attacks and defences. This is because most off the shelf receivers have not got any spoof mitigation built into their designs \cite{RN12}.
-    \end{itemize}
-    \item Inclusion criteria
-    \begin{itemize}
-        \item Application specifics \\ While not all sources will have an application, whether to attack or defend, it should be noted that there was an importance placed on getting sources that applied the theory described.
-        \item SDR implementation \\ Since this project relied on the use of an SDR platform for the application of a spoofer it was important that a large number of sources also use a similar platform. This helped in forming a strategy to compolete the project. It was also important so that time was not wasted reinventing the wheel.
-    \end{itemize}
-    \item Keywords
-    \begin{itemize}
-        \item GPS
-        \item GPS Spoofing
-        \item GNSS Spoofing defence
-        \item GPS UAV Attack
-        \item GPS Spoof mitigation
-        \item GPS Spoofing autonomous vehicles
-        \item meaconing
-        \item GNSS threat analysis
-        \item GNSS threat survey
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Finding sources}
-An effective method used to find appropriate sources was to find a recent paper that may not be appropriate but still relevant and to carefully look through
-the reference list. By applying the list of exlusion and inclusions as above suitable sources could be found.
+\section{History of GNSS Systems} \label{sec:GNSSHistory}
+In 2021 there are many different GNSS systems in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
+people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was
+similar to that of the current satellite based systems, namely the use of psuedoranges, although the accuracy was far lower than is acceptable today. The USA developed
+and commissioned the first satellite based nanvigation system.
+
+As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
+QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
+of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional covereage around India with 8 satellites in
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by how far from the earths surface the satellite orbits.
+Current GNSS systems utelise MEO orbits.
+
+GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
+launched scientists at the John Hopkins University were able to track its position and velocity by measuring the doppler shift of the craft. This tracking from Doppler
+shift measurements contniued with the launch of the subsequent satellites Sputnik 2 and Explorer 1. After this it was thought that the process could be reversed such that
+a satellite with a known position could be used to resolve an unknown position on earth. In the 1960's the TRANSIT satellite navigation system was made operational for US
+Navy use, mainly for postion and navigation of nuclear ballistic missile submarines. TRANSIT received strong support due to the accuracy of up to 80ft (24m) which was a
+significant improvement over existing VLF (Very Low Frequency) hyperbolic navigation systems. After 32 years of operation the system was retired in 1996 after proving
+that space crafts could be reliable \cite{RN45}. 
+
+In 1973 the US combined two existing programmes in TIMATION and 'Project 621B' to form the 'NAVSTAR Global Positioning System' which would later become known more
+commonly as GPS. The initial intention for the use of GPS was for military only. However, in 1983 there was an incident that saw a Korean Airlines flight shot down by a
+Soviet fighter mistaking it for a US aircraft when it wandered off course. After this incident President Reagen announced that GPS would be made available for civilian
+use. The military insisted that the accuracy of the system be purposley degraded for civilian use though selective availabililty such that GPS could not be used by
+adversaries. In 1993 the system was declared operational. To combat the intentional accuracy reduction of the GPS augmentation systems started to appear. Soon
+after there were Government funded versions of DGPS (Differetial GPS) systems \cite{RN43}. Augmentation systems significantly increases the accuracy by using a receiver
+with a known location and having that reciever calculate its position from the satellite signals and compare with the known position. These corrections are then
+broadcast. 
+
+The Soviet Union launched their first GLONASS satellite in 1982, and in the following three years 10 more were launched. There are some technical differences between the
+GLONASS and GPS constellations. The orbital planes are different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS's CDMA (Code
+Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS constllation was fully operational, however this was not the case. 
+
+The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) polar orbit, whereas all modern GNSS systems utelise a MEO (medium earth orbit) ranging from 20,000km to
+23,000km above the earths surface with multiple orbital planes. The number of planes differs between the different constellations as discussed below. The lower the orbit,
+the higher the velocity requried to maintain the orbit as shown by the orbital mechanics equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower
+velocity which has impact on the doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the
+atmosphere.
+
+\begin{equation} \label{eq:orbitalVelocity}
+    v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
+\end{equation} 
+
+The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the European Union. The fist sattelite
+was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmnetation sites that provide improved accuracy for those in the EU.
+This system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
+geostationary satellite broadcasting the timing corrections. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Spoof Attacks}
+\section{GNSS Systems} \label{sec:GNSS}
+\subsection{Introduction to GNSS Constellations}\label{subsec:GNSS_Intro}
+GNSS is a term used to describe any satllelite system that provides positon and timing information. All GNSS systems in use today have three sepearte segements that
+encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
+10cm$. In order to calculate an unknown poistion on Earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
+as it's current time down to Earth's surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
+kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximatly 10 nanoseconds \todo{reference}, however, receviers will lose timing due to
+the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitoed by the ground segment and updated when
+required. Part of the Receviers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
+(of the satellite) and where the sattelite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
+the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the reletive motion of the
+satllite and the reciever the transmitted signal will be shifted up or down the frequency range due to the doppler effect. The combination of this doppler shift, time
+taken to arrive and the satellite current location can be used to solve the position in three dimensional space. In order to solve for all dimensions (including time)
+four satellites are reqruied since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The $\rho_i$ term indicates
+the distance from the recviever at the time of reception to that particular satellite at time of transmission  and is known as a psudeorange. $x_i$, $y_i$ and $z_i$ are
+the coordinates of the $i_{th}$ satellite in three dimensional space as dictated by the ECEF (Earth Cenetered Earth Fixed) coordinate system. This coordinate system is a
+version of a cartesian coordiante systems where the origin is at the center of mass of the earth. $x_u$, $y_u$ and $z_u$ are the unknown coordinates of the receiver. The
+coordinates of all satellites are well known due to the distribuition of the ephemeris. By getting 3 satellites, the unknown values can be solved using simultaneous
+equation techniques. The $\Delta t$ is the error in the clock of the sender and reciever. Any drift in time will be multiplied by the speed of light and can cause very
+large errors with only a small drift in time. Therefore to get a proper three dimiensioanl fix with high accuracy, a minimum of 4 satellites are required.  
+
+This method of position calculation is known as trilateration. The model shown below is a simplified model that ignores the effects of relativity. 
+
+\begin{equation} \label{eq:gnssPosition} 
+    \rho_i = \sqrt{(x_i - x_u)^2 + (y_i - y_u)^2 + (z_i - z_u)^2} + c \Delta t
+\end{equation}
+\todo{look at RN32 for position and time calculations}
+As can be seen from the above equation \ref{eq:gnssPosition} the accurate synchronisation of time betweeen the receiver and the satellites is required in order to
+calcaulte an accurate position. 
+Each of the operational constellations use the same fundamentals to provide accurate postion data, but each differ in some key aspects as discussed below.
+
+\subsection{Trilateration} \label{subsec:Trilateration}
+The process of trilateration uses objects of known locations to calculate the unknown location of other objects. This is done through the use of overlapping circles based
+on how far the objects are apart. This is known as a psudeorange. To use satellites to determine the location of a reciever the exact location of the satellites must be
+known, as well as relitive distance. Each satellite sends its precise orbital location (ephemeris), as well as the coarse orbital location (almanac) of the rest of the
+constellation as part of the navigational data. This coupled with the psudeorange of the satellite allows for calculating the position of the reciever. Psuedoranges rely
+on the knowledge that electromagnetic radiation propagates at the speed of light, as shown in equation \ref{eq:EMdistance}. By measuring the time taken for the signal to
+transition from the each of the satellites to the receiver, a sphere of radius $d$ centred on the radius indicates all possible locations that the reciever could be. By
+adding a second satellite, and second sphere based on the psuedorange, the posible locations of the reciever are reduced based on where the spheres intersect. For 2D
+position only 3 satellites are needed to have only a single possilbe solution, whereas 3 dimensional position requires 4 satellites as shown in Figure
+\ref{fig:trilateration}.
+
+\begin{equation} \label{eq:EMdistance}
+    d = c \times t
+\end{equation}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/trilateration.png}
+        \caption{Illustration of trilateration used in GNSS positioning}
+        \label{fig:trilateration}
+    \end{centering}
+\end{figure}
+
+\subsection{Kepler's Laws of Planetary Motion} \label{subsec: OrbitalMechanics}
+In the 1600's German astronomer Johannes Kepler described the orbits of the solar systems planets around the sun using three laws. 
+These laws famously moved our understanding of orbits away from circles and described them as ellipses. The position of modern day satellites need to be accurtatly
+predicated and as such these laws have become important to the way we live our lives. Kepler's laws are as follows; First law states that the orbit of every planet is an
+elllipse with the sun at the one of the two foci. Second law states that a line joining the planet to the sun will sweep out equal area during equal intervals of time.
+The third law states that the ratio of the orbital period with the cube of the semi-major axis is the same for all objects orbiting the same primary. These laws can be
+adapted to objects that orbit other objects other than the sun. Examples are moons orbiting plantes and artifical satellites orbiting the earth.
+
+\subsection{GPS} \label{subsec:GNSS_GPSIntro}
+The GPS constellation consists of a nominal 24 satelelites in 6 orbital planes (nominally 4 satellites per plane) to ensure that there is coverage globally at all times.
+There are also some spare satellites that are in orbit in the event that a operational satellite malfunctions. The constellation orbits at an altitude of 20,200km which
+equates to an orbital period of 12hours. There are multiple frequencies of differeing propoerties that each satellite will transmit at. For GPS these are named the L1, L2
+and L5 bands and have centre frequencies of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The
+L1 band is the most commonly used and was the first one to be made operational. In the past the L1 band was used for civilian purposes and the L2 band was a military
+band. Nowadays both have active cilivilan and encrypted signals co-exiting within their respective frequncy bands. GPS predominately uses BPSK but also utelises BOC for
+signal modulation accross all of the bands. 
+
+All satellites within the constellation will broadcast using the same freuqency band (L1, L2 or L5). They are able to do this without interfering through the use of CDMA
+(Code Division Multiple Access) scheme. Each satellite has a unique chipping code that is used to spread the signal in the frequency domain. This code is a PRN (Psuedo
+Random Number). This same access scheme is used for GPS, Galileo and BeiDou.
+
+Initially the civilian C/A code was purposley degraded to ensure that adversaries of the USA could not use the system to its maximum effect. In May 2000 President Bill
+Clinton directed the removal of selective availabililty from the GPS service, and in 2007 it was announced that the newest version of GPS satellites would be manufactured
+without the selective availabililty capapbility \cite{RN62} \cite{RN64}.
+
+GPS hardware has had a number of revisions over the life of the system in the form of Blocks. Each block is a major revision, current generation satellites are Block III
+satellites. Block I satellties were only capable of tranmitting on the L1 and L2 bands and only had a 5 year design life. Block II maintained the same tranmsitting
+frequency capabilities as before but included three axis stabalisation provided by reaction wheels. The solar arrays were increased from a rated 410W to over 700W. Later
+iterations of Block II included the L2C band for more robust civil signals and improvement to the miliraty signal.
+There are currently 4 block III satellites in service with 6 more planned for launch. There are 12 block IIF satellites in operation which were launched from
+2010 to 2016. Block IIR has 8 currently operational from 13 launches, block IIR-M has 7 operational from 8 launches and there are no operational satellites from Block I,
+II or IIA. This totals 31 opeartional satellites, 24 in opeartion and 7 spares as summarised in Table \ref{tab:GPSSatSum}
+
+Accuracy of the GPS system has increased over the years, and since selective availabililty was legislated against, to approximatly 3m for public access and 3-4cm for
+encrypted.
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of current and former GPS satellites}
+%         \label{tab:GPSSatSum}
+%         \begin{tabular}{ |r|c|c| }
+%             \hline
+%             \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
+%             \hline
+%             Block I & 11 & 0\\
+%             \hline
+%             Block II & 9 & 0\\
+%             \hline
+%             Block IIA & 19 & 0\\
+%             \hline
+%             Block IIR & 13 & 8\\
+%             \hline
+%             Block IIR-M & 8 & 7\\
+%             \hline
+%             Block IIF & 12 & 12\\
+%             \hline
+%             Block III & 4 & 4\\
+%             \hline
+%             \hline
+%             \textbf{Total} & \textbf{76} & \textbf{31}\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Summary of current and former GPS satellites}
+        \label{tab:GPSSatSum}
+        \begin{tabular}{ r|c|c }
+            \hline
+            \textbf{Block} & \textbf{Launched} & \textbf{In Service} \\
+            \hline
+            Block I & 11 & 0\\
+            Block II & 9 & 0\\
+            Block IIA & 19 & 0\\
+            Block IIR & 13 & 8\\
+            Block IIR-M & 8 & 7\\
+            Block IIF & 12 & 12\\
+            Block III & 4 & 4\\
+            \hline
+            \textbf{Total} & \textbf{76} & \textbf{31}\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+\subsection{Galileo} \label{subsec:GNSS_GalileoIntro}
+The Galileo constellation is a GNSS created by the ESA (European Space Agency) and operated by the EGA (European GNSS Agency) as a way of providing a modern navigation
+system that has global covereage. The Galileo constellation has 30 nominal satellites accross 3 orbital planes. The first Galileo satellite was launched in 2011.
+The orbit height of the Galileo constellation is higher than the GPS orbit at 23,222 km. 
+
+Galileo operates on 3 different frequency bands, E1, E5 and E6. E1 shares the same centre frequency as the GPS L1 band, 1575.42 MHz. The E6 band does not share a frequncy
+with the GPS ssytem and operates at 1278.75 MHz. The E5 band is split into E5a and E5b sub-bands with E5a sharing the same freqeuency as L5, 1176.45 MHz, and E5b at
+1207.14 MHz. The arrangmeent of the frequency bands can be seen in Figure \ref{fig:SignalPlan}.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,height=10cm,keepaspectratio]{Figures/Galileo_Frequency_Plan.png}
+        \caption{Galileo and GPS signal frequency arrangement}
+        \label{fig:SignalPlan}
+    \end{centering}
+\end{figure}
+
+To maintain interoperability between receivers on the L1 and E1 bands the modulation scemes differ.
+The E1 band utileses Composite BOC modulation, E6 uetelises BPSK, and the E5 bands utelise Alternative BOC modulation.
+Galileo offers superior accuracy than the other constellations with 1m for the public access and 1cm for encrypted service.
+
+There are special satellites that are part of the Galileo constallation whose job it is to ensure validity. These are known as GIOVE (Galileo In Orbit Validation Element)
+satellites. There is GIOVE-A and GIOVE-B launched in 2005 and 2008 respectively. Initially these satellites transmitted GNSS test signals on the E1 and E6 frequyency
+bands to allow for monitoring and testing while the rest of the Galileo constellation was being commissioned \cite{RN65}. Over this time they have provided great infomation on the
+short and long term reliabilty and accuracy of the on board atmoic clocks \cite{RN66}.
+
+\subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
+The Russian GLONASS constellation has it's hsitory tightly intertwined with that of GPS and the space race, as mentioned above in \ref{sec:GNSSHistory}.
+GLONASS consits of a nominal 24 satellites in 3 orbital planes. Since GLONASS uses FDMA, each satellite needs to transmit on a unique frequency. This is in contrast to
+all other GNSS systems that use CDMA. Extra effort must therefore be applied to the reception of the signals since Doppler effects must be carefully considered. 
+The use of FDMA does make GLOANSS more resilient against jamming and spoofing attacks. In a CDMA system, like GPS, all satellites share the same carrier freqeuency
+(ignoring the Doppler Effect), thus if an attack is performed all satellites are suceptible. Where as the GLONASS satellites all occupy seperate freqyency bands making a
+system wide attack much harder and more expensive to perform. This was the motivation of using FDMA over CDMA initially. The use of FDMA over CDMA also causes and
+interoperability issue when considering multi constellation support. The recever must become much more complex in order to support not only multiple carrier frequencies
+of different constellations but also due to the different access schemes. This increases cost and complexity where Galileo is much more compaitble for this use case.
+There are
+three freqeuency bands that GLONASS operates in, L1, L2 and L3. These are seperate to the L1, L2 of GPS. 
+
+GLONASS L1 band is from 1598.0625 MHz to 1605.375 MHz split into 14 channels. Each carrier is 562.5 kHz apart and is characterised by equation \ref{eq:GLONASS Channel
+calc}. $k$ represents the channel number of the band and ranges from -7 to +6. 
+
+The L2 band ranges from 1242.9375 MHz to 1248.625 MHz with each carrier separated by 437.5 kHz.
+
+The L3 band ranges from 1197.9375 MHz to 1203.625 MHz with the same carrier sepeartion as L2.
+
+\begin{equation} 
+    \begin{split} \label{eq:GLONASS Channel calc}
+        f_{k_{L1}} = f_{0_{L1}} + k \Delta f_{L1} \\ 
+        f_{k_{L2}} = f_{0_{L2}} + k \Delta f_{L2} \\ 
+        f_{k_{L3}} = f_{0_{L3}} + k \Delta f_{L3}
+    \end{split}
+\end{equation}
+
+\subsection{BeiDou} \label{subsec:GNSS_BeiDouIntro}
+From the BeiDou official website it states that "BeiDou has been constructed and operated by China with an eye on the needs of the country's national sceurity, economic
+and social development", and was previously known as COMPASS. This is China's attempt at creating a sovreign navigation constellation.
+
+The BeiDou constellation is made up of 35 satellites in total. This includes 5 geostationary satellites, 27 MEO satllites and 3 inclined geosynchronous sateliitels to
+give total earth coverage. The MEO satellites orbit at a height of 21,500km, and are distributed accross 3 orbital planes. Through the use of the geostationary and
+geosynchronous satellites there is a region around Asia that has higher accuracy than what is present at other areas of the globe. This accuracy for open service is
+approximatly 2.6m around the Asia Pacific region and 3.6m elsewhere \cite{RN59}. The constellation contains 3 operating bands, B1, B2 and B3, which have frequencies as shown in Table
+\ref{tab:Beidou Signal}. Each of the bands use the CDMA access scheme.
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of BeiDou Signal Properties \cite{RN59}}
+%         \label{tab:Beidou Signal}
+%         \begin{tabular}{ |r|c|c| }
+%             \hline
+%             \textbf{Signal} & \textbf{Carrier Frequency (MHz)} & \textbf{Modulation Type} \\
+%             \hline
+%             B1-I & 1561.098 & BPSK\\
+%             \hline
+%             B1-Q & 1561.098 & BPSK\\
+%             \hline
+%             B1-C & 1575.420 & MBOC(6,1,1/11)\\
+%             \hline
+%             B1 & 1575.420 & BOC(14,2)\\
+%             \hline 
+%             \hline
+%             B2-I & 1207.140 & BPSK\\
+%             \hline
+%             B2-Q & 1207.140 & BPSK\\
+%             \hline
+%             B2a & 1176.460 & AltBOC(15,10)\\
+%             \hline
+%             B2b & 1207.140 & AltBOC(15,10)\\
+%             \hline 
+%             \hline
+%             B3-I & 1268.520 & BPSK\\
+%             \hline
+%             B3-Q & 1268.520 & BPSK\\
+%             \hline
+%             B3-A & 1268.520 & BOC(15,2.5)\\
+%             \hline
+%             B3 & 1268.520 & BPSK\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Summary of BeiDou Signal Properties \cite{RN59}}
+        \label{tab:Beidou Signal}
+        \begin{tabular}{ r|c|c }
+            \hline
+            \textbf{Signal} & \textbf{Carrier Frequency (MHz)} & \textbf{Modulation Type} \\
+            \hline
+            B1-I & 1561.098 & BPSK\\
+            B1-Q & 1561.098 & BPSK\\
+            B1-C & 1575.420 & MBOC(6,1,1/11)\\
+            B1 & 1575.420 & BOC(14,2)\\
+            \hline
+            B2-I & 1207.140 & BPSK\\
+            B2-Q & 1207.140 & BPSK\\
+            B2a & 1176.460 & AltBOC(15,10)\\
+            B2b & 1207.140 & AltBOC(15,10)\\
+            \hline
+            B3-I & 1268.520 & BPSK\\
+            B3-Q & 1268.520 & BPSK\\
+            B3-A & 1268.520 & BOC(15,2.5)\\
+            B3 & 1268.520 & BPSK\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+\subsection{Augmentation Systems} \label{subsec:GNSS_OtherIntro}
+As mentinoned above there are two other GNSS constellations that act to improve availabililty and accuracy in regional areas. These are the Japanese QZSS and Indian
+IRNSS. Both of these extend the abilities of the USA GPS system. The 4 satellites that are operational for the QZSS constellation are able to transmit on the L1 and L5
+band  simultaneously. Doing so helps to resolve ionospheric errors by facilitating resolution of position from multiple frequencies \cite{RN48}.
+
+The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostation. All of the satellites are postiioned at
+this orbit. This allows for a very narrow and defined region of useability, which is over India. 
+
+Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
+values in order to make the solution to the positon cacluation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
+geographically locally and run by those local Governments.
+
+\subsection{GNSS Receivers}
+Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
+calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
+sentences, see \ref{subsubsec:NMEA}. There are many sentence types
+and not all receivers will output all sentence types.
+
+\subsubsection{NMEA Sentences} \label{subsubsec:NMEA}
+The NMEA (National Maritime Electronics Association) has a number of standards one of which is NMEA-0183. This standard outlines the combined electrical and data
+specifications for communication between marine electronic equipment. The data specification was adopted by GPS receiver manufactuers to ensure software could operate
+with any GPS hardware. The standard outlines the typical message structure. This structure lays the foundation for many different message types called sentences. These
+sentences carry different information depending on the sentence type, and it is often the case that multiple sentences will be requiered in order for the software to
+understand the full picture. One of the key inclusions within the data specificatoin is the checksum. Each sentence has a checksum based on the contents of the message
+that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
+characters are XOR'd together and their integer value is used as the checksum.
+
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \todo{inser citation}, which is summarised
+below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources wihtout needing to know anything about the hardware itself.
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{GNSS Identifier Mnemonics as per NMEA-0183}
+%         \label{tab:NMEA Mnemonics}
+%         \begin{tabular}{ |l|c| }
+%             \hline
+%             \textbf{Talker Device} & \textbf{Identifier} \\
+%             \hline
+%             Galileo Positioning System & GA \\
+%             \hline
+%             BDS (BeiDou System) & GB \\
+%             \hline
+%             NavIC (IRNSS) & GI \\
+%             \hline
+%             Glonass Receiver & GL \\
+%             \hline
+%             Global Navigation Satellite System & GN \\
+%             \hline
+%             Global Positioning System (GPS) & GP \\
+%             \hline
+%             QZSS & GQ \\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{GNSS Identifier Mnemonics as per NMEA-0183}
+        \label{tab:NMEA Mnemonics}
+        \begin{tabular}{ l|c }
+            \hline
+            \textbf{Talker Device} & \textbf{Identifier} \\
+            \hline
+            Galileo Positioning System & GA \\
+            BDS (BeiDou System) & GB \\
+            NavIC (IRNSS) & GI \\
+            Glonass Receiver & GL \\
+            Global Navigation Satellite System & GN \\
+            Global Positioning System (GPS) & GP \\
+            QZSS & GQ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
 
-\section{Spoof Defence}
+\section{Applications of GNSS} \label{sec:ApplicationsGNSS}
+GNSS applications are broad and deeply ingradined in almost everyones everyday lives. These applications vary from providing postion and navigation information for public
+transport or maps on a smartphone or sat-nav devices to providing accurtate timing infomation for financial institutions or energy infrastructure \cite{RN33} \cite{RN12}
+as shown in Figure \ref{fig:GNSS Applications}. This societal ubiquity has made GNSS as much a critical infrastructure as internet or energy provision, since these
+services rely on the services provided by GNSS.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/GNSS applications.png}
+        \caption{Applications of GNSS position and timing \cite{RN33}}
+        \label{fig:GNSS Applications}
+    \end{centering}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
 %----------------------------------------------------------------------------------------
 
-\section{GPS Threat Analysis}
-\todo{This might be better suited to being the first Section after the Introduction}
-As shown in Table \ref{tab:AttackSum}
+\section{Errors within GNSS}
+The main fight against GNSS positional accuracy is the introduction of different types of errors. These can be narrowed into three main groups; Satellite errors,
+Propogation erros and Receiver errors. Propagation errors are most common. When the signals pass through the ionosphere and the troposphere the signals refract, extending
+the time taken to get to the receiver, thus making the psudeorange not accurate. Other propagation errors include multipath and obstructions errors. Both of which are
+most notable in built up urban environments of in valleys where direct view of the sky can be difficult.
 
-\medskip
+Satellite errors occur when the predicated orbit differes to the actual orbit. Other causes of errors from the satellites are due to drift of the onboard atomic clocks as
+well as low elevations where there are propotionally high dilution of precision.
 
+Receiver errors occur due to the introduction of noise therough the reception process. GNSS jamming and spoofing also constitute receiver error although these are
+intentional and malicious.
+
+What all of these errors have in common is that create an incorrect value of the psudeorange which in turn incorrectly calculates the reciever position.
+\todo{ref}
+
+\renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
-        \caption{Summary of attack and defence strategies}
-        \label{tab:AttackSum}
-        \begin{tabular}{ |m{1cm}|m{3cm}|m{5cm}|m{3cm}| }
+        \caption{Summary of GPS Errors}
+        \label{tab:GPS Errors}
+        \begin{tabular}{ c|c }
             \hline
-            \textbf{No.} & \textbf{Author} & \textbf{Paper Title} & \textbf{Attack, Detection or Mitigation} \\
+            \textbf{Source of Error} & \textbf{Error Range} \\
             \hline
-            1 & \citeauthor{RN7} & \citetitle{RN7} & Mitigation \\
-            \hline
-            2 & \citeauthor{RN4} & \citetitle{RN4} & Attack \\
+            Satellite Clocks & $\pm 2m$\\
+            Orbital Errors & $\pm 2.5m$\\
+            Ionospheric Delays & $\pm 5m$\\
+            Tropospheric Delays & $\pm 0.5m$\\
+            Receiver Noise & $\pm 0.3m$\\
+            Multipath Errors & $\pm 1m$\\
             \hline
         \end{tabular}
     \end{center}
 \end{table}
+\renewcommand{\arraystretch}{1}
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of GPS Errors}
+%         \label{tab:GPS Errors}
+%         \begin{tabular}{ |c|c| }
+%             \hline
+%             \textbf{Source of Error} & \textbf{Error Range} \\
+%             \hline
+%             Satellite Clocks & $\pm 2m$\\
+%             \hline
+%             Orbital Errors & $\pm 2.5m$\\
+%             \hline
+%             Ionospheric Delays & $\pm 5m$\\
+%             \hline
+%             Tropospheric Delays & $\pm 0.5m$\\
+%             \hline
+%             Receiver Noise & $\pm 0.3m$\\
+%             \hline
+%             Multipath Errors & $\pm 1m$\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
+
+\section{Spoofing Overview}
+Attacks on the GNSS archtiecture can broadly be divided into two categories jamming and spoofing \cite{RN33} \cite{RN32}. Jamming can be described as causing intentional
+interference in the communicationn channel as to make the recovery of signal informaiton impossible. A successful jamming attack will make it impossibe to begin tracking
+satellites and thus be unable to calculate any of the PVT data. This differs from spoofing attacks where the main interest is to deceive any reciever that picks ups the
+signal into thinking it is elsewhere or else-when. This is done by different methods and stems from which property of the signal is being modified for the attack. A
+successful spoofing attack will have the receiver 'tracking' the signal produced by the spoofer and the receiver will not be aware that an attack is taking place. Common
+spoofing attacks are explained below.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=10cm, keepaspectratio]{Figures/Jamming.png}
+        \caption{Representation of how a jammer is able to interfere with a GNSS signal}
+    \label{fig:jamming cartoon}
+    \end{centering}
+\end{figure}
+
+\subsection{Meaconing}
+Meaconing is a type of GNSS spoofing attack that involves recording a legitimate GNSS signal and re-broadcasting. This could be either instantly or at a different time or
+place. This requries little prior knowledge of the GNSS system that the attacker wishes to record other when used with existing open source software packages. Although
+there is a requirenment of having the right equipment to be able to capture the raw analog signal.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
+        \caption{Representation of how a GNSS spoofer can perform a meaconing attack}
+    \label{fig:meaconing cartoon}
+    \end{centering}
+\end{figure}
+
+\subsection{Signal Generation}
+There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
+played in such a manner as to perform a spoofing attack. This differes from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
+a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is requied as to
+produce the same results as recording the gps signal from the desired location.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=10cm, keepaspectratio]{Figures/Spoofing.png}
+        \caption{Representation of how a GNSS spoofing device uses a generated signal to force a receiver to incorrectly calculate its position}
+    \label{fig:spoofing cartoon}
+    \end{centering}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
+
+\section{SDR Basics}
+Software defined radios are devices that enable the user to increase the flexibility of transmissionn and reception of RF signals by moving processing typically reserved
+for the analog domain into the digital domain. Thus SDR's move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
+allows for a wide ranges of frequncies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
+Typical tasks like modulation and demodulation are performed directly in analog hardware for normal radios. This makesthem incredibly rigid and only suitable for 1 taks.
+An SDR can implement multiple different moudlation/demodulation techniques and switch between them based on slection criteria set by the user. This same is true for
+centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
+
+The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
+front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receieveing. Also shown in the image is the
+quadrate mixers which allow for complex sampling \ref{eq:complexSampling} as apposed to real sampling \ref{eq:realSampling}. This means that the in phase and quadrature phase are sampled seperatly, effectively
+doupling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorom is conserved even when the
+bandwidth is equal to the sampling rate.
+
+SDR's need a device connected to them in order to off load processing of data and controlling radio parameters. This has typically been in the form of a PC or similar
+device, but with recent technological advances SBC's (single board computer) and smartphones are powerful enough to handle this task. There are examples in literature of
+using smartphones coupled with SDRs to perform many different radio based tasks.
+
+\begin{equation} \label{eq:complexSampling}
+    x\left(t\right) = A_{I}\left(t\right)\cos\left(2\pi f_{c}t\right) - A_{Q}\left(t\right)\sin\left(2\pi f_{c}t\right)
+\end{equation}
+
+\begin{equation} \label{eq:realSampling}
+    x\left(t\right) = A\left(t\right)\cos\left(\omega t + \Phi \left(t\right)\right)
+\end{equation}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=13cm,keepaspectratio]{Figures/2920_simplified_system_diagram.png}
+        \caption{Simplified block diagram for the RF front end of the USRP SDR's}
+    \label{fig:USRPBlock}
+    \end{centering}
+\end{figure}

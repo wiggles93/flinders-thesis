@@ -38,15 +38,44 @@ various outputs from these sentences.
 For the purpose of this project just three sentences were used when parsing the log files, "GPGGA", "GPGSV" and "GPRMC". The GP mnemonic is a designation that the
 received signal was from GPS. The other constellations have their own designations when using NMEA sentences as dictated by Table \ref{tab:NMEA Mnemonics}. 
 GGA (Global Positioning System Fix Data) \footnote{https://www.nmea.org/Assets/20130801 0183 identifier list.pdf} sentences contain information related to the fix of the
-GPS signal. The calcaulted latitude and longitude as well as whether DGPS is being used in the fix, as well as others, as shown in Table \ref{tab:NMEA GGA Struct}.  
+GPS signal. The calcaulted latitude and longitude as well as whether DGPS is being used in the fix, as well as others, as shown in Table \ref{tab:NMEA GGA Struct}.
+However, only the latitude and longitude infomraion was used, see Listing \ref{list:GGAParse}.
 
 An example of a GGA sentence is:
 \begin{verbatim}
 $GPGGA,000056.000,3500.5533,S,13834.1337,E,1,10,0.87,-14.7,M,-0.7,M,,*74
 \end{verbatim}
 
+\begin{lstlisting}[language=Python, label=list:GGAParse, caption=Parsing GGA sentences for lattitue and longitude information]
+try:
+    with open(infile, "r") as nmeaFile:
+        for count, line in enumerate(nmeaFile):
+            tmp = line.split('*')
+            string = tmp[0].split(',')
+            msgType = string[0][3:]
+            currentTime = datetime.now()
+            timestamp2 = (currentTime - startTime).microseconds/1000000
+
+            #
+            # Parsing GGA sentences
+            #
+            elif msgType == "GGA":
+                if dataValid:
+                    try:
+                        latitude = degMin2deg(string[2])
+                        longitude = degMin2deg(string[4])
+                        if string[3] == 'S':
+                            latitude = latitude * -1
+                        if string[5] == 'W':
+                            longitude = longitude * -1
+                        coordinates.append([timestamp2, latitude, longitude])
+                    except ValueError:
+                        print("No valid coordinates")
+                        continue
+\end{lstlisting}
+
 \renewcommand{\arraystretch}{1.5}
-\begin{table}
+\begin{table}[!h]
     \begin{center}
         \caption{NMEA GGA Sentence structure}
         \label{tab:NMEA GGA Struct}
@@ -93,8 +122,8 @@ $GPGGA,000056.000,3500.5533,S,13834.1337,E,1,10,0.87,-14.7,M,-0.7,M,,*74
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-The use of GSV (GNSS Satellites in View) sentences allowed for tracking how many and which satellites were in view (SVID) and what the $\frac{C}{N_0}$ ratio was. This was used to generate the carrier to
-noise graphs. Since the sentences can only be a set length as per the standard, multiple successive GSV sentences may need to be sent.
+The use of GSV (GNSS Satellites in View) sentences allowed for tracking how many and which satellites were in view (SVID) and what the carrier to noise ratio ($\frac{C}{N_0}$) was. This was used to generate the carrier to
+noise graphs and were stored in key:value dictionaries, see Listing \ref{list:GSVParse}. Since the sentences can only be a set length as per the standard, multiple successive GSV sentences may need to be sent.
 
 An example of a GSV sentence that is part of a group of 4 is:
 \begin{verbatim}
@@ -104,8 +133,83 @@ $GPGSV,4,3,13,29,19,038,17,32,18,001,18,44,05,279,,13,02,148,47*75
 $GPGSV,4,4,13,193,,,*40
 \end{verbatim}
 
+\begin{lstlisting}[language=Python, label=list:GSVParse, caption=Parsing GSV sentences for SVID carrier to noise ratio informaiton]
+    try:
+        with open(infile, "r") as nmeaFile:
+            for count, line in enumerate(nmeaFile):
+                tmp = line.split('*')
+                string = tmp[0].split(',')
+                msgType = string[0][3:]
+                currentTime = datetime.now()
+                timestamp2 = (currentTime - startTime).microseconds/1000000
+    
+                #
+                # Parsing GSV sentences
+                #
+                elif msgType == "GSV":
+                    NumofMessages = int(string[1])
+                    sequenceNumber = int(string[2])
+                    satellitesView = int(string[3])
+                    satellitesToCalc = satellitesView-(NumofMessages-1)*4 # this will dictate the number the index numbers of final sentence of group
+                    if sequenceNumber == 1:
+                        timestamp = (currentTime - startTime).microseconds/1000000
+                    try:
+                        if sequenceNumber < NumofMessages:                        
+                            if string[4] not in svSNR:
+                                svSNR[string[4]] = [string[7]]
+                            else:
+                                svSNR[string[4]].append(string[7])
+    
+                            if string[8] not in svSNR:
+                                svSNR[string[8]] = [string[11]]
+                            else:
+                                svSNR[string[8]].append(string[11])
+                        
+                            if string[12] not in svSNR:
+                                svSNR[string[12]] = [string[15]]
+                            else:
+                                svSNR[string[12]].append(string[15])
+                        
+                            if string[16] not in svSNR:
+                                svSNR[string[16]] = [string[19]]
+                            else:
+                                svSNR[string[16]].append(string[19])
+                        else:
+                            if satellitesToCalc >= 1:
+                                if string[4] not in svSNR:
+                                    svSNR[string[4]] = [string[7]]
+                                else:
+                                    svSNR[string[4]].append(string[7])
+                            if satellitesToCalc >= 2:
+                                if string[8] not in svSNR:
+                                    svSNR[string[8]] = [string[11]]
+                                else:
+                                    svSNR[string[8]].append(string[11])
+                            if satellitesToCalc >=3:
+                                if string[12] not in svSNR:
+                                    svSNR[string[12]] = [string[15]]
+                                else:
+                                    svSNR[string[12]].append(string[15])
+                            if satellitesToCalc == 4:
+                                if string[16] not in svSNR:
+                                    svSNR[string[16]] = [string[19]]
+                                else:
+                                    svSNR[string[16]].append(string[19])
+                            if satellitesToCalc > 4:
+                                raise OverflowError
+    
+                    except IndexError:
+                        pass
+                    except OverflowError:
+                        print("Computational error occured. Access to a value higher than available attempted")
+                    if sequenceNumber == NumofMessages:
+                        if svSNR:
+                            satellites[timestamp] = svSNR
+                        svSNR = {}
+    \end{lstlisting}
+
 \renewcommand{\arraystretch}{1.5}
-\begin{table}
+\begin{table}[!h]
     \begin{center}
         \caption{NMEA GSV Sentence structure}
         \label{tab:NMEA GSV Struct}
@@ -162,14 +266,41 @@ $GPGSV,4,4,13,193,,,*40
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-RMC (Recommended Minimum Specific GNSS Data)
+As shown in Table \ref{tab:NMEA RMC Struct} RMC (Recommended Minimum Specific GNSS Data) sentences contain alot of useful informaiton. However, for the purposes of this
+project it was only used in order to check when there is valid positonal information, Listing \ref{list:RMCParse}.
 
 \begin{verbatim}
 $GPRMC,000118.000,A,3500.4918,S,13834.1369,E,53.66,12.07,300321,,,A*78
 \end{verbatim}
 
+\begin{lstlisting}[language=Python, label=list:RMCParse, caption=Parsing RMC sentences for data and fix validity checks]
+    try:
+        with open(infile, "r") as nmeaFile:
+            for count, line in enumerate(nmeaFile):
+                tmp = line.split('*')
+                string = tmp[0].split(',')
+                msgType = string[0][3:]
+                currentTime = datetime.now()
+                timestamp2 = (currentTime - startTime).microseconds/1000000
+    
+                #
+                # Parsing RMC sentences
+                #
+                if msgType == "RMC":
+                    if not dataValid:
+                        if not firstFix:
+                            timetofix += 1
+                    if string[2] == 'A':
+                        dataValid = True
+                        if not firstFix:
+                            firstFix = True
+                    else:
+                        dataValid = False
+    \end{lstlisting}
+
+
 \renewcommand{\arraystretch}{1.5}
-\begin{table}
+\begin{table}[!h]
     \begin{center}
         \caption{NMEA RMC Sentence structure}
         \label{tab:NMEA RMC Struct}
@@ -227,7 +358,7 @@ tool, being the N210, therfore it was chosen. From Ettus, there were two daughte
 WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
 freqeuency was not at the extreme of either cards bands. Either card would also be capable of transmitting or receiving on the other bands of GNSS constellations.
 
-To ensure the SDR and PC were able to communicate, an ehternet cable was connected between each device and the IP address of the PC was set to 192.168.0.2/24 as per the
+To ensure the SDR and PC were able to communicate, an ethernet cable was connected between each device and the IP address of the PC was set to 192.168.0.2/24 as per the
 default configuration from the setup documanetation. To check if the IP address was correctly set, a command line program was run that would pole the appropriate
 interfaces of the PC and check for USRP devices attached. \todo{insert image of UHD FIND DEVICES}. There was also a command line program that allowed for the probing of a
 radio to gatehr information on what daughtercard was installed and other properties. \todo{inset image}.
@@ -276,6 +407,16 @@ radio to gatehr information on what daughtercard was installed and other propert
     \label{fig:HardwareSetup}
     \end{centering}
 \end{figure}
+
+\subsection{SDR Setup for GNSS Reception}
+Reception of GNSS signals is a complicated process which involves sychronising time values and solving simultaneous equtations for position, therefore instead of
+developing the software from scratch it was decided that
+the opensource program GNSS-SDR would be used to perform all of these functions. This sofware has been built over a number of years and is able to receive different GNSS
+signals and translate them into position.
+
+The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
+antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
+consideration.
 
 \section{Software Setup}
 The laptop was the interface between softrware and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the
@@ -378,10 +519,19 @@ Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed 
 
 \subsection{Generate NMEA File} \label{subsec:NMEAFile}
 The coordinate and NMEA file creation step is essentially the same step within the SatGen3 software package. Once the coordinate or path was chosen, it was a matter of
-choosing to save the output as a txt file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}.
+choosing to save the output as a txt file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}. In order to keep track of the source NMEA files and the
+results files the following naming scheme was employed:
 
-To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the satgen3 software package. This NMEA stream was used to make
-the binary file using the gps-sdr-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
+\begin{verbatim}
+    YY_MM_DD_<static/dynamic>_LOCATION.nmea
+    YY_MM_DD_<static/dynamic>_LOCATION.bin
+    YY_MM_DD_<static/dynamic>_LOCATION.txt
+\end{verbatim}
+
+Where .nmea file was the source file, the .bin file was the singal binary file and the .txt file was the logfile produced from the GPS receiver.
+
+To generate the binary bitstream for use with an SDR RF front end a GGA NMEA data stream was created using the SatGen3 software package. This NMEA stream was used to make
+the binary file using the gps-SDR-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
 the flexilbilty of scenarios that can be tested. Although there is no guarentee that the simulated stream of information is going to be correct. Thus a capture replay
 attack should still be considered as more reliable.
 
@@ -396,22 +546,43 @@ attack should still be considered as more reliable.
 \subsection{Download Ephemeris}
 From the NASA website, hourly versions of the GPS constellation ephemeris, in the form of a RINEX file, are available. These are compiled into a daily file. These daily
 files are available all the way from 1992. An account is required to access these files, but there are sample programs provided for retrieving
-the files programically using different methods. A script was generated that was able to get the latest version from the website using Python. There were initially some
+the files programically using different methods. A script was generated that was able to get the latest version from the website using Python. The full version of this
+script is shown in Appendix \ref{sec:EphemerisCode}. There were initially some
 issues with getting the script to connect to the remote server to gain access to the files. It was found that there was a bug on linux with a certain version of openssl.
 A newer version was manually installed and this solved the issue.
 
 The downlaoded file was a compressed version of the text file, and thus it was required to be uncompressed using the tar program.
 
 \subsection{Compile Signal Binary File}
-The minimum requirements to compile a binary file using GPS-SDR-SIM was a source coordinate of some sort and the ephemeris for the desired date and time that the spoofer
-will transmit. This did not need to match the date and time that the signal was being transmitted on.
+The minimum requirements to compile a binary file using GPS-SDR-SIM was a source coordinate in either ECEF or latitude/longitude format and the ephemeris for the desired date and time that the spoofer
+will transmit. This did not need to match the date and time that the signal was being transmitted on. If the attack was to be a dynamic spoofing attack then it was
+required that there be a "user motion file" or GGA sentence stream. This stream was required to be 10Hz. It was decided that even for static scenarios a GGA stream would
+be used. This simplified the workflow overall. Using this method meant that the program was able to calcaulte the duration of the transmission itself. The output was
+altered in order to conform with the naming convention stated in Section \ref{subsec:NMEAFile}. The sampling rate was also modified to be 2.5Msps instead of the default 2.6Msps.
 
-Using this information, the place, time and ephemeris the program is able to calcaulate which of the satellites will be in view and what their expected psudo-ranges would
-be. The signal modulation is applied wihtin the compilation of the file, simplifying the process of transmitting the file. 
+Using this information, the place, time and ephemeris the program is able to calcaulate which of the satellites will be in view and what their expected pseudoranges would
+be. This is shown in Figure \ref{fig:sdrsimexample}.
+The signal modulation is applied wihtin the compilation of the file, simplifying the process of transmitting the file. 
+
+\begin{figure}[!ht]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/gps-sdr-sim options.png}
+        \caption{Options available for compiling spoofed GPS signal using the GPS-SDR-SIM program}
+    \label{fig:sdrsimoptions}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/gps-sdr-sim running.png}
+        \caption{Example of running gps-sdr-sim with required arguments to generate dynamic spoof around the Tonsley MAB}
+    \label{fig:sdrsimexample}
+    \end{centering}
+\end{figure}
 
 \subsection{Transmit Signal}
 Once the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
-capable of connecting to USRP devices automatically throught he UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
+capable of connecting to USRP devices automatically throught the UHD daemon was distributed with the gps-sdr-sim program. This was used to simplify the development
 process. 
 
 This was a simple program that connected the source file to the SDR via some simple blocks as shown in Figure \ref{fig:GNURadioSpoof}. The file is read 16bits at a time
@@ -430,7 +601,7 @@ An important part of the transmission was that it needed to be performed within 
 \subsection{Log GPS Data}
 To log the transmitted GPS signals from the SDR a COTS receiver and a smartphone were set up. The COTS receiver has a USB interface that outputs a stream of NMEA
 senetences at a 1Hz frequency. This can be modified to 5Hz, but this was not required for these experiments. Using a script the USB port was opened and logged to a text
-file. 
+file, see Appendix \ref{sec:GPSConnect}. The log file was passed as an argument and could be stored wherever it was needed. 
 
 When using a smartphone Android was required for logging since the OS allows access to the raw properties of the recveived signal. There is also an intuituve applicaiton
 "GNSS Logger" that allows for comprehensive visualistion of current GNSS tracking as well as the ability to log data. This data was logged to a text file using a non
@@ -445,8 +616,7 @@ used to determine the time to first fix of each test since it was known that the
 outputting at a higher frequency. As such this should not be considered accurate and viewed as an estiamte only.
 
 The carrier to noise ratio graphs were generated directly from the output of the GSV sentences. The SVID and associated $\frac{C}{N_0}$ ratios were stored as the value in
-a key value pair. The key was a timestamp used to ensure each sentence was represented.
-
+a key value pair. The key was a timestamp used to ensure each sentence was represented.\\
 The latitude and longitude were retreiced from the GGA sentences.
 
 Using the NMEA stream created in section \ref{subsec:NMEAFile} a desired plot was put on both the static and dynamic graphs. For the static graphs this reference was also
@@ -457,8 +627,7 @@ This assumes that the distances being dealt with are so small that they are esse
 
 The earth is not perfectly spherical therefore when converting latitude and longitude into x and y coordintes in meters the average of the polar plane and equitorial
 planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
-the error of the coordinate in the $x$ and $y$ direciton respectively.
-
+the error of the coordinate in the $x$ and $y$ direciton respectively. \\
 When finding the total error value the law of Haversines was used. 
 
 \begin{equation} 
@@ -495,36 +664,14 @@ into an array and used to graph the total error over time.
 %         return d
 % \end{verbatim}
 
-\begin{lstinputlisting}[language=Python, caption=Python implementation of the law of Haversines used to calculate the distance between two points on a sphere, firstline=23, lastline=29]{NMEAParse.py}
-\label{list:pythonHaversines}
+\begin{lstinputlisting}[language=Python, label=list:pythonHaversines, caption=Python implementation of the law of Haversines used to calculate the distance between two points on a sphere, firstline=23, lastline=29]{NMEAParse.py}
 \end{lstinputlisting}
-
 
 There is a PC companion application for the GNSS Logger app that allows for comprehensive
 graphing and reports to be generated for a particular log file.
 
-%----------------------------------------------------------------------------------------
-%	SECTION 4
-%----------------------------------------------------------------------------------------
-
-%----------------------------------------------------------------------------------------
-%	SECTION 5
-%----------------------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 6
-%----------------------------------------------------------------------------------------
-
-
-%----------------------------------------------------------------------------------------
-%	SECTION 7
-%----------------------------------------------------------------------------------------
 
 \section{Experiments}
-
-
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
 minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
@@ -532,7 +679,7 @@ Using the SatGen3 software a location was chosen as the spoof location. After se
 
 \subsection{Dynamic Spoofing}
 Dynamic spoofing refers to the production of a signal that when used to calcluate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, see figure \ref{fig:21MarCBDDynamic}, but there will be perceived motion.
+set at the time of production of the binary file, but there will be perceived motion.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utelising the open source projects that have been used to complete this
@@ -541,33 +688,3 @@ pre-determined path when generating the binary file. The signals generation algo
 signal spoofing. If an SDR is a full duplex radio, such is the case for the USRP N210, then one port can be receiveing the real GNSS signal and the other can be
 transmitting the spoofed signal. Care would need to be taken in the set up of this arrangement since any transmitted signal would also be picked up by the reciving
 antenna. Therefore a directional transmitting antenna and physical disctance should be employed to allow for legitimate GNSS signals to reach the reciever port. 
-
-%----------------------------------------------------------------------------------------
-%	SECTION 8
-%----------------------------------------------------------------------------------------
-
-\section{Parameters required for successful spoofing}
-\todo{add screen shots of steps required to generate binary file}
-Due to the internal workings of the USRP, there needs to be an integer ratio between the clock rate and sample rate. Therefore is was required that the sample frequency
-was set to 2.5Msps instead of the default 2.6Msps that the software would normally use.
-
-\begin{figure}[h]
-    \begin{centering}
-        \includegraphics[width=14cm, keepaspectratio]{Figures/21-3-25_cbd_dynamic_setup.png}
-        \caption{Settings of SatGen3 used to generate the dynamic path loop around Adelaide CBD. There is a graph that shows the offset from the origin and speed over the journey}
-    \label{fig:21MarCBDDynamic}
-    \end{centering}
-\end{figure}
-
-%----------------------------------------------------------------------------------------
-%	SECTION 9
-%----------------------------------------------------------------------------------------
-
-\section{SDR Setup for GNSS Reception}
-Reception of GNSS signals is a compliated process which involves sychronising time values and solving simultaneous equtations for position, therefore it was decided that
-the opensource program GNSS-SDR would be used to perform all of these functions. This sofware has been built over a number of years and is able to receive different GNSS
-signals and translate them into position.
-
-The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
-antenna is typically requied for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
-consideration.
