@@ -530,6 +530,9 @@ results files the following naming scheme was employed:
 
 Where .nmea file was the source file, the .bin file was the signal binary file and the .txt file was the log file produced from the GPS receiver.
 
+When generating a dynamic file there is an option to set the amount of "stationary" time. This will put a buffer of unmoving coordinates for a set amount of time. This
+was used to allow the spoofing victim time to lock onto the spoofed signal before the simulated movement began.
+
 To generate the binary bit stream for use with an SDR RF front end a GGA NMEA data stream was created using the SatGen3 software package. This NMEA stream was used to make
 the binary file using the GPS-SDR-sim command line interface program. SatGen3 replaces the need for capturing the raw GNSS signals or GGA sentence stream thus increasing
 the flexibility of scenarios that can be tested. Although there is no guarantee that the simulated stream of information is going to be correct. Thus a capture replay
@@ -558,7 +561,10 @@ The minimum requirements to compile a binary file using GPS-SDR-SIM was a source
 will transmit. This did not need to match the date and time that the signal was being transmitted on. If the attack was to be a dynamic spoofing attack then it was
 required that there be a "user motion file" or GGA sentence stream. This stream was required to be 10Hz. It was decided that even for static scenarios a GGA stream would
 be used. This simplified the workflow overall. Using this method meant that the program was able to calculate the duration of the transmission itself. The output was
-altered in order to conform with the naming convention stated in Section \ref{subsec:NMEAFile}. The sampling rate was also modified to be 2.5Msps instead of the default 2.6Msps.
+altered in order to conform with the naming convention stated in Section \ref{subsec:NMEAFile}. The sampling rate was also modified to be 2.5Msps instead of the default
+2.6Msps.
+When compiling some of the dynamic spoofing scenarios the maximum size was reached. This is a limit that is hardcoded when the GPS-SDR-sim program is compiled on the host
+machine. Therefore, the program was cleanly recompiled in with the command to increase the maximum size of output file.
 
 Using this information, the place, time and ephemeris the program is able to calculate which of the satellites will be in view and what their expected pseudoranges would
 be. This is shown in Figure \ref{fig:sdrsimexample}.
