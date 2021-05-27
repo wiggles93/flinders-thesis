@@ -97,7 +97,7 @@ try:
             \hline
             Position Fix Indicator & 1 & 0: Fix not available \newline 1: GPS SPS mode, fix valid \newline 2: DGPS SPS mode, fix valid\\
             \hline
-            Sattelites used & 10 & \\
+            Satellites used & 10 & \\
             \hline
             HDOP & 0.87 & Horizontal dilution of precision\\
             \hline
@@ -366,7 +366,7 @@ radio to gather information on what daughtercard was installed and other propert
 \begin{figure}[!h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/uhd-find-devices.png}
-        \caption{Using the UHD deamon to find connected USRP SDR devices}
+        \caption{Using the UHD daemon to find connected USRP SDR devices}
     \label{fig:UHDFind}
     \end{centering}
 \end{figure}
@@ -589,7 +589,7 @@ A newer version was manually installed and this solved the issue.
 The downloaded file was a compressed version of the text file, and thus it was required to be uncompressed using the tar program.
 
 \subsection{Compile Signal Binary File}
-GPS-SDR-sim compiles the signals into a 16bit data format where the first 8bits represents the Interphase data and the next 8 bits represents the Quadrature data information.
+GPS-SDR-sim compiles the signals into a 16bit data format where the first 8bits represents the in-phase data and the next 8 bits represents the Quadrature data information.
 The minimum requirements to compile a binary file using GPS-SDR-SIM was a source coordinate in either ECEF or latitude/longitude format and the ephemeris for the desired date and time that the spoofer
 will transmit. This did not need to match the date and time that the signal was being transmitted on. If the attack was to be a dynamic spoofing attack then it was
 required that there be a "user motion file" or GGA sentence stream. This stream was required to be 10Hz. It was decided that even for static scenarios a GGA stream would

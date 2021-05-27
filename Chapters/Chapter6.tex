@@ -26,14 +26,14 @@ getting in. This would explain the consistency in which SVID 193 appears. From \
 Australia and part of Asia.
 
 Consistently for both static and dynamic spoofing the $\frac{C}{N_0}$ ratio was a high value (between 40 and 50 dBHz). During experimentation it was found that authentic
-GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of arround 30dBHz. This discrepency can be attributed to a combination of the
-controlled environment of the Faraday cage as well as the reletive distance between the spoofer and victim. In theory the spoofed $\frac{C}{N_0}$ ratio could be higher,
+GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz. This discrepancy can be attributed to a combination of the
+controlled environment of the Faraday cage as well as the relative distance between the spoofer and victim. In theory the spoofed $\frac{C}{N_0}$ ratio could be higher,
 but during compilation estimated Ionospheric effects are included. This shows that there is still room for improvement for the GPS-SDR-sim software, especially if it is
 to be used in controlled environments for testing purposes. Just from the $\frac{C}{N_0}$ ratio graphs the spoofed signals are easy to identify.
 
 On the $\frac{C}{N_0}$ ratio graphs there were consistently more SVIDs than expected. The trend was that static spoof attacks had more SVIDs than the dynamic spoofs, with
 the most coming from the Antarctic spoof attack. It can also be seen that the length of attack was longest for the Antarctic spoof, which may account for this
-discrepency. Even still, the MAB static spoof included more than expected SVIDs.
+discrepancy. Even still, the MAB static spoof included more than expected SVIDs.
 
 SDRs are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an under run error (where 'U' is printed to the
 output) when transmitting a signal with high SPS (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
@@ -57,7 +57,7 @@ retrieving the ephemeris from legitimate sources.
 The logging program could be extended to provide real time feedback on position and signal quality. This would be achieved by implementing the serial connection within
 the Python code itself rather than relying on the logging function of screen.
 Extended to work on anti-spoofing for PhD. If there was more time for this project, a software based anti spoofing program would have been easy to implement based
-on the $\frac{C}{N_0}$ ratio alone. This could be implemtnted in conjucntion with real time graphing as mentioned above.
+on the $\frac{C}{N_0}$ ratio alone. This could be implemented in conjunction with real time graphing as mentioned above.
 
 The hardware used for this project was successfully used for spoofing attacks, however, the software must be altered in order to achieve the accurate results that were
 expected of the project. However ensuring software capabilities was out of the scope of this thesis.

@@ -42,7 +42,7 @@ anti-spoofing algorithms that have been implemented including the usage of multi
 
 \subsection{Static Spoofing}
 \subsubsection{Tonsley MAB}
-The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. As mentioend above the desired coordinates that the receiver were
+The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. As mentioned above the desired coordinates that the receiver were
 $-35.00792163316667, 138.5715065625$.
 
 The $\frac{C}{N_0}$ ratio graph for the static MAB spoof attack, see Figure \ref{fig:MABStaticCNo}, shows that there was a good quality signal being received throughout
@@ -53,8 +53,8 @@ At approximately the time of first fix it can be seen that there was a reduction
 satellites. These spikes offer no benefit since they only lasted a few seconds. 
 
 From Figures \ref{fig:MABStaticPosition} and \ref{fig:MABStaticCoord} it can be seen that there are not many GPS location points on this graph, so while the spoof was
-successful in the sense that the receiver was able to interperate a location. The calcualted locationw had a high error and there was clearly not a consistent lock. This
-experiment should have been redone ensuring that there was no interefecence in the Faraday cage causing the lock to be lost. 
+successful in the sense that the receiver was able to interpret a location. The calculated location had a high error and there was clearly not a consistent lock. This
+experiment should have been redone ensuring that there was no interference in the Faraday cage causing the lock to be lost. 
 The extent of the error and lack of data points are more evident in Figures \ref{fig:MABStaticError} and \ref{fig:MABSatelliteImage}.
 
 \begin{figure}[!h]
@@ -101,9 +101,9 @@ The extent of the error and lack of data points are more evident in Figures \ref
 Davis station in Antarctica was chosen as a location for spoofing. As mentioned above the coordinates for this location was $-68.5762449235, 77.9696166515$. The COTS
 receiver was used as a spoof victim and it was successfully spoofed. Figure \ref{fig:antarcticaStaticCNo} shows the carrier to noise graph over the spoof attack. There is
 a consistent value of $\approx 50 dBHz$ plus signals that are consistently at $\approx 40 dBHz$. These values indicate low interference and high signal quality. There
-were more SVIDs (or PRN codes) than expected, with more SVIDs recoreded than there are GPS satellites in operation. 
+were more SVIDs (or PRN codes) than expected, with more SVIDs recorded than there are GPS satellites in operation. 
 Time to first fix was shown to be approximately 60 seconds, this is the lower end of the fix times from experiments for cold starts. 
-It can be see that there is consistent signals for the first 50 seconds. For the time pereiod between 70 and
+It can be see that there is consistent signals for the first 50 seconds. For the time period between 70 and
 200 seconds there was more volatile signal quality. Figure \ref{fig:antarcticaStaticError} shows that there was a high, but consistent level of error between first fix
 and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This high error is evident
 when viewing the raw position in Figure \ref{fig:antarcticaStaticCoord} and with respect to the desired location, Figure \ref{fig:antarcticaStaticPosition}. Figure \ref{fig:antarcticaSatelliteImage} shows this error
@@ -167,10 +167,10 @@ see Figure \ref{fig:MABdynamicSetup}.
 
 The time to first fix was found to be approximately 49 seconds which is considered quick for a cold start. The $\frac{C}{N_0}$ ratio graph, see \ref{fig:MABdynamicCNo} shows a common trend of having
 a high average of $\approx 50dBHz$ average with some lower values from spikes. These spikes would not add any value to the quality of the fix and given more time the
-cause of the spikes would be found. From Figure \ref{fig:MABdynamicCoord} it can be seen that initially there was high amounts of error while getting the inital fix.
-Though when the movement began there was good tracking. This is evident in Figure \ref{fig:MABdynamicPosition} where the reference path and recevied path were overlayed.
-Overlaying onto a satellite image yielded \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the refence path. This produced
-results that would be expeccted from authentic GPS signals, with the exception being the inital part of the experiment. 
+cause of the spikes would be found. From Figure \ref{fig:MABdynamicCoord} it can be seen that initially there was high amounts of error while getting the initial fix.
+Though when the movement began there was good tracking. This is evident in Figure \ref{fig:MABdynamicPosition} where the reference path and received path were overlaid.
+Overlaying onto a satellite image yielded \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the reference path. This produced
+results that would be expected from authentic GPS signals, with the exception being the initial part of the experiment. 
 
 \begin{figure}[h]
     \begin{centering}
@@ -230,8 +230,8 @@ to be spoofed.
 
 A common result from spoofed attempts was to have GPS satellites with an SVID of 193. GPS satellites have PRN codes from 1-63 and SBAS have PRNs from
 64 to 158 \cite{RN67}. From the list of PRN codes \cite{RN67} it can be seen that PRN 193 is used by one of the QZSS satellites. This is likely a result of stray EM waves
-penetrating the Faraday cage. It is unlikely that the GPS-SDR-sim program includes augmenetation systems when geneating spoofed signals. The orbit of the QZSS satellites
-does include Australia so seems most likey an issue where an unterminated cable is allowing the signal to bleed into the cage.
+penetrating the Faraday cage. It is unlikely that the GPS-SDR-sim program includes augmentation systems when generating spoofed signals. The orbit of the QZSS satellites
+does include Australia so seems most likely an issue where an unterminated cable is allowing the signal to bleed into the cage.
 
 In an attempt to overcome the under run \todo{insert graph of under run}issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
 in the radio working straight away. The under run issues resurfaced when trying to read the serial data from a COTS GPS receiver. This was less than ideal and required a
