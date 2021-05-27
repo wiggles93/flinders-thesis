@@ -519,6 +519,10 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplr8t.tfm
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/uhd-find-devices.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/usrp-probe-output_1.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/usrp-probe-output_2.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/usrp-probe-output_3.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/Setup/overview_labelled.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/palatino/pplbi8t.tfm
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/static coordinates setup.png
@@ -543,6 +547,7 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_static_
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_static_antarctica Position from origin.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_static_antarctica error over time.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_static_antarctica_Satellite.PNG
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_MAB_setup.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_MAB Carrier noise ratio.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_MAB Lat long position.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_MAB Position from origin.png

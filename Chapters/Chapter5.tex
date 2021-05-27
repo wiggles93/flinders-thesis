@@ -45,11 +45,17 @@ anti-spoofing algorithms that have been implemented including the usage of multi
 The grassed area outside of the Flinders University Tonsley campus was chosen as one of the points to spoof to. As mentioend above the desired coordinates that the receiver were
 $-35.00792163316667, 138.5715065625$.
 
-From Figure \ref{fig:MABStaticPosition} it can be seen that there are negative numbers, this is arbitrary and was included in order to give perspective as to which direction
-the received position was wrong.
-
+The $\frac{C}{N_0}$ ratio graph for the static MAB spoof attack, see Figure \ref{fig:MABStaticCNo}, shows that there was a good quality signal being received throughout
+the test, with no evidence of under running. 
 In this example the time to first fix was calculated as being 37 seconds. This is quite good for a cold start situation. During experimentation the time to first fix has
 been variable between 30 seconds and 180 seconds. A trend has been the quicker the fix the better the overall accuracy of the spoofed location.
+At approximately the time of first fix it can be seen that there was a reduction in number of satellite PRNs being received. Then throughout there was spikes from various
+satellites. These spikes offer no benefit since they only lasted a few seconds. 
+
+From Figures \ref{fig:MABStaticPosition} and \ref{fig:MABStaticCoord} it can be seen that there are not many GPS location points on this graph, so while the spoof was
+successful in the sense that the receiver was able to interperate a location. The calcualted locationw had a high error and there was clearly not a consistent lock. This
+experiment should have been redone ensuring that there was no interefecence in the Faraday cage causing the lock to be lost. 
+The extent of the error and lack of data points are more evident in Figures \ref{fig:MABStaticError} and \ref{fig:MABSatelliteImage}.
 
 \begin{figure}[!h]
     \begin{centering}
@@ -86,7 +92,7 @@ been variable between 30 seconds and 180 seconds. A trend has been the quicker t
 \begin{figure}[!h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
-        \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
+        \caption{Satellite image of the MAB area next to Flinders University with expected GPS position shown with red cross and recorded position shown with blue line}
         \label{fig:MABSatelliteImage}
     \end{centering}
 \end{figure}
@@ -94,8 +100,10 @@ been variable between 30 seconds and 180 seconds. A trend has been the quicker t
 \subsubsection{Antarctica}
 Davis station in Antarctica was chosen as a location for spoofing. As mentioned above the coordinates for this location was $-68.5762449235, 77.9696166515$. The COTS
 receiver was used as a spoof victim and it was successfully spoofed. Figure \ref{fig:antarcticaStaticCNo} shows the carrier to noise graph over the spoof attack. There is
-a consistent value of $\approx 50 dBHz$ plus signals that are consistently at $\approx 40 dBHz$. Time to first fix was shown to be approximately 60 seconds, this is the
-lower end of the fix times from experiments for cold starts. It can be see that there is consistent signals for the first 50 seconds. For the time pereiod between 70 and
+a consistent value of $\approx 50 dBHz$ plus signals that are consistently at $\approx 40 dBHz$. These values indicate low interference and high signal quality. There
+were more SVIDs (or PRN codes) than expected, with more SVIDs recoreded than there are GPS satellites in operation. 
+Time to first fix was shown to be approximately 60 seconds, this is the lower end of the fix times from experiments for cold starts. 
+It can be see that there is consistent signals for the first 50 seconds. For the time pereiod between 70 and
 200 seconds there was more volatile signal quality. Figure \ref{fig:antarcticaStaticError} shows that there was a high, but consistent level of error between first fix
 and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This high error is evident
 when viewing the raw position in Figure \ref{fig:antarcticaStaticCoord} and with respect to the desired location, Figure \ref{fig:antarcticaStaticPosition}. Figure \ref{fig:antarcticaSatelliteImage} shows this error
@@ -143,10 +151,26 @@ The inaccuracy is higher than was expected from this experiment.
 \end{figure}
 
 \subsection{Dynamic Spoofing}
-
+Dynamic spoofing attacks were also performed. These attacks do not have a set coordinate that the spoofer is attempting to make the receiver appear at, rather these
+attacks try to get the receiver to "follow" a path that has been set, see Section \ref{subsec:coordinate}.
 \subsubsection{Tonsley MAB}
-The time to first fix was shown to be approximately 49 seconds.
+There is a road that circles around the MAB (Mass Assembly Building) in which the \univname Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
+see Figure \ref{fig:MABdynamicSetup}.
 
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_setup.png}
+        \caption{Using road around the MAB at Tonsley, Adelaide as path for dynamic spoofing attack. The file was saved as a text file to be compiled into a binary.}
+        \label{fig:MABdynamicSetup}
+    \end{centering}
+\end{figure}
+
+The time to first fix was found to be approximately 49 seconds which is considered quick for a cold start. The $\frac{C}{N_0}$ ratio graph, see \ref{fig:MABdynamicCNo} shows a common trend of having
+a high average of $\approx 50dBHz$ average with some lower values from spikes. These spikes would not add any value to the quality of the fix and given more time the
+cause of the spikes would be found. From Figure \ref{fig:MABdynamicCoord} it can be seen that initially there was high amounts of error while getting the inital fix.
+Though when the movement began there was good tracking. This is evident in Figure \ref{fig:MABdynamicPosition} where the reference path and recevied path were overlayed.
+Overlaying onto a satellite image yielded \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the refence path. This produced
+results that would be expeccted from authentic GPS signals, with the exception being the inital part of the experiment. 
 
 \begin{figure}[h]
     \begin{centering}
@@ -180,7 +204,12 @@ The time to first fix was shown to be approximately 49 seconds.
     \end{centering}
 \end{figure}
 
-\subsection{Issues Encountered}
+\section{Experimental Issues}
+While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
+frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
+was able to produce signals that were picked up by the GNSS Logger application. Observing the graphs of the carrier to noise figure showed that when there was an under run
+issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver would lose connection to the 'satellites'. This meant that no GPS lock was achievable.
+
 The under run issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
 There was an issue towards the end of the project where there was considerable leakage of EM radiation into the Faraday cage that was causing the GPS receiver to produce
 wildly inaccurate position (up to and over 500m error). This was much different to what had previously been recorded within the Faraday cage. This amount of error does
@@ -199,17 +228,11 @@ There were a number of unterminated cables that were running from outside of the
 suspect cables were removed or terminated and the results were more consistent with what was being achieved previously. Even with the new phone the GPS location was able
 to be spoofed.
 
-From sources \todo{insert source} it was found that the SVID and PRN are the same thing. 
-A common result from spoofed attempts was to have GPS satellites with an SVID of over 100. GPS satellites have PRN codes from 1-63 and augmentation systems have PRNs from
-64 to 158 \cite{RN67}. From the list of PRN codes \cite{RN67} it can be seen that the services that are being received are some kind of augmented system. \emph{This makes
-me think that there might be a GBAS system or SBAS system nearby that is being received within the cage by stray wires etc.}
+A common result from spoofed attempts was to have GPS satellites with an SVID of 193. GPS satellites have PRN codes from 1-63 and SBAS have PRNs from
+64 to 158 \cite{RN67}. From the list of PRN codes \cite{RN67} it can be seen that PRN 193 is used by one of the QZSS satellites. This is likely a result of stray EM waves
+penetrating the Faraday cage. It is unlikely that the GPS-SDR-sim program includes augmenetation systems when geneating spoofed signals. The orbit of the QZSS satellites
+does include Australia so seems most likey an issue where an unterminated cable is allowing the signal to bleed into the cage.
 
-\section{Experimental Issues}
-While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
-frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
-was able to produce signals that were picked up by the GNSS Logger application. Observing the graphs of the carrier to noise figure showed that when there was an under run
-issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver in the phone would lose connection to the 'satellites'. This meant that no GPS lock was achievable.  
-
-In an attempt to overcome the under run issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
+In an attempt to overcome the under run \todo{insert graph of under run}issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
 in the radio working straight away. The under run issues resurfaced when trying to read the serial data from a COTS GPS receiver. This was less than ideal and required a
 second computer to act as a datalogger.

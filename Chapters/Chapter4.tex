@@ -358,10 +358,42 @@ tool, being the N210, therefore it was chosen. From Ettus, there were two daught
 WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
 frequency was not at the extreme of either cards bands. Either card would also be capable of transmitting or receiving on the other bands of GNSS constellations.
 
-To ensure the SDR and PC were able to communicate, an ethernet cable was connected between each device and the IP address of the PC was set to 192.168.0.2/24 as per the
-default configuration from the setup documentation. To check if the IP address was correctly set, a command line program was run that would pole the appropriate
-interfaces of the PC and check for USRP devices attached. \todo{insert image of UHD FIND DEVICES}. There was also a command line program that allowed for the probing of a
-radio to gather information on what daughtercard was installed and other properties. \todo{inset image}.
+To ensure the SDR and PC were able to communicate, an ethernet cable was connected between each device and the IP address of the PC was set to 192.168.10.2/24 as per the
+default configuration from the setup documentation. To check if the IP address was correctly set, a command line program was run that would poll the appropriate
+interfaces of the PC and check for USRP devices attached, see Figure \ref{fig:UHDFind}. There was also a command line program that allowed for the probing of a
+radio to gather information on what daughtercard was installed and other properties, see Figures \ref{fig:UHDProbe1}, \ref{fig:UHDProbe2} and \ref{fig:UHDProbe3}.
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/uhd-find-devices.png}
+        \caption{Using the UHD deamon to find connected USRP SDR devices}
+    \label{fig:UHDFind}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/usrp-probe-output_1.png}
+        \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the main board details}
+    \label{fig:UHDProbe1}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/usrp-probe-output_2.png}
+        \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the reception details}
+    \label{fig:UHDProbe2}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/usrp-probe-output_3.png}
+        \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the transmission details}
+    \label{fig:UHDProbe3}
+    \end{centering}
+\end{figure}
 
 \begin{itemize}
     \item Laptop
@@ -490,7 +522,7 @@ the received signals from the satellites.
 
 Each of the nodes of Figure \ref{fig:Flowchart} will be expanded upon below. 
 
-\subsection{Choose Coordinates}
+\subsection{Choose Coordinates} \label{subsec:coordinate}
 Regardless of whether a static or dynamic spoofing attack is desired, the best way to choose the coordinates was through the use of SatGen3. There was an alternative for
 static scenarios which did remove the need for installing SatGen3. This alternative was through the use of GPS-SDR-sim itself. It has an attribute that allows for
 inputting either latitude longitude or ECEF coordinates. So while this does save one step, it still requires using a map software to find the desired coordinates, which
@@ -607,7 +639,8 @@ An important part of the transmission was that it needed to be performed within 
 \subsection{Log GPS Data}
 To log the transmitted GPS signals from the SDR a COTS receiver and a smartphone were set up. The COTS receiver has a USB interface that outputs a stream of NMEA
 sentences at a 1Hz frequency. This can be modified to 5Hz, but this was not required for these experiments. Using a script the USB port was opened and logged to a text
-file, see Appendix \ref{sec:GPSConnect}. The log file was passed as an argument and could be stored wherever it was needed. 
+file, see Appendix \ref{sec:GPSConnect}. The log file was passed as an argument and could be stored wherever it was needed. Each time a spoof attempt was made, the GPS
+receiver was powered off to ensure there was not lock when starting the experiment. This ensured results were as consistent as possible.
 
 When using a smartphone Android was required for logging since the OS allows access to the raw properties of the received signal. There is also an intuitive application
 "GNSS Logger" that allows for comprehensive visualisation of current GNSS tracking as well as the ability to log data. This data was logged to a text file using a non
