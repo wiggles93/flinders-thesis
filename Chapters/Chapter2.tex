@@ -14,7 +14,8 @@ that account for the inaccuracies of calculated GNSS position are covered, inclu
 
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
 In 2021 there are many different GNSS systems in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
-people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters. The concept was
+people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters in the form of
+hyperbolic navigation systems \cite{RN68}. The concept was
 similar to that of the current satellite based systems, namely the use of pseudoranges, although the accuracy was far lower than is acceptable today. The USA developed
 and commissioned the first satellite based navigation system.
 
@@ -90,7 +91,6 @@ This method of position calculation is known as trilateration. The model shown b
 \begin{equation} \label{eq:gnssPosition} 
     \rho_i = \sqrt{(x_i - x_u)^2 + (y_i - y_u)^2 + (z_i - z_u)^2} + c \Delta t
 \end{equation}
-\todo{look at RN32 for position and time calculations}
 As can be seen from the above equation \ref{eq:gnssPosition} the accurate synchronisation of time between the receiver and the satellites is required in order to
 calculate an accurate position. 
 Each of the operational constellations use the same fundamentals to provide accurate position data, but each differ in some key aspects as discussed below.
@@ -216,12 +216,12 @@ The orbit height of the Galileo constellation is higher than the GPS orbit at 23
 
 Galileo operates on 3 different frequency bands, E1, E5 and E6. E1 shares the same centre frequency as the GPS L1 band, 1575.42 MHz. The E6 band does not share a frequency
 with the GPS system and operates at 1278.75 MHz. The E5 band is split into E5a and E5b sub-bands with E5a sharing the same frequency as L5, 1176.45 MHz, and E5b at
-1207.14 MHz. The arrangement of the frequency bands can be seen in Figure \ref{fig:SignalPlan}.
+1207.14 MHz. The arrangement of the frequency bands can be seen in Figure \ref{fig:SignalPlan} \cite{RN69}.
 
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=14cm,height=10cm,keepaspectratio]{Figures/Galileo_Frequency_Plan.png}
-        \caption{Galileo and GPS signal frequency arrangement}
+        \caption{Galileo and GPS signal frequency arrangement \cite{RN69}}
         \label{fig:SignalPlan}
     \end{centering}
 \end{figure}
@@ -237,7 +237,7 @@ short and long term reliability and accuracy of the on board atomic clocks \cite
 
 \subsection{GLONASS} \label{subsec:GNSS_GLONASSIntro}
 The Russian GLONASS constellation has it's history tightly intertwined with that of GPS and the space race, as mentioned above in \ref{sec:GNSSHistory}.
-GLONASS consists of a nominal 24 satellites in 3 orbital planes. Since GLONASS uses FDMA, each satellite needs to transmit on a unique frequency. This is in contrast to
+GLONASS consists of a nominal 24 satellites in 3 orbital planes. Since GLONASS uses FDMA, each satellite needs to transmit on a unique frequency \cite{RN56}. This is in contrast to
 all other GNSS systems that use CDMA. Extra effort must therefore be applied to the reception of the signals since Doppler effects must be carefully considered. 
 The use of FDMA does make GLONASS more resilient against jamming and spoofing attacks. In a CDMA system, like GPS, all satellites share the same carrier frequency
 (ignoring the Doppler Effect), thus if an attack is performed all satellites are susceptible. Where as the GLONASS satellites all occupy separate frequency bands making a
@@ -245,7 +245,7 @@ system wide attack much harder and more expensive to perform. This was the motiv
 interoperability issue when considering multi constellation support. The receiver must become much more complex in order to support not only multiple carrier frequencies
 of different constellations but also due to the different access schemes. This increases cost and complexity where Galileo is much more compatible for this use case.
 There are
-three frequency bands that GLONASS operates in, L1, L2 and L3. These are separate to the L1, L2 of GPS. 
+three frequency bands that GLONASS operates in, L1, L2 and L3. These are separate to the L1, L2 of GPS \cite{RN70}. 
 
 GLONASS L1 band is from 1598.0625 MHz to 1605.375 MHz split into 14 channels. Each carrier is 562.5 kHz apart and is characterised by equation \ref{eq:GLONASS Channel
 calc}. $k$ represents the channel number of the band and ranges from -7 to +6. 
@@ -347,7 +347,7 @@ IRNSS. Both of these extend the abilities of the USA GPS system. The 4 satellite
 band  simultaneously. Doing so helps to resolve ionospheric errors by facilitating resolution of position from multiple frequencies \cite{RN48}.
 
 The IRNSS constellation is different to the others mentioned above due to its orbit altitude of 36,000km making them geostationary. All of the satellites are positioned at
-this orbit. This allows for a very narrow and defined region of usability, which is over India. 
+this orbit. This allows for a very narrow and defined region of usability, which is over India \cite{RN55}. 
 
 Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
 values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
@@ -556,7 +556,7 @@ produce the same results as recording the GPS signal from the desired location.
 %	SECTION 6
 %----------------------------------------------------------------------------------------
 
-\section{SDR Basics}
+\section{SDR Basics} \label{sec:SDRBasics}
 Software defined radios are devices that enable the user to increase the flexibility of transmission and reception of RF signals by moving processing typically reserved
 for the analog domain into the digital domain. Thus SDRs move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
 allows for a wide ranges of frequencies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.

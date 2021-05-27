@@ -335,6 +335,16 @@
    accessDate = {8th April}
 }
 
+@online{RN67,
+   author = {National Coordination Office for Space-Based Positioning, Navigation and Timing},
+   title = {Pseudorandom Noise Code Assignments},
+   url = {https://www.gps.gov/technical/prn-codes/},
+   year = {2021},
+   publisher = {National Coordination Office for Space-Based Positioning, Navigation and Timing},
+   accessYear = {2021},
+   accessDate = {16th May}
+}
+
 @inproceedings{RN42,
    author = {Oligeri, Gabriele and Sciancalepore, Savio and Ibrahim, Omar Adel and Di Pietro, Roberto},
    title = {Drive me not: GPS spoofing detection via cellular network: (architectures, models, and experiments)},
@@ -342,6 +352,18 @@
    pages = {12-22},
    year = {2019},
    type = {Conference Proceedings}
+}
+
+@article{RN68,
+   author = {Pierce, JA},
+   title = {An introduction to Loran},
+   journal = {Proceedings of the IRE},
+   volume = {34},
+   number = {5},
+   pages = {216-234},
+   ISSN = {0096-8390},
+   year = {1946},
+   type = {Journal Article}
 }
 
 @article{RN12,
@@ -362,6 +384,16 @@
    title = {GNSS spoofing detection using two-antenna differential carrier phase},
    booktitle = {Radionavigation Laboratory Conference Proceedings},
    type = {Conference Proceedings}
+}
+
+@online{RN69,
+   author = {Rodríguez, J.A Ávila},
+   title = {Galileo Signal Plan},
+   url = {https://gssc.esa.int/navipedia/index.php/Galileo_Signal_Plan},
+   year = {2011},
+   publisher = {European Space Agency},
+   accessYear = {2021},
+   accessDate = {27 May}
 }
 
 @online{RN49,
