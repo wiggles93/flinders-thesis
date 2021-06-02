@@ -307,6 +307,10 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/listings.hak
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/listings.hak
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
+INPUT /usr/share/texlive/texmf-dist/tex/latex/koma-script/float.hak
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty

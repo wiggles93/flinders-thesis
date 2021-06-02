@@ -539,7 +539,8 @@ there is a requirement of having the right equipment to be able to capture the r
 \end{figure}
 
 \subsection{Signal Generation}
-There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
+There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a combination
+of signals that can be
 played in such a manner as to perform a spoofing attack. This differs from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
 a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is required as to
 produce the same results as recording the GPS signal from the desired location.
@@ -565,8 +566,8 @@ An SDR can implement multiple different modulation/demodulation techniques and s
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
 
 The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
-front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in the image is the
-quadrature mixers which allow for complex sampling \ref{eq:complexSampling} as apposed to real sampling \ref{eq:realSampling}. This means that the in phase and quadrature phase are sampled separately, effectively
+front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in figure \ref{fig:USRPBlock} is the
+quadrature mixers which allow for complex sampling, shown in equation \ref{eq:complexSampling}, as apposed to real sampling, shown in equation \ref{eq:realSampling}. This means that the in-phase and quadrature phase are sampled separately, effectively
 doubling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorem is conserved even when the
 bandwidth is equal to the sampling rate.
 
