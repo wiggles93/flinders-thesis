@@ -22,7 +22,7 @@ and commissioned the first satellite based navigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
 QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional coverage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by how far from the earths surface the satellite orbits.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by the distance the satellite orbits from the eartch surface.
 Current GNSS systems utilise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -97,7 +97,7 @@ Each of the operational constellations use the same fundamentals to provide accu
 
 \subsection{Trilateration} \label{subsec:Trilateration}
 The process of trilateration uses objects of known locations to calculate the unknown location of other objects. This is done through the use of overlapping circles based
-on how far the objects are apart. This is known as a pseudorange. To use satellites to determine the location of a receiver the exact location of the satellites must be
+on their relative distance. This is known as a pseudorange. To use satellites to determine the location of a receiver the exact location of the satellites must be
 known, as well as relative distance. Each satellite sends its precise orbital location (ephemeris), as well as the coarse orbital location (almanac) of the rest of the
 constellation as part of the navigational data. This coupled with the pseudorange of the satellite allows for calculating the position of the receiver. Pseudoranges rely
 on the knowledge that electromagnetic radiation propagates at the speed of light, as shown in equation \ref{eq:EMdistance}. By measuring the time taken for the signal to
@@ -520,7 +520,7 @@ spoofing attacks are explained below.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Jamming.png}
-        \caption{Representation of how a jammer is able to interfere with a GNSS signal}
+        \caption{Representation of jamming a GNSS signal. This can be through intentional or unintentional interference within the communication channel}
     \label{fig:jamming cartoon}
     \end{centering}
 \end{figure}
@@ -533,14 +533,13 @@ there is a requirement of having the right equipment to be able to capture the r
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
-        \caption{Representation of how a GNSS spoofer can perform a meaconing attack}
+        \caption{Representation of a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or somewhen else}
     \label{fig:meaconing cartoon}
     \end{centering}
 \end{figure}
 
 \subsection{Signal Generation}
-There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a combination
-of signals that can be
+There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
 played in such a manner as to perform a spoofing attack. This differs from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
 a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is required as to
 produce the same results as recording the GPS signal from the desired location.
@@ -548,7 +547,7 @@ produce the same results as recording the GPS signal from the desired location.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Spoofing.png}
-        \caption{Representation of how a GNSS spoofing device uses a generated signal to force a receiver to incorrectly calculate its position}
+        \caption{Representation of a GNSS spoofing attack. An artificial signal is produced and transmitted such that the receiver believes it is authentic}
     \label{fig:spoofing cartoon}
     \end{centering}
 \end{figure}
@@ -566,8 +565,8 @@ An SDR can implement multiple different modulation/demodulation techniques and s
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
 
 The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
-front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in figure \ref{fig:USRPBlock} is the
-quadrature mixers which allow for complex sampling, shown in Equation \ref{eq:complexSampling} as apposed to real sampling, shown in Equation \ref{eq:realSampling}. This means that the in-phase and quadrature phase are sampled separately, effectively
+front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in the image is the
+quadrature mixers which allow for complex sampling \ref{eq:complexSampling} as apposed to real sampling \ref{eq:realSampling}. This means that the in phase and quadrature phase are sampled separately, effectively
 doubling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorem is conserved even when the
 bandwidth is equal to the sampling rate.
 
