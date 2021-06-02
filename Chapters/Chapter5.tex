@@ -52,12 +52,7 @@ been variable between 30 seconds and 180 seconds. A trend has been the quicker t
 At approximately the time of first fix it can be seen that there was a reduction in number of satellite PRNs being received. Then throughout there was spikes from various
 satellites. These spikes offer no benefit since they only lasted a few seconds. 
 
-From Figures \ref{fig:MABStaticPosition} and \ref{fig:MABStaticCoord} it can be seen that there are not many GPS location points on this graph, so while the spoof was
-successful in the sense that the receiver was able to interpret a location. The calculated location had a high error and there was clearly not a consistent lock. This
-experiment should have been redone ensuring that there was no interference in the Faraday cage causing the lock to be lost. 
-The extent of the error and lack of data points are more evident in Figures \ref{fig:MABStaticError} and \ref{fig:MABSatelliteImage}.
-
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
         \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
@@ -65,7 +60,10 @@ The extent of the error and lack of data points are more evident in Figures \ref
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+From Figures \ref{fig:MABStaticPosition} and \ref{fig:MABStaticCoord} it can be seen that there are not many GPS location points on this graph, so while the spoof was
+successful in the sense that the receiver was able to interpret a location. The calculated location had a high error and there was clearly not a consistent lock. 
+
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Lat long position.png}
         \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
@@ -73,7 +71,7 @@ The extent of the error and lack of data points are more evident in Figures \ref
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
         \caption{Graph of recorded position with respect to the intended spoofed location}
@@ -81,7 +79,11 @@ The extent of the error and lack of data points are more evident in Figures \ref
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+This
+experiment should have been redone ensuring that there was no interference in the Faraday cage causing the lock to be lost. 
+The extent of the error and lack of data points are more evident in Figures \ref{fig:MABStaticError} and \ref{fig:MABSatelliteImage}.
+
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB error over time.png}
         \caption{Error between calculated location and expected location over time}
@@ -89,7 +91,7 @@ The extent of the error and lack of data points are more evident in Figures \ref
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
         \caption{Satellite image of the MAB area next to Flinders University with expected GPS position shown with red cross and recorded position shown with blue line}
@@ -104,13 +106,9 @@ a consistent value of $\approx 50 dBHz$ plus signals that are consistently at $\
 were more SVIDs (or PRN codes) than expected, with more SVIDs recorded than there are GPS satellites in operation. 
 Time to first fix was shown to be approximately 60 seconds, this is the lower end of the fix times from experiments for cold starts. 
 It can be see that there is consistent signals for the first 50 seconds. For the time period between 70 and
-200 seconds there was more volatile signal quality. Figure \ref{fig:antarcticaStaticError} shows that there was a high, but consistent level of error between first fix
-and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This high error is evident
-when viewing the raw position in Figure \ref{fig:antarcticaStaticCoord} and with respect to the desired location, Figure \ref{fig:antarcticaStaticPosition}. Figure \ref{fig:antarcticaSatelliteImage} shows this error
-in position in more context placed over a satellite image.
-The inaccuracy is higher than was expected from this experiment.  
+200 seconds there was more volatile signal quality. 
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Carrier noise ratio.png}
         \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at Davis Station in Antarctica on 30th March 2021. Each SVID has been given a unique colour.}
@@ -118,7 +116,13 @@ The inaccuracy is higher than was expected from this experiment.
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+Figure \ref{fig:antarcticaStaticError} shows that there was a high, but consistent level of error between first fix
+and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This high error is evident
+when viewing the raw position in Figure \ref{fig:antarcticaStaticCoord} and with respect to the desired location, Figure \ref{fig:antarcticaStaticPosition}. Figure \ref{fig:antarcticaSatelliteImage} shows this error
+in position in more context placed over a satellite image.
+The inaccuracy is higher than was expected from this experiment.  
+
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Lat long position.png}
         \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
@@ -126,7 +130,7 @@ The inaccuracy is higher than was expected from this experiment.
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Position from origin.png}
         \caption{Graph of recorded position with respect to the intended spoofed location}
@@ -134,7 +138,7 @@ The inaccuracy is higher than was expected from this experiment.
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica error over time.png}
         \caption{Error between calculated location and expected location over time}
@@ -142,7 +146,7 @@ The inaccuracy is higher than was expected from this experiment.
     \end{centering}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica_Satellite.PNG}
         \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
@@ -159,7 +163,7 @@ see Figure \ref{fig:MABdynamicSetup}.
 
 \begin{figure}[!h]
     \begin{centering}
-        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_setup.png}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_setup.png}
         \caption{Using road around the MAB at Tonsley, Adelaide as path for dynamic spoofing attack. The file was saved as a text file to be compiled into a binary.}
         \label{fig:MABdynamicSetup}
     \end{centering}

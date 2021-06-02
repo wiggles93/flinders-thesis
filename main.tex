@@ -86,6 +86,8 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \lstset{style=mystyle}
 
+\usepackage{float}
+
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -228,12 +230,20 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 	As GNSS technology becomes more and more prevalent in society more needs to be done to ensure that it remains a robust system. There is a distinct issue with
 	satellite technology. That is that the design life time leaves them open to attack as technology propels forward. Especially over the past 15 years the rate of
 	expansion of technology has been high. While the GNSS system as a whole may have been technologically advanced compared to civilian technology when launched, that
-	technology, and others, trickles down in to the hands of attackers. This thesis pointed out the ease in which a spoofing attack was able to be performed. The results
+	technology, and others, trickles down in to the hands of attackers. This thesis pointed out the ease in which a spoofing attack was able to be performed. 
+	
+	\bigskip
+
+	The results
 	show that with relatively low amounts of money and processing power, as well as technical understanding, successful spoofing attacks were performed. Using free and
 	available software coordinates were chosen either a stand alone coordinate for a static spoof, or connected to form a path for a dynamic spoof. The coordinates were
 	saved as text files that were passed into another software program, GPS-SDR-sim that converted the text file into a interlaced I/Q signal data file. This was loaded
 	into the SDR via the GNURadio program and ethernet interface. The victim receivers were successfully spoofed, however the accuracy of the calculated location was less
-	than what was expected for static attacks, with error values consistently over 20m. Dynamic spoofed scenarios seemed to fair much better with less error. While
+	than what was expected for static attacks, with error values consistently over 20m. Dynamic spoofed scenarios seemed to fair much better with less error. 
+	
+	\bigskip
+	
+	While
 	it is also true that with the setup used for testing that there were clear signs that the signal was spoofed there are products that do not have the processing power
 	to perform software based anti spoofing checks. These include embedded systems, as well as existing systems. 
 	Many industries are reluctant to change equipment for many years, even in important industries like energy. This leaves this infrastructure open to attacks from this
