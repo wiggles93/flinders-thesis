@@ -116,7 +116,7 @@ def plotError(coordinates, reference):
 def plotMap(coordiantes, reference=None):
     lats = []
     longs = []
-    apikey = 'AIzaSyDmP3BcjpPRtxNKqPjX9Q7sSyAW96afCB4'
+    apikey = # removed for publishing
 
     for coordinate in coordiantes:
         lats.append(coordinate[1])

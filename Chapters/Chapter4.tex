@@ -444,7 +444,7 @@ radio to gather information on what daughtercard was installed and other propert
 Reception of GNSS signals is a complicated process which involves synchronising time values and solving simultaneous equations for position, therefore instead of
 developing the software from scratch it was decided that
 the opensource program GNSS-SDR would be used to perform all of these functions. This software has been built over a number of years and is able to receive different GNSS
-signals and translate them into position.
+signals and translate them into position \cite{RN16}.
 
 The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
 antenna is typically required for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
@@ -455,7 +455,7 @@ The laptop was the interface between software and hardware. It was used to gener
 PC attached to the ethernet port.
 
 The software used for this project was a combination of open source and custom software. 
-The software was chosen while performing the literature review. There were examples \emph{\textbf{Insert citations that used GPS-SDR-sim}} of using open source programs
+The software was chosen while performing the literature review. There were examples \cite{RN4} \cite{RN28} of using open source programs
 for the purpose of GPS spoofing. This was the best step forward since there were credible results with that software.
 
 Custom software was created for the reporting and results of the experiments. 
@@ -529,9 +529,9 @@ inputting either latitude longitude or ECEF coordinates. So while this does save
 is considerably simplified using SatGen3. To compile dynamic situations a GGA NMEA stream is always required. Considering for this project there was a desire to have both static and dynamic spoofing it made sense
 to maintain a more consistent workflow.
 
-Figure \ref{fig:StaticCoordinate} shows how the searching and selecting of a coordinate for use in a static spoof attack was done within the SatGen3 application. The
+Figure \ref{fig:StaticCoordinate} shows the searching and selecting of a coordinate for use in a static spoof attack within the SatGen3 application. The
 SatGen3 program has access to the google maps API and allows for searching. This makes finding the desired location for spoofing attack easy. 
-Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed within SatGen3 in order to generate a dynamic spoof attack.
+Figure \ref{fig:DynamicCoordinate} shows mapping out of a path within SatGen3 in order to generate a dynamic spoof attack.
 
 \begin{figure}
     \begin{centering}
@@ -643,7 +643,9 @@ sentences at a 1Hz frequency. This can be modified to 5Hz, but this was not requ
 file, see Appendix \ref{sec:GPSConnect}. The log file was passed as an argument and could be stored wherever it was needed. Each time a spoof attempt was made, the GPS
 receiver was powered off to ensure there was not lock when starting the experiment. This ensured results were as consistent as possible.
 
-When using a smartphone Android was required for logging since the OS allows access to the raw properties of the received signal. There is also an intuitive application
+When using a smartphone, Android was required for logging since the OS allows access to the raw properties of the received signal. These properties include, as of Android
+7.0, Position, velocity, C/No, satellite/constellation, pseudorange, navigation messages, accumulated delta range and hardware clock \cite{RN39}.
+There is also an intuitive application
 "GNSS Logger" that allows for comprehensive visualisation of current GNSS tracking as well as the ability to log data. This data was logged to a text file using a non
 standard layout, but there was an option to log the NMEA sentences as well.  
 
@@ -665,10 +667,11 @@ used as the origin when calculating the error of the calculated location.
 The error was calculated by finding the difference in latitude and longitude from the desired origin point and converting the $\Delta Lat$ and $\Delta Long$ into meters.
 This assumes that the distances being dealt with are so small that they are essentially flat. Thus the equations can be simplified to remove any angles.
 
-The earth is not perfectly spherical therefore when converting latitude and longitude into x and y coordinates in meters the average of the polar plane and equatorial
+The earth is not perfectly spherical therefore when converting latitude and longitude into $x$ and $y$ coordinates in meters the average of the polar plane and equatorial
 planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
 the error of the coordinate in the $x$ and $y$ direction respectively. \\
-When finding the total error value the law of Haversines was used. 
+When finding the total error value the law of Haversines was used, see equation \ref{eq:Haversine}, where $\phi_i$ and $\lambda_i$ are the latitude and longitude of the
+$i^{th}$ corrdinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
 
 \begin{equation} 
     \begin{split} \label{eq:EarthCircumference}
@@ -690,7 +693,7 @@ When finding the total error value the law of Haversines was used.
 \end{equation}
  
 Below (Listing \ref{list:pythonHaversines}) is the implementation of the law of Haversines in python used for the calculation of distance between two latitude and longitude points. The output of the function was stored
-into an array and used to graph the total error over time.
+into an array and used to graph the total error over time for static spoofing attacks.
 
 % \begin{verbatim}
 %     def latlon2m(lat1, long1, lat2, long2):
@@ -714,12 +717,12 @@ graphing and reports to be generated for a particular log file.
 \section{Experiments}
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
-minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
-Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created. This 
+minor movement caused by the uncertainty in trilateration and system errors, this change in position was typically minor and within the range of error of GPS positioning.
+Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created and saved as a text file. 
 
 \subsection{Dynamic Spoofing}
 Dynamic spoofing refers to the production of a signal that when used to calculate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, but there will be perceived motion.
+set at the time of production of the binary file, but there will be perceived motion from the GPS reciever.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utilising the open source projects that have been used to complete this

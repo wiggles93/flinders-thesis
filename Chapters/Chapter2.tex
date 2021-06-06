@@ -4,9 +4,8 @@
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-The format of this chapter is as follows, there is a section on the details behind GNSS systems and the history behind GNSS and how it came to be in its current state. After that
-an overview of the current and future GNSS constellations including operating principles was covered. Then real world uses of GNSS are listed. Following that the errors
-that account for the inaccuracies of calculated GNSS position are covered, including the definition of spoofing types.
+This Chapter introduces the history and motivation of implementing a satellite based navigation system, as well as background information on GNSS principles. The other
+GNSS constellations are introduced and their differences explained. The mechanics of satellite navigation, sources of error and their place in society are also dicsussed. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -455,7 +454,7 @@ well as low elevations where there are proportionally high dilution of precision
 Receiver errors occur due to the introduction of noise through the reception process. GNSS jamming and spoofing also constitute receiver error although these are
 intentional and malicious.
 
-What all of these errors have in common is that create an incorrect value of the pseudorange which in turn incorrectly calculates the receiver position.
+What all of these errors have in common is an incorrect value of the pseudorange is created which in turn incorrectly calculates the receiver position.
 \todo{ref}
 
 \renewcommand{\arraystretch}{1.5}
@@ -520,7 +519,7 @@ spoofing attacks are explained below.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Jamming.png}
-        \caption{Representation of jamming a GNSS signal. This can be through intentional or unintentional interference within the communication channel}
+        \caption{Representation of jammer interfering with a GNSS signal. This can be through intentional or unintentional means within the communication channel}
     \label{fig:jamming cartoon}
     \end{centering}
 \end{figure}
@@ -533,7 +532,7 @@ there is a requirement of having the right equipment to be able to capture the r
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
-        \caption{Representation of a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or somewhen else}
+        \caption{Representation of a spoofer peforming a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or somewhen else}
     \label{fig:meaconing cartoon}
     \end{centering}
 \end{figure}
@@ -548,7 +547,7 @@ produce the same results as recording the GPS signal from the desired location.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Spoofing.png}
-        \caption{Representation of a GNSS spoofing attack. An artificial signal is produced and transmitted such that the receiver believes it is authentic}
+        \caption{Representation of a GNSS spoofing attack. An artificial signal is produced and transmitted such that the receiver believes it is authentic. The resolved position is different to the actual position}
     \label{fig:spoofing cartoon}
     \end{centering}
 \end{figure}
@@ -558,14 +557,14 @@ produce the same results as recording the GPS signal from the desired location.
 %----------------------------------------------------------------------------------------
 
 \section{SDR Basics} \label{sec:SDRBasics}
-Software defined radios are devices that enable the user to increase the flexibility of transmission and reception of RF signals by moving processing typically reserved
+Software defined radios are devices that enable the user to increase the flexibility of transmission and reception of RF (Radio Frequency) signals by moving processing typically reserved
 for the analog domain into the digital domain. Thus SDRs move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
 allows for a wide ranges of frequencies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
 Typical tasks like modulation and demodulation are performed directly in analog hardware for normal radios. This makes them incredibly rigid and only suitable for 1 task.
 An SDR can implement multiple different modulation/demodulation techniques and switch between them based on selection criteria set by the user. This same is true for
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
 
-The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
+The USRP (Universal Software Radio Peripheral) SDR lineup from Ettus share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
 front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in figure \ref{fig:USRPBlock} is the
 quadrature mixers which allow for complex sampling, shown in equation \ref{eq:complexSampling}, as apposed to real sampling, shown in equation \ref{eq:realSampling}. This means that the in-phase and quadrature phase are sampled separately, effectively
 doubling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorem is conserved even when the

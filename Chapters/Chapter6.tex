@@ -1,46 +1,33 @@
 % Chapter Template
 
-\chapter{Discussion} % Main chapter title
+\chapter{Conclusion} % Main chapter title
 
 \label{Chapter6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-This section will discuss the results gathered from the previous Chapter \ref{Chapter5}. Any broad findings or trends will be noted and explanations of why results are
-the way they are.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Results}
-Initially it was decided that the locations that would be spoofed would be locations that are not easily accessible as a means of proving the validity of the results.
-This was made easier due to the ongoing pandemic. Although this idea was later changed to make it easier to compare with real signals if needed.
+One of the aims of this project was to create hardware that is capable of successfully spoofing a GPS receiver. From the results it can be seen that the method of
+spoofing using signals generated from coordinates was successful. There were issues that impacted the results at times, however, these were overcome to produce good
+results in both static and dynamic spoofing. The hardware that was used for this is capable of performing any spoofing attack, however the
+software was not capable to produce the results at times, where anti-spoofing was at play.
+Overall the accuracy of the position gathered from the GPS receivers was poorer than expected, although
+to be able to spoof anything at all was considered a success. Given these results were gathered in a controlled environment more care will need to be taken if
+performing these experiments in the field. 
 
-Using the developed workflow, it was simple to create and deploy spoofing attacks for any location and at any elapsed time within minutes. This includes static or dynamic
-spoofing attacks. Not enough time was invested into the reception of GNSS signals and thus meaconing attacks were not performed. The GPS-SDR-sim program was able to
-estimate and simulate the ionic effects. While it is clear that this method resulted in successful spoofing attacks, the hypothesis is that having a received signal that includes ionic delays
-and other interference would make it easier to fool more complicated receivers. Further testing and investigations should be carried out to find the answer to this. 
+\bigskip
 
-The results from the static Antarctica spoof attack, specifically the carrier to noise graphs show a high number of unique SVIDs. Based on the number of satellites in the
-GPS constellation this must be an error. Although there was no explanation for the error since the resultant location was correct. One hypothesis was that the compilation
-software added some incorrect data. Another is the prevalence of SBAS satellites. There was a known issue for some time with the Faraday cage where stray EM waves were
-getting in. This would explain the consistency in which SVID 193 appears. From \cite{RN67} it can be seen that SVID 193 is a QZSS satellite. These satellites orbit over
-Australia and part of Asia.
+The project was able to provide a foundation for which further research into GNSS attack and defence strategies can be
+performed. SDR devices are prevalent in EW research due to their combination of hardware level performance and software level flexibility. This will allow for further
+research into other areas of EW.
+There were no results gathered from performing Meaconing attacks since the GPS signal reception was unsuccessful and therefore signal capture was unavailable.
 
-Consistently for both static and dynamic spoofing the $\frac{C}{N_0}$ ratio was a high value (between 40 and 50 dBHz). During experimentation it was found that authentic
-GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz. This discrepancy can be attributed to a combination of the
-controlled environment of the Faraday cage as well as the relative distance between the spoofer and victim. In theory the spoofed $\frac{C}{N_0}$ ratio could be higher,
-but during compilation estimated Ionospheric effects are included. This shows that there is still room for improvement for the GPS-SDR-sim software, especially if it is
-to be used in controlled environments for testing purposes. Just from the $\frac{C}{N_0}$ ratio graphs the spoofed signals are easy to identify.
-
-On the $\frac{C}{N_0}$ ratio graphs there were consistently more SVIDs than expected. The trend was that static spoof attacks had more SVIDs than the dynamic spoofs, with
-the most coming from the Antarctic spoof attack. It can also be seen that the length of attack was longest for the Antarctic spoof, which may account for this
-discrepancy. Even still, the MAB static spoof included more than expected SVIDs.
-
-SDRs are very sensitive to the processing pipeline of the computer that they are connected to. It is not uncommon to receive an under run error (where 'U' is printed to the
-output) when transmitting a signal with high SPS (samples per second). This error is caused by the host computer not being able to feed the data to the radio quickly
-enough.
-
-This was solved by increasing the UDP buffer size manually to at least the sample rate, and over for better results. From limited experimentation this completely resolved the issue, and opened up
-opportunities to perform spoofing with low powered embedded devices like the Raspberry Pi single board computer.
+Through this thesis it has been shown that with relatively low amounts of technical knowledge successful spoofing attacks can be performed. Some basic computer literacy
+was required in order to install and configure the software needed to perform the attacks. The simplest way of using the software is with Linux which does add a level of
+difficulty.
+Moving forward into the future the software could be given a graphical interface and integrated into one software package, or simplify the transmission interface and use
+pre compiled binaries.
 
 \section{Future Work}
 All of the tests that have been conducted for use in this thesis have either been generating a signal based off a predetermined location (coordinate) or a predetermined
