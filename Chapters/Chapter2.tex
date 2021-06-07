@@ -12,7 +12,7 @@ GNSS constellations are introduced and their differences explained. The mechanic
 %----------------------------------------------------------------------------------------
 
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
-In 2021 there are many different GNSS systems in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
+In 2021 there are many different GNSS constellations in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
 people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters in the form of
 hyperbolic navigation systems \cite{RN68}. The concept was
 similar to that of the current satellite based systems, namely the use of pseudoranges, although the accuracy was far lower than is acceptable today. The USA developed
@@ -55,7 +55,7 @@ atmosphere.
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
 \end{equation} 
 
-The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the European Union. The fist satellite
+The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the EU (European Union). The fist satellite
 was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmentation sites that provide improved accuracy for those in the EU.
 This system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
 geostationary satellite broadcasting the timing corrections. 
@@ -70,7 +70,8 @@ GNSS is a term used to describe any satellite system that provides position and 
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown position on Earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
 as it's current time down to Earth's surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
-kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 10 nanoseconds \todo{reference}, however, receivers will lose timing due to
+kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 40 nanoseconds \cite{RN63} \cite{RN62}
+\todo{fix ref}, however, receivers will lose timing due to
 the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitored by the ground segment and updated when
 required. Part of the receivers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
 (of the satellite) and where the satellite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
@@ -367,7 +368,7 @@ understand the full picture. One of the key inclusions within the data specifica
 that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
 characters are XOR'd together and their integer value is used as the checksum.
 
-Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \todo{insert citation}, which is summarised
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN109} \todo{fix ref}, which is summarised
 below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
 
 % \renewcommand{\arraystretch}{1.5}
@@ -452,10 +453,33 @@ Satellite errors occur when the predicated orbit differs to the actual orbit. Ot
 well as low elevations where there are proportionally high dilution of precision.
 
 Receiver errors occur due to the introduction of noise through the reception process. GNSS jamming and spoofing also constitute receiver error although these are
-intentional and malicious.
+intentional and malicious. A summary of common error sources is shown in table \ref{tab:GPS Errors}.
+Other factors that impact the accuracy of the positional solution are the DOP (dilution of precision) and relevtistic effects. The total DOP is made up from the
+subcatergories HDOP (Dorizontal Dilution of Precision), PDOP (Position Dilution of Precision) and VDOP (Vertical Dilution of Precision). These values are lower at the
+equator and higher at the poles due to the specific satellite geometry \cite{RN62}.
 
 What all of these errors have in common is an incorrect value of the pseudorange is created which in turn incorrectly calculates the receiver position.
-\todo{ref}
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of GPS Errors}
+%         \label{tab:GPS Errors}
+%         \begin{tabular}{ c|c }
+%             \hline
+%             \textbf{Source of Error} & \textbf{Error Range} \\
+%             \hline
+%             Satellite Clocks & $\pm 2m$\\
+%             Orbital Errors & $\pm 2.5m$\\
+%             Ionospheric Delays & $\pm 5m$\\
+%             Tropospheric Delays & $\pm 0.5m$\\
+%             Receiver Noise & $\pm 0.3m$\\
+%             Multipath Errors & $\pm 1m$\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
@@ -466,17 +490,18 @@ What all of these errors have in common is an incorrect value of the pseudorange
             \hline
             \textbf{Source of Error} & \textbf{Error Range} \\
             \hline
-            Satellite Clocks & $\pm 2m$\\
-            Orbital Errors & $\pm 2.5m$\\
-            Ionospheric Delays & $\pm 5m$\\
-            Tropospheric Delays & $\pm 0.5m$\\
-            Receiver Noise & $\pm 0.3m$\\
-            Multipath Errors & $\pm 1m$\\
+            Satellite Clocks & $8.64$ to $17.28m$\\
+            Orbital Errors & up to $2m$\\
+            Ionospheric Delays & up to $100m$\\
+            Tropospheric Delays & $2.5$ to $25m$\\
+            Receiver Noise & $\approx 0.1m$\\
+            Multipath Errors & up to $100m$\\
             \hline
         \end{tabular}
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
+
 
 % \renewcommand{\arraystretch}{1.5}
 % \begin{table}
@@ -564,11 +589,15 @@ Typical tasks like modulation and demodulation are performed directly in analog 
 An SDR can implement multiple different modulation/demodulation techniques and switch between them based on selection criteria set by the user. This same is true for
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
 
+\bigskip
+
 The USRP (Universal Software Radio Peripheral) SDR lineup from Ettus share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
 front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in figure \ref{fig:USRPBlock} is the
 quadrature mixers which allow for complex sampling, shown in equation \ref{eq:complexSampling}, as apposed to real sampling, shown in equation \ref{eq:realSampling}. This means that the in-phase and quadrature phase are sampled separately, effectively
 doubling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorem is conserved even when the
 bandwidth is equal to the sampling rate.
+
+\bigskip
 
 SDRs need a device connected to them in order to off load processing of data and controlling radio parameters. This has typically been in the form of a PC or similar
 device, but with recent technological advances SBCs (single board computer) and smartphones are powerful enough to handle this task. There are examples in literature of

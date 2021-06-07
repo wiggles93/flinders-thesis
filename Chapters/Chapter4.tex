@@ -349,7 +349,9 @@ powerful enough to be able to feed the data to the SDR quick enough to avoid the
 with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
 
 There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possession of the
-supervisor. Having said that some research went into the suitability of the equipment, mainly the SDR. It was found that this was one of the most powerful and most
+supervisor. Having said that some research went into the suitability of the equipment, mainly the SDR. 
+The hardware requirements for sending and receiving GPS signals is low. For the civilian band the PRN code is chipped at 1.023MHz and the navigation message is at 50bps \cite{RN57}.
+It was found that this was one of the most powerful and most
 importantly had one of the most stable clock oscillators available in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
 RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
 on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included de-soldering the included oscillator and

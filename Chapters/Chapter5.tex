@@ -117,7 +117,8 @@ It can be see that there is consistent signals for the first 50 seconds. For the
 \end{figure}
 
 Figure \ref{fig:antarcticaStaticError} shows that there was a high, but consistent level of error between first fix
-and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This high error is evident
+and 140 seconds. After this there was a spike, which is associated with a drop of lock, and the high error remained until the end of the test. This may have been due to
+the satellite geometry and DOP values. Receivers at the poles are prone to higher DOP values \cite{RN62}. This high error is evident
 when viewing the raw position in Figure \ref{fig:antarcticaStaticCoord} and with respect to the desired location, Figure \ref{fig:antarcticaStaticPosition}. Figure \ref{fig:antarcticaSatelliteImage} shows this error
 in position in more context placed over a satellite image.
 The inaccuracy is higher than was expected from this experiment.  
@@ -210,11 +211,13 @@ results that would be expected from authentic GPS signals, with the exception be
 
 \section{Experimental Issues}
 While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
-frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. This
-was able to produce signals that were picked up by the GNSS Logger application. Observing the graphs of the carrier to noise figure showed that when there was an under run
+frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. The
+antenna operating frequency was not known, though it's physical size seemed appropriate for the applicaiton. It was shown experimentally that is was
+was able to produce signals that were picked up by the receivers. Observing the graphs of the carrier to noise figure showed that when there was an under run
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver would lose connection to the 'satellites'. This meant that no GPS lock was achievable.
 
-The under run issue was more or less solved by increasing the buffer size to $40\times$ greater than the sampling size.
+The under run issue was solved by increasing the buffer size to $40\times$ greater than the sampling size, though there were still occasions where under run would still
+occur. It was much less prominant after rebooting the PC.
 There was an issue towards the end of the project where there was considerable leakage of EM radiation into the Faraday cage that was causing the GPS receiver to produce
 wildly inaccurate position (up to and over 500m error). This was much different to what had previously been recorded within the Faraday cage. This amount of error does
 not constitute a successful spoof since the time to first lock was much greater than a real signal, or even spoofing attempts previously. 
