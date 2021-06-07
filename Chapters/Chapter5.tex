@@ -11,8 +11,9 @@ signals and accurately calculating a location. Section \ref{sec:Res_GPSTransmiss
 %----------------------------------------------------------------------------------------
 
 \section{GNSS Reception} \label{sec:Res_GNSSReception}
-Before testing the GPS transmission performance of the SDR, reception was tested, with less success. Three antenna setups were chosen each failing to lock and track the
-satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it includes amplifiers and
+Before testing the GPS transmission performance of the SDR, reception was tested, without success. Three antenna setups were chosen each failing to lock and track the
+satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it included amplifiers
+with a total gain of 28dB and
 filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
 that there was 5V on the RF+DC port of the Tee.
 
@@ -174,7 +175,7 @@ The time to first fix was found to be approximately 49 seconds which is consider
 a high average of $\approx 50dBHz$ average with some lower values from spikes. These spikes would not add any value to the quality of the fix and given more time the
 cause of the spikes would be found. From Figure \ref{fig:MABdynamicCoord} it can be seen that initially there was high amounts of error while getting the initial fix.
 Though when the movement began there was good tracking. This is evident in Figure \ref{fig:MABdynamicPosition} where the reference path and received path were overlaid.
-Overlaying onto a satellite image yielded \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the reference path. This produced
+Overlaying onto a satellite image yielded figure \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the reference path. This produced
 results that would be expected from authentic GPS signals, with the exception being the initial part of the experiment. 
 
 \begin{figure}[h]

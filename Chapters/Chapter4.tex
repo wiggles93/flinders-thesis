@@ -448,9 +448,20 @@ developing the software from scratch it was decided that
 the opensource program GNSS-SDR would be used to perform all of these functions. This software has been built over a number of years and is able to receive different GNSS
 signals and translate them into position \cite{RN16}.
 
-The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
+The hardware setup for GPS signal reception was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
 antenna is typically required for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
-consideration.
+consideration. In order to use an active antenna with the SBX daughtercard a device called a Bias-T was required. The active antenna typically requires 3.3-5V DC to
+power the LNA (low noise amplifier) and any filters. This is done by injecting the voltage as an offset onto the antenna cable, where it is filtered out before the ADC
+(analog to digital converter) of
+the RF front end. This is not available internally to the SDR, thus is handled by the bias-T externally. A schematic of the bias-t setup is shown in figure \ref{fig:biasT}.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/biasT setup.png}
+        \caption{Schematic of how the Bias-T was installed between the antenna and the USRP RX antenna port to allow for DC injection to the antenna and DC filtering to the SDR}
+        \label{fig:biasT}
+    \end{centering}
+\end{figure}
 
 \section{Software Setup}
 The laptop was the interface between software and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the

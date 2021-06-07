@@ -70,8 +70,7 @@ GNSS is a term used to describe any satellite system that provides position and 
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown position on Earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
 as it's current time down to Earth's surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
-kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 40 nanoseconds \cite{RN63} \cite{RN62}
-\todo{fix ref}, however, receivers will lose timing due to
+kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 40 nanoseconds \cite{RN72} \cite{RN62}, however, receivers will lose timing due to
 the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitored by the ground segment and updated when
 required. Part of the receivers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
 (of the satellite) and where the satellite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
@@ -355,7 +354,9 @@ geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
-calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
+calculations to acquire the PVT data. The method for calculating the simultaneous equations is a least squares estimation and includes expansion of a Taylor's series \cite{RN46}.
+This is typically computed using matracies and hence the PVT data is able to calcualted all at once.
+This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
 sentences, see \ref{subsubsec:NMEA}. There are many sentence types
 and not all receivers will output all sentence types.
 
@@ -368,7 +369,7 @@ understand the full picture. One of the key inclusions within the data specifica
 that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
 characters are XOR'd together and their integer value is used as the checksum.
 
-Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN109} \todo{fix ref}, which is summarised
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN71}, which is summarised
 below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
 
 % \renewcommand{\arraystretch}{1.5}
