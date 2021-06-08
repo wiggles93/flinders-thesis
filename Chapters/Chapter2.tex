@@ -349,7 +349,7 @@ The IRNSS constellation is different to the others mentioned above due to its or
 this orbit. This allows for a very narrow and defined region of usability, which is over India \cite{RN55}. 
 
 Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
-values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
+values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy \cite{RN73} \todo{fix ref}. These systems are typically rolled out
 geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
@@ -367,10 +367,29 @@ with any GPS hardware. The standard outlines the typical message structure. This
 sentences carry different information depending on the sentence type, and it is often the case that multiple sentences will be required in order for the software to
 understand the full picture. One of the key inclusions within the data specification is the checksum. Each sentence has a checksum based on the contents of the message
 that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
-characters are XOR'd together and their integer value is used as the checksum.
+characters are XOR'd together and their integer value is used as the checksum. The XOR function is defined as per table \ref{tab:XOR}.
 
-Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN71}, which is summarised
-below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Definition of XOR function}
+        \label{tab:XOR}
+        \begin{tabular}{ c|c||c }
+            \hline
+            \textbf{A} & \textbf{B} & \textbf{S}\\
+            \hline
+            0 & 0 & 0 \\
+            0 & 1 & 1 \\
+            1 & 0 & 1 \\
+            1 & 1 & 0 \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN71}, which is summarised 
+in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
 
 % \renewcommand{\arraystretch}{1.5}
 % \begin{table}

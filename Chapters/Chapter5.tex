@@ -6,34 +6,45 @@
 
 This section covers the results of the GNSS reception and GPS transmission experiments. Section \ref{sec:Res_GNSSReception} covers the attempts at receiving authentic GNSS
 signals and accurately calculating a location. Section \ref{sec:Res_GPSTransmission} will cover the attempts and results of performing spoofing attacks on GPS receivers.
+The overall results and trends are then discussed.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
 \section{GNSS Reception} \label{sec:Res_GNSSReception}
-Before testing the GPS transmission performance of the SDR, reception was tested, without success. Three antenna setups were chosen each failing to lock and track the
+Before testing the GPS transmission performance of the SDR, reception was tested, without success. Three antenna setups were chosen with each failing to lock and track the
 satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it included amplifiers
 with a total gain of 28dB and
 filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
-that there was 5V on the RF+DC port of the Tee.
+that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T and hardware setup was requried, but was not achievable due to time constraints.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
 \section{GPS Transmission} \label{sec:Res_GPSTransmission}
-Experimentation was performed at the Tonsley campus of Flinders University, which has coordinates of $-35.007650, 138.572030$. At first it was decided to use the
-centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the GPS receiver was to show
-that the current location was in the CBD. This was extended to include other locations, Davis Station in Antarctica and the MAB at Flinders University Tonsley Campus with
-coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
+% Experimentation was performed at the Tonsley campus of Flinders University, which has coordinates of $-35.007650, 138.572030$, within the Faraday cage. At first it was decided to use the
+% centre of the Adelaide CBD as the coordinates for spoofing, that is $-34.5571732282, 138.3599516878$. Therefore it would be considered successful if the GPS receiver was to show
+% that the current location was in the CBD. This was extended to include other locations, Davis Station in Antarctica and the MAB at Flinders University Tonsley Campus with
+% coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
 
-Dynamic spoofing attacks were set to the road surrounding the MAB and around the CBD of Adelaide. All spoof attack dates were set to the same date, which was chosen to be
+Experimentation was performed from the Tonsley campus of Flinders University, which has coordinates of $-35.007650, 138.572030$, within the Faraday cage.Therefore it would
+be considered successful if the GPS receiver was to show that the current location was not at this location. The chosen spoof locations were Davis Station in
+Antarctica and the MAB at Flinders University Tonsley Campus with coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
+The MAB was chosen as a conveinient location to be able to test authentic and spoofed signals. The Antarctic location was chosen as an arbitrarily location that would
+not be simple to get an authentic signal from, therefore a successful spoof would be easy to show.
+
+Dynamic spoofing attacks were set to the road surrounding the MAB and around the CBD of Adelaide. The MAB was used as a small path test that would be quick to complete,
+and the CBD loop was much longer taking a long time to complete the full path.
+
+
+All spoof attack dates were set to the same date, which was chosen to be
 the 30th March 2021. This was arbitrary and only chosen since this was when official testing began.
 
 \subsection{Meaconing Attack}
-Since the GPS reception using an SDR was unsuccessful the plan of perfoming a meaconing attack was abandonded since access to the raw received signal was recquried. Therefore, the only viable attack strategy was to generate a binary file
-of the intended location. It would be ideal to perform this kind of attack in the future since this is the only basic attack type that can be used on the encrypted
-military band.
+Since the GPS reception using an SDR was unsuccessful the plan of perfoming a meaconing attack was abandonded since access to the raw received signal was recquried.
+Therefore, the only viable attack strategy was to generate a binary file of the intended location. It would be ideal to perform this kind of attack in the future since
+this is the only basic attack type that can be used on the encrypted military band.
 
 \subsection{Spoofing Attack}
 Once the workflow and hardware setup for the SDR was properly configured it was found that a smartphone was able to be spoofed.
@@ -55,7 +66,7 @@ satellites. These spikes offer no benefit since they only lasted a few seconds.
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_MAB Carrier noise ratio.png}
         \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:MABStaticCNo}
     \end{centering}
@@ -66,7 +77,7 @@ successful in the sense that the receiver was able to interpret a location and t
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Lat long position.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_MAB Lat long position.png}
         \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
         \label{fig:MABStaticCoord}
     \end{centering}
@@ -74,7 +85,7 @@ successful in the sense that the receiver was able to interpret a location and t
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_MAB Position from origin.png}
         \caption{Graph of recorded position with respect to the intended spoofed location}
         \label{fig:MABStaticPosition}
     \end{centering}
@@ -86,7 +97,7 @@ The extent of the error and lack of data points are more evident in Figures \ref
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB error over time.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_MAB error over time.png}
         \caption{Error between calculated location and expected location over time}
         \label{fig:MABStaticError}
     \end{centering}
@@ -94,7 +105,7 @@ The extent of the error and lack of data points are more evident in Figures \ref
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_MAB_Satellite.PNG}
         \caption{Satellite image of the MAB area next to Flinders University with expected GPS position shown with red cross and recorded position shown with blue line}
         \label{fig:MABSatelliteImage}
     \end{centering}
@@ -111,7 +122,7 @@ It can be see that there is consistent signals for the first 50 seconds. For the
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Carrier noise ratio.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Carrier noise ratio.png}
         \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at Davis Station in Antarctica on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:antarcticaStaticCNo}
     \end{centering}
@@ -126,7 +137,7 @@ The inaccuracy is higher than was expected from this experiment.
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Lat long position.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Lat long position.png}
         \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
         \label{fig:antarcticaStaticCoord}
     \end{centering}
@@ -134,7 +145,7 @@ The inaccuracy is higher than was expected from this experiment.
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Position from origin.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_antarctica Position from origin.png}
         \caption{Graph of recorded position with respect to the intended spoofed location}
         \label{fig:antarcticaStaticPosition}
     \end{centering}
@@ -142,7 +153,7 @@ The inaccuracy is higher than was expected from this experiment.
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica error over time.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_antarctica error over time.png}
         \caption{Error between calculated location and expected location over time}
         \label{fig:antarcticaStaticError}
     \end{centering}
@@ -150,7 +161,7 @@ The inaccuracy is higher than was expected from this experiment.
 
 \begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_static_antarctica_Satellite.PNG}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_static_antarctica_Satellite.PNG}
         \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
         \label{fig:antarcticaSatelliteImage}
     \end{centering}
@@ -163,7 +174,7 @@ attacks try to get the receiver to "follow" a path that has been set, see Sectio
 There is a road that circles around the MAB (Mass Assembly Building) in which the \univname Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
 see Figure \ref{fig:MABdynamicSetup}.
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_setup.png}
         \caption{Using road around the MAB at Tonsley, Adelaide as path for dynamic spoofing attack. The file was saved as a text file to be compiled into a binary.}
@@ -178,35 +189,89 @@ Though when the movement began there was good tracking. This is evident in Figur
 Overlaying onto a satellite image yielded figure \ref{fig:MABdynamicSatelliteImage} which shows how well the spoof attack was able to track the reference path. This produced
 results that would be expected from authentic GPS signals, with the exception being the initial part of the experiment. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Carrier noise ratio.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Carrier noise ratio.png}
         \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at MAB in Tonsley on 30th March 2021. Each SVID has been given a unique colour.}
         \label{fig:MABdynamicCNo}
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Lat long position.png}
-        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver with expected location noted with red dot}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Lat long position.png}
+        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver}
         \label{fig:MABdynamicCoord}
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Position from origin.png}
-        \caption{Graph of recorded position with respect to the intended spoofed location}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB Position from origin.png}
+        \caption{Graph of recorded position with respect to the reference location shown as a red path}
         \label{fig:MABdynamicPosition}
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_MAB_Satellite.PNG}
         \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
         \label{fig:MABdynamicSatelliteImage}
+    \end{centering}
+\end{figure}
+
+\subsubsection{Adelaide CBD Loop}
+After successfully performing a dynamic spoof attack around the MAB, a longer path was chosen to test how if the SDR was capable of sustaining spoofing performance for a
+longer period of time. An abitrary path around the Adelaide CBD was chosen from within the SatGen3 software. As shown in figure \ref{fig:CBDdynamicSetup} the total time of the path was 643 seconds. This represents the total time of the spoofing transmission.
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/21-3-25_cbd_dynamic_longloop_setup.png}
+        \caption{An arbitrary path was draw around the Adelaide CBD for dynamic spoofing attack. The file was saved as a text file to be compiled into a binary.}
+        \label{fig:CBDdynamicSetup}
+    \end{centering}
+\end{figure}
+
+The time to first fix for this test was 40 seconds. As previously mentioned this is considered a good result for a GPS receiver from a cold start. From figure
+\ref{fig:CBDdynamicCNo} it can be seen that there was no unden run errors during the running of this test. Ther was a consistent few signals with $\frac{C}{N_0}$ values
+of $>50dBHz$ with periodic other signals spiking at $\approx 40dBHz$.
+The consistent issue of more SVIDs than satellite in the GPS constellation was present again in these results.
+
+\begin{figure}[H]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/21_3_30_dynamic_CBD_results Carrier noise ratio.png}
+        \caption{Carrier to noise ratio from unique SVIDs as broadcast by SDR and received by GPS receiver at Adelaide CBD on 30th March 2021. Each SVID has been given a unique colour.}
+        \label{fig:CBDdynamicCNo}
+    \end{centering}
+\end{figure}
+
+From figures \ref{fig:CBDdynamicCoord} and \ref{fig:CBDdynamicPosition} it can be seen that there was some error at the beginning of the test, shown as the (0,0) origin
+in figure \ref{fig:CBDdynamicPosition}, but this smooths out as the test continued. There was more error introduced at various times during the rest of the test, but
+overall the result was successul. Figure \ref{fig:CBDdynamicSatelliteImage} shows the context of the error over a satellite image. From this image it can be seen that the
+extent of the error is typically acceptable.
+
+\begin{figure}[H]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/21_3_30_dynamic_CBD_results Lat long position.png}
+        \caption{Trace of latitude and longitude over time as interpreted from the GPS receiver}
+        \label{fig:CBDdynamicCoord}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/21_3_30_dynamic_CBD_results Position from origin.png}
+        \caption{Graph of recorded position with respect to the reference location shown as a red path}
+        \label{fig:CBDdynamicPosition}
+    \end{centering}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/2021_3_30_dynamic_CBD_Satellite.PNG}
+        \caption{Satellite image with expected GPS position shown with red cross and recorded position shown with blue line}
+        \label{fig:CBDdynamicSatelliteImage}
     \end{centering}
 \end{figure}
 
@@ -259,6 +324,10 @@ GPS constellation this must be an error. Although there was no explanation for t
 software added some incorrect data. Another is the prevalence of SBAS satellites. There was a known issue for some time with the Faraday cage where stray EM waves were
 getting in. This would explain the consistency in which SVID 193 appears. From \cite{RN67} it can be seen that SVID 193 is a QZSS satellite. These satellites orbit over
 Australia and part of Asia.
+
+The dynamic spoof around the MAB showed low error while following the associate path. The CBD dynamic spoof, which lasted much longer, was less consistent with the
+accuracy. There were sections where the error between desired and calculated location was high and secitons were it was close to ideal. This shows that over a long
+transmission time the accuracy can fluctuate. This flucuation may be caused by the fluctuating values from the carrier to noise graph.
 
 Consistently for both static and dynamic spoofing the $\frac{C}{N_0}$ ratio was a high value (between 40 and 50 dBHz). During experimentation it was found that authentic
 GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz. This discrepancy can be attributed to a combination of the
