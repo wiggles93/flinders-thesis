@@ -4,16 +4,15 @@
 
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-The format of this chapter is as follows, there is a section on the details behind GNSS systems and the history behind GNSS and how it came to be in its current state. After that
-an overview of the current and future GNSS constellations including operating principles was covered. Then real world uses of GNSS are listed. Following that the errors
-that account for the inaccuracies of calculated GNSS position are covered, including the definition of spoofing types.
+This Chapter introduces the history and motivation of implementing a satellite based navigation system, as well as background information on GNSS principles. The other
+GNSS constellations are introduced and their differences explained. The mechanics of satellite navigation, sources of error and their place in society are also dicsussed. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
 \section{History of GNSS Systems} \label{sec:GNSSHistory}
-In 2021 there are many different GNSS systems in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
+In 2021 there are many different GNSS constellations in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
 people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters in the form of
 hyperbolic navigation systems \cite{RN68}. The concept was
 similar to that of the current satellite based systems, namely the use of pseudoranges, although the accuracy was far lower than is acceptable today. The USA developed
@@ -22,7 +21,7 @@ and commissioned the first satellite based navigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
 QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional coverage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by how far from the earths surface the satellite orbits.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by the distance the satellite orbits from the eartch surface.
 Current GNSS systems utilise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -56,7 +55,7 @@ atmosphere.
     v \approx \frac{2\pi a}{T} \approx \sqrt{\frac{\mu_{earth}}{a}}
 \end{equation} 
 
-The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the European Union. The fist satellite
+The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the EU (European Union). The fist satellite
 was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmentation sites that provide improved accuracy for those in the EU.
 This system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
 geostationary satellite broadcasting the timing corrections. 
@@ -71,7 +70,7 @@ GNSS is a term used to describe any satellite system that provides position and 
 encompass the term GNSS. That is the ground segment, space segment and user segment. These are used in conjunction to allow the user to calculate with accuracy up to $\pm
 10cm$. In order to calculate an unknown position on Earth, the exact position of the orbiting satellite must be known. The satellite will send it's exact position as well
 as it's current time down to Earth's surface. It's location, or ephemeris, can be tracked due to Kepler's laws and celestial mechanics. The time on board satellites is
-kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 10 nanoseconds \todo{reference}, however, receivers will lose timing due to
+kept via the use of caesium based atomic clocks. The GPS clocks are accurate to approximately 40 nanoseconds \cite{RN72} \cite{RN62}, however, receivers will lose timing due to
 the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitored by the ground segment and updated when
 required. Part of the receivers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
 (of the satellite) and where the satellite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
@@ -97,7 +96,7 @@ Each of the operational constellations use the same fundamentals to provide accu
 
 \subsection{Trilateration} \label{subsec:Trilateration}
 The process of trilateration uses objects of known locations to calculate the unknown location of other objects. This is done through the use of overlapping circles based
-on how far the objects are apart. This is known as a pseudorange. To use satellites to determine the location of a receiver the exact location of the satellites must be
+on their relative distance. This is known as a pseudorange. To use satellites to determine the location of a receiver the exact location of the satellites must be
 known, as well as relative distance. Each satellite sends its precise orbital location (ephemeris), as well as the coarse orbital location (almanac) of the rest of the
 constellation as part of the navigational data. This coupled with the pseudorange of the satellite allows for calculating the position of the receiver. Pseudoranges rely
 on the knowledge that electromagnetic radiation propagates at the speed of light, as shown in equation \ref{eq:EMdistance}. By measuring the time taken for the signal to
@@ -133,7 +132,7 @@ equates to an orbital period of 12hours. There are multiple frequencies of diffe
 and L5 bands and have centre frequencies of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The
 L1 band is the most commonly used and was the first one to be made operational. In the past the L1 band was used for civilian purposes and the L2 band was a military
 band. Nowadays both have active civilian and encrypted signals co-exiting within their respective frequency bands. GPS predominately uses BPSK (Binary Phase Shift Keying)
-but also utilises  (Binary Ofset Keying) for signal modulation across all of the bands. 
+but also utilises  (Binary Offset Keying) for signal modulation across all of the bands. 
 
 All satellites within the constellation will broadcast using the same frequency band (L1, L2 or L5). They are able to do this without interfering through the use of CDMA
 (Code Division Multiple Access) scheme. Each satellite has a unique chipping code that is used to spread the signal in the frequency domain. This code is a PRN (Pseudo
@@ -350,12 +349,14 @@ The IRNSS constellation is different to the others mentioned above due to its or
 this orbit. This allows for a very narrow and defined region of usability, which is over India \cite{RN55}. 
 
 Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
-values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy. These systems are typically rolled out
+values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy \cite{RN73} \todo{fix ref}. These systems are typically rolled out
 geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
-calculations to acquire the PVT data. This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
+calculations to acquire the PVT data. The method for calculating the simultaneous equations is a least squares estimation and includes expansion of a Taylor's series \cite{RN46}.
+This is typically computed using matracies and hence the PVT data is able to calcualted all at once.
+This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
 sentences, see \ref{subsubsec:NMEA}. There are many sentence types
 and not all receivers will output all sentence types.
 
@@ -366,10 +367,29 @@ with any GPS hardware. The standard outlines the typical message structure. This
 sentences carry different information depending on the sentence type, and it is often the case that multiple sentences will be required in order for the software to
 understand the full picture. One of the key inclusions within the data specification is the checksum. Each sentence has a checksum based on the contents of the message
 that can be easily checked to ensure no data was corrupted in the transmission process. The checksum method is XOR based where each character between the delimiting
-characters are XOR'd together and their integer value is used as the checksum.
+characters are XOR'd together and their integer value is used as the checksum. The XOR function is defined as per table \ref{tab:XOR}.
 
-Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \todo{insert citation}, which is summarised
-below in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
+\renewcommand{\arraystretch}{1.5}
+\begin{table}
+    \begin{center}
+        \caption{Definition of XOR function}
+        \label{tab:XOR}
+        \begin{tabular}{ c|c||c }
+            \hline
+            \textbf{A} & \textbf{B} & \textbf{S}\\
+            \hline
+            0 & 0 & 0 \\
+            0 & 1 & 1 \\
+            1 & 0 & 1 \\
+            1 & 1 & 0 \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+Each of the main constellations has their own unique "Talker Identifier Mnemonics" as dictated by the NMEA-0183 standard Table 7 \cite{RN71}, which is summarised 
+in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT sources without needing to know anything about the hardware itself.
 
 % \renewcommand{\arraystretch}{1.5}
 % \begin{table}
@@ -453,10 +473,33 @@ Satellite errors occur when the predicated orbit differs to the actual orbit. Ot
 well as low elevations where there are proportionally high dilution of precision.
 
 Receiver errors occur due to the introduction of noise through the reception process. GNSS jamming and spoofing also constitute receiver error although these are
-intentional and malicious.
+intentional and malicious. A summary of common error sources is shown in table \ref{tab:GPS Errors}.
+Other factors that impact the accuracy of the positional solution are the DOP (dilution of precision) and relevtistic effects. The total DOP is made up from the
+subcatergories HDOP (Dorizontal Dilution of Precision), PDOP (Position Dilution of Precision) and VDOP (Vertical Dilution of Precision). These values are lower at the
+equator and higher at the poles due to the specific satellite geometry \cite{RN62}.
 
-What all of these errors have in common is that create an incorrect value of the pseudorange which in turn incorrectly calculates the receiver position.
-\todo{ref}
+What all of these errors have in common is an incorrect value of the pseudorange is created which in turn incorrectly calculates the receiver position.
+
+% \renewcommand{\arraystretch}{1.5}
+% \begin{table}
+%     \begin{center}
+%         \caption{Summary of GPS Errors}
+%         \label{tab:GPS Errors}
+%         \begin{tabular}{ c|c }
+%             \hline
+%             \textbf{Source of Error} & \textbf{Error Range} \\
+%             \hline
+%             Satellite Clocks & $\pm 2m$\\
+%             Orbital Errors & $\pm 2.5m$\\
+%             Ionospheric Delays & $\pm 5m$\\
+%             Tropospheric Delays & $\pm 0.5m$\\
+%             Receiver Noise & $\pm 0.3m$\\
+%             Multipath Errors & $\pm 1m$\\
+%             \hline
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+% \renewcommand{\arraystretch}{1}
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
@@ -467,17 +510,18 @@ What all of these errors have in common is that create an incorrect value of the
             \hline
             \textbf{Source of Error} & \textbf{Error Range} \\
             \hline
-            Satellite Clocks & $\pm 2m$\\
-            Orbital Errors & $\pm 2.5m$\\
-            Ionospheric Delays & $\pm 5m$\\
-            Tropospheric Delays & $\pm 0.5m$\\
-            Receiver Noise & $\pm 0.3m$\\
-            Multipath Errors & $\pm 1m$\\
+            Satellite Clocks & $8.64$ to $17.28m$\\
+            Orbital Errors & up to $2m$\\
+            Ionospheric Delays & up to $100m$\\
+            Tropospheric Delays & $2.5$ to $25m$\\
+            Receiver Noise & $\approx 0.1m$\\
+            Multipath Errors & up to $100m$\\
             \hline
         \end{tabular}
     \end{center}
 \end{table}
 \renewcommand{\arraystretch}{1}
+
 
 % \renewcommand{\arraystretch}{1.5}
 % \begin{table}
@@ -520,7 +564,7 @@ spoofing attacks are explained below.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Jamming.png}
-        \caption{Representation of how a jammer is able to interfere with a GNSS signal}
+        \caption{Representation of jammer interfering with a GNSS signal. This can be through intentional or unintentional means within the communication channel}
     \label{fig:jamming cartoon}
     \end{centering}
 \end{figure}
@@ -533,13 +577,14 @@ there is a requirement of having the right equipment to be able to capture the r
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
-        \caption{Representation of how a GNSS spoofer can perform a meaconing attack}
+        \caption{Representation of a spoofer peforming a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or somewhen else}
     \label{fig:meaconing cartoon}
     \end{centering}
 \end{figure}
 
 \subsection{Signal Generation}
-There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a that can be
+There are software packages and off the shelf hardware that are designed for testing GNSS receivers in a laboratory setting. These can be used to generate a combination
+of signals that can be
 played in such a manner as to perform a spoofing attack. This differs from meaconing because knowledge of the satellite ephemeris and almanac is required. The almanac is
 a record of the rough location of all satellites in a constellation and the ephemeris is the exact location of each individual satellite. This knowledge is required as to
 produce the same results as recording the GPS signal from the desired location.
@@ -547,7 +592,7 @@ produce the same results as recording the GPS signal from the desired location.
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=10cm, keepaspectratio]{Figures/Spoofing.png}
-        \caption{Representation of how a GNSS spoofing device uses a generated signal to force a receiver to incorrectly calculate its position}
+        \caption{Representation of a GNSS spoofing attack. An artificial signal is produced and transmitted such that the receiver believes it is authentic. The resolved position is different to the actual position}
     \label{fig:spoofing cartoon}
     \end{centering}
 \end{figure}
@@ -557,18 +602,22 @@ produce the same results as recording the GPS signal from the desired location.
 %----------------------------------------------------------------------------------------
 
 \section{SDR Basics} \label{sec:SDRBasics}
-Software defined radios are devices that enable the user to increase the flexibility of transmission and reception of RF signals by moving processing typically reserved
+Software defined radios are devices that enable the user to increase the flexibility of transmission and reception of RF (Radio Frequency) signals by moving processing typically reserved
 for the analog domain into the digital domain. Thus SDRs move the signal processing from rigid and expensive hardware into flexible and in-expensive software. This
 allows for a wide ranges of frequencies from Hz up to GHz from the same device with minor or no hardware changes. This can also be done in real time using software.
 Typical tasks like modulation and demodulation are performed directly in analog hardware for normal radios. This makes them incredibly rigid and only suitable for 1 task.
 An SDR can implement multiple different modulation/demodulation techniques and switch between them based on selection criteria set by the user. This same is true for
 centre frequencies or carrier frequencies, they are able to be changed in real time from Hz to GHz depending on SDR model.
 
-The USRP SDR lineup share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
-front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in the image is the
-quadrature mixers which allow for complex sampling \ref{eq:complexSampling} as apposed to real sampling \ref{eq:realSampling}. This means that the in phase and quadrature phase are sampled separately, effectively
+\bigskip
+
+The USRP (Universal Software Radio Peripheral) SDR lineup from Ettus share the same basic block diagram design, as shown in Figure \ref{fig:USRPBlock}. This shows the way that the signals are transported from the analog
+front end of the antenna through to the digital ethernet interface and vice-versa depending on whether transmitting or receiving. Also shown in figure \ref{fig:USRPBlock} is the
+quadrature mixers which allow for complex sampling, shown in equation \ref{eq:complexSampling}, as apposed to real sampling, shown in equation \ref{eq:realSampling}. This means that the in-phase and quadrature phase are sampled separately, effectively
 doubling the sampling rate when compared to real only sampling. This means that when using complex sampling the Nyquist sampling theorem is conserved even when the
 bandwidth is equal to the sampling rate.
+
+\bigskip
 
 SDRs need a device connected to them in order to off load processing of data and controlling radio parameters. This has typically been in the form of a PC or similar
 device, but with recent technological advances SBCs (single board computer) and smartphones are powerful enough to handle this task. There are examples in literature of

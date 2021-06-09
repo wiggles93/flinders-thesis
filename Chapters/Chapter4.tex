@@ -609,7 +609,7 @@ required that there be a "user motion file" or GGA sentence stream. This stream 
 be used. This simplified the workflow overall. Using this method meant that the program was able to calculate the duration of the transmission itself. The output was
 altered in order to conform with the naming convention stated in Section \ref{subsec:NMEAFile}. The sampling rate was also modified to be 2.5Msps instead of the default
 2.6Msps.
-When compiling some of the dynamic spoofing scenarios the maximum size was reached. This is a limit that is hardcoded when the GPS-SDR-sim program is compiled on the host
+When compiling some of the dynamic spoofing scenarios the maximum size was reached. This is a limit that is hard coded when the GPS-SDR-sim program is compiled on the host
 machine. Therefore, the program was cleanly recompiled in with the command to increase the maximum size of output file.
 
 Using this information, the place, time and ephemeris the program is able to calculate which of the satellites will be in view and what their expected pseudoranges would
@@ -684,7 +684,7 @@ The earth is not perfectly spherical therefore when converting latitude and long
 planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
 the error of the coordinate in the $x$ and $y$ direction respectively. \\
 When finding the total error value the law of Haversines was used, see equation \ref{eq:Haversine}, where $\phi_i$ and $\lambda_i$ are the latitude and longitude of the
-$i^{th}$ corrdinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
+$i^{th}$ coordinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
 
 \begin{equation} 
     \begin{split} \label{eq:EarthCircumference}
@@ -735,7 +735,7 @@ Using the SatGen3 software a location was chosen as the spoof location. After se
 
 \subsection{Dynamic Spoofing}
 Dynamic spoofing refers to the production of a signal that when used to calculate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, but there will be perceived motion from the GPS reciever.
+set at the time of production of the binary file, but there will be perceived motion from the GPS receiver.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utilising the open source projects that have been used to complete this

@@ -97,7 +97,7 @@ try:
             \hline
             Position Fix Indicator & 1 & 0: Fix not available \newline 1: GPS SPS mode, fix valid \newline 2: DGPS SPS mode, fix valid\\
             \hline
-            Sattelites used & 10 & \\
+            Satellites used & 10 & \\
             \hline
             HDOP & 0.87 & Horizontal dilution of precision\\
             \hline
@@ -349,7 +349,9 @@ powerful enough to be able to feed the data to the SDR quick enough to avoid the
 with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
 
 There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possession of the
-supervisor. Having said that some research went into the suitability of the equipment, mainly the SDR. It was found that this was one of the most powerful and most
+supervisor. Having said that some research went into the suitability of the equipment, mainly the SDR. 
+The hardware requirements for sending and receiving GPS signals is low. For the civilian band the PRN code is chipped at 1.023MHz and the navigation message is at 50bps \cite{RN57}.
+It was found that this was one of the most powerful and most
 importantly had one of the most stable clock oscillators available in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
 RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
 on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included de-soldering the included oscillator and
@@ -366,7 +368,7 @@ radio to gather information on what daughtercard was installed and other propert
 \begin{figure}[!h]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/uhd-find-devices.png}
-        \caption{Using the UHD deamon to find connected USRP SDR devices}
+        \caption{Using the UHD daemon to find connected USRP SDR devices}
     \label{fig:UHDFind}
     \end{centering}
 \end{figure}
@@ -444,18 +446,29 @@ radio to gather information on what daughtercard was installed and other propert
 Reception of GNSS signals is a complicated process which involves synchronising time values and solving simultaneous equations for position, therefore instead of
 developing the software from scratch it was decided that
 the opensource program GNSS-SDR would be used to perform all of these functions. This software has been built over a number of years and is able to receive different GNSS
-signals and translate them into position.
+signals and translate them into position \cite{RN16}.
 
-The hardware setup for this was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
+The hardware setup for GPS signal reception was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
 antenna is typically required for best performance, especially if there is no clear view of the sky or if there are many buildings that add multipath signals into
-consideration.
+consideration. In order to use an active antenna with the SBX daughtercard a device called a Bias-T was required. The active antenna typically requires 3.3-5V DC to
+power the LNA (low noise amplifier) and any filters. This is done by injecting the voltage as an offset onto the antenna cable, where it is filtered out before the ADC
+(analog to digital converter) of
+the RF front end. This is not available internally to the SDR, thus is handled by the bias-T externally. A schematic of the bias-t setup is shown in figure \ref{fig:biasT}.
+
+\begin{figure}[h]
+    \begin{centering}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/biasT setup.png}
+        \caption{Schematic of how the Bias-T was installed between the antenna and the USRP RX antenna port to allow for DC injection to the antenna and DC filtering to the SDR}
+        \label{fig:biasT}
+    \end{centering}
+\end{figure}
 
 \section{Software Setup}
 The laptop was the interface between software and hardware. It was used to generate the binary files and then to control the SDR. The SDR would not operate without the
 PC attached to the ethernet port.
 
 The software used for this project was a combination of open source and custom software. 
-The software was chosen while performing the literature review. There were examples \emph{\textbf{Insert citations that used GPS-SDR-sim}} of using open source programs
+The software was chosen while performing the literature review. There were examples \cite{RN4} \cite{RN28} of using open source programs
 for the purpose of GPS spoofing. This was the best step forward since there were credible results with that software.
 
 Custom software was created for the reporting and results of the experiments. 
@@ -501,7 +514,7 @@ bias-tee a USB cable was cut and used to connect to a perf board with a soldered
 find or lock onto any of the GPS satellites at any time. It was found that another opensource program, GPS-SDR-sim, could be used to create binary files that replicate
 the received signals from the satellites. 
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{center}
         \begin{tikzpicture}
             \begin{centering}
@@ -529,9 +542,9 @@ inputting either latitude longitude or ECEF coordinates. So while this does save
 is considerably simplified using SatGen3. To compile dynamic situations a GGA NMEA stream is always required. Considering for this project there was a desire to have both static and dynamic spoofing it made sense
 to maintain a more consistent workflow.
 
-Figure \ref{fig:StaticCoordinate} shows how the searching and selecting of a coordinate for use in a static spoof attack was done within the SatGen3 application. The
+Figure \ref{fig:StaticCoordinate} shows the searching and selecting of a coordinate for use in a static spoof attack within the SatGen3 application. The
 SatGen3 program has access to the google maps API and allows for searching. This makes finding the desired location for spoofing attack easy. 
-Figure \ref{fig:DynamicCoordinate} shows how mapping out of a path is performed within SatGen3 in order to generate a dynamic spoof attack.
+Figure \ref{fig:DynamicCoordinate} shows mapping out of a path within SatGen3 in order to generate a dynamic spoof attack.
 
 \begin{figure}
     \begin{centering}
@@ -589,7 +602,7 @@ A newer version was manually installed and this solved the issue.
 The downloaded file was a compressed version of the text file, and thus it was required to be uncompressed using the tar program.
 
 \subsection{Compile Signal Binary File}
-GPS-SDR-sim compiles the signals into a 16bit data format where the first 8bits represents the Interphase data and the next 8 bits represents the Quadrature data information.
+GPS-SDR-sim compiles the signals into a 16bit data format where the first 8bits represents the in-phase data and the next 8 bits represents the Quadrature data information.
 The minimum requirements to compile a binary file using GPS-SDR-SIM was a source coordinate in either ECEF or latitude/longitude format and the ephemeris for the desired date and time that the spoofer
 will transmit. This did not need to match the date and time that the signal was being transmitted on. If the attack was to be a dynamic spoofing attack then it was
 required that there be a "user motion file" or GGA sentence stream. This stream was required to be 10Hz. It was decided that even for static scenarios a GGA stream would
@@ -643,7 +656,9 @@ sentences at a 1Hz frequency. This can be modified to 5Hz, but this was not requ
 file, see Appendix \ref{sec:GPSConnect}. The log file was passed as an argument and could be stored wherever it was needed. Each time a spoof attempt was made, the GPS
 receiver was powered off to ensure there was not lock when starting the experiment. This ensured results were as consistent as possible.
 
-When using a smartphone Android was required for logging since the OS allows access to the raw properties of the received signal. There is also an intuitive application
+When using a smartphone, Android was required for logging since the OS allows access to the raw properties of the received signal. These properties include, as of Android
+7.0, Position, velocity, C/No, satellite/constellation, pseudorange, navigation messages, accumulated delta range and hardware clock \cite{RN39}.
+There is also an intuitive application
 "GNSS Logger" that allows for comprehensive visualisation of current GNSS tracking as well as the ability to log data. This data was logged to a text file using a non
 standard layout, but there was an option to log the NMEA sentences as well.  
 
@@ -665,10 +680,11 @@ used as the origin when calculating the error of the calculated location.
 The error was calculated by finding the difference in latitude and longitude from the desired origin point and converting the $\Delta Lat$ and $\Delta Long$ into meters.
 This assumes that the distances being dealt with are so small that they are essentially flat. Thus the equations can be simplified to remove any angles.
 
-The earth is not perfectly spherical therefore when converting latitude and longitude into x and y coordinates in meters the average of the polar plane and equatorial
+The earth is not perfectly spherical therefore when converting latitude and longitude into $x$ and $y$ coordinates in meters the average of the polar plane and equatorial
 planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
 the error of the coordinate in the $x$ and $y$ direction respectively. \\
-When finding the total error value the law of Haversines was used. 
+When finding the total error value the law of Haversines was used, see equation \ref{eq:Haversine}, where $\phi_i$ and $\lambda_i$ are the latitude and longitude of the
+$i^{th}$ corrdinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
 
 \begin{equation} 
     \begin{split} \label{eq:EarthCircumference}
@@ -690,7 +706,7 @@ When finding the total error value the law of Haversines was used.
 \end{equation}
  
 Below (Listing \ref{list:pythonHaversines}) is the implementation of the law of Haversines in python used for the calculation of distance between two latitude and longitude points. The output of the function was stored
-into an array and used to graph the total error over time.
+into an array and used to graph the total error over time for static spoofing attacks.
 
 % \begin{verbatim}
 %     def latlon2m(lat1, long1, lat2, long2):
@@ -714,12 +730,12 @@ graphing and reports to be generated for a particular log file.
 \section{Experiments}
 \subsection{Static Spoofing}
 Within this thesis static spoofing is defined as producing a signal that produces a calculated location that does not change over time. While in practise there was some
-minor movement caused by the uncertainty in trilateration, this change in position is minor and within the range of error of GPS positioning.
-Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created. This 
+minor movement caused by the uncertainty in trilateration and system errors, this change in position was typically minor and within the range of error of GPS positioning.
+Using the SatGen3 software a location was chosen as the spoof location. After setting the desired time and date of spoofing the scenario was created and saved as a text file. 
 
 \subsection{Dynamic Spoofing}
 Dynamic spoofing refers to the production of a signal that when used to calculate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, but there will be perceived motion.
+set at the time of production of the binary file, but there will be perceived motion from the GPS reciever.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utilising the open source projects that have been used to complete this
