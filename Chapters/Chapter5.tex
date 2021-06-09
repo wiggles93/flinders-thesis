@@ -283,10 +283,19 @@ was able to produce signals that were picked up by the receivers. Observing the 
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver would lose connection to the 'satellites'. This meant that no GPS lock was achievable.
 
 The under run issue was solved by increasing the buffer size to $40\times$ greater than the sampling size, though there were still occasions where under run would still
-occur. It was much less prominant after rebooting the PC.
+occur. It was much less prominant after rebooting the PC. Figure \ref{fig:underrun} shows the terminal output when an under run occurs, as symbolised by the printing of
+"U" to the terminal. In this case the GPS lock would be lost due to the transmission pausing while the radio waited for data to be fed from the PC.
 There was an issue towards the end of the project where there was considerable leakage of EM radiation into the Faraday cage that was causing the GPS receiver to produce
 wildly inaccurate position (up to and over 500m error). This was much different to what had previously been recorded within the Faraday cage. This amount of error does
 not constitute a successful spoof since the time to first lock was much greater than a real signal, or even spoofing attempts previously. 
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/underrun error.png}
+        \caption{Terminal output message when under run error is encountered. Each 'U' indicates a time when the radio is ready to receive data but the PC is not able to provide it}
+        \label{fig:underrun}
+    \end{centering}
+\end{figure}
 
 During initial testing of the spoofing there was an inability to get the spoofer to correctly spoof the receiver. It was found that there is a requirement that the ratio
 between the sampling frequency and clock frequency of the radio must be an integer value. Therefore when compiling the signal using GPS-SDR-sim the sampling frequency
@@ -306,9 +315,9 @@ A common result from spoofed attempts was to have GPS satellites with an SVID of
 penetrating the Faraday cage. It is unlikely that the GPS-SDR-sim program includes augmentation systems when generating spoofed signals. The orbit of the QZSS satellites
 does include Australia so seems most likely an issue where an unterminated cable is allowing the signal to bleed into the cage.
 
-In an attempt to overcome the under run \todo{insert graph of under run}issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
-in the radio working straight away. The under run issues resurfaced when trying to read the serial data from a COTS GPS receiver. This was less than ideal and required a
-second computer to act as a datalogger.
+In an attempt to overcome the under run issue that was plaguing the experiments, a new PC was brought in with Ubuntu installed directly instead of via a VM. This resulted
+in the radio working straight away. The under run issues resurfaced when trying to read the serial data from a COTS GPS receiver. This was solved, as mentioned above, by
+increasing the size of the network buffer to an amount significantly larger than the sampling rate.
 
 \section{Discussion}
 Initially it was decided that the locations that would be spoofed would be locations that are not easily accessible as a means of proving the validity of the results.

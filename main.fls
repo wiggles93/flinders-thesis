@@ -559,6 +559,7 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21_3_30_dynamic_C
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21_3_30_dynamic_CBD_results Lat long position.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21_3_30_dynamic_CBD_results Position from origin.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_CBD_Satellite.PNG
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/underrun error.png
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.tex
