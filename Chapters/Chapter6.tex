@@ -12,7 +12,7 @@ One of the aims of this project was to create hardware that was capable of succe
 spoofing using signals generated from coordinates was successful. There were no results gathered from performing Meaconing attacks since the GPS signal reception was
 unsuccessful and therefore signal capture was unavailable. There were issues that impacted the results at times, however, these were overcome to produce good results in
 both static and dynamic spoofing. The SDR that was used for this is capable of performing any spoofing attack due to the flexibility of the platform. The software was not
-capable to produce the results at times, where anti-spoofing was at play. Overall the accuracy of the position gathered from the GPS receivers was poorer than expected,
+capable to produce the results at times, where anti-spoofing had been implemented. Overall the accuracy of the position gathered from the GPS receivers was poorer than expected,
 although to be able to spoof anything at all was considered a success. Given these results were gathered in a controlled environment more care will need to be taken if
 performing these experiments in the field. 
 
@@ -21,23 +21,29 @@ performing these experiments in the field.
 When a successful spoofing attack, either static or dynamic, was performed it was easy to see from the carrier to noise grpahs that an attack was being performed. This
 was due to the high value of the carrier to noise values. From experimentation the difference between authentic signals and spoofed was $\approx 20dBHz$. This was
 substantial and easy to recognise. Testing in the field with sources of interference could potentially reduce this figure making it harder to detect spoofing activity.
-The spoofed signals resulted in more SVIDs being resolved than there are in the GPS constellation. When comparing the difference between an authentic $\frac{C}{N_0}$
+The spoofed signals resulted in more SVIDs being resolved than there are in the GPS constellation. The cause of this error was not found, but could be due to the software
+used to compile the binary signal files. The existance of SVIDs that do not match the constellation that is being received opens up avenues of spoof defence. 
+When comparing the difference between an authentic $\frac{C}{N_0}$
 ratio graph and a spoofed graph there are less SVIDs for the authentic signals. The cause of this was unknown but must be fixed to ensure spoofing is successful when
 anti-spoofing techniques are implemented.  
 
 \bigskip
 
-The project was able to provide a foundation for which further research into GNSS attack and defence strategies can be
-performed. SDR devices are prevalent in EW research due to their combination of hardware level performance and software level flexibility. This will allow for further
-research into other areas of EW.
-
-\bigskip
-
-Through this thesis it has been shown that with relatively low amounts of technical knowledge successful spoofing attacks can be performed. Some basic computer literacy
+Through this thesis it has been shown that with relatively low amounts of technical knowledge of the workings of GPS and trilateration successful spoofing attacks can be performed. Some basic computer literacy
 was required in order to install and configure the software needed to perform the attacks. The simplest way of using the software is with Linux which does add a level of
 difficulty.
 Moving forward into the future the software could be given a graphical interface and integrated into one software package, or simplify the transmission interface and use
 pre compiled binaries.
+
+\bigskip
+
+The project was able to provide a foundation for which further research into GNSS attack and defence strategies can be
+performed. All experimentation was performed in a controlled environment with minimal interference. This shows that the combination of hardware and software used is
+capable of performing an unsophisticated spoofing attack. Being able to controll the hardware structure of an SDR through code meant that trial and error outside of
+simulations and modelling was a suitable method.
+This is a testement to the flexibility that SDRs offer. It is this flexibility and ease of use that has increased the prevelance of SDRs in the research sector. There is
+growing interest in the use of SDRs for different EW use cases. The skills and knowledge gained about these systems through the completion of this project will be used
+to futher the EW capabilities within Flinders University.
 
 \section{Future Work}
 All of the tests that have been conducted for use in this thesis have either been generating a signal based off a predetermined location (coordinate) or a predetermined
@@ -45,7 +51,7 @@ path (group of connected coordinates). None of these options have a mechanism fo
 the actual position using these methods. This is something that could be achieved through combination and modification of the existing open source projects used in this
 thesis. This would allow for properly real-time GPS spoofing, and could be extended further to have intelligent algorithms.
 
-Current methods, as detailed in Chapter \ref{Chapter4}, requires downloading the Ephemeris for the date and time of the proposed spoofing attack. This makes real-time spoofing
+Current methods, as detailed in Chapter \ref{Chapter4}, require downloading the Ephemeris for the date and time of the proposed spoofing attack. This makes real-time spoofing
 attacks not possible since there is a delay between the current time and the associated ephemeris. A potential fix for this could be to perform some analysis on the
 orbits of each satellite within the constellation over an arbitrary period of time to create a machine learning algorithm. This algorithm would be able to predict the
 location of the satellites ahead of time, thus binaries could be compiled for future attacks, or could be used for real-time attacks without the need for downloading/
@@ -53,7 +59,7 @@ retrieving the ephemeris from legitimate sources.
 
 The logging program could be extended to provide real time feedback on position and signal quality. This would be achieved by implementing the serial connection within
 the Python code itself rather than relying on the logging function of screen.
-Extended to work on anti-spoofing for PhD. If there was more time for this project, a software based anti spoofing program would have been easy to implement based
+If there was more time for this project, a software based anti spoofing program would have been easy to implement based
 on the $\frac{C}{N_0}$ ratio alone. This could be implemented in conjunction with real time graphing as mentioned above.
 
 The hardware used for this project was successfully used for spoofing attacks, however, the software must be altered in order to achieve the accurate results that were

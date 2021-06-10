@@ -332,7 +332,8 @@ The results from the static Antarctica spoof attack, specifically the carrier to
 GPS constellation this must be an error. Although there was no explanation for the error since the resultant location was correct. One hypothesis was that the compilation
 software added some incorrect data. Another is the prevalence of SBAS satellites. There was a known issue for some time with the Faraday cage where stray EM waves were
 getting in. This would explain the consistency in which SVID 193 appears. From \cite{RN67} it can be seen that SVID 193 is a QZSS satellite. These satellites orbit over
-Australia and part of Asia.
+Australia and part of Asia. The existance of supurfolous SVIDs raises a potential defence strategy. It would be simple to cross reference the SVID of all satellites in
+the constellation being used. If an SVID is being received and not part of that constellation then it can be assumed that the signal is spoofed. 
 
 The dynamic spoof around the MAB showed low error while following the associated path. The CBD dynamic spoof, which lasted much longer, was less consistent with it's
 accuracy. There were sections where the error between desired and calculated location was high and sections where the calculated location was close to ideal. This shows that over a long
