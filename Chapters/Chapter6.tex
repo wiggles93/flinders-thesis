@@ -8,20 +8,28 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-One of the aims of this project was to create hardware that is capable of successfully spoofing a GPS receiver. From the results it can be seen that the method of
-spoofing using signals generated from coordinates was successful. There were issues that impacted the results at times, however, these were overcome to produce good
-results in both static and dynamic spoofing. The hardware that was used for this is capable of performing any spoofing attack, however the
-software was not capable to produce the results at times, where anti-spoofing was at play.
-Overall the accuracy of the position gathered from the GPS receivers was poorer than expected, although
-to be able to spoof anything at all was considered a success. Given these results were gathered in a controlled environment more care will need to be taken if
+One of the aims of this project was to create hardware that was capable of successfully spoofing a GPS receiver. From the results it can be seen that the method of
+spoofing using signals generated from coordinates was successful. There were no results gathered from performing Meaconing attacks since the GPS signal reception was
+unsuccessful and therefore signal capture was unavailable. There were issues that impacted the results at times, however, these were overcome to produce good results in
+both static and dynamic spoofing. The SDR that was used for this is capable of performing any spoofing attack due to the flexibility of the platform. The software was not
+capable to produce the results at times, where anti-spoofing was at play. Overall the accuracy of the position gathered from the GPS receivers was poorer than expected,
+although to be able to spoof anything at all was considered a success. Given these results were gathered in a controlled environment more care will need to be taken if
 performing these experiments in the field. 
+
+\bigskip
+
+When a successful spoofing attack, either static or dynamic, was performed it was easy to see from the carrier to noise grpahs that an attack was being performed. This
+was due to the high value of the carrier to noise values. From experimentation the difference between authentic signals and spoofed was $\approx 20dBHz$. This was
+substantial and easy to recognise. Testing in the field with sources of interference could potentially reduce this figure making it harder to detect spoofing activity.
+The spoofed signals resulted in more SVIDs being resolved than there are in the GPS constellation. When comparing the difference between an authentic $\frac{C}{N_0}$
+ratio graph and a spoofed graph there are less SVIDs for the authentic signals. The cause of this was unknown but must be fixed to ensure spoofing is successful when
+anti-spoofing techniques are implemented.  
 
 \bigskip
 
 The project was able to provide a foundation for which further research into GNSS attack and defence strategies can be
 performed. SDR devices are prevalent in EW research due to their combination of hardware level performance and software level flexibility. This will allow for further
 research into other areas of EW.
-There were no results gathered from performing Meaconing attacks since the GPS signal reception was unsuccessful and therefore signal capture was unavailable.
 
 \bigskip
 

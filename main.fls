@@ -560,6 +560,7 @@ INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21_3_30_dynamic_C
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/21_3_30_dynamic_CBD_results Position from origin.png
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/2021_3_30_dynamic_CBD_Satellite.PNG
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/underrun error.png
+INPUT /home/alastair/Documents/Honours/flinders-thesis/Figures/gnss_log_2021_04_04_21_47_09_static_Authentic Carrier noise ratio.png
 OUTPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.aux
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.tex
 INPUT /home/alastair/Documents/Honours/flinders-thesis/Chapters/Chapter6.tex

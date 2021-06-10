@@ -339,10 +339,18 @@ accuracy. There were sections where the error between desired and calculated loc
 transmission time the accuracy can fluctuate. This fluctuation may be caused by the fluctuating values from the carrier to noise graph.
 
 Consistently for both static and dynamic spoofing the $\frac{C}{N_0}$ ratio was a high value (between 40 and 50 dBHz). During experimentation it was found that authentic
-GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz. This discrepancy can be attributed to a combination of the
+GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz, see figure \ref{fig:authenticCNo}. This discrepancy can be attributed to a combination of the
 controlled environment of the Faraday cage as well as the relative distance between the spoofer and victim. In theory the spoofed $\frac{C}{N_0}$ ratio could be higher,
 but during compilation estimated Ionospheric effects are included. This shows that there is still room for improvement for the GPS-SDR-sim software, especially if it is
 to be used in controlled environments for testing purposes. Just from the $\frac{C}{N_0}$ ratio graphs the spoofed signals are easy to identify.
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/gnss_log_2021_04_04_21_47_09_static_Authentic Carrier noise ratio.png}
+        \caption{Carrier to noise graph of authentic GPS signal as captured in clear sky. The peak dBHz value is over 40dBHz but average values are around 30dBHz}
+        \label{fig:authenticCNo}
+    \end{centering}
+\end{figure}
 
 On the $\frac{C}{N_0}$ ratio graphs there were consistently more SVIDs than expected. The trend was that static spoof attacks had more SVIDs than the dynamic spoofs, with
 the most coming from the Antarctic spoof attack. It can also be seen that the length of attack was longest for the Antarctic spoof, which may account for this
