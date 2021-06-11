@@ -347,7 +347,7 @@ except IOError:
     pass
     
 print("Time to first fix was {} seconds".format(timetofix))
-text_params = {'axes.labelsize': 18, 'axes.titlesize' : 24, 'xtick.labelsize': 16, 'ytick.labelsize': 16, 'legend.title_fontsize' : 18, 'legend.fontsize' : 16} # text parameters for plotting
+text_params = {'axes.labelsize': 24, 'axes.titlesize' : 30, 'xtick.labelsize': 20, 'ytick.labelsize': 20, 'legend.title_fontsize' : 20, 'legend.fontsize' : 16}
 plt.rcParams.update(text_params) 
 plotCNo(satellites)
 plotPath(coordinates, referenceCoords)

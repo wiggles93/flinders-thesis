@@ -49,8 +49,10 @@ this is the only basic attack type that can be used on the encrypted military ba
 \subsection{Spoofing Attack}
 Once the workflow and hardware setup for the SDR was properly configured it was found that a smartphone was able to be spoofed.
 When attempting to spoof devices in the wild, the Pixel XL smartphone was susceptible to attack while more modern smartphones that were tested were not susceptible. These
-included the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to software based
-anti-spoofing algorithms that have been implemented including the usage of multiple constellations for position resolution.
+included the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to any software based
+anti-spoofing algorithms that have been implemented. From Android 7.0 onwards there was an increase in the efforts put into gathering raw GNSS data from the
+receivers in phones \cite{RN31}, with mandatory hardware support for raw GNSS measurement as of Android 10, or if hardware is newer than 2016.
+Apple have not released information regarding how they deal with prospective spoofing attacks or access to raw GNSS data.
 
 \subsection{Static Spoofing}
 \subsubsection{Tonsley MAB}
@@ -276,10 +278,12 @@ extent of the error is typically acceptable.
 \end{figure}
 
 \section{Experimental Issues}
-While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
-frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. The
-antenna operating frequency was not known, though it's physical size seemed appropriate for the application. It was shown experimentally that is was
-was able to produce signals that were picked up by the receivers. Observing the graphs of the carrier to noise figure showed that when there was an under run
+While performing experiments issues arose that required solving. Initially a Log Periodic antenna was used for transmission since its
+frequency range, 850MHz to 6GHz, was appropriate for transmitting L1 band signals. Due to the directional nature of the antenna it also had a passive gain of 5dBi. 
+After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. The
+antenna operating frequency was not known, though it's physical size seemed appropriate for the application. 
+It was shown experimentally that it was
+was able to produce signals that were picked up by the receivers. Observing the graphs of the carrier to noise ratio showed that when there was an under run
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver would lose connection to the 'satellites'. This meant that no GPS lock was achievable.
 
 The under run issue was solved by increasing the buffer size to $40\times$ greater than the sampling size, though there were still occasions where under run would still
@@ -347,7 +351,7 @@ to be used in controlled environments for testing purposes. Just from the $\frac
 
 \begin{figure}[!h]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/gnss_log_2021_04_04_21_47_09_static_Authentic Carrier noise ratio.png}
+        \includegraphics[width=12cm,keepaspectratio]{Figures/gnss_log_2021_04_04_21_47_09_static_Authentic_bigtext Carrier noise ratio.png}
         \caption{Carrier to noise graph of authentic GPS signal as captured in clear sky. The peak dBHz value is over 40dBHz but average values are around 30dBHz}
         \label{fig:authenticCNo}
     \end{centering}

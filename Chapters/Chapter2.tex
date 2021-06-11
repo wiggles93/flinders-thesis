@@ -110,9 +110,17 @@ position only 3 satellites are needed to have only a single possible solution, w
     d = c \times t
 \end{equation}
 
+% \begin{figure}[h]
+%     \begin{centering}
+%         \includegraphics[width=14cm,keepaspectratio]{Figures/trilateration.png}
+%         \caption{Illustration of trilateration used in GNSS positioning}
+%         \label{fig:trilateration}
+%     \end{centering}
+% \end{figure}
+
 \begin{figure}[h]
     \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/trilateration.png}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/trilateration_new.png}
         \caption{Illustration of trilateration used in GNSS positioning}
         \label{fig:trilateration}
     \end{centering}
@@ -452,13 +460,19 @@ transport or maps on a smartphone or sat-nav devices to providing accurate timin
 as shown in Figure \ref{fig:GNSS Applications}. This societal ubiquity has made GNSS as much a critical infrastructure as internet or energy provision, since these
 services rely on the services provided by GNSS.
 
+% \begin{figure}[h]
+%     \begin{centering}
+%         \includegraphics[width=14cm,keepaspectratio]{Figures/GNSS applications.png}
+%         \caption{Applications of GNSS position and timing \cite{RN33}}
+%         \label{fig:GNSS Applications}
+%     \end{centering}
+% \end{figure}
+
 \begin{figure}[h]
-    \begin{centering}
-        \includegraphics[width=14cm,keepaspectratio]{Figures/GNSS applications.png}
-        \caption{Applications of GNSS position and timing \cite{RN33}}
-        \label{fig:GNSS Applications}
-    \end{centering}
-\end{figure}
+    \makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{Figures/GNSS applications.png}}%
+    \caption{Applications of GNSS position and timing \cite{RN33}}
+    \label{fig:GNSS Applications}
+  \end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 4
@@ -634,7 +648,7 @@ using smartphones coupled with SDRs to perform many different radio based tasks.
 
 \begin{figure}[h]
     \begin{centering}
-        \includegraphics[width=13cm,keepaspectratio]{Figures/2920_simplified_system_diagram.png}
+        \includegraphics[width=\textwidth,keepaspectratio]{Figures/2920_simplified_system_diagram.png}
         \caption{Simplified block diagram for the RF front end of the USRP SDRs}
     \label{fig:USRPBlock}
     \end{centering}
