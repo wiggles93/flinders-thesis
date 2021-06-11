@@ -5,7 +5,7 @@
 \label{Chapter2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 This Chapter introduces the history and motivation of implementing a satellite based navigation system, as well as background information on GNSS principles. The other
-GNSS constellations are introduced and their differences explained. The mechanics of satellite navigation, sources of error and their place in society are also dicsussed. 
+GNSS constellations are introduced and their differences explained. The mechanics of satellite navigation, sources of error and their place in society are also discussed. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -21,7 +21,7 @@ and commissioned the first satellite based navigation system.
 As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
 QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional coverage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by the distance the satellite orbits from the eartch surface.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by the distance the satellite orbits from the Earths surface.
 Current GNSS systems utilise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -349,13 +349,13 @@ The IRNSS constellation is different to the others mentioned above due to its or
 this orbit. This allows for a very narrow and defined region of usability, which is over India \cite{RN55}. 
 
 Other forms of augmentation as mentioned in Section \ref{sec:GNSSHistory} were through ground based stations that use receivers to determine the timing error and broadcast these
-values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy \cite{RN73} \todo{fix ref}. These systems are typically rolled out
+values in order to make the solution to the position calculation more accurate. This type of system allows for sub 1m accuracy \cite{RN73}. These systems are typically rolled out
 geographically locally and run by those local Governments.
 
 \subsection{GNSS Receivers}
 Traditional GNSS receivers are specialised hardware components that are able to receive the spread spectrum signal from the GNSS satellite and perform the required
 calculations to acquire the PVT data. The method for calculating the simultaneous equations is a least squares estimation and includes expansion of a Taylor's series \cite{RN46}.
-This is typically computed using matracies and hence the PVT data is able to calcualted all at once.
+This is typically computed using matrices and hence the PVT data is able to calculated all at once.
 This data is then provided serially to a main processor of the system in the form of NMEA (National Marine Electronics Association)
 sentences, see \ref{subsubsec:NMEA}. There are many sentence types
 and not all receivers will output all sentence types.
@@ -474,8 +474,8 @@ well as low elevations where there are proportionally high dilution of precision
 
 Receiver errors occur due to the introduction of noise through the reception process. GNSS jamming and spoofing also constitute receiver error although these are
 intentional and malicious. A summary of common error sources is shown in table \ref{tab:GPS Errors}.
-Other factors that impact the accuracy of the positional solution are the DOP (dilution of precision) and relevtistic effects. The total DOP is made up from the
-subcatergories HDOP (Dorizontal Dilution of Precision), PDOP (Position Dilution of Precision) and VDOP (Vertical Dilution of Precision). These values are lower at the
+Other factors that impact the accuracy of the positional solution are the DOP (dilution of precision) and relativistic effects. The total DOP is made up from the
+subcategories HDOP (Horizontal Dilution of Precision), PDOP (Position Dilution of Precision) and VDOP (Vertical Dilution of Precision). These values are lower at the
 equator and higher at the poles due to the specific satellite geometry \cite{RN62}.
 
 What all of these errors have in common is an incorrect value of the pseudorange is created which in turn incorrectly calculates the receiver position.
@@ -577,7 +577,7 @@ there is a requirement of having the right equipment to be able to capture the r
 \begin{figure}[h]
     \begin{centering}
         \includegraphics[width=12cm, keepaspectratio]{Figures/Meaconing.png}
-        \caption{Representation of a spoofer peforming a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or somewhen else}
+        \caption{Representation of a spoofer performing a meaconing attack on a GNSS receiver. The satellite signal is captured and rebroadcast without modification somewhere or some when else}
     \label{fig:meaconing cartoon}
     \end{centering}
 \end{figure}

@@ -15,13 +15,14 @@ GNSS constellations are introduced and their differences explained. The mechanic
 In 2021 there are many different GNSS constellations in place that service the globe. It is a technology that has become deeply ingrained in the everyday lives of most
 people around the world. The first digital based navigation system similar to what we know today was the use of terrestrial based radio transmitters in the form of
 hyperbolic navigation systems \cite{RN68}. The concept was
-similar to that of the current satellite based systems, namely the use of pseudoranges, although the accuracy was far lower than is acceptable today. The USA developed
+similar to that of the current satellite based systems, namely the use of pseudoranges, although the accuracy was far lower than is acceptable today. The USA (United
+States of America) developed
 and commissioned the first satellite based navigation system.
 
-As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (EU), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
-QZSS system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
+As of 2021 there are six operational GNSS systems in use. These are GPS (USA), GLONASS (Russia), Galileo (European Union), BeiDou (China), IRNSS/NavIC (India) and QZSS (Japan). The
+QZSS (Quasi-Zenith Satellite System) system currently acts to complement the coverage of GPS in the East Asian and Oceanic regions with 4 operational satellites. There are plans to increase this number
 of satellites to allow for stand alone use as a GNSS provider \cite{RN47}. The Indian IRNSS similarly provides regional coverage around India with 8 satellites in
-geostationary orbit \cite{RN55} . There are three categories of orbit, LEO, MEO and GEO. These are categorised by the distance the satellite orbits from the Earths surface.
+geostationary orbit \cite{RN55} . There are three categories of orbit, LEO (Low Earth Orbit), MEO (Medium Earth Orbit) and GEO (Geostationary Orbit). These are categorised by the distance the satellite orbits from the Earths surface.
 Current GNSS systems utilise MEO orbits.
 
 GNSS, and more specifically GPS and GLONASS, date back to 1957 during the space race between the USA and the then USSR \cite{RN43}. When Russian satellite Sputnik 1 was
@@ -45,7 +46,7 @@ The Soviet Union launched their first GLONASS satellite in 1982, and in the foll
 GLONASS and GPS constellations. The orbital planes are different and GLONASS uses an FDMA (Frequency Division Multiple Access) scheme as opposed to the GPS CDMA (Code
 Division Multiple Access). In 1993 president Yeltsin declared that the GLONASS constellation was fully operational, however this was not the case. 
 
-The TRANSIT satellite system orbit was in a LEO (Low Earth Orbit) polar orbit, whereas all modern GNSS systems utilise a MEO (medium earth orbit) ranging from 20,000km to
+The TRANSIT satellite system orbit was in a LEO polar orbit, whereas all modern GNSS systems utilise a MEO ranging from 20,000km to
 23,000km above the earths surface with multiple orbital planes. The number of planes differs between the different constellations as discussed below. The lower the orbit,
 the higher the velocity required to maintain the orbit as shown by the orbital mechanics equation \ref{eq:orbitalVelocity}. Equally a higher orbit requires a lower
 velocity which has impact on the Doppler shift at the receivers. Another factor is aerodynamic drag, which is higher the closer to the earths surface due to the
@@ -57,7 +58,7 @@ atmosphere.
 
 The history of the two other main GNSS systems is much shorter, with the Galileo constellation coming as a form of sovereignty for the EU (European Union). The fist satellite
 was launched in 2011, and the service became operational in 2016. There is also a network of GPS augmentation sites that provide improved accuracy for those in the EU.
-This system is named EGNOS. This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
+This system is named EGNOS (European Geostationary Navigation Overlay Service). This system provided an average of 1.5m accuracy over the EU territory. This was provided through the use of ground stations and a
 geostationary satellite broadcasting the timing corrections. 
 
 %----------------------------------------------------------------------------------------
@@ -74,7 +75,7 @@ kept via the use of caesium based atomic clocks. The GPS clocks are accurate to 
 the interpretation of signals and typically provide accuracy of 100 nanoseconds. The value of the clocks are constantly monitored by the ground segment and updated when
 required. Part of the receivers (the user segment) will pick up this signal. The components of the message sent are quite simple and consist mostly of the current time
 (of the satellite) and where the satellite is in the WGS-84 coordinate system\cite{RN46}. This coordinate system has its origin at the centre of mass of the earth with
-the Z axis pointing at the north pole, the X axis pointing towards the prime meridian and the y axis perpendicular to both other axes. Due to the relative motion of the
+the $z$ axis pointing at the north pole, the $x$ axis pointing towards the prime meridian and the $y$ axis perpendicular to both other axes. Due to the relative motion of the
 satellite and the receiver the transmitted signal will be shifted up or down the frequency range due to the Doppler effect. The combination of this Doppler shift, time
 taken to arrive and the satellite current location can be used to solve the position in three dimensional space. In order to solve for all dimensions (including time)
 four satellites are required since there are essentially 4 unknown terms to solve for as shown in equation \ref{eq:gnssPosition} \cite{RN46}. The $\rho_i$ term indicates
@@ -101,7 +102,7 @@ known, as well as relative distance. Each satellite sends its precise orbital lo
 constellation as part of the navigational data. This coupled with the pseudorange of the satellite allows for calculating the position of the receiver. Pseudoranges rely
 on the knowledge that electromagnetic radiation propagates at the speed of light, as shown in equation \ref{eq:EMdistance}. By measuring the time taken for the signal to
 transition from the each of the satellites to the receiver, a sphere of radius $d$ centred on the radius indicates all possible locations that the receiver could be. By
-adding a second satellite, and second sphere based on the pseudorange, the possible locations of the receiver are reduced based on where the spheres intersect. For 2D
+adding a second satellite, and second sphere based on the pseudorange, the possible locations of the receiver are reduced based on where the spheres intersect. For 2 dimensional
 position only 3 satellites are needed to have only a single possible solution, whereas 3 dimensional position requires 4 satellites as shown in Figure
 \ref{fig:trilateration}.
 
@@ -132,11 +133,11 @@ equates to an orbital period of 12hours. There are multiple frequencies of diffe
 and L5 bands and have centre frequencies of 1575.42MHz, 1227.60MHz and 1176.45MHz respectively \cite{RN49}. This is shown graphically in Figure \ref{fig:SignalPlan}. The
 L1 band is the most commonly used and was the first one to be made operational. In the past the L1 band was used for civilian purposes and the L2 band was a military
 band. Nowadays both have active civilian and encrypted signals co-exiting within their respective frequency bands. GPS predominately uses BPSK (Binary Phase Shift Keying)
-but also utilises  (Binary Offset Keying) for signal modulation across all of the bands. 
+but also utilises BOC (Binary Offset Carrier) for signal modulation across all of the bands. 
 
 All satellites within the constellation will broadcast using the same frequency band (L1, L2 or L5). They are able to do this without interfering through the use of CDMA
-(Code Division Multiple Access) scheme. Each satellite has a unique chipping code that is used to spread the signal in the frequency domain. This code is a PRN (Pseudo
-Random Number). This same access scheme is used for GPS, Galileo and BeiDou.
+scheme. Each satellite has a unique chipping code that is used to spread the signal in the frequency domain. This code is a PRN (Pseudo Random Number). This same access
+scheme is used for GPS, Galileo and BeiDou.
 
 Initially the civilian C/A code was purposely degraded to ensure that adversaries of the USA could not use the system to its maximum effect. In May 2000 President Bill
 Clinton directed the removal of selective availability from the GPS service, and in 2007 it was announced that the newest version of GPS satellites would be manufactured
@@ -361,7 +362,7 @@ sentences, see \ref{subsubsec:NMEA}. There are many sentence types
 and not all receivers will output all sentence types.
 
 \subsubsection{NMEA Sentences} \label{subsubsec:NMEA}
-The NMEA (National Maritime Electronics Association) has a number of standards one of which is NMEA-0183. This standard outlines the combined electrical and data
+The NMEA has a number of standards one of which is NMEA-0183. This standard outlines the combined electrical and data
 specifications for communication between marine electronic equipment. The data specification was adopted by GPS receiver manufacturers to ensure software could operate
 with any GPS hardware. The standard outlines the typical message structure. This structure lays the foundation for many different message types called sentences. These
 sentences carry different information depending on the sentence type, and it is often the case that multiple sentences will be required in order for the software to
@@ -422,7 +423,7 @@ in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT s
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
     \begin{center}
-        \caption{GNSS Identifier Mnemonics as per NMEA-0183}
+        \caption{GNSS Identifier Mnemonics as per NMEA-0183 \cite{RN71}}
         \label{tab:NMEA Mnemonics}
         \begin{tabular}{ l|c }
             \hline
@@ -431,7 +432,7 @@ in Table \ref{tab:NMEA Mnemonics}. This allows for easy differentiation of PVT s
             Galileo Positioning System & GA \\
             BDS (BeiDou System) & GB \\
             NavIC (IRNSS) & GI \\
-            Glonass Receiver & GL \\
+            GLONASS Receiver & GL \\
             Global Navigation Satellite System & GN \\
             Global Positioning System (GPS) & GP \\
             QZSS & GQ \\

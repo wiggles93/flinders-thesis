@@ -16,7 +16,7 @@ Before testing the GPS transmission performance of the SDR, reception was tested
 satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it included amplifiers
 with a total gain of 28dB and
 filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
-that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T and hardware setup was requried, but was not achievable due to time constraints.
+that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T and hardware setup was required, but was not achievable due to time constraints.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -30,8 +30,8 @@ that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T an
 
 Experimentation was performed from the Tonsley campus of Flinders University, which has coordinates of $-35.007650, 138.572030$, within the Faraday cage.Therefore it would
 be considered successful if the GPS receiver was to show that the current location was not at this location. The chosen spoof locations were Davis Station in
-Antarctica and the MAB at Flinders University Tonsley Campus with coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
-The MAB was chosen as a conveinient location to be able to test authentic and spoofed signals. The Antarctic location was chosen as an arbitrarily location that would
+Antarctica and the MAB (Mass Assembly Building) at Flinders University Tonsley Campus with coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
+The MAB was chosen as a convenient location to be able to test authentic and spoofed signals. The Antarctic location was chosen as an arbitrarily location that would
 not be simple to get an authentic signal from, therefore a successful spoof would be easy to show.
 
 Dynamic spoofing attacks were set to the road surrounding the MAB and around the CBD of Adelaide. The MAB was used as a small path test that would be quick to complete,
@@ -42,7 +42,7 @@ All spoof attack dates were set to the same date, which was chosen to be
 the 30th March 2021. This was arbitrary and only chosen since this was when official testing began.
 
 \subsection{Meaconing Attack}
-Since the GPS reception using an SDR was unsuccessful the plan of perfoming a meaconing attack was abandonded since access to the raw received signal was recquried.
+Since the GPS reception using an SDR was unsuccessful the plan of performing a meaconing attack was abandoned since access to the raw received signal was required.
 Therefore, the only viable attack strategy was to generate a binary file of the intended location. It would be ideal to perform this kind of attack in the future since
 this is the only basic attack type that can be used on the encrypted military band.
 
@@ -171,7 +171,7 @@ The inaccuracy is higher than was expected from this experiment.
 Dynamic spoofing attacks were also performed. These attacks do not have a set coordinate that the spoofer is attempting to make the receiver appear at, rather these
 attacks try to get the receiver to "follow" a path that has been set, see Section \ref{subsec:coordinate}.
 \subsubsection{Tonsley MAB}
-There is a road that circles around the MAB (Mass Assembly Building) in which the \univname Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
+There is a road that circles around the MAB in which the Flinders University Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
 see Figure \ref{fig:MABdynamicSetup}.
 
 \begin{figure}[H]
@@ -223,7 +223,7 @@ results that would be expected from authentic GPS signals, with the exception be
 
 \subsubsection{Adelaide CBD Loop}
 After successfully performing a dynamic spoof attack around the MAB, a longer path was chosen to test how if the SDR was capable of sustaining spoofing performance for a
-longer period of time. An abitrary path around the Adelaide CBD was chosen from within the SatGen3 software. As shown in figure \ref{fig:CBDdynamicSetup} the total time of the path was 643 seconds. This represents the total time of the spoofing transmission.
+longer period of time. An arbitrary path around the Adelaide CBD was chosen from within the SatGen3 software. As shown in figure \ref{fig:CBDdynamicSetup} the total time of the path was 643 seconds. This represents the total time of the spoofing transmission.
 
 \begin{figure}[!h]
     \begin{centering}
@@ -234,7 +234,7 @@ longer period of time. An abitrary path around the Adelaide CBD was chosen from 
 \end{figure}
 
 The time to first fix for this test was 40 seconds. As previously mentioned this is considered a good result for a GPS receiver from a cold start. From figure
-\ref{fig:CBDdynamicCNo} it can be seen that there was no unden run errors during the running of this test. Ther was a consistent few signals with $\frac{C}{N_0}$ values
+\ref{fig:CBDdynamicCNo} it can be seen that there was no under run errors during the running of this test. There was a consistent few signals with $\frac{C}{N_0}$ values
 of $>50dBHz$ with periodic other signals spiking at $\approx 40dBHz$.
 The consistent issue of more SVIDs than satellite in the GPS constellation was present again in these results.
 
@@ -248,7 +248,7 @@ The consistent issue of more SVIDs than satellite in the GPS constellation was p
 
 From figures \ref{fig:CBDdynamicCoord} and \ref{fig:CBDdynamicPosition} it can be seen that there was some error at the beginning of the test, shown as the (0,0) origin
 in figure \ref{fig:CBDdynamicPosition}, but this smooths out as the test continued. There was more error introduced at various times during the rest of the test, but
-overall the result was successul. Figure \ref{fig:CBDdynamicSatelliteImage} shows the context of the error over a satellite image. From this image it can be seen that the
+overall the result was successful. Figure \ref{fig:CBDdynamicSatelliteImage} shows the context of the error over a satellite image. From this image it can be seen that the
 extent of the error is typically acceptable.
 
 \begin{figure}[H]
@@ -278,12 +278,12 @@ extent of the error is typically acceptable.
 \section{Experimental Issues}
 While performing experiments there were issues that were run into that were required to be overcome. Initially a Log Periodic antenna was used for transmission since its
 frequency range was appropriate for use transmitting L1 band signals. After experiments failed to pick up any signals it was swapped for a omnidirectional antenna. The
-antenna operating frequency was not known, though it's physical size seemed appropriate for the applicaiton. It was shown experimentally that is was
+antenna operating frequency was not known, though it's physical size seemed appropriate for the application. It was shown experimentally that is was
 was able to produce signals that were picked up by the receivers. Observing the graphs of the carrier to noise figure showed that when there was an under run
 issue the $\frac{C}{N_0}$ would drop to 0 and the GPS receiver would lose connection to the 'satellites'. This meant that no GPS lock was achievable.
 
 The under run issue was solved by increasing the buffer size to $40\times$ greater than the sampling size, though there were still occasions where under run would still
-occur. It was much less prominant after rebooting the PC. Figure \ref{fig:underrun} shows the terminal output when an under run occurs, as symbolised by the printing of
+occur. It was much less prominent after rebooting the PC. Figure \ref{fig:underrun} shows the terminal output when an under run occurs, as symbolised by the printing of
 "U" to the terminal. In this case the GPS lock would be lost due to the transmission pausing while the radio waited for data to be fed from the PC.
 There was an issue towards the end of the project where there was considerable leakage of EM radiation into the Faraday cage that was causing the GPS receiver to produce
 wildly inaccurate position (up to and over 500m error). This was much different to what had previously been recorded within the Faraday cage. This amount of error does
@@ -332,17 +332,26 @@ The results from the static Antarctica spoof attack, specifically the carrier to
 GPS constellation this must be an error. Although there was no explanation for the error since the resultant location was correct. One hypothesis was that the compilation
 software added some incorrect data. Another is the prevalence of SBAS satellites. There was a known issue for some time with the Faraday cage where stray EM waves were
 getting in. This would explain the consistency in which SVID 193 appears. From \cite{RN67} it can be seen that SVID 193 is a QZSS satellite. These satellites orbit over
-Australia and part of Asia.
+Australia and part of Asia. The existance of superfluous SVIDs raises a potential defence strategy. It would be simple to cross reference the SVID of all satellites in
+the constellation being used. If an SVID is being received and not part of that constellation then it can be assumed that the signal is spoofed. 
 
-The dynamic spoof around the MAB showed low error while following the associate path. The CBD dynamic spoof, which lasted much longer, was less consistent with the
-accuracy. There were sections where the error between desired and calculated location was high and secitons were it was close to ideal. This shows that over a long
-transmission time the accuracy can fluctuate. This flucuation may be caused by the fluctuating values from the carrier to noise graph.
+The dynamic spoof around the MAB showed low error while following the associated path. The CBD dynamic spoof, which lasted much longer, was less consistent with it's
+accuracy. There were sections where the error between desired and calculated location was high and sections where the calculated location was close to ideal. This shows that over a long
+transmission time the accuracy can fluctuate. This fluctuation may be caused by the fluctuating values from the carrier to noise graph.
 
 Consistently for both static and dynamic spoofing the $\frac{C}{N_0}$ ratio was a high value (between 40 and 50 dBHz). During experimentation it was found that authentic
-GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz. This discrepancy can be attributed to a combination of the
+GPS signals would be received with more variable $\frac{C}{N_0}$ ratio but with an average of around 30dBHz, see figure \ref{fig:authenticCNo}. This discrepancy can be attributed to a combination of the
 controlled environment of the Faraday cage as well as the relative distance between the spoofer and victim. In theory the spoofed $\frac{C}{N_0}$ ratio could be higher,
 but during compilation estimated Ionospheric effects are included. This shows that there is still room for improvement for the GPS-SDR-sim software, especially if it is
 to be used in controlled environments for testing purposes. Just from the $\frac{C}{N_0}$ ratio graphs the spoofed signals are easy to identify.
+
+\begin{figure}[!h]
+    \begin{centering}
+        \includegraphics[width=14cm,keepaspectratio]{Figures/gnss_log_2021_04_04_21_47_09_static_Authentic Carrier noise ratio.png}
+        \caption{Carrier to noise graph of authentic GPS signal as captured in clear sky. The peak dBHz value is over 40dBHz but average values are around 30dBHz}
+        \label{fig:authenticCNo}
+    \end{centering}
+\end{figure}
 
 On the $\frac{C}{N_0}$ ratio graphs there were consistently more SVIDs than expected. The trend was that static spoof attacks had more SVIDs than the dynamic spoofs, with
 the most coming from the Antarctic spoof attack. It can also be seen that the length of attack was longest for the Antarctic spoof, which may account for this

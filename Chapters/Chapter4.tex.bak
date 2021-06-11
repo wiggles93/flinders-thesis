@@ -74,8 +74,8 @@ try:
                         continue
 \end{lstlisting}
 
-\renewcommand{\arraystretch}{1.5}
-\begin{table}[!h]
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
     \begin{center}
         \caption{NMEA GGA Sentence structure}
         \label{tab:NMEA GGA Struct}
@@ -208,8 +208,8 @@ $GPGSV,4,4,13,193,,,*40
                         svSNR = {}
     \end{lstlisting}
 
-\renewcommand{\arraystretch}{1.5}
-\begin{table}[!h]
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
     \begin{center}
         \caption{NMEA GSV Sentence structure}
         \label{tab:NMEA GSV Struct}
@@ -299,7 +299,7 @@ $GPRMC,000118.000,A,3500.4918,S,13834.1369,E,53.66,12.07,300321,,,A*78
     \end{lstlisting}
 
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{table}[!h]
     \begin{center}
         \caption{NMEA RMC Sentence structure}
@@ -365,7 +365,7 @@ default configuration from the setup documentation. To check if the IP address w
 interfaces of the PC and check for USRP devices attached, see Figure \ref{fig:UHDFind}. There was also a command line program that allowed for the probing of a
 radio to gather information on what daughtercard was installed and other properties, see Figures \ref{fig:UHDProbe1}, \ref{fig:UHDProbe2} and \ref{fig:UHDProbe3}.
 
-\begin{figure}[!h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=14cm,keepaspectratio]{Figures/uhd-find-devices.png}
         \caption{Using the UHD daemon to find connected USRP SDR devices}
@@ -373,7 +373,7 @@ radio to gather information on what daughtercard was installed and other propert
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=10cm,keepaspectratio]{Figures/usrp-probe-output_1.png}
         \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the main board details}
@@ -381,7 +381,7 @@ radio to gather information on what daughtercard was installed and other propert
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=10cm,keepaspectratio]{Figures/usrp-probe-output_2.png}
         \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the reception details}
@@ -389,7 +389,7 @@ radio to gather information on what daughtercard was installed and other propert
     \end{centering}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{centering}
         \includegraphics[width=10cm,keepaspectratio]{Figures/usrp-probe-output_3.png}
         \caption{Using the UHD program to probe the hardware details of any connected USRP device. This part of the output shows the transmission details}
@@ -513,6 +513,7 @@ antenna. A bias-tee was used in order to feed the antenna with the $5V$ required
 bias-tee a USB cable was cut and used to connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to
 find or lock onto any of the GPS satellites at any time. It was found that another opensource program, GPS-SDR-sim, could be used to create binary files that replicate
 the received signals from the satellites. 
+\\Through experimentation a successful workflow was created, as shown in figure \ref{fig:Flowchart}.
 
 \begin{figure}[H]
     \begin{center}
@@ -530,10 +531,8 @@ the received signals from the satellites.
                 \draw[-latex] (block1) edge (block2) (block2) edge (block3) (block3) edge (block4) (block4) edge (block5) (block5) edge (block6) (block6) edge (block7);
         \end{tikzpicture}
     \end{center}
-    \caption{Flowchart of performing experimentation} \label{fig:Flowchart}
+    \caption{Flowchart of performing experimentation. Each of the nodes will be expanded upon in the sections below} \label{fig:Flowchart}
 \end{figure}
-
-Each of the nodes of Figure \ref{fig:Flowchart} will be expanded upon below. 
 
 \subsection{Choose Coordinates} \label{subsec:coordinate}
 Regardless of whether a static or dynamic spoofing attack is desired, the best way to choose the coordinates was through the use of SatGen3. There was an alternative for
@@ -566,7 +565,7 @@ Figure \ref{fig:DynamicCoordinate} shows mapping out of a path within SatGen3 in
 The coordinate and NMEA file creation step is essentially the same step within the SatGen3 software package. Once the coordinate or path was chosen, it was a matter of
 choosing to save the output as a text file. An example of this is shown in Figure \ref{fig:StaticCoordinateNMEA}. In order to keep track of the source NMEA files and the
 results files the following naming scheme was employed:
-
+\\
 \begin{verbatim}
     YY_MM_DD_<static/dynamic>_LOCATION.nmea
     YY_MM_DD_<static/dynamic>_LOCATION.bin
@@ -609,7 +608,7 @@ required that there be a "user motion file" or GGA sentence stream. This stream 
 be used. This simplified the workflow overall. Using this method meant that the program was able to calculate the duration of the transmission itself. The output was
 altered in order to conform with the naming convention stated in Section \ref{subsec:NMEAFile}. The sampling rate was also modified to be 2.5Msps instead of the default
 2.6Msps.
-When compiling some of the dynamic spoofing scenarios the maximum size was reached. This is a limit that is hardcoded when the GPS-SDR-sim program is compiled on the host
+When compiling some of the dynamic spoofing scenarios the maximum size was reached. This is a limit that is hard coded when the GPS-SDR-sim program is compiled on the host
 machine. Therefore, the program was cleanly recompiled in with the command to increase the maximum size of output file.
 
 Using this information, the place, time and ephemeris the program is able to calculate which of the satellites will be in view and what their expected pseudoranges would
@@ -684,7 +683,7 @@ The earth is not perfectly spherical therefore when converting latitude and long
 planes were taken, as shown in equation \ref{eq:EarthCircumference}. The $\Delta x$ and $\Delta y$ values from Equation \ref{eq:deltaX} and \ref{eq:deltaY} represent
 the error of the coordinate in the $x$ and $y$ direction respectively. \\
 When finding the total error value the law of Haversines was used, see equation \ref{eq:Haversine}, where $\phi_i$ and $\lambda_i$ are the latitude and longitude of the
-$i^{th}$ corrdinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
+$i^{th}$ coordinate respectively, and $r$ is the radius if the sphere in question. For this use case it is the average radius of the Earth.  
 
 \begin{equation} 
     \begin{split} \label{eq:EarthCircumference}
@@ -735,7 +734,7 @@ Using the SatGen3 software a location was chosen as the spoof location. After se
 
 \subsection{Dynamic Spoofing}
 Dynamic spoofing refers to the production of a signal that when used to calculate position, will be shown to change over time. The path traced by the receiver will be
-set at the time of production of the binary file, but there will be perceived motion from the GPS reciever.
+set at the time of production of the binary file, but there will be perceived motion from the GPS receiver.
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utilising the open source projects that have been used to complete this

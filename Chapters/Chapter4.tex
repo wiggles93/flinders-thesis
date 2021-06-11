@@ -37,8 +37,8 @@ various outputs from these sentences.
 
 For the purpose of this project just three sentences were used when parsing the log files, "GPGGA", "GPGSV" and "GPRMC". The GP mnemonic is a designation that the
 received signal was from GPS. The other constellations have their own designations when using NMEA sentences as dictated by Table \ref{tab:NMEA Mnemonics}. 
-GGA (Global Positioning System Fix Data) \footnote{https://www.nmea.org/Assets/20130801 0183 identifier list.pdf} sentences contain information related to the fix of the
-GPS signal. The calculated latitude and longitude as well as whether DGPS is being used in the fix, as well as others, as shown in Table \ref{tab:NMEA GGA Struct}.
+GGA (Global Positioning System Fix Data) sentences contain information related to the fix of the
+GPS signal \cite{RN71}. The calculated latitude and longitude as well as whether DGPS is being used in the fix, as well as others, as shown in Table \ref{tab:NMEA GGA Struct}.
 However, only the latitude and longitude information was used, see Listing \ref{list:GGAParse}.
 
 An example of a GGA sentence is:
@@ -122,7 +122,8 @@ try:
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-The use of GSV (GNSS Satellites in View) sentences allowed for tracking how many and which satellites were in view (SVID) and what the carrier to noise ratio ($\frac{C}{N_0}$) was. This was used to generate the carrier to
+The use of GSV (GNSS Satellites in View) sentences allowed for tracking how many and which satellites were in view (SVID) and what the carrier to noise ratio
+($\frac{C}{N_0}$) was \cite{RN71}. This was used to generate the carrier to
 noise graphs and were stored in key:value dictionaries, see Listing \ref{list:GSVParse}. Since the sentences can only be a set length as per the standard, multiple successive GSV sentences may need to be sent.
 
 An example of a GSV sentence that is part of a group of 4 is:
@@ -266,7 +267,7 @@ $GPGSV,4,4,13,193,,,*40
 \end{table}
 \renewcommand{\arraystretch}{1}
 
-As shown in Table \ref{tab:NMEA RMC Struct} RMC (Recommended Minimum Specific GNSS Data) sentences contain a lot of useful information. However, for the purposes of this
+As shown in Table \ref{tab:NMEA RMC Struct} RMC (Recommended Minimum Specific GNSS Data) sentences contain a lot of useful information \cite{RN71}. However, for the purposes of this
 project it was only used in order to check when there is valid positional information, Listing \ref{list:RMCParse}.
 
 \begin{verbatim}
@@ -412,7 +413,7 @@ radio to gather information on what daughtercard was installed and other propert
         \item 30dB attenuator
         \item Full duplex
         \item Gigabit Ethernet connection
-        \item high performance FPGA
+        \item high performance FPGA (Field Programmable Gate Array)
         \item omnidirectional antenna
     \end{itemize}
     \item GPS Receiver (Phone 1)
@@ -445,7 +446,7 @@ radio to gather information on what daughtercard was installed and other propert
 \subsection{SDR Setup for GNSS Reception}
 Reception of GNSS signals is a complicated process which involves synchronising time values and solving simultaneous equations for position, therefore instead of
 developing the software from scratch it was decided that
-the opensource program GNSS-SDR would be used to perform all of these functions. This software has been built over a number of years and is able to receive different GNSS
+the open-source program GNSS-SDR would be used to perform all of these functions. This software has been built over a number of years and is able to receive different GNSS
 signals and translate them into position \cite{RN16}.
 
 The hardware setup for GPS signal reception was different. Since the signal strength of a GNSS transmission is so low when it reaches the earths surface ($\approx -160dBm$) an active
@@ -511,7 +512,7 @@ polarised. This equated to a $3dB$ attenuation of the signal. This coupled with 
 meant that the data within the signal was unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active
 antenna. A bias-tee was used in order to feed the antenna with the $5V$ required for its operation while filtering out the DC to feed into the SDR. To interface with the
 bias-tee a USB cable was cut and used to connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to
-find or lock onto any of the GPS satellites at any time. It was found that another opensource program, GPS-SDR-sim, could be used to create binary files that replicate
+find or lock onto any of the GPS satellites at any time. It was found that another open-source program, GPS-SDR-sim, could be used to create binary files that replicate
 the received signals from the satellites. 
 \\Through experimentation a successful workflow was created, as shown in figure \ref{fig:Flowchart}.
 
@@ -633,7 +634,7 @@ The signal modulation is applied within the compilation of the file, simplifying
 
 \subsection{Transmit Signal}
 Once the signal has been compiled into a binary file it is sent to the USRP SDR via GNURadio. GNURadio has an SDK that allows for text based programming. A script that was
-capable of connecting to USRP devices automatically through the UHD daemon was distributed with the GPS-SDR-sim program. This was used to simplify the development
+capable of connecting to USRP devices automatically through the UHD (USRP Hardware Driver) daemon was distributed with the GPS-SDR-sim program. This was used to simplify the development
 process. 
 
 This was a simple program that connected the source file to the SDR via some simple blocks as shown in Figure \ref{fig:GNURadioSpoof}. The file is read 16bits at a time

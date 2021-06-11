@@ -45,7 +45,7 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \usepackage{mathpazo} % Use the Palatino font by default
 
 %\usepackage[style=numeric]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
-\usepackage[backend=bibtex,style=numeric]{biblatex}
+\usepackage[backend=bibtex,style=numeric, sorting=none]{biblatex}
 % \usepackage[backend=bibtex, style=ieee]{biblatex}
 %\usepackage[backend=bibtex,style=authoryear]{biblatex} % this will use author and year for in text referencing
 \bibliography{main}
@@ -85,6 +85,8 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 }
 
 \lstset{style=mystyle}
+
+\usepackage{float}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -225,19 +227,38 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 
 \begin{abstract}
   \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-	As GNSS technology becomes more and more prevalent in society more needs to be done to ensure that it remains a robust system. There is a distinct issue with
-	satellite technology. That is that the design life time leaves them open to attack as technology propels forward. Especially over the past 15 years the rate of
-	expansion of technology has been high. While the GNSS system as a whole may have been technologically advanced compared to civilian technology when launched, that
-	technology, and others, trickles down in to the hands of attackers. This thesis pointed out the ease in which a spoofing attack was able to be performed. The results
-	show that with relatively low amounts of money and processing power, as well as technical understanding, successful spoofing attacks were performed. Using free and
-	available software coordinates were chosen either a stand alone coordinate for a static spoof, or connected to form a path for a dynamic spoof. The coordinates were
-	saved as text files that were passed into another software program, GPS-SDR-sim that converted the text file into a interlaced I/Q signal data file. This was loaded
-	into the SDR via the GNURadio program and ehternet interface. The victim receivers were successfully spoofed, however the accuracy of the calculated location was less
-	than what was expected for static attacks, with error values consistently over 20m. Dynamic spoofed scenarios seemed to fair much better with less error. While
-	it is also true that with the setup used for testing that there were clear signs that the signal was spoofed there are products that do not have the processing power
-	to perform software based anti spoofing checks. These include embedded systems, as well as existing systems. 
+	As GNSS (Global Navigation Satellite System) technology becomes increasingly prevalent in society more effort needs to be invested to ensure that it remains a robust system. There is a distinct issue with
+	satellite technology, the design life time leaves them open to attack as technology propels forward.
+	Especially over the past 15 years the rate of
+	expansion of technology has been high. Newer more technologically advanced satellites can be launched, but backwards
+	compatibility can leave them succeptible to an attack.
+	While GNSS cosntellations as a whole may have been technologically advanced compared to civilian technology when launched, that
+	technology trickles down to civilians. Once it is available for civilians it is simultaneously accessible for attackers. 
+	This thesis pointed out the ease in which a spoofing attack was able to be performed. 
+	
+	\bigskip
+
+	The results
+	show that with relatively low amounts of money, processing power and technical understanding successful spoofing attacks were performed. Using free and
+	available software coordinates were chosen either as a stand alone coordinate for a static spoof, or connected to form a path for a dynamic spoof. The coordinates were
+	saved as text files that were passed into another software program, GPS-SDR-sim, that converted the text file into a interlaced I/Q signal data file. This was loaded
+	into the SDR via the GNURadio program and ethernet interface. The victim receivers were successfully spoofed, however the accuracy of the calculated location was less
+	than what was expected for static attacks, with error values consistently over 20m. Dynamic spoofed scenarios seemed to fair much better with less error. 
+	
+	\bigskip
+	
+	From the results it was clear when there was a spoofing attack being performed from the carrier to noise ratio graphs alone. However, it seems that devices either do
+	not have simple anti-spoofing implementations or are not powerful enough to perform the appropriate checks in software.  
+	These include embedded systems, as well as existing systems. 
 	Many industries are reluctant to change equipment for many years, even in important industries like energy. This leaves this infrastructure open to attacks from this
-	kind of system especially given how portable it is \cite{RN58}. 
+	kind of system.
+	
+	\bigskip
+
+	This thesis has laid the foundation for which further investigation can be performed within \univname. Electronic Warfare capabilities will become more important as
+	moving forward, and to date there has been a lack of such area of research at \univname. With the conclusion of this thesis there is sufficient hardware and software
+	knowledge to further the research.
+
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -247,9 +268,9 @@ consistentlayout, % Uncomment to change the layout of the declaration, abstract 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
 I wish to thank all those that have supported me through not only my thesis, but my entire degree. In particular Saeed, who guided me through the process of performing an
-Honours project. My parents have always been supportive of my decisions and I could not have made it this far without them. Most importantly I'd like to thank Jacqueline
-Miller for her endless patience for me through the early years of my degree and her endless compliments as well as grammatical help. To eveyone who has had to listen to
-my endless ramplings about whatever it was I was working on at the time, thank you.
+Honours project. \\ My parents have always been supportive of my decisions and I could not have made it this far without them. \\Most importantly I'd like to thank Jacqueline
+Miller for her endless patience for me through the early years of my degree and her endless compliments as well as grammatical help. To everyone who has had to listen to
+my endless ramblings about whatever it was I was working on at the time, thank you.
 \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
@@ -267,6 +288,7 @@ my endless ramplings about whatever it was I was working on at the time, thank y
 %----------------------------------------------------------------------------------------
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+\textbf{ADC} & \textbf{A}nalog to \textbf{D}igital \textbf{C}onverter \\
 \textbf{ASIC} & \textbf{A}pplication \textbf{S}pecific \textbf{I}tegrated \textbf{C}ircuit \\
 \textbf{BER} & \textbf{B}it \textbf{E}rror \textbf{R}ate \\
 \textbf{BOC} & \textbf{B}inary \textbf{O}ffset \textbf{C}arrier\\
@@ -274,6 +296,7 @@ my endless ramplings about whatever it was I was working on at the time, thank y
 \textbf{CDMA} & \textbf{C}ode \textbf{D}ivision \textbf{M}ultiple \textbf{A}ccess\\
 \textbf{COTS} & \textbf{C}ommerical \textbf{O}ff \textbf{T}he \textbf{S}helf\\
 \textbf{DGPS} & \textbf{D}ifferential \textbf{GPS}\\
+\textbf{DOP} & \textbf{D}ilution \textbf{O}f \textbf{P}recision\\
 \textbf{DSP} & \textbf{D}igital \textbf{S}ignal \textbf{P}rocessing\\
 \textbf{ECEF} & \textbf{E}arth \textbf{C}entered \textbf{E}arth \textbf{F}ixed\\
 \textbf{EGA} & \textbf{E}uropean \textbf{G}NSS \textbf{A}gency\\
@@ -290,10 +313,12 @@ my endless ramplings about whatever it was I was working on at the time, thank y
 \textbf{IGSO} & \textbf{I}nclined \textbf{G}eo \textbf{S}ynchronous \textbf{O}rbit\\
 \textbf{IRNSS} & \textbf{I}ndian \textbf{R}eginal \textbf{N}avigation \textbf{S}atellite \textbf{S}ystem\\
 \textbf{LEO} & \textbf{L}ow \textbf{E}arth \textbf{O}rbit\\
+\textbf{LNA} & \textbf{L}ow \textbf{N}oise \textbf{A}mplifier \\
 \textbf{MEO} & \textbf{M}edium \textbf{E}arth \textbf{O}rbit\\
 \textbf{NavIC} & \textbf{Nav}igation (with) \textbf{I}ndian \textbf{C}onstellation\\
 \textbf{NMEA} & \textbf{N}ational \textbf{M}arine \textbf{E}lectronics \textbf{A}ssociation \\
 \textbf{OSNMA} & \textbf{O}pen \textbf{S}ervice \textbf{N}avigation \textbf{M}essage \textbf{A}uthentication\\
+\textbf{PDOP} & \textbf{P}osition \textbf{D}ilution \textbf{O}f \textbf{P}recision\\
 \textbf{PNT} & \textbf{P}osition, \textbf{N}avigation and \textbf{T}iming\\
 \textbf{PRN} & \textbf{P}suedo \textbf{R}andom \textbf{N}umber\\
 \textbf{PVT} & \textbf{P}osition, \textbf{V}elocity and \textbf{T}iming\\
@@ -306,8 +331,10 @@ my endless ramplings about whatever it was I was working on at the time, thank y
 \textbf{SPS} & \textbf{S}amples \textbf{P}er \textbf{S}econd\\
 \textbf{SVID} & \textbf{S}pace \textbf{V}ehicle \textbf{ID}entification\\
 \textbf{UAV} & \textbf{U}nmanned \textbf{A}erial \textbf{V}ehicle\\
-\textbf{V2V} & \textbf{V}ehicle (to) \textbf{V}ehivle (communication)\\
+\textbf{USRP} & \textbf{U}niversal \textbf{S}oftware \textbf{R}adio \textbf{P}eripheral \\
+\textbf{V2V} & \textbf{V}ehicle (to) \textbf{V}ehicle (communication)\\
 \textbf{V2X} & \textbf{V}ehicle (to) (everything) (communication)\\
+\textbf{VDOP} & \textbf{V}ertical \textbf{D}ilution \textbf{O}f \textbf{P}recision\\
 \textbf{XML} & e\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage\\
 
 \end{abbreviations}
@@ -369,7 +396,7 @@ $\rho$ & distance (pseudorange) & \si{\meter}
 \include{Chapters/Chapter4} 
 \include{Chapters/Chapter5} 
 \include{Chapters/Chapter6}
-\include{Chapters/Chapter7}
+% \include{Chapters/Chapter7}
 % \include{Chapters/Chapter8}
 
 %----------------------------------------------------------------------------------------

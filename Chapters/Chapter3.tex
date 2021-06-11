@@ -93,7 +93,7 @@ distances. All commercially available drones have some form of GNSS/GPS location
 manufactures have built in auto landing features in the event that the drone enters into restricted airspace's. This was to combat civilians who were flying within
 airports, causing safety and security issues. This is one such way that spoofing attacks could be utilised now and in the future, by transmitting a signal that would make
 the drone perceive itself to be in a restricted airspace and land. This kind of attack has been successfully conducted as shown in \cite{RN4}. 
-\textcite{RN21} developed a system to perform a series of spoof attacks on UAVs based on an SDR \cite{RN23}. The goal of this was to be able to 
+\textcite{RN21} developed a system to perform a series of spoof attacks on UAVs (Unmanned Aerial Vehicle) based on an SDR \cite{RN23}. The goal of this was to be able to 
 control the flight path of the UAV without raising any alarm's from the victim. This paper establishes the required conditions in which a UAV will
 be susceptible to being captured from a spoofing attack, as well as the range of post capture control that the spoofer will have over the victim.
 From testing it was found that spoof attacks were successful from up to 50m and up to a velocity of 10m/s.
@@ -186,7 +186,7 @@ array detection and angle of arrival detection methods. It was found that there 
 is not single anti-spoofing method that is able to detect and mitigate all spoofing methods. It was advised to continue researching and developing advanced anti-deception
 systems since the deception models will continue to advance. 
 
-The authors outlined challenges faced by GNSS systems which include: PVT accuracy, availability of GNSS systems, integrity of the system, and the ease in which
+The authors outlined challenges faced by GNSS systems which include: PVT (Position, Velocity, Timing) accuracy, availability of GNSS systems, integrity of the system, and the ease in which
 interference can occur. 
 
 From \cite{RN12} the defence techniques could be broken down into three categories; pseudo-range RAIM (receiver autonomous integrity monitoring),
@@ -277,7 +277,7 @@ attack on commercial airplanes by monitoring the broadcast information for errat
 Crowd-GPS-sec.
 
 \textcite{RN31} and \textcite{RN42} discuss methods of spoofing detection on mobile devices.
-The Android operating system released an update in 2016 the Android API which included access to the Raw GNSS properties including navigation messages, pseudo-ranges,
+The Android operating system released an update in 2016 the Android API (application Programming Interface) which included access to the Raw GNSS properties including navigation messages, pseudo-ranges,
 Doppler frequencies, constellation status and others. An overview of the changes made over recent versions can be found in \cite{RN39}. From these properties a GPS spoof detection program
 was developed without the need to modify the hardware of the GPS receiver or the transmitting satellite. From the available information and sensors of the chosen phone, 4 sensor combinations were chosen 1) network location provider, 2) AGC (automation gain control) and C/No engine,
 3) inertial sensor data and 4) pseudo-range residual metrics. It was noted that there exists an app that combines all of the mentioned methods together "GNSSAlarm" which was
@@ -325,7 +325,7 @@ descriptions. Testing was performed on a Dell PC with Xeon processor and an ODro
 with execution times ballooning. However the receiver was able to decode the OS-NMA code successfully. Future work will go into optimising the software for different
 platforms and utilising more powerful hardware to close to gap with more powerful PC machines.
 
-\textcite{RN18} developed an SDR for spoofing mitigation purposes since typical COTS GNSS receivers do not have a way of being upgraded since their hardware is set and
+\textcite{RN18} developed an SDR for spoofing mitigation purposes since typical COTS (Commercial Off the Shelf) GNSS receivers do not have a way of being upgraded since their hardware is set and
 not able to change. Having a receiver with upgradeable hardware, such as that found in SDR platforms, would make for an ideal GPS receiver. As such SDRs are well suited
 as GNSS receivers, however, they are challenged by processing the GNSS data and anti spoofing method. \citeauthor{RN18} performed experiments to see the effectiveness of SDR
 platforms for implementing a mitigation strategy in real time. A reduced complexity MMSE (minimum mean squared error) algorithm was developed for use on the in house

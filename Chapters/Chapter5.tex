@@ -30,7 +30,7 @@ that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T an
 
 Experimentation was performed from the Tonsley campus of Flinders University, which has coordinates of $-35.007650, 138.572030$, within the Faraday cage.Therefore it would
 be considered successful if the GPS receiver was to show that the current location was not at this location. The chosen spoof locations were Davis Station in
-Antarctica and the MAB at Flinders University Tonsley Campus with coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
+Antarctica and the MAB (Mass Assembly Building) at Flinders University Tonsley Campus with coordinates of $-68.5762449235, 77.9696166515$ and $-35.00792163316667, 138.5715065625$ respectively.
 The MAB was chosen as a convenient location to be able to test authentic and spoofed signals. The Antarctic location was chosen as an arbitrarily location that would
 not be simple to get an authentic signal from, therefore a successful spoof would be easy to show.
 
@@ -171,7 +171,7 @@ The inaccuracy is higher than was expected from this experiment.
 Dynamic spoofing attacks were also performed. These attacks do not have a set coordinate that the spoofer is attempting to make the receiver appear at, rather these
 attacks try to get the receiver to "follow" a path that has been set, see Section \ref{subsec:coordinate}.
 \subsubsection{Tonsley MAB}
-There is a road that circles around the MAB (Mass Assembly Building) in which the \univname Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
+There is a road that circles around the MAB in which the Flinders University Tonsley campus is situated. This was used as a path to spoof the GPS receiver,
 see Figure \ref{fig:MABdynamicSetup}.
 
 \begin{figure}[H]
@@ -332,7 +332,7 @@ The results from the static Antarctica spoof attack, specifically the carrier to
 GPS constellation this must be an error. Although there was no explanation for the error since the resultant location was correct. One hypothesis was that the compilation
 software added some incorrect data. Another is the prevalence of SBAS satellites. There was a known issue for some time with the Faraday cage where stray EM waves were
 getting in. This would explain the consistency in which SVID 193 appears. From \cite{RN67} it can be seen that SVID 193 is a QZSS satellite. These satellites orbit over
-Australia and part of Asia. The existance of supurfolous SVIDs raises a potential defence strategy. It would be simple to cross reference the SVID of all satellites in
+Australia and part of Asia. The existence of superfluous SVIDs raises a potential defence strategy. It would be simple to cross reference the SVID of all satellites in
 the constellation being used. If an SVID is being received and not part of that constellation then it can be assumed that the signal is spoofed. 
 
 The dynamic spoof around the MAB showed low error while following the associated path. The CBD dynamic spoof, which lasted much longer, was less consistent with it's
