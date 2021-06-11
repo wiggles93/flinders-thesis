@@ -15,7 +15,7 @@ The overall results and trends are then discussed.
 Before testing the GPS transmission performance of the SDR, reception was tested, without success. Three antenna setups were chosen with each failing to lock and track the
 satellites. A log linear, an omnidirectional and an active patch antenna were all used. The active antenna should have given best results since it included amplifiers
 with a total gain of 28dB and
-filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however testing with a multi-meter showed
+filters within the antenna module itself. The failure could be to do with the bias-t used to inject the 5V DC into the antenna, however, testing with a multi-meter showed
 that there was 5V on the RF+DC port of the Tee. Further testing of the bias-T and hardware setup was required, but was not achievable due to time constraints.
 
 %----------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ this is the only basic attack type that can be used on the encrypted military ba
 Once the workflow and hardware setup for the SDR was properly configured it was found that a smartphone was able to be spoofed.
 When attempting to spoof devices in the wild, the Pixel XL smartphone was susceptible to attack while more modern smartphones that were tested were not susceptible. These
 included the iPhone 12 Pro, Samsung Galaxy S10 and Google Pixel 3XL. The spoofing setup was not able to fool any of these devices. This could be down to any software based
-anti-spoofing algorithms that have been implemented. From Android 7.0 onwards there was an increase in the efforts put into gathering raw GNSS data from the
+anti-spoofing algorithms that have been implemented. From Android 7.0 onward there was an increase in the efforts put into gathering raw GNSS data from the
 receivers in phones \cite{RN31}, with mandatory hardware support for raw GNSS measurement as of Android 10, or if hardware is newer than 2016.
 Apple have not released information regarding how they deal with prospective spoofing attacks or access to raw GNSS data.
 

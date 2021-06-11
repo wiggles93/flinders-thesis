@@ -65,7 +65,7 @@ making overpower the legitimate signal a simple task. Having such a system so pr
 \subsection{Spoofing Attack Literature} \label{Subsec:SpoofLit}
 The further development of SDR platforms has driven down the cost of launching GNSS based spoofing attacks. Devices such as the Hack-RF, USRP, Blade-RF and others have
 been documented for this use \cite{RN4} \cite{RN9}. These devices are all examples of Software defined radios that are capable of duplex operation. This combined with
-open source software, as described in \cite{RN16} \cite{RN57} \cite{RN4}. The former is a software package, GPS-SDR, that converts a compatible SDR into a GPS receiver
+open source software, as described in \cite{RN4} \cite{RN16} \cite{RN57}. The former is a software package, GPS-SDR, that converts a compatible SDR into a GPS receiver
 without any knowledge of GPS or signal processing required. With some understanding this could be modified to capture the raw signal for use in a Meaconing spoofing
 attack. The later refers to the setup and use of the GPS-SDR-SIM program. This program provides a method for producing a modulated GPS signal for transmission. It
 requires the RINEX file for the date and time of the spoof attack as well as a set of coordinates to reproduce. Since it is open source it can be easily modified for any
@@ -320,10 +320,10 @@ method works by discarding signals that are deemed to be counterfeit.
 attempt to include spoofing countermeasures within the message structure from the satellite. The
 NMA cryptographic data is mostly unpredictable, which can be used to protect against replay attacks like meaconing attacks \cite{RN37}.
 Software profiling was performed with performance comparisons undertaken
-between different platforms. There are OSNMA ready commercial hardware receivers, however the authors decided that a software implementation would be best suited as new
+between different platforms. There are OSNMA ready commercial hardware receivers, however, the authors decided that a software implementation would be best suited as new
 features are easily added and the algorithm can be easily accessed and modified as needed. An overview of the OS-NMA was provided with parameters, values and
 descriptions. Testing was performed on a Dell PC with Xeon processor and an ODroid running ARM based exynos processor. It was shown that the ARM based device suffered
-with execution times ballooning. However the receiver was able to decode the OS-NMA code successfully. Future work will go into optimising the software for different
+with execution times ballooning. However, the receiver was able to decode the OS-NMA code successfully. Future work will go into optimising the software for different
 platforms and utilising more powerful hardware to close to gap with more powerful PC machines.
 
 \textcite{RN18} developed an SDR for spoofing mitigation purposes since typical COTS (Commercial Off the Shelf) GNSS receivers do not have a way of being upgraded since their hardware is set and
@@ -411,7 +411,7 @@ knowledge required to be able to perform an attack.
 
 Common recommendations from the literature was the implementation of, at a minimum, basic anti-spoofing infrastructure. This is more common place in applications that
 have suitable software processing capabilities. But dedicated COTS receivers do not typically have any defence strategies in place.
-Cryptographic solutions are frequently suggested in literature, and have been implemented with success. However such implementations require alterations to the space
+Cryptographic solutions are frequently suggested in literature, and have been implemented with success. However, such implementations require alterations to the space
 segment of the GNSS constellation. This may be implemented for the next generation satellites but for now this is not feasible. 
 
 Some literate have proposed workarounds should the constellations be upgraded, such as \cite{RN19} where an external device performs the cryptographic checks before

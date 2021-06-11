@@ -349,17 +349,17 @@ For all experiments the same hardware was used. This included the USRP SDR, lapt
 powerful enough to be able to feed the data to the SDR quick enough to avoid the aforementioned under run issues. Towards the end of the project there was a hardware fault
 with the Pixel XL phone receiver. This was replaced by the Pixel 4a 5G.
 
-There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possession of the
-supervisor. Having said that some research went into the suitability of the equipment, mainly the SDR. 
+There was no formal decision process for choosing the hardware components since they were all parts that had already been purchased and were in possession of the project
+supervisor. Research went into ensuring the suitability of the equipment particularly the SDR. 
 The hardware requirements for sending and receiving GPS signals is low. For the civilian band the PRN code is chipped at 1.023MHz and the navigation message is at 50bps \cite{RN57}.
 It was found that this was one of the most powerful and most
 importantly had one of the most stable clock oscillators available in software defined radios. This made is well suited to GNSS based tasks. Alternatives, like the
 RTL-SDR are capable devices for the cost, but only offer reception. Duplex options like the HackRF are also suitable for transmitting high bandwidth signals, however the
-on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included de-soldering the included oscillator and
-soldering a more stable part. In future, if access to USRP based SDRs is not available then this would be a very good second option. However, there was access to a better
-tool, being the N210, therefore it was chosen. From Ettus, there were two daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and
-WBX. The SBX was chosen because it was already available. It should be noted that there would be no theoretical difference between either daughtercard since the desired
-frequency was not at the extreme of either cards bands. Either card would also be capable of transmitting or receiving on the other bands of GNSS constellations.
+on board clock is not stable enough for highly accurate signals like that of GNSS. There was a workaround for this, which included de-soldering the included oscillator
+and soldering a more stable part. In future, if access to USRP based SDRs is not available then this would be a very good second option. From Ettus there were two
+daughtercards that allow access to the desired 1575.42MHz band of the L1 GPS signal, the SBX and WBX. The SBX was chosen because it was already available. It should be
+noted that there would be no theoretical difference between either daughtercard since the desired frequency was not at the extreme of either cards bands. Either card
+would also be capable of transmitting or receiving on the other bands of GNSS constellations.
 
 To ensure the SDR and PC were able to communicate, an ethernet cable was connected between each device and the IP address of the PC was set to 192.168.10.2/24 as per the
 default configuration from the setup documentation. To check if the IP address was correctly set, a command line program was run that would poll the appropriate
@@ -508,7 +508,7 @@ Some preliminary testing was done with different software setups to see which wo
 generating techniques were investigated. Initially meaconing was chosen as the best way to perform an attack, therefore an attempt was made to record real time GPS signals
 and store them for later transmission. Initial testing using a passive log periodic antenna resulted in no data being properly captured. Since a log-periodic antenna was
 used there was a mismatch in the polarisation of the wave. The transmitted GPS signal is polarised as RHCP, whereas by its nature log-periodic antennas are linearly
-polarised. This equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna and the directional nature of the antenna
+polarised. This polarity difference equated to a $3dB$ attenuation of the signal. This coupled with the lack of signal gain from the passive antenna and the directional nature of the antenna
 meant that the data within the signal was unrecoverable and an active antenna should be used. Unfortunately, none of the daughtercards on hand were able to feed an active
 antenna. A bias-tee was used in order to feed the antenna with the $5V$ required for its operation while filtering out the DC to feed into the SDR. To interface with the
 bias-tee a USB cable was cut and used to connect to a perf board with a soldered SMA connector. Unfortunately this was unsuccessful. The GNSS-SDR program was unable to
@@ -740,7 +740,7 @@ set at the time of production of the binary file, but there will be perceived mo
 
 \subsection{Real-Time Spoofing}
 Due to time constraints a real-time algorithm was not produced as part of this project. However, utilising the open source projects that have been used to complete this
-thesis it would be probable to be able to create a real time spoofing device that would be able to react to the positional changes of the receiver instead of following a
+thesis, it would be probable to create a real time spoofing device that would be able to react to the positional changes of the receiver instead of following a
 pre-determined path when generating the binary file. The signals generation algorithm could be ported to a GNURadio block in C++ to allow for easy access to real-time GPS
 signal spoofing. If an SDR is a full duplex radio, such is the case for the USRP N210, then one port can be receiving the real GNSS signal and the other can be
 transmitting the spoofed signal. Care would need to be taken in the set up of this arrangement since any transmitted signal would also be picked up by the receiving
